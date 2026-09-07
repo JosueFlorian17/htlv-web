@@ -49,6 +49,7 @@ export default function Footer({ hasSidebar = false }) {
               <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/research">Líneas de Investigación</Link>
               <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/repository">Repositorio Documental</Link>
               <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/resources">Recursos Descargables</Link>
+              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/foro">Foro Comunitario</Link>
             </nav>
           </div>
 

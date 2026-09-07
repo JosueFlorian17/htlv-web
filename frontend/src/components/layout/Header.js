@@ -121,6 +121,17 @@ export default function Header() {
                             >
                                 Recursos
                             </Link>
+
+                            <Link 
+                                className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
+                                    isActivePath('/foro')
+                                        ? 'text-[#5b0617] font-bold border-[#5b0617]' 
+                                        : 'text-[#564242] hover:text-[#5b0617] border-transparent'
+                                }`} 
+                                href="/foro"
+                            >
+                                Foro
+                            </Link>
                         </div>
                     </div>
 

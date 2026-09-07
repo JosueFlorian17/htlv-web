@@ -12,6 +12,7 @@ export default function Sidebar() {
     { href: '/research', label: 'Investigación', icon: 'biotech' },
     { href: '/repository', label: 'Repositorio', icon: 'menu_book' },
     { href: '/resources', label: 'Recursos', icon: 'folder' },
+    { href: '/foro', label: 'Foro Comunitario', icon: 'forum' },
     { href: '/contact', label: 'Contacto', icon: 'mail' },
   ];
 
