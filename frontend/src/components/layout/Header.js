@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 export default function Header() {
     const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
+    const [currentLang, setCurrentLang] = useState('es');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,21 +32,25 @@ export default function Header() {
         return pathname === '/network' || pathname === '/about';
     };
 
-    const isNoticiasActive = () => {
-        return pathname === '/news' || pathname.startsWith('/news/') || pathname === '/noticias' || pathname.startsWith('/noticias/');
-    };
-
     return (
         <>
             {/* Iconos de Google Material Symbols oficiales */}
             <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-            {/* TopNavBar - Restringido al ancho máximo y centrado para pantallas Landscape */}
+            {/* TopNavBar - Ancho completo y contenido alineado */}
             <nav className={`fixed top-0 left-0 right-0 h-20 w-full z-50 bg-[#f8f9fb] transition-all duration-200 ${isScrolled ? 'shadow-md' : 'border-b border-[#dcc0c0]'}`}>
-                <div className="max-w-[1280px] mx-auto w-full h-full flex justify-between items-center px-10">
+                <div className="max-w-[1280px] mx-auto w-full h-full flex justify-between items-center px-6 md:px-10">
                     <div className="flex items-center gap-6">
-                        <Link href="/" className="text-[24px] font-bold text-[#5b0617] tracking-tight">RIII-HTLV</Link>
-                        <div className="hidden lg:flex items-center gap-4">
+                        <Link href="/" className="flex items-center gap-2 group">
+                            <span className="text-[22px] md:text-[24px] font-extrabold text-[#5b0617] tracking-tight group-hover:opacity-90 transition-opacity">
+                                RIII-HTLV
+                            </span>
+                            <span className="hidden sm:inline-block text-[10px] uppercase font-bold tracking-widest bg-[#ffdada] text-[#5b0617] px-2 py-0.5 rounded">
+                                Consorcio Científico
+                            </span>
+                        </Link>
+                        
+                        <div className="hidden lg:flex items-center gap-5">
                             <Link 
                                 className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
                                     isActivePath('/') && !pathname.includes('#')
@@ -66,12 +71,12 @@ export default function Header() {
                                             : 'text-[#564242] hover:text-[#5b0617] border-transparent'
                                     }`}
                                 >
-                                    Nosotros <span className="material-symbols-outlined text-sm">expand_more</span>
+                                    Sobre HTLV & La Red <span className="material-symbols-outlined text-sm">expand_more</span>
                                 </button>
-                                <div className="absolute top-[80%] left-0 hidden group-hover:block bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg shadow-sm py-2 min-w-[180px] z-50">
+                                <div className="absolute top-[80%] left-0 hidden group-hover:block bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg shadow-lg py-2 min-w-[210px] z-50">
                                     <Link 
-                                        href="/#what-is-htlv" 
-                                        className="block px-4 py-2 text-[14px] font-medium text-[#564242] hover:bg-[#e7e8ea]"
+                                        href="/about" 
+                                        className={`block px-4 py-2 text-[14px] font-medium hover:bg-[#e7e8ea] ${pathname === '/about' ? 'text-[#5b0617] font-bold bg-[#e7e8ea]' : 'text-[#564242]'}`}
                                     >
                                         ¿Qué es el HTLV?
                                     </Link>
@@ -79,7 +84,7 @@ export default function Header() {
                                         href="/network" 
                                         className={`block px-4 py-2 text-[14px] font-medium hover:bg-[#e7e8ea] ${pathname === '/network' ? 'text-[#5b0617] font-bold bg-[#e7e8ea]' : 'text-[#564242]'}`}
                                     >
-                                        La Red
+                                        La Red y Miembros
                                     </Link>
                                 </div>
                             </div>
@@ -111,48 +116,50 @@ export default function Header() {
                                     isActivePath('/resources')
                                         ? 'text-[#5b0617] font-bold border-[#5b0617]' 
                                         : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                    }`} 
+                                }`} 
                                 href="/resources"
                             >
                                 Recursos
                             </Link>
-                            
-                            <Link 
-                                className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
-                                    isActivePath('/opportunities')
-                                        ? 'text-[#5b0617] font-bold border-[#5b0617]' 
-                                        : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                }`} 
-                                href="/opportunities"
-                            >
-                                Oportunidades
-                            </Link>
-                            
-                            <Link 
-                                className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
-                                    isActivePath('/foro')
-                                        ? 'text-[#5b0617] font-bold border-[#5b0617]' 
-                                        : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                }`} 
-                                href="/foro"
-                            >
-                                Foro
-                            </Link>
-                            <Link 
-                                className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
-                                    isNoticiasActive()
-                                        ? 'text-[#5b0617] font-bold border-[#5b0617]' 
-                                        : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                }`} 
-                                href="/news"
-                            >
-                                Noticias
-                            </Link>
                         </div>
                     </div>
-                    <Link href="/contact">
-                        <button className="bg-[#5b0617] text-white px-6 py-2 rounded-full text-[14px] font-medium hover:opacity-90 transition-all cursor-pointer">Contacto</button>
-                    </Link>
+
+                    <div className="flex items-center gap-4">
+                        {/* Selector de Idioma */}
+                        <div className="flex items-center border border-[#dcc0c0] rounded-full px-2.5 py-1 text-[12px] font-bold bg-white text-[#564242] shadow-sm">
+                            <span className="material-symbols-outlined text-[14px] mr-1 text-[#5b0617]">language</span>
+                            <button 
+                                onClick={() => setCurrentLang('es')}
+                                className={`px-1 cursor-pointer transition-colors ${currentLang === 'es' ? 'text-[#5b0617] font-black' : 'text-[#897172] hover:text-[#5b0617]'}`}
+                                title="Español"
+                            >
+                                ES
+                            </button>
+                            <span className="text-[#dcc0c0] text-[10px]">|</span>
+                            <button 
+                                onClick={() => setCurrentLang('en')}
+                                className={`px-1 cursor-pointer transition-colors ${currentLang === 'en' ? 'text-[#5b0617] font-black' : 'text-[#897172] hover:text-[#5b0617]'}`}
+                                title="English"
+                            >
+                                EN
+                            </button>
+                            <span className="text-[#dcc0c0] text-[10px]">|</span>
+                            <button 
+                                onClick={() => setCurrentLang('pt')}
+                                className={`px-1 cursor-pointer transition-colors ${currentLang === 'pt' ? 'text-[#5b0617] font-black' : 'text-[#897172] hover:text-[#5b0617]'}`}
+                                title="Português"
+                            >
+                                PT
+                            </button>
+                        </div>
+
+                        {/* Botón de Contacto Institucional */}
+                        <Link href="/contact">
+                            <button className="bg-[#5b0617] text-white px-5 py-2 rounded-full text-[13px] md:text-[14px] font-semibold hover:opacity-90 transition-all cursor-pointer shadow-sm">
+                                Contacto
+                            </button>
+                        </Link>
+                    </div>
                 </div>
             </nav>
         </>

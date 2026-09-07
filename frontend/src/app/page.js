@@ -31,256 +31,259 @@ export default function Home() {
   return (
     <>
       <main className="w-full overflow-x-hidden">
+        
         {/* Hero Section */}
-        <section className="relative h-[650px] lg:h-[800px] flex items-center overflow-hidden">
+        <section className="relative h-[620px] lg:h-[750px] flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div 
               className="w-full h-full bg-cover bg-center" 
               style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDByYMPLtKYqCEMGVUZD4o194qEJpgPjM0_qBzlngvraRPukzJpY95IgYZ5VBPv8Kq92t2nHLvukNCwr-UrX8WV1F3Gkj-z3LaKKU-VMpi8YZU7TTvEoYSVczw5QHu7OhC1uq1bdn8a-EWLjgjf0DyIYiFOSgeCNHUPC7s1-3wqq37gmVYrEYOHgkHCJJa7Yr3blmN_kpEepvFxIrdlVx1Z_VDkoF-2tYRmQiWD7g7weKugXpSkPTG0nYqMf8yENcfuTshV506gN_U")' }}
             ></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/40 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-surface/95 via-surface/60 to-transparent"></div>
           </div>
+          
           <div className="relative z-10 max-w-[1280px] mx-auto w-full px-margin-mobile md:px-margin-desktop scroll-reveal">
             <div className="max-w-3xl">
-              <h1 className="font-display text-display text-primary leading-tight mb-6">
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                <span className="px-3 py-1 bg-[#ffdada] text-[#5b0617] font-label-sm uppercase font-bold tracking-wider rounded-full">
+                  Liderazgo Científico Global
+                </span>
+                <span className="px-3 py-1 bg-white/90 backdrop-blur-xs text-[#191c1e] font-label-sm font-semibold rounded-full border border-[#dcc0c0]">
+                  UPCH • IMTAvH • Perú
+                </span>
+              </div>
+              
+              <h1 className="font-display text-display text-[#5b0617] leading-tight mb-6">
                 Red Internacional de Investigación e Innovación en HTLV
               </h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl">
-                Conectando la ciencia, la innovación y la colaboración internacional para avanzar en la comprensión y el tratamiento de las patologías asociadas al HTLV en todo el mundo.
+              
+              <p className="font-body-lg text-body-lg text-[#564242] mb-8 max-w-2xl leading-relaxed">
+                Conectando a centros de excelencia en retrovirología humana para acelerar diagnósticos tempranos, protocolos terapéuticos y la erradicación global de las patologías asociadas al HTLV-1 y HTLV-2.
               </p>
+              
               <div className="flex flex-wrap gap-4">
-                <Link href="/about" className="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md shadow-lg hover:opacity-90 transition-all flex items-center gap-2 cursor-pointer">
-                  Conocer sobre HTLV
+                <Link href="/about" className="bg-[#5b0617] text-white px-8 py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90 transition-all flex items-center gap-2 cursor-pointer">
+                  ¿Qué es el HTLV? (Guía Clínica)
                   <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
                 </Link>
-                <Link href="/research" className="bg-white/80 backdrop-blur border border-outline-variant text-primary px-8 py-4 rounded-lg font-label-md hover:bg-white transition-all cursor-pointer">
-                  Explorar Investigación
+                <Link href="/research" className="bg-white border border-[#dcc0c0] text-[#5b0617] px-8 py-4 rounded-xl font-label-md font-bold hover:bg-[#ffdada]/30 transition-all cursor-pointer shadow-xs">
+                  Líneas de Investigación
                 </Link>
-                <Link href="/contact" className="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-lg font-label-md hover:bg-secondary-fixed transition-all cursor-pointer">
-                  Unirse a la Red
+                <Link href="/repository" className="bg-[#d6e0f3] text-[#1d2b3a] px-8 py-4 rounded-xl font-label-md font-bold hover:bg-[#c0d2f0] transition-all cursor-pointer">
+                  Repositorio Científico
                 </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* About Section */}
+        {/* Autoridad y Misión */}
         <section className="py-section-gap bg-surface">
           <div className="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop scroll-reveal">
             <div className="grid md:grid-cols-12 gap-12 items-center">
-              <div className="md:col-span-6">
-                <span className="text-primary font-bold tracking-widest uppercase text-label-sm mb-4 block">Sobre la Red</span>
-                <h2 className="font-headline-lg text-headline-lg mb-8 text-[#191c1e]">Impulsando el Descubrimiento Científico Global sobre HTLV</h2>
-                <div className="space-y-6 text-on-surface-variant leading-relaxed text-body-lg">
-                  <p>La RIII-HTLV es una plataforma interdisciplinaria dedicada a fomentar la cooperación global entre virólogos, clínicos e investigadores líderes. Nuestra misión es acelerar estrategias de investigación innovadoras para el Virus Linfotrópico de Células T Humanas (HTLV).</p>
-                  <p>Al aprovechar la experiencia colectiva y el intercambio de datos de alta calidad, cerramos la brecha entre la ciencia de laboratorio y los resultados clínicos, asegurando que los avances académicos se traduzcan en innovaciones que salvan vidas para los pacientes en todo el mundo.</p>
+              <div className="md:col-span-6 space-y-6">
+                <span className="text-[#5b0617] font-bold tracking-widest uppercase text-label-sm block">Consorcio Institucional</span>
+                <h2 className="font-headline-lg text-headline-lg text-[#191c1e]">
+                  Excelencia Científica desde el Foco Endémico hacia el Mundo
+                </h2>
+                <div className="space-y-4 text-[#564242] leading-relaxed text-body-lg">
+                  <p>
+                    La <strong>RIII-HTLV</strong> es una red colaborativa internacional creada para unir la experiencia clínica de zonas de alta prevalencia como el Perú con la capacidad de investigación básica y molecular de laboratorios de referencia en Europa, América Latina y Asia.
+                  </p>
+                  <p>
+                    Coordinada con la participación del <strong>Instituto de Medicina Tropical Alexander von Humboldt de la Universidad Peruana Cayetano Heredia (UPCH)</strong>, nuestra plataforma promueve la estandarización de pruebas diagnósticas, cohortes clínicas longitudinales y políticas de salud pública preventivas.
+                  </p>
+                </div>
+                
+                <div className="pt-2 flex flex-wrap gap-4">
+                  <Link href="/network" className="inline-flex items-center gap-2 text-[#5b0617] font-bold text-[14px] hover:underline">
+                    <span>Conocer las Instituciones y Científicos</span>
+                    <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  </Link>
                 </div>
               </div>
+
               <div className="md:col-span-6 relative">
-                <div className="aspect-square rounded-2xl overflow-hidden shadow-sm">
-                  <img className="w-full h-full object-cover" alt="Investigador científico" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU9J5Ywe8zuxZhEIF-eF1CwVXkzqvCzJAqw4JeCxv6wRWHsUSr8sx5qTAzsxlp1bzxZ1s2QU5JAQS9asLX4KeWGPmKpmSC40i6gGfP4HZPEj6wknbzQfarJGDuCHwPMbZgEA0Y8llkwW-D_jFH2NnDVxexP1pwIbDK99IsiziYJgExeBz3NDfr2o4EjiU5lI3k1KIypfBV4AiCHkwd9ADlF-wewbddPVQBrRgPK1BZa95igtDQh6YwVywhE6uG8W6Cprc3yveXr0Q" />
+                <div className="aspect-square rounded-2xl overflow-hidden shadow-sm border border-[#dcc0c0]">
+                  <img className="w-full h-full object-cover" alt="Investigador científico en laboratorio de virología" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU9J5Ywe8zuxZhEIF-eF1CwVXkzqvCzJAqw4JeCxv6wRWHsUSr8sx5qTAzsxlp1bzxZ1s2QU5JAQS9asLX4KeWGPmKpmSC40i6gGfP4HZPEj6wknbzQfarJGDuCHwPMbZgEA0Y8llkwW-D_jFH2NnDVxexP1pwIbDK99IsiziYJgExeBz3NDfr2o4EjiU5lI3k1KIypfBV4AiCHkwd9ADlF-wewbddPVQBrRgPK1BZa95igtDQh6YwVywhE6uG8W6Cprc3yveXr0Q" />
                 </div>
-                <div className="absolute -bottom-10 -left-10 bg-primary-container p-8 rounded-xl hidden lg:block max-w-[280px]">
-                  <p className="text-on-primary-container font-headline-md italic mb-2">"La colaboración es la clave para resolver desafíos virológicos complejos."</p>
-                  <p className="text-on-primary-container/80 text-label-md">— Comité Ejecutivo Global</p>
+                <div className="absolute -bottom-8 -left-8 bg-[#5b0617] text-white p-6 rounded-2xl hidden lg:block max-w-[300px] shadow-lg">
+                  <p className="font-bold text-[15px] italic mb-1">"La integración de datos clínicos y genómicos salva vidas."</p>
+                  <p className="text-[11px] text-[#ffdada] uppercase tracking-wider font-semibold">— Comité Científico RIII-HTLV</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Quick Access Bento Grid */}
-        <section className="py-section-gap bg-surface-container-low">
+        {/* Ecosistema de Recursos Globales (Bento Grid Limpio) */}
+        <section className="py-section-gap bg-[#f3f4f6] border-y border-[#dcc0c0]">
           <div className="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop scroll-reveal">
-            <h2 className="font-headline-lg text-headline-lg text-center mb-16 text-[#191c1e]">Ecosistema de Recursos Globales</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              <Link href="/about" className="group bg-surface p-8 rounded-xl border border-outline-variant flex flex-col items-center text-center transition-all hover:shadow-lg hover:border-primary">
-                <span className="material-symbols-outlined text-primary/60 text-4xl mb-4 transition-transform group-hover:scale-110 group-hover:text-primary">coronavirus</span>
-                <h3 className="font-label-md text-label-md font-bold text-on-surface">HTLV</h3>
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <h2 className="font-headline-lg text-headline-lg mb-3 text-[#191c1e]">
+                Plataforma Científica y Divulgativa
+              </h2>
+              <p className="text-[#564242] text-[14px]">
+                Acceso centralizado a los módulos de conocimiento, investigación y gobernanza de la red.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+              <Link href="/about" className="group bg-white p-6 rounded-2xl border border-[#dcc0c0] flex flex-col items-center text-center transition-all hover:shadow-md hover:border-[#5b0617]">
+                <div className="w-14 h-14 rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <span className="material-symbols-outlined text-3xl">coronavirus</span>
+                </div>
+                <h3 className="font-bold text-[14px] text-[#191c1e] mb-1">Sobre HTLV</h3>
+                <p className="text-[11px] text-[#564242]">Guía médica y clínica</p>
               </Link>
-              <Link href="/research" className="group bg-surface p-8 rounded-xl border border-outline-variant flex flex-col items-center text-center transition-all hover:shadow-lg hover:border-primary">
-                <span className="material-symbols-outlined text-primary/60 text-4xl mb-4 transition-transform group-hover:scale-110 group-hover:text-primary">biotech</span>
-                <h3 className="font-label-md text-label-md font-bold text-on-surface">Investigación</h3>
+
+              <Link href="/network" className="group bg-white p-6 rounded-2xl border border-[#dcc0c0] flex flex-col items-center text-center transition-all hover:shadow-md hover:border-[#5b0617]">
+                <div className="w-14 h-14 rounded-full bg-[#d6e0f3] text-[#1d2b3a] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <span className="material-symbols-outlined text-3xl">hub</span>
+                </div>
+                <h3 className="font-bold text-[14px] text-[#191c1e] mb-1">La Red</h3>
+                <p className="text-[11px] text-[#564242]">Instituciones y miembros</p>
               </Link>
-              <Link href="/repository" className="group bg-surface p-8 rounded-xl border border-outline-variant flex flex-col items-center text-center transition-all hover:shadow-lg hover:border-primary">
-                <span className="material-symbols-outlined text-primary/60 text-4xl mb-4 transition-transform group-hover:scale-110 group-hover:text-primary">folder_shared</span>
-                <h3 className="font-label-md text-label-md font-bold text-on-surface">Repositorio</h3>
+
+              <Link href="/research" className="group bg-white p-6 rounded-2xl border border-[#dcc0c0] flex flex-col items-center text-center transition-all hover:shadow-md hover:border-[#5b0617]">
+                <div className="w-14 h-14 rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <span className="material-symbols-outlined text-3xl">biotech</span>
+                </div>
+                <h3 className="font-bold text-[14px] text-[#191c1e] mb-1">Investigación</h3>
+                <p className="text-[11px] text-[#564242]">8 líneas científicas</p>
               </Link>
-              <Link href="/resources" className="group bg-surface p-8 rounded-xl border border-outline-variant flex flex-col items-center text-center transition-all hover:shadow-lg hover:border-primary">
-                <span className="material-symbols-outlined text-primary/60 text-4xl mb-4 transition-transform group-hover:scale-110 group-hover:text-primary">library_books</span>
-                <h3 className="font-label-md text-label-md font-bold text-on-surface">Recursos</h3>
+
+              <Link href="/repository" className="group bg-white p-6 rounded-2xl border border-[#dcc0c0] flex flex-col items-center text-center transition-all hover:shadow-md hover:border-[#5b0617]">
+                <div className="w-14 h-14 rounded-full bg-[#d6e0f3] text-[#1d2b3a] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <span className="material-symbols-outlined text-3xl">menu_book</span>
+                </div>
+                <h3 className="font-bold text-[14px] text-[#191c1e] mb-1">Repositorio</h3>
+                <p className="text-[11px] text-[#564242]">Buscador de literatura</p>
               </Link>
-              <Link href="/opportunities" className="group bg-surface p-8 rounded-xl border border-outline-variant flex flex-col items-center text-center transition-all hover:shadow-lg hover:border-primary">
-                <span className="material-symbols-outlined text-primary/60 text-4xl mb-4 transition-transform group-hover:scale-110 group-hover:text-primary">work</span>
-                <h3 className="font-label-md text-label-md font-bold text-on-surface">Oportunidades</h3>
+
+              <Link href="/resources" className="group bg-white p-6 rounded-2xl border border-[#dcc0c0] flex flex-col items-center text-center transition-all hover:shadow-md hover:border-[#5b0617]">
+                <div className="w-14 h-14 rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <span className="material-symbols-outlined text-3xl">folder</span>
+                </div>
+                <h3 className="font-bold text-[14px] text-[#191c1e] mb-1">Recursos</h3>
+                <p className="text-[11px] text-[#564242]">Materiales y manuales</p>
               </Link>
-              <Link href="/foro" className="group bg-surface p-8 rounded-xl border border-outline-variant flex flex-col items-center text-center transition-all hover:shadow-lg hover:border-primary">
-                <span className="material-symbols-outlined text-primary/60 text-4xl mb-4 transition-transform group-hover:scale-110 group-hover:text-primary">forum</span>
-                <h3 className="font-label-md text-label-md font-bold text-on-surface">Foro</h3>
+
+              <Link href="/contact" className="group bg-white p-6 rounded-2xl border border-[#dcc0c0] flex flex-col items-center text-center transition-all hover:shadow-md hover:border-[#5b0617]">
+                <div className="w-14 h-14 rounded-full bg-[#d6e0f3] text-[#1d2b3a] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <span className="material-symbols-outlined text-3xl">mail</span>
+                </div>
+                <h3 className="font-bold text-[14px] text-[#191c1e] mb-1">Contacto</h3>
+                <p className="text-[11px] text-[#564242]">Alianzas institucionales</p>
               </Link>
             </div>
           </div>
         </section>
 
-        {/* News & Events */}
+        {/* Pilares Científicos y Contenido Permanente (Evergreen) */}
         <section className="py-section-gap">
           <div className="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop scroll-reveal">
-            <div className="flex justify-between items-end mb-12">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4 border-b border-[#dcc0c0] pb-4">
               <div>
-                <h2 className="font-headline-lg text-headline-lg text-[#191c1e]">Actualizaciones de la Red</h2>
-                <p className="text-on-surface-variant mt-2">Últimas noticias y próximos encuentros científicos.</p>
+                <span className="text-[12px] font-bold text-[#5b0617] uppercase tracking-wider mb-1 block">Áreas Prioritarias</span>
+                <h2 className="font-headline-lg text-headline-lg text-[#191c1e]">
+                  Líneas Estratégicas de Investigación
+                </h2>
               </div>
-              <Link className="text-primary font-bold text-label-md flex items-center gap-1 hover:underline cursor-pointer" href="/news">
-                Ver Todo
-                <span className="material-symbols-outlined text-[18px]">open_in_new</span>
+              <Link href="/research" className="text-[#5b0617] font-bold text-[14px] flex items-center gap-1 hover:underline">
+                <span>Ver todos los proyectos</span>
+                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
               </Link>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* News Feed */}
-              <div className="lg:col-span-8 space-y-8">
-                {/* News Card 1 */}
-                <Link href="/news" className="group flex flex-col md:flex-row bg-surface rounded-xl overflow-hidden border border-outline-variant hover:border-primary transition-colors cursor-pointer">
-                  <div className="md:w-1/3 aspect-[4/3] overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Mesa de laboratorio científico" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd4nt3JsQUi4G4c3_EZ_H0ySDeO2QBlS6g2cnYUSLeZlYxHaA2oYREkon85s4RvFZINz7-CNDBhILddgo8SDnLqAudQC9omIMJyPI4cWjlMLCJD2Aa8kW94DBq1grMfNQJKmk__zgat7dwCF1FxdXQDrSpnwThJ2uUOiboGfxFZWfZsZjc1A8Ao-HLevaEY4zxY0xMe_3tgmbBzPvgueW4upV1s1u37dfz5hKvk-BTCID0qtFs69GyN2QZzxhSWFcS8ehHZ4_IGBg" />
-                  </div>
-                  <div className="p-6 md:w-2/3 flex flex-col justify-center">
-                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm w-fit mb-4 uppercase tracking-wider">Investigación</span>
-                    <h3 className="font-headline-md text-headline-md mb-2 group-hover:text-primary transition-colors text-[#191c1e]">Avance en Técnicas de Tipificación Molecular de HTLV-1</h3>
-                    <p className="text-on-surface-variant text-body-md line-clamp-2">Nuevos hallazgos sugieren que los protocolos de secuenciación avanzada pueden mejorar significativamente la precisión de la estratificación de pacientes...</p>
-                    <div className="mt-4 flex items-center gap-4 text-label-sm text-on-surface-variant/70">
-                      <span>24 de Octubre, 2024</span>
-                      <span>•</span>
-                      <span>5 min de lectura</span>
-                    </div>
-                  </div>
-                </Link>
-                {/* News Card 2 */}
-                <Link href="/news" className="group flex flex-col md:flex-row bg-surface rounded-xl overflow-hidden border border-outline-variant hover:border-primary transition-colors cursor-pointer">
-                  <div className="md:w-1/3 aspect-[4/3] overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Microscopio digital de alta tecnología" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABjYEK4eEoXBt02mWJqVR8Ivb6nM1e4IesXgpHSog7UlmStPxRO910TBvhdP52mZlVs8iKzs3sgwHYvVAdKgc0pBNtS6Xk2Q2rOdxGsWtCqn3Hy-1JWBgv74PHFw0RKrw9A1Qj6KQQc6QKIYu9lO6692ngoB8808WiwaMUkD0WG-2xCIpk4qoi9NvfoDSKPy6k-ym-mGhb868FzxXJBtlDAuj_B0OqWrVdrQRJo0IiwE8TcRug02bYZVkW36Z8uZ73ARPjpaGWdlA" />
-                  </div>
-                  <div className="p-6 md:w-2/3 flex flex-col justify-center">
-                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm w-fit mb-4 uppercase tracking-wider">Políticas Globales</span>
-                    <h3 className="font-headline-md text-headline-md mb-2 group-hover:text-primary transition-colors text-[#191c1e]">RIII-HTLV se Une al Consorcio Internacional de Salud</h3>
-                    <p className="text-on-surface-variant text-body-md line-clamp-2">La alianza tiene como objetivo estandarizar el diagnóstico de laboratorio en diversos sistemas de salud en el Hemisferio Sur...</p>
-                    <div className="mt-4 flex items-center gap-4 text-label-sm text-on-surface-variant/70">
-                      <span>18 de Octubre, 2024</span>
-                      <span>•</span>
-                      <span>3 min de lectura</span>
-                    </div>
-                  </div>
-                </Link>
-                {/* News Card 3 */}
-                <Link href="/news" className="group flex flex-col md:flex-row bg-surface rounded-xl overflow-hidden border border-outline-variant hover:border-primary transition-colors cursor-pointer">
-                  <div className="md:w-1/3 aspect-[4/3] overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Colaboración científica" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuB_uL1vEDoo9gLLKIPSgqbeghSj-c5jet9ZS5Ym6y-vJsx4PTWHqhKsxObrpaUiuSFg3NMN8RG-8ZxFzUzekAU9El3VxdSmEGiHrkmC4YiBYCq1KfQdFAofR8W7MTmC-WRDJWeQKjG6mZT43EWVYMnrE6Y-kMbASa0vnaVL7_zv_PAEskACUMxuPHtIQ8Pz5phgVUZh2SP-zsaUW3NWCp2NShaMzDciKzgc3NFHyV6Qe5DJsyrh6YYOaq2iYJKNF5gdrE4BpGBsU" />
-                  </div>
-                  <div className="p-6 md:w-2/3 flex flex-col justify-center">
-                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm w-fit mb-4 uppercase tracking-wider">Comunidad</span>
-                    <h3 className="font-headline-md text-headline-md mb-2 group-hover:text-primary transition-colors text-[#191c1e]">Convocatoria de Becas de Investigación Abierta para 2025</h3>
-                    <p className="text-on-surface-variant text-body-md line-clamp-2">Se invita a investigadores principiantes a postularse a la prestigiosa Beca de Innovación HTLV en los centros participantes...</p>
-                    <div className="mt-4 flex items-center gap-4 text-label-sm text-on-surface-variant/70">
-                      <span>12 de Octubre, 2024</span>
-                      <span>•</span>
-                      <span>4 min de lectura</span>
-                    </div>
-                  </div>
-                </Link>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white border border-[#dcc0c0] p-6 rounded-2xl shadow-sm hover:border-[#5b0617] transition-all flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-[#ffdada] text-[#5b0617] flex items-center justify-center mb-4 font-bold">01</div>
+                  <h3 className="font-bold text-[17px] text-[#191c1e] mb-2">Vigilancia Molecular y Subtipos</h3>
+                  <p className="text-[13px] text-[#564242] leading-relaxed mb-4">
+                    Caracterización genómica de cepas virales de HTLV-1/2 en América del Sur y correlación con el riesgo de progresión a patologías neurológicas y hematológicas.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#dcc0c0]/50 text-[12px] font-bold text-[#5b0617]">
+                  Nodo: IMTAvH - UPCH / Imperial College
+                </div>
               </div>
-              {/* Events Feed */}
-              <div className="lg:col-span-4">
-                <div className="bg-surface-container-high p-8 rounded-2xl h-full flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-headline-md text-headline-md mb-8 flex items-center gap-2 text-[#191c1e]">
-                      <span className="material-symbols-outlined text-primary">event</span>
-                      Próximos Eventos
-                    </h3>
-                    <div className="space-y-8">
-                      {/* Event 1 */}
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0 w-16 h-20 bg-white rounded-lg shadow-sm flex flex-col items-center justify-center text-center border border-outline-variant">
-                          <span className="text-label-sm text-primary font-bold uppercase">Nov</span>
-                          <span className="text-headline-md font-bold text-[#191c1e]">14</span>
-                        </div>
-                        <div>
-                          <h4 className="font-label-md font-bold text-on-surface hover:text-primary transition-colors cursor-pointer leading-tight">Simposio Virtual: HTLV y Co-infecciones</h4>
-                          <p className="text-label-sm text-on-surface-variant mt-2 flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[14px]">schedule</span> 14:00 GMT
-                          </p>
-                          <p className="text-label-sm text-on-surface-variant flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[14px]">location_on</span> Online
-                          </p>
-                        </div>
-                      </div>
-                      {/* Event 2 */}
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0 w-16 h-20 bg-white rounded-lg shadow-sm flex flex-col items-center justify-center text-center border border-outline-variant">
-                          <span className="text-label-sm text-primary font-bold uppercase">Dic</span>
-                          <span className="text-headline-md font-bold text-[#191c1e]">02</span>
-                        </div>
-                        <div>
-                          <h4 className="font-label-md font-bold text-on-surface hover:text-primary transition-colors cursor-pointer leading-tight">Reunión Anual de la Red Regional de HTLV</h4>
-                          <p className="text-label-sm text-on-surface-variant mt-2 flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[14px]">schedule</span> 09:00 local
-                          </p>
-                          <p className="text-label-sm text-on-surface-variant flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[14px]">location_on</span> París, Francia
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <button className="w-full mt-8 py-3 border border-primary text-primary rounded-lg font-label-md hover:bg-primary/5 transition-all cursor-pointer">
-                    Enviar un Evento
-                  </button>
+
+              <div className="bg-white border border-[#dcc0c0] p-6 rounded-2xl shadow-sm hover:border-[#5b0617] transition-all flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-[#d6e0f3] text-[#1d2b3a] flex items-center justify-center mb-4 font-bold">02</div>
+                  <h3 className="font-bold text-[17px] text-[#191c1e] mb-2">Coinfecciones y Modulación Inmune</h3>
+                  <p className="text-[13px] text-[#564242] leading-relaxed mb-4">
+                    Estudio de la interacción inmunológica entre HTLV-1 y Tuberculosis (TB), Estrongiloidiasis y VIH en poblaciones endémicas del Perú y Brasil.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#dcc0c0]/50 text-[12px] font-bold text-[#1d2b3a]">
+                  Nodo: Fiocruz / UPCH
+                </div>
+              </div>
+
+              <div className="bg-white border border-[#dcc0c0] p-6 rounded-2xl shadow-sm hover:border-[#5b0617] transition-all flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-[#ffdada] text-[#5b0617] flex items-center justify-center mb-4 font-bold">03</div>
+                  <h3 className="font-bold text-[17px] text-[#191c1e] mb-2">Ensayos Terapéuticos en HAM/TSP</h3>
+                  <p className="text-[13px] text-[#564242] leading-relaxed mb-4">
+                    Evaluación de nuevas estrategias inmunomoduladoras y anticuerpos monoclonales para frenar el deterioro motor en Paraparesia Espástica Tropical.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#dcc0c0]/50 text-[12px] font-bold text-[#5b0617]">
+                  Nodo: St. Marianna / Institut Pasteur
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Partner Carousel */}
-        <section className="py-section-gap bg-surface overflow-hidden border-t border-outline-variant/30">
-          <div className="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop mb-12 scroll-reveal">
-            <h2 className="text-center font-label-md text-on-surface-variant uppercase tracking-[0.2em]">Nuestras Instituciones Participantes</h2>
+        {/* Carrusel Institucional de Centros Colaboradores */}
+        <section className="py-14 bg-[#f8f9fb] overflow-hidden border-t border-[#dcc0c0]">
+          <div className="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop mb-8 text-center">
+            <h2 className="font-label-sm uppercase tracking-[0.2em] text-[#897172] font-bold">
+              Consorcio de Centros e Instituciones Participantes
+            </h2>
           </div>
-          <div className="flex overflow-hidden scroll-reveal">
+          
+          <div className="flex overflow-hidden">
             <div className="partner-scroll">
-              {/* Partner Logos */}
               {[
-                { name: 'Global Univ.', icon: 'account_balance' },
-                { name: 'Medical Inst.', icon: 'school' },
-                { name: 'BioResearch', icon: 'science' },
-                { name: 'Health Net', icon: 'hub' },
-                { name: 'Virology Org', icon: 'public' },
-                { name: 'Global Univ.', icon: 'account_balance' },
-                { name: 'Medical Inst.', icon: 'school' },
-                { name: 'BioResearch', icon: 'science' },
-                { name: 'Health Net', icon: 'hub' },
-                { name: 'Virology Org', icon: 'public' }
+                { name: 'UPCH - Perú', icon: 'account_balance' },
+                { name: 'IMTAvH', icon: 'biotech' },
+                { name: 'Imperial College London', icon: 'school' },
+                { name: 'Institut Pasteur', icon: 'science' },
+                { name: 'Fiocruz - Brasil', icon: 'hub' },
+                { name: 'ISCIII - España', icon: 'health_and_safety' },
+                { name: 'St. Marianna - Japón', icon: 'local_hospital' },
+                { name: 'UPCH - Perú', icon: 'account_balance' },
+                { name: 'IMTAvH', icon: 'biotech' },
+                { name: 'Imperial College London', icon: 'school' }
               ].map((partner, index) => (
-                <div key={index} className="flex items-center justify-center w-[250px] px-10 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
-                  <div className="flex items-center gap-2 text-[#191c1e]">
-                    <span className="material-symbols-outlined text-4xl">{partner.icon}</span>
-                    <span className="font-bold text-lg">{partner.name}</span>
+                <div key={index} className="flex items-center justify-center w-[260px] px-6 opacity-75 hover:opacity-100 transition-opacity">
+                  <div className="flex items-center gap-2.5 text-[#191c1e] bg-white px-4 py-2 rounded-xl border border-[#dcc0c0] shadow-2xs">
+                    <span className="material-symbols-outlined text-[#5b0617] text-2xl">{partner.icon}</span>
+                    <span className="font-bold text-[13px]">{partner.name}</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
+
       </main>
 
-      {/* Estilos específicos para la animación infinita */}
+      {/* Estilos para el scroll horizontal continuo */}
       <style jsx global>{`
         .partner-scroll {
           display: flex;
-          width: calc(250px * 10);
-          animation: scroll 40s linear infinite;
+          width: calc(260px * 10);
+          animation: scroll 35s linear infinite;
         }
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-250px * 5)); }
+          100% { transform: translateX(calc(-260px * 5)); }
         }
       `}</style>
     </>

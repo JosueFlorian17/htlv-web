@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-
-
 @theme {
   --color-background: #f8f9fb;
   --color-on-background: #191c1e;
@@ -42,3 +40,27 @@
 .font-body-md { font-size: 16px; line-height: 24px; font-weight: 400; }
 .font-label-md { font-size: 14px; line-height: 20px; letter-spacing: 0.01em; font-weight: 500; }
 .font-label-sm { font-size: 12px; line-height: 16px; font-weight: 600; }
+
+/* Estilos de impresión y exportación a PDF */
+@media print {
+  body {
+    padding-top: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  nav, footer, aside, .print\:hidden {
+    display: none !important;
+  }
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  section {
+    page-break-inside: avoid;
+    margin-bottom: 24px !important;
+  }
+  details[open] summary ~ * {
+    display: block !important;
+  }
+}
