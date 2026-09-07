@@ -47,7 +47,7 @@
 @media print {
   @page {
     size: A4 portrait;
-    margin: 12mm 15mm 15mm 15mm;
+    margin: 8mm 10mm 10mm 10mm;
   }
 
   *, *::before, *::after {
@@ -64,8 +64,8 @@
     padding: 0 !important;
     background: #ffffff !important;
     color: #191c1e !important;
-    font-size: 10pt !important;
-    line-height: 1.4 !important;
+    font-size: 8.5pt !important;
+    line-height: 1.3 !important;
   }
 
   body {
@@ -73,7 +73,7 @@
   }
 
   /* Ocultar elementos irrelevantes para el PDF */
-  nav, footer, aside, .print\:hidden, button, [class*="fixed"] {
+  nav, footer, aside, .print\:hidden, button, [class*="fixed"], .print-hide {
     display: none !important;
   }
 
@@ -85,89 +85,105 @@
     padding: 0 !important;
   }
 
-  /* Resetear el contenedor de 2 columnas con barra lateral de 280px */
+  /* Resetear el layout de columnas en pantalla */
   .grid-cols-\[280px_1fr\], .lg\:grid-cols-\[280px_1fr\] {
     display: block !important;
     width: 100% !important;
   }
 
-  /* Secciones y tarjetas con saltos de página limpios */
-  section, article, .bg-white {
+  /* Control de saltos de página */
+  .print-avoid-break {
     page-break-inside: avoid !important;
     break-inside: avoid !important;
-    margin-bottom: 16px !important;
-    width: 100% !important;
-    border-color: #dcc0c0 !important;
   }
 
-  /* Rejillas internas para contenido en 2 o 3 columnas imprimibles */
-  .md\:grid-cols-2 {
+  .print-page-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  /* Grids exactas para impresión */
+  .print-grid-2 {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 14px !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
   }
 
-  .sm\:grid-cols-3, .md\:grid-cols-3 {
+  .print-grid-3 {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 12px !important;
+    gap: 8px !important;
+    width: 100% !important;
   }
 
-  .md\:grid-cols-12 {
+  .print-grid-90-10 {
     display: grid !important;
-    grid-template-columns: repeat(12, 1fr) !important;
-    gap: 14px !important;
+    grid-template-columns: 36% 62% !important;
+    gap: 8px !important;
+    width: 100% !important;
   }
 
-  /* Forzar apertura limpia de todas las preguntas frecuentes (details) */
-  details {
-    display: block !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
+  .print-grid-peru {
+    display: grid !important;
+    grid-template-columns: 58% 40% !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  .print-grid-faqs {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+  /* Secciones y tarjetas de impresión */
+  .print-card {
+    background-color: #ffffff !important;
     border: 1px solid #dcc0c0 !important;
-    margin-bottom: 10px !important;
+    border-radius: 6px !important;
+    padding: 8px 10px !important;
+    margin-bottom: 6px !important;
   }
 
-  details summary {
-    display: block !important;
-    font-weight: 700 !important;
-    padding: 8px 12px !important;
+  .print-bg-light {
     background-color: #f8f9fb !important;
+    border: 1px solid #e1e2e4 !important;
   }
 
-  details summary span.material-symbols-outlined {
-    display: none !important;
+  .print-bg-wine-light {
+    background-color: #fff2f2 !important;
+    border: 1px solid #ffdada !important;
   }
 
-  details > div {
-    display: block !important;
-    padding: 8px 12px !important;
-    border-top: 1px solid #dcc0c0 !important;
+  /* Estilos específicos para la sección Perú en print */
+  .print-peru-card {
+    background-color: #ffffff !important;
+    border: 1.5px solid #5b0617 !important;
+    color: #191c1e !important;
+    padding: 8px 10px !important;
+    border-radius: 6px !important;
   }
 
-  /* Tipografías proporcionadas para PDF A4 estándar */
-  .font-display, .text-display {
-    font-size: 20pt !important;
-    line-height: 24pt !important;
+  .print-peru-card h2,
+  .print-peru-card strong,
+  .print-peru-card .print-peru-header {
+    color: #5b0617 !important;
   }
 
-  .font-headline-lg, .text-headline-lg {
-    font-size: 14pt !important;
-    line-height: 18pt !important;
+  .print-peru-card p,
+  .print-peru-card li {
+    color: #191c1e !important;
   }
 
-  .font-headline-md, .text-headline-md {
-    font-size: 12pt !important;
-    line-height: 15pt !important;
+  .print-peru-card .print-peru-subbox {
+    background-color: #f8f9fb !important;
+    border: 1px solid #dcc0c0 !important;
+    color: #191c1e !important;
   }
 
-  .font-body-lg, .text-body-lg {
-    font-size: 10.5pt !important;
-    line-height: 14pt !important;
-  }
-
-  .font-body-md, .text-body-md {
-    font-size: 9.5pt !important;
-    line-height: 13pt !important;
+  .print-peru-card .print-peru-subbox span {
+    color: #564242 !important;
   }
 }
