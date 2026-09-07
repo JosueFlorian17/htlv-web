@@ -1,0 +1,419 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>The Network | RIII-HTLV</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#564242",
+                    "outline": "#897172",
+                    "tertiary": "#222c39",
+                    "primary-fixed": "#ffdada",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2e3132",
+                    "tertiary-container": "#38424f",
+                    "outline-variant": "#dcc0c0",
+                    "on-secondary-container": "#596373",
+                    "surface-bright": "#f8f9fb",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#5b0617",
+                    "on-tertiary-fixed": "#121c28",
+                    "primary-fixed-dim": "#ffb3b5",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#d6e0f3",
+                    "secondary": "#555f6f",
+                    "surface-container-low": "#f3f4f6",
+                    "error": "#ba1a1a",
+                    "primary-container": "#7a1f2b",
+                    "surface-container": "#edeef0",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#822530",
+                    "inverse-primary": "#ffb3b5",
+                    "surface-variant": "#e1e2e4",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#ff8b92",
+                    "surface-container-high": "#e7e8ea",
+                    "surface-dim": "#d9dadc",
+                    "on-tertiary-fixed-variant": "#3e4755",
+                    "surface-container-highest": "#e1e2e4",
+                    "surface": "#f8f9fb",
+                    "inverse-on-surface": "#f0f1f3",
+                    "on-primary-fixed": "#40000c",
+                    "tertiary-fixed-dim": "#bdc7d8",
+                    "tertiary-fixed": "#d9e3f4",
+                    "background": "#f8f9fb",
+                    "on-tertiary-container": "#a4aebe",
+                    "on-background": "#191c1e",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#a13c46",
+                    "on-secondary-fixed": "#121c2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "section-gap": "80px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .world-map-container {
+            position: relative;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .map-pin {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #5b0617;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .map-pin:hover {
+            transform: scale(1.5);
+        }
+        .map-pin::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid #5b0617;
+            border-radius: 50%;
+            opacity: 0;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline"><div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">RIII-HTLV</div><div class="hidden md:flex items-center space-x-8"><a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Home</a><div class="relative group"><button class="flex items-center gap-1 font-body-md text-body-md text-primary dark:text-primary-fixed font-bold transition-colors">About <span class="material-symbols-outlined text-[18px]">expand_more</span></button><div class="absolute top-full left-0 mt-2 w-48 bg-white border border-outline-variant rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50"><a href="#" class="block px-4 py-2 text-label-md hover:bg-surface-container-low">What is HTLV?</a><a href="#" class="block px-4 py-2 text-label-md bg-surface-container-low text-primary font-bold">The Network</a></div></div><a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Research</a><a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Repository</a><a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Resources</a><a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Opportunities</a><a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Forum</a><div class="relative group"><button class="flex items-center gap-1 font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors">IMPACTO <span class="material-symbols-outlined text-[18px]">expand_more</span></button><div class="absolute top-full left-0 mt-2 w-48 bg-white border border-outline-variant rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50"><a href="#" class="block px-4 py-2 text-label-md hover:bg-surface-container-low">News</a><a href="#" class="block px-4 py-2 text-label-md hover:bg-surface-container-low">Events</a></div></div></div><button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md hover:bg-primary-container transition-all active:scale-95">Contact</button></nav>
+<!-- SideNavBar (Suppressed on main scrollable pages as per guidelines for top-level navigation layout, but implementing as hidden lg for reference) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-20 h-[calc(100vh-80px)] p-base w-64 bg-surface-container dark:bg-tertiary-container shadow-sm z-40">
+<div class="p-4">
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Navigation</h3>
+<p class="font-label-md text-label-md text-on-surface-variant mb-6">Global Research Network</p>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="flex items-center gap-3 p-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#resources">
+<span class="material-symbols-outlined">folder</span> Resources
+            </a>
+<a class="flex items-center gap-3 p-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#opportunities">
+<span class="material-symbols-outlined">work</span> Opportunities
+            </a>
+<a class="flex items-center gap-3 p-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#news">
+<span class="material-symbols-outlined">newspaper</span> News
+            </a>
+<a class="flex items-center gap-3 p-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#contact">
+<span class="material-symbols-outlined">mail</span> Contact
+            </a>
+</nav>
+<div class="p-4">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md">Member Portal</button>
+</div>
+</aside>
+<main class="mt-20 lg:ml-64 px-4 md:px-margin-desktop max-w-container-max mx-auto py-12">
+<!-- Hero Section: Who We Are -->
+<header class="mb-section-gap max-w-3xl">
+<span class="inline-block px-3 py-1 rounded bg-primary/10 text-primary font-label-sm text-label-sm uppercase tracking-wider mb-4">About the network</span>
+<h1 class="font-display text-display text-on-background mb-6">Unifying global expertise to eliminate HTLV.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">The International Research and Innovation Network on HTLV (RIII-HTLV) serves as the premier global infrastructure for academic collaboration, fostering breakthrough discoveries in retrovirology through institutional synergy.</p>
+</header>
+<!-- Bento Grid: Mission & Objectives -->
+<section class="bento-grid mb-section-gap">
+<div class="col-span-12 md:col-span-8 bg-white border border-outline-variant p-10 rounded-xl flex flex-col justify-between min-h-[400px]">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Our Mission</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        To accelerate the eradication of HTLV-associated diseases by bridging the gap between clinical research and community health across four continents. We leverage shared data repositories and international mentoring to empower the next generation of researchers.
+                    </p>
+</div>
+<div class="mt-8 flex gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">public</span>
+<span class="font-label-md text-label-md">Global Reach</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">science</span>
+<span class="font-label-md text-label-md">Open Science</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-primary text-on-primary p-10 rounded-xl">
+<h2 class="font-headline-lg text-headline-lg mb-6">Core Vision</h2>
+<p class="font-body-md text-body-md opacity-90 leading-relaxed mb-8">
+                    A world where HTLV infection is effectively prevented, and those living with the virus have access to curative therapies developed through unified global research.
+                </p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-on-primary-container">check_circle</span>
+<span class="font-label-md">Standardizing global protocols</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-on-primary-container">check_circle</span>
+<span class="font-label-md">Eliminating research silos</span>
+</li>
+</ul>
+</div>
+</section>
+<!-- Interactive Map Section -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-2">Institutional Footprint</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Strategic research hubs across major academic centers.</p>
+</div>
+<div class="flex gap-4">
+<span class="flex items-center gap-2 font-label-sm text-label-sm"><div class="w-3 h-3 bg-primary rounded-full"></div> Research Hub</span>
+<span class="flex items-center gap-2 font-label-sm text-label-sm"><div class="w-3 h-3 bg-outline-variant rounded-full"></div> Partner Lab</span>
+</div>
+</div>
+<div class="world-map-container h-[500px] w-full border border-outline-variant shadow-sm flex items-center justify-center">
+<div class="absolute inset-0 opacity-10 grayscale">
+<div class="w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+</div>
+<!-- Simulated Interactive Map -->
+<div class="relative w-full h-full">
+<img class="w-full h-full object-cover opacity-60" data-alt="A minimalist, high-contrast digital world map in a light-mode aesthetic. The map features subtle gray continents on a clean white-gray background, with no text or borders. The visual style is professional, institutional, and academic, avoiding bright colors except for the primary deep burgundy which will be added via pins. Lighting is soft and even." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP-uBDKfTkFim3f9fwKb6zGvy2iP3ttm-i-c29tMi1ZXFSZiIOmIMqZomsEa_B0pXDDVBSdMMnNJSCcPPFdW7nePFee8C3GIlN_Ec6Qgyp6c_hKzmrwlB4sOWvgCt87kelA8Zd1vEHrQxJI4Sq535kMZHxHmnp4qU-aa03fMIYFCKMo_cES0m0MmaQBr1CGIST_WyfOIrRqx5UuR6KFyHU4JRC1Enidx7r_fFLDEaVjuXeL_51jTm8exS0aMNUo_gcBpzcwr1hM54">
+<!-- Map Pins (Approximate locations) -->
+<!-- USA -->
+<div class="map-pin group" style="top: 30%; left: 18%;">
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white p-3 rounded shadow-lg border border-outline-variant opacity-0 group-hover:opacity-100 transition-all pointer-events-none w-48 z-10">
+<p class="font-label-sm text-primary mb-1">USA</p>
+<p class="text-[10px] font-body-md text-on-surface">National Institutes of Health (NIH) Partnership</p>
+</div>
+</div>
+<!-- Peru -->
+<div class="map-pin group" style="top: 65%; left: 28%;">
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white p-3 rounded shadow-lg border border-outline-variant opacity-0 group-hover:opacity-100 transition-all pointer-events-none w-48 z-10">
+<p class="font-label-sm text-primary mb-1">Peru</p>
+<p class="text-[10px] font-body-md text-on-surface">Instituto de Medicina Tropical Alexander von Humboldt</p>
+</div>
+</div>
+<!-- UK -->
+<div class="map-pin group" style="top: 25%; left: 47%;">
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white p-3 rounded shadow-lg border border-outline-variant opacity-0 group-hover:opacity-100 transition-all pointer-events-none w-48 z-10">
+<p class="font-label-sm text-primary mb-1">United Kingdom</p>
+<p class="text-[10px] font-body-md text-on-surface">Imperial College London - Faculty of Medicine</p>
+</div>
+</div>
+<!-- Japan -->
+<div class="map-pin group" style="top: 35%; left: 85%;">
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white p-3 rounded shadow-lg border border-outline-variant opacity-0 group-hover:opacity-100 transition-all pointer-events-none w-48 z-10">
+<p class="font-label-sm text-primary mb-1">Japan</p>
+<p class="text-[10px] font-body-md text-on-surface">Kumamoto University Joint Research Center</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Steering Committee Section -->
+<section class="mb-section-gap">
+<div class="mb-12">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Steering Committee</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Led by world-renowned experts in retrovirology, immunology, and public health policy, our committee provides strategic oversight and ensures scientific integrity.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Member 1 -->
+<div class="group">
+<div class="aspect-[4/5] overflow-hidden rounded-lg mb-4 bg-surface-container">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A professional, high-resolution portrait of a senior academic researcher in a bright, modern laboratory setting. The lighting is soft and natural, emphasizing wisdom and authority. The researcher wears a professional lab coat over business attire. The background is slightly blurred, showing clean white laboratory equipment and glass surfaces, fitting a minimalist institutional design system with burgundy accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3ogV_JqhtSHX8SvTJ4p1KmF4NEx1Aa2m3-RAIW-mPaDXc37CZuyN3__KYRf6vbJdxVMdVhugHOSUMUDoMM9Xx22IxI3T3wrxc5QWgHXVOA_4cIAQBt8EL-wm6ydmvTZfuEzf89oFVvTfQBRUxkHTQ4DaZm3qNwZtMG-HWhMNAuJKtSmOy2Q5h0rlGnJDXoDEKlp5wT3EnXqg0JzCQGE4mNz-HF8EZAtczOoCHQacrM_vw20BqSOTuksf3oV7Oc1JysM9JWnQz7kA">
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Dr. Elena Rodriguez</h3>
+<p class="font-label-md text-label-md text-primary mb-3">Chair | Peru Operations</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Senior investigator focusing on maternal-to-child HTLV transmission patterns in endemic regions.</p>
+</div>
+<!-- Member 2 -->
+<div class="group">
+<div class="aspect-[4/5] overflow-hidden rounded-lg mb-4 bg-surface-container">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A professional portrait of a male scientist in his 50s with a warm, approachable expression. He is seated in a sunlit university library or office with shelves of academic books in the background. The lighting is warm and natural. The image style is clean, editorial, and sophisticated, adhering to a high-end academic design language with a primary burgundy color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgZj7_bCpWTnyBzAXOyOvypz2R4T5Ivzh8tFom4yOZWyrZZ9w5lz1CFYnk8X-nHIGrVMH6Y6wihKQRZpEc-6qhyG_eiyqwh3dOTe-Yvn8ASA_TLbUnQL5LRLalilaXav9saFMfIuNiGxk-02QpqhjSB6aJGu6jCYqE-9wg-3vP-n3f8HMAxr9lDke5GSQ98ekyUm3xbWiT3Vun3kzv41w4SRiyB_Y2SfIlNwAmMmkaPFUEMnKu1RBhOfKMuOG6uLxGvuyUJWcCHhY">
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Prof. Alistair Graham</h3>
+<p class="font-label-md text-label-md text-primary mb-3">Vice-Chair | European Lead</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Expert in molecular biology and T-cell transformation mechanisms at Imperial College London.</p>
+</div>
+<!-- Member 3 -->
+<div class="group">
+<div class="aspect-[4/5] overflow-hidden rounded-lg mb-4 bg-surface-container">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A professional, editorial-style portrait of a Japanese female researcher in her late 40s. She is standing in a modern, minimalist glass-walled research center. The lighting is crisp and cool. She has a look of precision and focus. The overall aesthetic is institutional and high-end, using a professional palette of whites, grays, and deep burgundy accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJt4xNgitIjw1jAkYZotalxqxpiycO6TCtfaegvWZsEDX104-XJg7_wiWpYoevzc5B5bZSjMv0A5el2JF4ksBGhbRcZwbMi7mUKZxhWA_P4KGbekzwxbn8uQchq8jrYOaED41iNstVWijcbqvf76TbFbzcD9KHIEAnL3Lmaf9LbEC49wxffvbmDLvzSQTHWovTJZ51ghruQCNTj8jNFsJkgQGua8Qj9coLj-SpWSeGzv5cIF4dQS_MyTdPjf8eY4yBc9266R15zBo">
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Dr. Kenji Sato</h3>
+<p class="font-label-md text-label-md text-primary mb-3">Strategic Coordinator | Japan</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Pioneer in HAM/TSP therapies and clinical trials coordination across the Pan-Pacific network.</p>
+</div>
+</div>
+</section>
+<!-- Network Documents Section -->
+<section class="mb-section-gap p-12 bg-white border border-outline-variant rounded-xl shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-10">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-2">Network Governance</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Official charters, ethical guidelines, and institutional frameworks.</p>
+</div>
+<button class="mt-4 md:mt-0 flex items-center gap-2 text-primary font-label-md hover:underline">
+                    View full archive <span class="material-symbols-outlined">arrow_right_alt</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- PDF Item -->
+<a class="flex items-center p-4 rounded-lg bg-surface-container-low border border-transparent hover:border-primary/20 hover:bg-white transition-all group" href="#">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="ml-4 overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">Network Constitution</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">2.4 MB · PDF</p>
+</div>
+</a>
+<!-- PDF Item -->
+<a class="flex items-center p-4 rounded-lg bg-surface-container-low border border-transparent hover:border-primary/20 hover:bg-white transition-all group" href="#">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="ml-4 overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">Ethics &amp; Compliance</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1.1 MB · PDF</p>
+</div>
+</a>
+<!-- PDF Item -->
+<a class="flex items-center p-4 rounded-lg bg-surface-container-low border border-transparent hover:border-primary/20 hover:bg-white transition-all group" href="#">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="ml-4 overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">Member Privileges</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">850 KB · PDF</p>
+</div>
+</a>
+<!-- PDF Item -->
+<a class="flex items-center p-4 rounded-lg bg-surface-container-low border border-transparent hover:border-primary/20 hover:bg-white transition-all group" href="#">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="ml-4 overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">Annual Report 2023</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">5.2 MB · PDF</p>
+</div>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-desktop flex flex-col md:flex-row justify-between items-start bg-surface-dim dark:bg-inverse-surface border-t border-outline-variant">
+<div class="mb-8 md:mb-0">
+<div class="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface mb-4">RIII-HTLV</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant max-w-sm">© 2024 International Research and Innovation Network on HTLV. All rights reserved.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="flex flex-col gap-3">
+<p class="font-label-md text-label-md font-bold mb-1">Contact Us</p>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Support Center</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Media Inquiries</a>
+</div>
+<div class="flex flex-col gap-3">
+<p class="font-label-md text-label-md font-bold mb-1">Legal</p>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<p class="font-label-md text-label-md font-bold mb-1">Portals</p>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Institutional Email</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Partner Login</a>
+</div>
+<div class="flex flex-col gap-3">
+<p class="font-label-md text-label-md font-bold mb-1">Follow</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">share</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">link</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for map pins
+        document.querySelectorAll('.map-pin').forEach(pin => {
+            pin.addEventListener('click', () => {
+                const tooltip = pin.querySelector('div');
+                tooltip.classList.toggle('opacity-100');
+            });
+        });
+
+        // Simple smooth scroll reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').</script>
+
+
+
+
+
+</body></html>

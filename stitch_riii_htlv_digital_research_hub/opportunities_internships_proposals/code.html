@@ -1,0 +1,320 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Opportunities | RIII-HTLV Network</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#564242",
+                    "outline": "#897172",
+                    "tertiary": "#222c39",
+                    "primary-fixed": "#ffdada",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2e3132",
+                    "tertiary-container": "#38424f",
+                    "outline-variant": "#dcc0c0",
+                    "on-secondary-container": "#596373",
+                    "surface-bright": "#f8f9fb",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#5b0617",
+                    "on-tertiary-fixed": "#121c28",
+                    "primary-fixed-dim": "#ffb3b5",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#d6e0f3",
+                    "secondary": "#555f6f",
+                    "surface-container-low": "#f3f4f6",
+                    "error": "#ba1a1a",
+                    "primary-container": "#7a1f2b",
+                    "surface-container": "#edeef0",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#822530",
+                    "inverse-primary": "#ffb3b5",
+                    "surface-variant": "#e1e2e4",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#ff8b92",
+                    "surface-container-high": "#e7e8ea",
+                    "surface-dim": "#d9dadc",
+                    "on-tertiary-fixed-variant": "#3e4755",
+                    "surface-container-highest": "#e1e2e4",
+                    "surface": "#f8f9fb",
+                    "inverse-on-surface": "#f0f1f3",
+                    "on-primary-fixed": "#40000c",
+                    "tertiary-fixed-dim": "#bdc7d8",
+                    "tertiary-fixed": "#d9e3f4",
+                    "background": "#f8f9fb",
+                    "on-tertiary-container": "#a4aebe",
+                    "on-background": "#191c1e",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#a13c46",
+                    "on-secondary-fixed": "#121c2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "section-gap": "80px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+        }
+        @media (max-width: 640px) {
+            .opportunity-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto bg-surface border-b border-outline-variant"><div class="flex items-center gap-8"><span class="font-headline-md text-headline-md font-bold text-primary">RIII-HTLV</span><div class="hidden lg:flex gap-6 items-center"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a><div class="relative group"><button class="flex items-center gap-1 font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">About <span class="material-symbols-outlined text-[18px]">expand_more</span></button><div class="absolute top-full left-0 hidden group-hover:block bg-surface border border-outline-variant rounded-lg shadow-lg py-2 min-w-[200px] z-50"><a href="#" class="block px-4 py-2 text-label-md text-on-surface-variant hover:bg-surface-container-high">What is HTLV?</a><a href="#" class="block px-4 py-2 text-label-md text-on-surface-variant hover:bg-surface-container-high">The Network</a></div></div><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Research</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Repository</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Resources</a><a class="font-body-md text-body-md text-primary font-bold" href="#">Opportunities</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Forum</a><div class="relative group"><button class="flex items-center gap-1 font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">IMPACTO <span class="material-symbols-outlined text-[18px]">expand_more</span></button><div class="absolute top-full left-0 hidden group-hover:block bg-surface border border-outline-variant rounded-lg shadow-lg py-2 min-w-[200px] z-50"><a href="#" class="block px-4 py-2 text-label-md text-on-surface-variant hover:bg-surface-container-high">News</a><a href="#" class="block px-4 py-2 text-label-md text-on-surface-variant hover:bg-surface-container-high">Events</a></div></div></div></div><button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">Contact</button></nav>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-20 h-[calc(100vh-80px)] w-64 p-base bg-surface-container-low shadow-sm z-40">
+<div class="p-4 mb-6">
+<h2 class="font-headline-md text-headline-md text-primary">Navigation</h2>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Global Research Network</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">folder</span> Resources
+            </a>
+<a class="flex items-center gap-3 p-3 text-primary font-bold bg-primary-fixed rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">work</span> Opportunities
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">newspaper</span> News
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">mail</span> Contact
+            </a>
+</nav>
+<div class="mt-auto p-4">
+<button class="w-full py-3 border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-primary-fixed transition-colors">
+                Member Portal
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-20 lg:ml-64 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Header Section -->
+<header class="mb-12">
+<h1 class="font-display text-display text-on-surface mb-4">Academic Opportunities</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+                Connecting researchers, students, and institutions to advance HTLV scientific discovery through collaborative roles, funding, and education.
+            </p>
+</header>
+<!-- Filters / Tabs -->
+<div class="flex flex-wrap gap-3 mb-10 overflow-x-auto pb-2">
+<button class="px-5 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md">All Openings</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-outline-variant transition-colors">Thesis</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-outline-variant transition-colors">Internships</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-outline-variant transition-colors">Courses</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-outline-variant transition-colors">Funding</button>
+</div>
+<!-- Bento Opportunity Grid -->
+<div class="opportunity-grid">
+<!-- Opportunity Card: Thesis -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, minimalist laboratory setting with high-quality scientific equipment and soft natural lighting. Two researchers in white coats are discussing data on a digital tablet in a collaborative, professional environment. The atmosphere is academic and sophisticated, reflecting a modern research institute." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsyu4bYFtl3mrhFhfhLEiAwSz9BdirYudSoQtn-TrOHJ4h9cqqHpnEIAIj7GQsKnNgkbFlnGkfpabTvROHG0WirnwetToMKA_AjFusZ-vDsKjZSyde_7IWJ_6P7rpifl5MYGIUz9JZvdEItu28U2jr2NhNz6HFfN4jqvb3x0uros4IHRTmt1vuk0oREW14ZDim5PUJFQi8OvjFQl_fKLMRjesrQ9kSejeLApEnvWuEqmP8oD1lpxf1zS1jQDMjvp-Qf2JOkNlPK1E">
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant text-label-sm font-label-sm uppercase rounded">Thesis</span>
+<span class="text-primary font-bold font-label-sm text-label-sm">Deadline: 15 Oct 2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Molecular Analysis of HTLV-1 Proviral Load</h3>
+<p class="font-label-md text-label-md text-on-surface-variant mb-4">Imperial College London • Department of Infectious Disease</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow">Investigation into the mechanisms of viral persistence and clinical outcomes. Open to PhD candidates with a background in molecular biology.</p>
+<button class="mt-auto w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex justify-center items-center gap-2 hover:opacity-90 transition-all">
+                        Apply Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Opportunity Card: Internship -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A focused close-up of a diverse young professional working with complex data visualizations on a large screen in a modern, glass-walled office. The lighting is cool and professional, with a palette of whites, grays, and deep burgundy accents. The scene communicates high-level scientific internship and data analysis." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc44HLGZvwY2LRLESBpWRczwHz791PuYHG7pBad6cHHiVR0ZmKDy-LLY61Hv-MRAYJBkaDLb9ZvqXzPHtPe-PrhqSHgg_82Lh6RcRqMrcPyw47vg_qBTX01h1_ycVRJeQZuTY8X-NtOCpn1DwWPNSo6SNH-yFnPp7DKmD0FAJGbOTVbQTlGqrrNTI8qKZ1q9l39g-qZgXZq3sSJFzQokfykarrLEReTbPjMdKEpheyYJgOeCPIO8sTz-k6yYuTsfCTNqlGmkeZGHM">
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-label-sm font-label-sm uppercase rounded">Internship</span>
+<span class="text-primary font-bold font-label-sm text-label-sm">Deadline: 01 Nov 2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Public Health Policy &amp; Epidemiology</h3>
+<p class="font-label-md text-label-md text-on-surface-variant mb-4">Fiocruz Research Institute • Rio de Janeiro</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow">Summer placement focusing on epidemiological surveillance programs for HTLV in South America. Ideal for Masters students.</p>
+<button class="mt-auto w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex justify-center items-center gap-2 hover:opacity-90 transition-all">
+                        Apply Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Opportunity Card: Course -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sophisticated lecture hall with tiered seating, featuring a high-resolution screen displaying a protein structure. The environment is clean and institutional, with warm wood accents and soft overhead lighting. It captures the essence of a premium international scientific course or conference." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATvtuw2LeutLshetXr-JdNoQJLKbpua5wR-ItXIRp2PJP0aJ2nrEmLFUdEkhnmADosvjF__YtuaGPx_f9cK32q17Rj4zqtn73k2In6Q0ZBcBQjeR7fNqyGXwy2MnAMbVD9fJUGbl6jftThm1YDi66iJnK5QaR9CJsVsa1qrWVMwX--z3mYBsnlu2JVHt4s0gngtKfUxw5d48I7TU6-XpdmUk5cpncMgJ2YZzckje7rBYbK609fyjN6_IT9frQdQ-d7bS5_TdREsp0">
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-label-sm font-label-sm uppercase rounded">Advanced Course</span>
+<span class="text-primary font-bold font-label-sm text-label-sm">Deadline: 20 Sep 2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Immunopathology of HTLV Infections</h3>
+<p class="font-label-md text-label-md text-on-surface-variant mb-4">Kumamoto University • Virtual Classroom</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow">A specialized 4-week intensive program covering the cellular immunology and pathology of HAM/TSP and ATL.</p>
+<button class="mt-auto w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex justify-center items-center gap-2 hover:opacity-90 transition-all">
+                        Apply Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Opportunity Card: Call for Proposals -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300 md:col-span-2">
+<div class="flex flex-col md:flex-row h-full">
+<div class="md:w-1/2 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro shot of scientific grant papers and a fountain pen resting on a minimalist white desk. In the background, a large architectural window reveals a modern campus. The style is editorial and clean, using a professional burgundy and white color scheme to evoke institutional authority and prestige." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1VcYLVq6TfkESe5WeGXdTfKdIzA2tg3tBMk14SPtlaIPSqqaFTQPKQBHEfiibZVOKPwCcrTjkZrgVvcL6JplblXU8ErxrPI1Vl_LwoXH0pNHTelRMSGEsVR4omOyWcxjwF_OsQmd60t4HciYIfuRHEz61-s03_wSK3UFB381vBzCfLLkprT06denSVJbwksD6UNgi5V4ZCR5_09xGVeh0g8bPtb6jqeG4rLxVRfEiSMb46qiswi1CAb6pW0OMu_CEBc3aS-Sj71E">
+</div>
+<div class="p-8 md:w-1/2 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-label-sm font-label-sm uppercase rounded">Funding Call</span>
+<span class="text-primary font-bold font-label-sm text-label-sm">Deadline: 30 Dec 2024</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Global Innovation Grant 2025</h3>
+<p class="font-label-md text-label-md text-on-surface-variant mb-4">International HTLV Network (RIII-HTLV)</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Funding up to $150,000 for cross-continental research projects targeting HTLV-1 diagnostic accessibility in low-resource settings. Collaboration between at least two network member countries is mandatory.</p>
+<button class="mt-auto w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex justify-center items-center gap-2 hover:opacity-90 transition-all">
+                            Apply Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Opportunity Card: Scholarship -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A group of diverse researchers walking across a bright, sunlit university courtyard. The architecture is a mix of historic stone and modern glass. The mood is optimistic and prestigious, highlighting the community aspect of a scholarship and international education program." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiZBDGr6xcUCxikip9zQRyXHyPBdzjH51J2fjdIyDnU8axFDdNdaLyGTPHo64KdTLxNf78ZBCH_ymzWrz3C7Ef9Nsek46b_E280UtSFZGSOFilr44TTEZKqlUxgkgBy3PqH2xdFTamPp72X9KsOthd1omUgf4vBXNcVTEQtWZqXX4K9c5rjhs2hxo-dZZZ4s48iFSG9gJCMf8DYP1aRQseoBTt8nHWx9yYLMSlPlNPSkajvldbattECBHE2pvCRMx2Qm_-OaiQhm4">
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container text-label-sm font-label-sm uppercase rounded">Scholarship</span>
+<span class="text-primary font-bold font-label-sm text-label-sm">Deadline: 15 Nov 2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Excellence Award for Young Investigators</h3>
+<p class="font-label-md text-label-md text-on-surface-variant mb-4">The HTLV Society • Global</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow">Fully funded travel and registration for the upcoming International Conference on HTLV for early-career scientists.</p>
+<button class="mt-auto w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex justify-center items-center gap-2 hover:opacity-90 transition-all">
+                        Apply Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Section: Partner Network CTA -->
+<section class="mt-section-gap p-12 bg-primary-container rounded-2xl flex flex-col md:flex-row items-center gap-8 text-on-primary-container overflow-hidden relative">
+<div class="relative z-10 flex-grow">
+<h2 class="font-headline-lg text-headline-lg mb-4">Institutional Partnership</h2>
+<p class="font-body-lg text-body-lg opacity-90 max-w-2xl mb-8">Does your institution have an opportunity for HTLV researchers? Partner with the RIII-HTLV Network to disseminate your openings globally.</p>
+<div class="flex gap-4">
+<button class="px-8 py-4 bg-on-primary-container text-primary-container font-bold rounded-lg hover:bg-on-primary transition-all">Submit an Opportunity</button>
+<button class="px-8 py-4 border border-on-primary-container text-on-primary-container font-bold rounded-lg hover:bg-white/10 transition-all">Contact Partnerships</button>
+</div>
+</div>
+<div class="w-full md:w-1/3 h-64 bg-cover bg-center rounded-xl" data-alt="A blurred background of a modern glass office at twilight, with glowing lights and a sense of global connectivity. Soft geometric overlays in primary burgundy and white create a sense of structure and partnership. The lighting is warm and inviting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-YfA_VdqoOCTB17Rfz4Rrek0V54lfyMh_RSThwuP0xHCGkgYoS572qJAlNpLBEvXrc2ULkPg089LkPy-QfBv-r0VupA7Gc0vG7OpjKBq2eTlFBjtzzPSR8sf7MSdY-XlrDo_yeZr98r8PS70_BkGclIS0hxzfbtb5nFi_PF11Kp3HpzUo4W7kbbmd8DRvFnRVnpYucTor3zjNQBpmQ7ho2vRL0O23KL3A9i1HNcFOSNPLKbCPW9G_XsEVX85peLBVuqSYq46t9aA')"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-desktop flex flex-col md:flex-row justify-between items-start bg-surface-dim border-t border-outline-variant mt-20">
+<div class="mb-10 md:mb-0 max-w-md">
+<span class="font-headline-md text-headline-md text-on-surface block mb-4">RIII-HTLV</span>
+<p class="font-label-md text-label-md text-on-surface-variant mb-6">Promoting international cooperation and scientific advancement in the field of Human T-Cell Lymphotropic Virus.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">© 2024 International Research and Innovation Network on HTLV. All rights reserved.</p>
+</div>
+<div class="grid grid-cols-2 gap-12">
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Quick Links</h4>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Institutional Email</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Partner Login</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Global Network Map</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Legal</h4>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Terms of Use</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Interaction Logic
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Visual feedback only for demo
+                btn.classList.add('scale-95');
+                setTimeout(() => btn.classList.remove('scale-95'), 150);
+            });
+        });
+
+        // Tab Switching Simulation
+        const filterButtons = document.querySelectorAll('.flex.flex-wrap.gap-3 button');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary');
+                    b.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                btn.classList.add('bg-primary', 'text-on-primary</script>
+
+
+
+
+
+</body></html>

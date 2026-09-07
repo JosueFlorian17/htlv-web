@@ -1,0 +1,25 @@
+# Tareas de Implementación
+
+- [x] Crear componentes comunes
+  - [x] Crear `src/components/layout/Sidebar.js`
+  - [x] Crear `src/components/layout/MainLayoutWrapper.js`
+- [x] Modificar componentes comunes existentes
+  - [x] Modificar `src/components/layout/Header.js`
+  - [x] Modificar `src/components/layout/Footer.js`
+  - [x] Modificar `src/app/layout.js`
+- [x] Limpiar y ajustar las páginas individuales
+  - [x] Modificar `src/app/page.js`
+  - [x] Modificar `src/app/about/page.js`
+  - [x] Modificar `src/app/network/page.js`
+  - [x] Modificar `src/app/research/page.js`
+  - [x] Modificar `src/app/repository/page.js`
+  - [x] Modificar `src/app/resources/page.js`
+  - [x] Modificar `src/app/opportunities/page.js`
+  - [x] Modificar `src/app/foro/page.js`
+  - [x] Modificar `src/app/foro/categorias/[slug]/page.js`
+  - [x] Modificar `src/app/foro/post/[id]/page.js`
+  - [x] Modificar `src/app/news/page.js`
+  - [x] Modificar `src/app/contact/page.js`
+- [ ] Verificación
+  - [ ] Validar que compile y no haya errores
+  - [ ] Realizar pruebas visuales/funcionales

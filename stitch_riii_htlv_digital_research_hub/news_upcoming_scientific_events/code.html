@@ -1,0 +1,441 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>News &amp; Events | RIII-HTLV</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#564242",
+                        "outline": "#897172",
+                        "tertiary": "#222c39",
+                        "primary-fixed": "#ffdada",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2e3132",
+                        "tertiary-container": "#38424f",
+                        "outline-variant": "#dcc0c0",
+                        "on-secondary-container": "#596373",
+                        "surface-bright": "#f8f9fb",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "secondary-fixed": "#d9e3f6",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#5b0617",
+                        "on-tertiary-fixed": "#121c28",
+                        "primary-fixed-dim": "#ffb3b5",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#d6e0f3",
+                        "secondary": "#555f6f",
+                        "surface-container-low": "#f3f4f6",
+                        "error": "#ba1a1a",
+                        "primary-container": "#7a1f2b",
+                        "surface-container": "#edeef0",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#822530",
+                        "inverse-primary": "#ffb3b5",
+                        "surface-variant": "#e1e2e4",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#ff8b92",
+                        "surface-container-high": "#e7e8ea",
+                        "surface-dim": "#d9dadc",
+                        "on-tertiary-fixed-variant": "#3e4755",
+                        "surface-container-highest": "#e1e2e4",
+                        "surface": "#f8f9fb",
+                        "inverse-on-surface": "#f0f1f3",
+                        "on-primary-fixed": "#40000c",
+                        "tertiary-fixed-dim": "#bdc7d8",
+                        "tertiary-fixed": "#d9e3f4",
+                        "background": "#f8f9fb",
+                        "on-tertiary-container": "#a4aebe",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#a13c46",
+                        "on-secondary-fixed": "#121c2a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-desktop": "40px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "section-gap": "80px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .tab-active {
+            border-bottom: 2px solid #5b0617;
+            color: #5b0617;
+            font-weight: 700;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background: rgba(248, 249, 251, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto bg-surface border-b border-outline-variant">
+<div class="font-headline-md text-headline-md font-bold text-primary">RIII-HTLV</div>
+<nav class="hidden md:flex items-center gap-8"><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Home</a><div class="relative group"><button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">About <span class="material-symbols-outlined text-[18px]">expand_more</span></button><div class="absolute top-full left-0 hidden group-hover:flex flex-col bg-white border border-outline-variant rounded-lg shadow-md py-2 min-w-[200px] z-50"><a href="#" class="px-4 py-2 hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors">What is HTLV?</a><a href="#" class="px-4 py-2 hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors">The Network</a></div></div><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Research</a><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Repository</a><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Resources</a><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Opportunities</a><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Forum</a><div class="relative group"><button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">IMPACTO <span class="material-symbols-outlined text-[18px]">expand_more</span></button><div class="absolute top-full left-0 hidden group-hover:flex flex-col bg-white border border-outline-variant rounded-lg shadow-md py-2 min-w-[200px] z-50"><a href="#" class="px-4 py-2 hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors">News</a><a href="#" class="px-4 py-2 hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors">Events</a></div></div></nav>
+<button class="bg-primary text-white px-6 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 active:opacity-80 transition-all shadow-sm">Contact</button>
+</header>
+<!-- SideNavBar (Mobile/Secondary) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-20 h-[calc(100vh-80px)] w-64 p-base bg-surface-container-low border-r border-outline-variant z-40">
+<div class="px-4 py-6">
+<h2 class="font-headline-md text-headline-md text-primary">Navigation</h2>
+<p class="text-on-surface-variant font-label-md">Global Research Network</p>
+</div>
+<div class="flex flex-col gap-2 px-2 mt-4">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span class="font-label-md">Resources</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">work</span>
+<span class="font-label-md">Opportunities</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-primary font-bold bg-primary-fixed rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">newspaper</span>
+<span class="font-label-md">News</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-md">Contact</span>
+</a>
+</div>
+<div class="mt-auto p-4">
+<button class="w-full py-3 bg-secondary-container text-secondary font-bold rounded-lg border border-outline-variant hover:bg-surface-variant transition-all">
+                Member Portal
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-20">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-12 bg-surface">
+<div class="max-w-container-max mx-auto">
+<h1 class="font-display text-display text-primary mb-4">News &amp; Global Events</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl">
+                    Stay informed with the latest scientific breakthroughs, network milestones, and upcoming international workshops dedicated to HTLV research.
+                </p>
+</div>
+</section>
+<!-- View Switcher -->
+<div class="sticky top-20 z-30 glass-header border-b border-outline-variant px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto flex items-center gap-8 h-16">
+<button class="h-full px-2 flex items-center gap-2 tab-active transition-all cursor-pointer" id="tab-news" onclick="toggleSection('news')">
+<span class="material-symbols-outlined">article</span>
+<span class="font-label-md uppercase tracking-wider">News Updates</span>
+</button>
+<button class="h-full px-2 flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all cursor-pointer" id="tab-events" onclick="toggleSection('events')">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-md uppercase tracking-wider">Upcoming Events</span>
+</button>
+</div>
+</div>
+<!-- News Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap" id="section-news">
+<div class="max-w-container-max mx-auto">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Featured News -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="bg-white rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-md transition-all h-full flex flex-col">
+<div class="h-80 w-full relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional photograph of a diverse team of medical researchers in a brightly lit, modern white laboratory. They are looking at complex viral sequences on large high-resolution monitors. The lighting is natural and clean, reflecting an institutional and academic atmosphere. Soft highlights and deep burgundy accents in the laboratory equipment complement the brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcD29lXstUu_IXvcAWEidHu0-7K7fZgHUL9-PtF0ObBYVOObRLVPDd8C3uvvd6tTMApiAgcNlT1gXsoIrU5DUr2lTWH-l4V6bWfO1cxIUfQo6iFMX8OO5gsWTt082JmTFF86Gc9dF5nM9QgAUGgA31qSfMl8riwpY-w7GlTj-RzsxsQ3vCnGMKZy3abQJ6Hl3nmWYg1q9cuB3NANJ_U2KuNvSXIShXwz87nw5zevdp2nQBJ8N7qoqls8Red0YfN3ddYteyWdeSJ7E">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-white px-3 py-1 rounded-full text-label-sm font-label-sm">RESEARCH UPDATE</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<span class="text-primary font-bold text-label-sm mb-2">OCTOBER 24, 2024</span>
+<h3 class="font-headline-lg text-headline-lg mb-4 group-hover:text-primary transition-colors">Breakthrough in HTLV-1 Molecular Diagnostic Protocols</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-3">
+                                    The International Consortium has released a revised set of guidelines for the molecular detection of HTLV-1, prioritizing accessibility for low-resource settings and higher sensitivity in early-stage detection.
+                                </p>
+<div class="mt-auto pt-6 flex items-center text-primary font-bold">
+<span class="">Read Full Report</span>
+<span class="material-symbols-outlined ml-2">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Grid Items -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-all flex flex-col h-1/2">
+<span class="text-primary font-bold text-label-sm mb-2">OCTOBER 21, 2024</span>
+<h4 class="font-headline-md text-headline-md mb-2">New Regional Hub in Southeast Asia</h4>
+<p class="text-on-surface-variant text-label-md line-clamp-2">Expanding the network's footprint to enhance epidemiological surveillance in the Pacific basin.</p>
+<div class="mt-auto pt-4 flex items-center text-primary font-label-md uppercase tracking-tight font-bold">
+<span class="">Network News</span>
+<span class="material-symbols-outlined text-[18px] ml-1">chevron_right</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-all flex flex-col h-1/2">
+<span class="text-primary font-bold text-label-sm mb-2">OCTOBER 15, 2024</span>
+<h4 class="font-headline-md text-headline-md mb-2">Annual Publication Grant Winners</h4>
+<p class="text-on-surface-variant text-label-md line-clamp-2">Celebrating the achievements of five junior researchers from the global consortium.</p>
+<div class="mt-auto pt-4 flex items-center text-primary font-label-md uppercase tracking-tight font-bold">
+<span class="">Achievements</span>
+<span class="material-symbols-outlined text-[18px] ml-1">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Regular Grid Items -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="bg-white rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-md transition-all">
+<div class="h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="A macro close-up of a scientific journal page with clear, elegant typography focusing on the word 'Consensus'. The paper has a premium texture, and the background is slightly blurred showing a wooden desk and a fountain pen, evoking a sense of high-level academic publishing and institutional weight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrsBYFiHBR0dnKO7rwGzndt-NoFkaQVIX3PtadXGV840iBUgZMr7mbRPxrk6bUiNa0SNV-KrG3W2dG7OvVXAnv3JGIucJ3gHNMicU96OhXKS32EHc6aINjwpSAVpsGiIbpvZ9U3QWRAKRW3YPpqQF7t9QrQC9bEndIYZvmqzjNVM9Iwzf5_mFSrE-tVOpqz_UD78gwxiepspgejsejoOpFmHXQsuWQELvqVD3SmtT6qsIED02DPFXmuH3SaFykyAvg-nahwrVvDxA">
+</div>
+<div class="p-6">
+<span class="text-on-surface-variant font-label-sm opacity-70">OCTOBER 12, 2024</span>
+<h4 class="font-headline-md text-headline-md mt-2 mb-3">Inter-Institutional Data Sharing Agreement</h4>
+<p class="text-on-surface-variant text-label-md">Unified repository protocols established for 12 major research centers.</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 group cursor-pointer">
+<div class="bg-white rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-md transition-all">
+<div class="h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="A wide-angle shot of an international research conference auditorium. A diverse audience of professionals is listening to a speaker at a podium. The environment is sophisticated and academic, with warm wood paneling and soft, focused stage lighting that emphasizes a collaborative atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiaoIJnJKoclM7eyxPd18lxisITwzgh0bDPhqfFogK9-tPszsvUv6fs0s_qQOlWpG3xNemYstsVEC-GF-lJSFRW41DVaZVn4urI-oRz79q15iZtsNzySjQTeiAi_Xkfi_50ygokMnE2mUFCZRLXXIldq5OGzKNmkEOyUPmZNKHjBGLkHX5Ehb0LX4rGW-Ki9id3wKbgrSdcn_I0mkCdTl3IMajywAr27B186U4MmEHt5OxetpKtbqyJ1paWreVViGy1xWdYyaTEBM">
+</div>
+<div class="p-6">
+<span class="text-on-surface-variant font-label-sm opacity-70">OCTOBER 08, 2024</span>
+<h4 class="font-headline-md text-headline-md mt-2 mb-3">HTLV-1 World Day Recap</h4>
+<p class="text-on-surface-variant text-label-md">Summarizing global awareness activities and public health impact reports.</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 group cursor-pointer">
+<div class="bg-white rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-md transition-all">
+<div class="h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="A clean, minimalist digital interface showing a data visualization dashboard with nodes and connections. The colors are muted grays and whites with sharp, precise lines in a deep burgundy color, representing a global research network and sophisticated data management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa1Ud8t7OSTFq69LQdsKili6g__PKminha5lcjfLiSUNbe3M_G60ayLHjBIvQqCr50ke0c5XzgoUFWuohEKGAa8vxT1M4MlZYOtf4QRvlyVZBD89TktyHZCGJfmJIFuB_cLocJzNmhma1Z_uIG8Cm8f0kTYrHvk4LoDZng7DYuExRfG-WQriT1uYzZYsyZnPo58Ycmk1WwJb9MTgENg-wJ4lvr36UDiJzQqNEeSHpBQNLjmjL00PoEN2NNW9rMuKIowx9jJOAClgw">
+</div>
+<div class="p-6">
+<span class="text-on-surface-variant font-label-sm opacity-70">OCTOBER 01, 2024</span>
+<h4 class="font-headline-md text-headline-md mt-2 mb-3">Digital Repository Expansion</h4>
+<p class="text-on-surface-variant text-label-md">Over 500 new clinical abstracts added to the member search portal.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Events Section -->
+<section class="hidden px-margin-mobile md:px-margin-desktop py-section-gap bg-surface-container-low" id="section-events">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Academic Calendar</h2>
+<p class="text-on-surface-variant font-body-md">Scientific meetings and technical workshops for Q4 2024.</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-white border border-outline px-4 py-2 rounded-lg font-label-md flex items-center gap-2 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                            Filter By Type
+                        </button>
+<button class="bg-primary text-white px-4 py-2 rounded-lg font-label-md flex items-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">calendar_add_on</span>
+                            Sync Calendar
+                        </button>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Event Row 1 -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm flex flex-col md:flex-row hover:shadow-md transition-all overflow-hidden group">
+<div class="md:w-48 bg-primary text-white p-6 flex flex-col items-center justify-center text-center">
+<span class="text-label-sm uppercase font-bold tracking-widest opacity-80">NOV</span>
+<span class="text-display font-display leading-tight">12</span>
+<span class="text-label-md font-bold">2024</span>
+</div>
+<div class="flex-grow p-8 flex flex-col md:flex-row gap-8 items-start md:items-center">
+<div class="flex-grow">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-secondary-container text-secondary px-3 py-0.5 rounded-full text-label-sm font-label-sm uppercase">Workshop</span>
+<span class="text-on-surface-variant text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                        09:00 - 17:00 GMT
+                                    </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Technical Training: Genomic Sequencing for HTLV-1</h3>
+<p class="text-on-surface-variant text-body-md max-w-2xl">A hands-on technical session focused on the latest NGS protocols and bioinformatics pipelines for variant analysis.</p>
+</div>
+<div class="flex flex-col gap-3 min-w-[200px]">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="text-label-md">London, UK (Hybrid)</span>
+</div>
+<button class="w-full py-2 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                    Register Now
+                                </button>
+</div>
+</div>
+</div>
+<!-- Event Row 2 -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm flex flex-col md:flex-row hover:shadow-md transition-all overflow-hidden group">
+<div class="md:w-48 bg-surface-container text-on-surface p-6 flex flex-col items-center justify-center text-center">
+<span class="text-label-sm uppercase font-bold tracking-widest opacity-60">NOV</span>
+<span class="text-display font-display leading-tight">28</span>
+<span class="text-label-md font-bold">2024</span>
+</div>
+<div class="flex-grow p-8 flex flex-col md:flex-row gap-8 items-start md:items-center">
+<div class="flex-grow">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary-fixed text-primary px-3 py-0.5 rounded-full text-label-sm font-label-sm uppercase">Webinar</span>
+<span class="text-on-surface-variant text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                        14:00 - 15:30 GMT
+                                    </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Policy Forum: Integrating HTLV Screening into National Programs</h3>
+<p class="text-on-surface-variant text-body-md max-w-2xl">Discussion with global health leaders on implementation strategies and cost-benefit modeling for universal screening.</p>
+</div>
+<div class="flex flex-col gap-3 min-w-[200px]">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">videocam</span>
+<span class="text-label-md">Virtual Meeting (Zoom)</span>
+</div>
+<button class="w-full py-2 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                    Save My Spot
+                                </button>
+</div>
+</div>
+</div>
+<!-- Event Row 3 -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm flex flex-col md:flex-row hover:shadow-md transition-all overflow-hidden group">
+<div class="md:w-48 bg-surface-container text-on-surface p-6 flex flex-col items-center justify-center text-center">
+<span class="text-label-sm uppercase font-bold tracking-widest opacity-60">DEC</span>
+<span class="text-display font-display leading-tight">05</span>
+<span class="text-label-md font-bold">2024</span>
+</div>
+<div class="flex-grow p-8 flex flex-col md:flex-row gap-8 items-start md:items-center">
+<div class="flex-grow">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-secondary-container text-secondary px-3 py-0.5 rounded-full text-label-sm font-label-sm uppercase">Symposium</span>
+<span class="text-on-surface-variant text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                        Full Day Event
+                                    </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">12th Annual Network Research Symposium</h3>
+<p class="text-on-surface-variant text-body-md max-w-2xl">The premier annual event showcasing the most significant scientific contributions from network members over the past year.</p>
+</div>
+<div class="flex flex-col gap-3 min-w-[200px]">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="text-label-md">Tokyo, Japan</span>
+</div>
+<button class="w-full py-2 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                    View Program
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-start bg-surface-dim border-t border-outline-variant">
+<div class="mb-8 md:mb-0">
+<div class="font-headline-md text-headline-md text-on-surface mb-4">RIII-HTLV</div>
+<p class="text-on-surface-variant font-label-sm max-w-sm">
+                    The International Research and Innovation Network on HTLV is dedicated to advancing global scientific understanding and improving outcomes for those affected by HTLV-related diseases.
+                </p>
+<p class="mt-8 text-on-surface-variant font-label-sm">© 2024 International Research and Innovation Network on HTLV. All rights reserved.</p>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-4">
+<a class="text-on-surface-variant font-label-sm hover:underline transition-all" href="#">Contact Us</a>
+<a class="text-on-surface-variant font-label-sm hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-label-sm hover:underline transition-all" href="#">Institutional Email</a>
+<a class="text-on-surface-variant font-label-sm hover:underline transition-all" href="#">Partner Login</a>
+</div>
+</footer>
+</main>
+<script>
+        function toggleSection(view) {
+            const newsSection = document.getElementById('section-news');
+            const eventsSection = document.getElementById('section-events');
+            const newsTab = document.getElementById('tab-news');
+            const eventsTab = document.getElementById('tab-events');
+
+            if (view === 'news') {
+                newsSection.classList.remove('hidden');
+                eventsSection.classList.add('hidden');
+                
+                newsTab.classList.add('tab-active');
+                newsTab.classList.remove('text-on-surface-variant');
+                
+                eventsTab.classList.remove('tab-active');
+                eventsTab.classList.add('text-on-surface-variant');
+                
+                window.scrollTo({ top: 400, behavior: 'smooth' });
+            } else {
+                eventsSection.classList.remove('hidden');
+                newsSection.classList.add('hidden');
+                
+                eventsTab.classList.add('tab-active');
+                eventsTab.classList.remove('text-on-surface-variant');
+                
+                newsTab.classList.remove('tab-active');
+                newsTab.classList.add('text-on-surface-variant');
+
+                window.scrollTo({ top: 400, behavior: 'smooth' });
+            }
+        }
+    </script>
+
+
+
+
+
+
+</body></html>

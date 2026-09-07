@@ -1,0 +1,401 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>RIII-HTLV | Educational Resource</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#564242",
+                    "outline": "#897172",
+                    "tertiary": "#222c39",
+                    "primary-fixed": "#ffdada",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2e3132",
+                    "tertiary-container": "#38424f",
+                    "outline-variant": "#dcc0c0",
+                    "on-secondary-container": "#596373",
+                    "surface-bright": "#f8f9fb",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#5b0617",
+                    "on-tertiary-fixed": "#121c28",
+                    "primary-fixed-dim": "#ffb3b5",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#d6e0f3",
+                    "secondary": "#555f6f",
+                    "surface-container-low": "#f3f4f6",
+                    "error": "#ba1a1a",
+                    "primary-container": "#7a1f2b",
+                    "surface-container": "#edeef0",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#822530",
+                    "inverse-primary": "#ffb3b5",
+                    "surface-variant": "#e1e2e4",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#ff8b92",
+                    "surface-container-high": "#e7e8ea",
+                    "surface-dim": "#d9dadc",
+                    "on-tertiary-fixed-variant": "#3e4755",
+                    "surface-container-highest": "#e1e2e4",
+                    "surface": "#f8f9fb",
+                    "inverse-on-surface": "#f0f1f3",
+                    "on-primary-fixed": "#40000c",
+                    "tertiary-fixed-dim": "#bdc7d8",
+                    "tertiary-fixed": "#d9e3f4",
+                    "background": "#f8f9fb",
+                    "on-tertiary-container": "#a4aebe",
+                    "on-background": "#191c1e",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#a13c46",
+                    "on-secondary-fixed": "#121c2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "section-gap": "80px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /* Custom Academic Layout Utilities */
+        .academic-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 48px;
+        }
+        @media (max-width: 1024px) {
+            .academic-grid { grid-template-columns: 1fr; }
+        }
+        .content-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+            transition: border-color 0.2s ease;
+        }
+        .content-card:hover { border-color: #5b0617; }
+        .toc-item.active {
+            color: #5b0617;
+            font-weight: 700;
+            background-color: #ffdada;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto bg-surface border-b border-outline-variant"><div class="flex items-center gap-6">
+  <span class="font-headline-md text-headline-md font-bold text-primary">RIII-HTLV</span>
+  <div class="hidden lg:flex items-center gap-4"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+    
+    <!-- About Dropdown -->
+    <div class="relative group">
+      <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+        About <span class="material-symbols-outlined text-sm">expand_more</span>
+      </button>
+      <div class="absolute top-full left-0 hidden group-hover:block bg-surface border border-outline-variant rounded-lg shadow-sm py-2 min-w-[180px]">
+        <a href="#what-is-htlv" class="block px-4 py-2 font-label-md text-label-md text-primary font-bold bg-surface-container-high">What is HTLV?</a>
+        <a href="#" class="block px-4 py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high">The Network</a>
+      </div>
+    </div>
+
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Research</a>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Repository</a>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Resources</a>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Opportunities</a>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Forum</a>
+    <div class="relative group"><button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">IMPACTO <span class="material-symbols-outlined text-sm">expand_more</span></button><div class="absolute top-full left-0 hidden group-hover:block bg-surface border border-outline-variant rounded-lg shadow-sm py-2 min-w-[180px]"><a href="#" class="block px-4 py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high">News</a><a href="#" class="block px-4 py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high">Events</a></div></div>
+    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a></div>
+</div>
+<button class="bg-primary text-white px-6 py-2 rounded-full font-label-md text-label-md hover:opacity-90 transition-all">Contact</button></nav>
+<!-- Main Content Area -->
+<main class="pt-32 pb-section-gap px-margin-desktop max-w-container-max mx-auto">
+<header class="mb-16">
+<h1 class="font-display text-display text-primary mb-4">Human T-cell Lymphotropic Virus (HTLV)</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-3xl">
+                A comprehensive clinical and research guide to understanding HTLV-1 and HTLV-2, their physiological impacts, and current management protocols within global health frameworks.
+            </p>
+</header>
+<div class="academic-grid">
+<!-- Sticky Sidebar Navigation (SideNavBar Pattern) -->
+<aside class="hidden lg:block">
+<div class="sticky top-28 bg-surface-container-low p-6 rounded-xl shadow-sm border border-outline-variant">
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-6">Navigation</h3>
+<nav class="flex flex-col gap-2">
+<a class="toc-item flex items-center gap-3 px-4 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" href="#what-is-htlv">
+<span class="material-symbols-outlined">info</span> What is HTLV?
+                        </a>
+<a class="toc-item flex items-center gap-3 px-4 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" href="#transmission">
+<span class="material-symbols-outlined">share</span> Transmission
+                        </a>
+<a class="toc-item flex items-center gap-3 px-4 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" href="#diagnosis">
+<span class="material-symbols-outlined">biotech</span> Diagnosis
+                        </a>
+<a class="toc-item flex items-center gap-3 px-4 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" href="#treatment">
+<span class="material-symbols-outlined">medical_services</span> Treatment
+                        </a>
+<a class="toc-item flex items-center gap-3 px-4 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all active" href="#faqs">
+<span class="material-symbols-outlined">quiz</span> FAQs
+                        </a>
+</nav>
+<div class="mt-8 pt-8 border-t border-outline-variant">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-label-md text-label-md hover:opacity-90 transition-all">
+                            Member Portal
+                        </button>
+</div>
+</div>
+</aside>
+<!-- Content Sections -->
+<div class="flex flex-col gap-section-gap">
+<!-- Section: What is HTLV? -->
+<section class="scroll-mt-32" id="what-is-htlv">
+<div class="content-card rounded-xl overflow-hidden p-8">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">What is HTLV?</h2>
+<div class="grid md:grid-cols-2 gap-12 items-start">
+<div class="space-y-4 font-body-md text-body-md text-on-surface">
+<p class="">Human T-cell lymphotropic virus (HTLV) is a retrovirus that predominantly infects CD4+ T-lymphocytes. Unlike HIV, HTLV-1 and HTLV-2 are typically associated with chronic infection where the majority of individuals remain asymptomatic carriers throughout their lifetime.</p>
+<p class="">However, approximately 5-10% of infected individuals develop severe clinical conditions, including:</p>
+<ul class="list-disc pl-5 space-y-2 text-on-surface-variant">
+<li class="">Adult T-cell Leukemia/Lymphoma (ATL)</li>
+<li class="">HTLV-1-Associated Myelopathy / Tropical Spastic Paraparesis (HAM/TSP)</li>
+<li class="">Chronic inflammatory disorders (Uveitis, Dermatitis)</li>
+</ul>
+</div>
+<div class="relative rounded-lg overflow-hidden border border-outline-variant aspect-video">
+<img class="w-full h-full object-cover" data-alt="A highly detailed scientific illustration of the HTLV-1 virion structure, showing the envelope glycoproteins and internal capsid. The style is that of a premium academic medical journal with a clean, high-contrast light mode background and primary burgundy color accents on key structural markers. The lighting is soft and global, emphasizing molecular precision and institutional authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs_ADncYu3IQcJxFxpu0kOP5pnS5GRkFRzvvkbICMG9Oce33JHFTQMkyP57gtCJFnApfDqwtjpwgQIAbwBpW6NORgt4yacS-7hR-5Jn36QwK3D_oF6d8lVu-mxR5XBVZF3JxLuN0BgZ6OYdwqa7Jg3VOZt3oeq1Lg53YUd-kANDXPw9GnZm325dFVQcBEgNK6jF3lw42RuqJftpYNO_oUBbsU22bdCqK2yU_cFbh59CClyAAVbeZLjqwkhDPGvfXp5NihQfRV0vss">
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Transmission -->
+<section class="scroll-mt-32" id="transmission">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 px-2">Modes of Transmission</h2>
+<div class="grid sm:grid-cols-3 gap-6">
+<div class="content-card p-8 rounded-xl text-center space-y-4">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">child_care</span>
+<h3 class="font-headline-md text-headline-md">Vertical</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Primarily through prolonged breastfeeding (typically &gt;6 months), where the virus is present in lymphocytes within breast milk.</p>
+</div>
+<div class="content-card p-8 rounded-xl text-center space-y-4">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<h3 class="font-headline-md text-headline-md">Sexual</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Transmission through unprotected sexual contact. Studies indicate a higher efficiency of male-to-female transmission.</p>
+</div>
+<div class="content-card p-8 rounded-xl text-center space-y-4">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">bloodtype</span>
+<h3 class="font-headline-md text-headline-md">Parenteral</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Through contaminated blood products, organ transplantation, or sharing of needles among people who inject drugs.</p>
+</div>
+</div>
+</section>
+<!-- Section: Diagnosis -->
+<section class="scroll-mt-32" id="diagnosis">
+<div class="content-card rounded-xl p-8 bg-surface-container-lowest">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Diagnostic Pathways</h2>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">1</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary uppercase mb-1">Screening</h4>
+<p class="font-body-md text-body-md">Enzyme Immunoassays (EIA) or Chemiluminescent Immunoassays (CLIA) to detect HTLV-1/2 antibodies.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">2</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary uppercase mb-1">Confirmatory</h4>
+<p class="font-body-md text-body-md">Western Blot or Line Immunoassay (LIA) to differentiate between HTLV-1 and HTLV-2 types.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">3</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary uppercase mb-1">Molecular</h4>
+<p class="font-body-md text-body-md">Polymerase Chain Reaction (PCR) to quantify proviral load, crucial for monitoring disease progression.</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-6 flex flex-col justify-center">
+<p class="italic text-on-surface-variant font-body-md mb-4 text-center">"Early diagnosis is key to preventing secondary transmission and ensuring lifelong monitoring for symptomatic progression."</p>
+<div class="flex justify-center">
+<img class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-sm" data-alt="A clean, minimalist close-up photo of a professional laboratory technician in a white coat working with high-precision pipettes and blood samples. The lighting is warm and natural, emphasizing the human element of science. The palette is dominated by whites and grays with subtle burgundy highlights on laboratory equipment. Modern academic minimalism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCFzJcS4XQz33g1ZOJF2fMADRrJ4Nk-Y9FK0qHMT6qq9Vx8MvtJeMNGwWd2Wvl8Urz8v0DmcRl1XRgSn6DlQQ0DZ4NZz2xSY-YjVh_Ugtfkv3MXwuRiP7qvrXdRAMbYsfo7RMKGVqbqKC5plim7MELc13qU6FgZmE9huyF7E2xbcWWVbQNVRMGjShge2DotpHtNsCYLSNLSEhDTrw9esDxvK6-kcLZKq5W2zhFiAsLhwSfQYEP_p6LeRo-eX9wQFqouvK0hCBD77Q">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Treatment and follow-up -->
+<section class="scroll-mt-32" id="treatment">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 px-2">Clinical Management</h2>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="content-card p-8 rounded-xl border-l-4 border-l-primary">
+<h3 class="font-headline-md text-headline-md mb-4">Therapeutic Approaches</h3>
+<ul class="space-y-4 font-body-md text-body-md">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class=""><strong>Asymptomatic:</strong> Regular monitoring of CD4/CD8 counts and proviral load every 6-12 months.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class=""><strong>ATL:</strong> Aggressive chemotherapy combined with Zidovudine and Interferon-alpha.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class=""><strong>HAM/TSP:</strong> Corticosteroids and physiotherapy to manage neurological decline and inflammation.</span>
+</li>
+</ul>
+</div>
+<div class="content-card p-8 rounded-xl border-l-4 border-l-secondary">
+<h3 class="font-headline-md text-headline-md mb-4">Patient Care Guidelines</h3>
+<ul class="space-y-4 font-body-md text-body-md">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">info</span>
+<span class="">Education on preventing transmission through barrier methods and avoiding breastfeeding.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">info</span>
+<span class="">Psychological support for chronic carriers to manage the emotional impact of diagnosis.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">info</span>
+<span class="">Integration with neurology and oncology departments for coordinated multidisciplinary care.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Section: FAQs -->
+<section class="scroll-mt-32" id="faqs">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 px-2">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<details class="group content-card rounded-xl">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-headline-md text-headline-md">Is there a vaccine for HTLV?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 font-body-md text-body-md text-on-surface-variant">
+<p class="">Currently, there is no commercially available vaccine for HTLV-1 or HTLV-2. Research is ongoing into preventive vaccines, but the primary focus remains on screening and transmission prevention.</p>
+</div>
+</details>
+<details class="group content-card rounded-xl">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-headline-md text-headline-md">Can HTLV-1 lead to AIDS?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 font-body-md text-body-md text-on-surface-variant">
+<p class="">No. While HTLV is a retrovirus like HIV, it does not typically cause the profound immunodeficiency seen in AIDS. It instead causes uncontrolled cell proliferation (Leukemia) or inflammatory responses.</p>
+</div>
+</details>
+<details class="group content-card rounded-xl">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-headline-md text-headline-md">How common is HTLV globally?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 font-body-md text-body-md text-on-surface-variant">
+<p class="">It is estimated that 5 to 10 million people are living with HTLV-1 globally. It is endemic in Japan, the Caribbean, parts of South America, and Sub-Saharan Africa.</p>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-desktop flex flex-col md:flex-row justify-between items-start bg-surface-dim border-t border-outline-variant">
+<div class="max-w-md space-y-4 mb-8 md:mb-0">
+<span class="font-headline-md text-headline-md text-on-surface">RIII-HTLV</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 International Research and Innovation Network on HTLV. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-4">
+<div class="flex flex-col gap-2">
+<span class="font-label-md text-label-md font-bold text-primary">Information</span>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Institutional Email</a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-md text-label-md font-bold text-primary">Resources</span>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Partner Login</a>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction for Sticky Scroll -->
+<script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.6
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const navLink = document.querySelector(`.toc-item[href="#${id}"]`);
+                
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.toc-item').forEach(link => link.classList.remove('active'));
+                    if(navLink) navLink.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section[id]').forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+
+
+
+
+
+
+</body></html>

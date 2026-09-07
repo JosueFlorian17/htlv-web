@@ -1,0 +1,418 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Resources | RIII-HTLV</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        .resource-card:hover .hover-primary {
+            color: #5b0617;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "on-surface-variant": "#564242",
+                      "outline": "#897172",
+                      "tertiary": "#222c39",
+                      "primary-fixed": "#ffdada",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#191c1e",
+                      "inverse-surface": "#2e3132",
+                      "tertiary-container": "#38424f",
+                      "outline-variant": "#dcc0c0",
+                      "on-secondary-container": "#596373",
+                      "surface-bright": "#f8f9fb",
+                      "secondary-fixed-dim": "#bdc7d9",
+                      "secondary-fixed": "#d9e3f6",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#5b0617",
+                      "on-tertiary-fixed": "#121c28",
+                      "primary-fixed-dim": "#ffb3b5",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#d6e0f3",
+                      "secondary": "#555f6f",
+                      "surface-container-low": "#f3f4f6",
+                      "error": "#ba1a1a",
+                      "primary-container": "#7a1f2b",
+                      "surface-container": "#edeef0",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#822530",
+                      "inverse-primary": "#ffb3b5",
+                      "surface-variant": "#e1e2e4",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#ff8b92",
+                      "surface-container-high": "#e7e8ea",
+                      "surface-dim": "#d9dadc",
+                      "on-tertiary-fixed-variant": "#3e4755",
+                      "surface-container-highest": "#e1e2e4",
+                      "surface": "#f8f9fb",
+                      "inverse-on-surface": "#f0f1f3",
+                      "on-primary-fixed": "#40000c",
+                      "tertiary-fixed-dim": "#bdc7d8",
+                      "tertiary-fixed": "#d9e3f4",
+                      "background": "#f8f9fb",
+                      "on-tertiary-container": "#a4aebe",
+                      "on-background": "#191c1e",
+                      "on-secondary-fixed-variant": "#3d4756",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#a13c46",
+                      "on-secondary-fixed": "#121c2a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "margin-desktop": "40px",
+                      "base": "8px",
+                      "margin-mobile": "16px",
+                      "section-gap": "80px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "display": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">RIII-HTLV</span>
+<nav class="hidden md:flex gap-6 items-center"><a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Home</a>
+<div class="relative group">
+    <button class="flex items-center gap-1 font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors">
+        About <span class="material-symbols-outlined text-[18px]">expand_more</span>
+    </button>
+    <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-outline-variant rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+        <a href="#" class="block px-4 py-2 text-label-md hover:bg-surface-container-low hover:text-primary">What is HTLV?</a>
+        <a href="#" class="block px-4 py-2 text-label-md hover:bg-surface-container-low hover:text-primary">The Network</a>
+    </div>
+</div>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Research</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Repository</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary pb-1 transition-colors" href="#">Resources</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Opportunities</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Forum</a>
+<div class="relative group">
+    <button class="flex items-center gap-1 font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors">
+        IMPACTO <span class="material-symbols-outlined text-[18px]">expand_more</span>
+    </button>
+    <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-outline-variant rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+        <a href="#" class="block px-4 py-2 text-label-md hover:bg-surface-container-low hover:text-primary">News</a>
+        <a href="#" class="block px-4 py-2 text-label-md hover:bg-surface-container-low hover:text-primary">Events</a>
+    </div>
+</div>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-48" placeholder="Search resources..." type="text">
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md scale-95 active:opacity-80 transition-all">Contact</button>
+</div>
+</header>
+<!-- SideNavBar (Hidden on Mobile, context-aware) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-20 h-[calc(100vh-80px)] p-base bg-surface-container dark:bg-tertiary-container shadow-sm w-64 z-40">
+<div class="p-4 mb-6">
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-4">Categories</p>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-primary-fixed font-bold bg-primary-fixed dark:bg-primary-container rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span class="font-label-md text-label-md">Resources</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">work</span>
+<span class="font-label-md text-label-md">Opportunities</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<span class="font-label-md text-label-md">News</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-md text-label-md">Contact</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-4">
+<div class="bg-surface-container-low dark:bg-tertiary p-4 rounded-xl">
+<p class="font-label-md text-label-md font-bold text-primary mb-1">Member Portal</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Access restricted datasets and collaboration tools.</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="pt-24 pb-section-gap px-margin-mobile md:px-margin-desktop lg:ml-64 max-w-container-max mx-auto">
+<!-- Hero / Header Section -->
+<section class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<h1 class="font-display text-display text-primary mb-4">Resource Repository</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">The global center for HTLV-1/2 research documentation, standardized guidelines, and educational assets curated by the International Network.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm uppercase">1,240 Assets</span>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm text-label-sm uppercase">Updated Daily</span>
+</div>
+</div>
+</section>
+<!-- Search and Filter Bar -->
+<section class="mb-10 flex flex-col md:flex-row gap-4">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-xl border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search by title, author, or research area..." type="text">
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-6 py-4 rounded-xl border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+<span class="font-label-md text-label-md">Filters</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-4 rounded-xl border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">sort</span>
+<span class="font-label-md text-label-md">Latest</span>
+</button>
+</div>
+</section>
+<!-- Category Grid (The Bento) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-section-gap">
+<!-- Educational Materials -->
+<div class="group cursor-pointer relative overflow-hidden rounded-xl border border-outline-variant bg-surface shadow-sm transition-all hover:shadow-md hover:border-primary/30 p-8 flex flex-col h-full">
+<div class="mb-6">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">school</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Educational Materials</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Comprehensive course modules and curricula for academic institutions and healthcare providers.</p>
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">42 Items</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- Guidelines -->
+<div class="group cursor-pointer relative overflow-hidden rounded-xl border border-outline-variant bg-surface shadow-sm transition-all hover:shadow-md hover:border-primary/30 p-8 flex flex-col h-full">
+<div class="mb-6">
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">gavel</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Global Guidelines</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Standardized clinical protocols and ethical frameworks for HTLV-1 diagnostic procedures.</p>
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">12 Official Docs</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- Manuals -->
+<div class="group cursor-pointer relative overflow-hidden rounded-xl border border-outline-variant bg-surface shadow-sm transition-all hover:shadow-md hover:border-primary/30 p-8 flex flex-col h-full">
+<div class="mb-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface-variant group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">menu_book</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Lab Manuals</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Technical step-by-step guides for laboratory personnel on HTLV screening and isolation.</p>
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant pt-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">18 Procedures</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all">arrow_forward</span>
+</div>
+</div>
+</section>
+<!-- Resource Item List -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Latest Assets</h2>
+<div class="flex gap-4">
+<button class="text-label-md text-primary font-bold hover:underline">View All</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+<!-- Resource Card 1 -->
+<div class="resource-card bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional scientific infographic showing cellular mechanisms of HTLV-1 infection, designed with a clean minimalist aesthetic using a color palette of burgundy and soft greys. The image is brightly lit, evoking a high-end academic research environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARYfAPMBJO95i3OeJqqO1e7PkQnZJtJw7yNBXqmtQc732fQblkTRZG4DLSA4ZAWAAZET0kb6fswrdyxKxCSTWdNRzWGmqfXfYwNLfipwH-p0-m5pXwrZHhnD_a14J9vF5G_IXD3aTl9SyWGwUZadWt6QIpMv8UVhmzRJcE7rURVkVIVqKV9mAY8x7yJ_a9JIfY6JlAAtTqwRCh4kffaOH-fkTmaX0Wo3JhcklYl6kNKHpWPe4B7HgLBpfAzi1F4nG0eOCwUV70CbA">
+<div class="absolute top-3 left-3">
+<span class="bg-surface/90 backdrop-blur-sm text-primary font-label-sm text-label-sm px-2 py-1 rounded border border-primary/20">INFOGRAPHIC</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<h4 class="font-label-md text-label-md font-bold text-on-surface mb-2 leading-tight group-hover:text-primary transition-colors">Visual Guide to HTLV-1 Cell Transmission</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 flex-grow line-clamp-2">A high-resolution visual mapping of current theories on HTLV-1 viral synapses and cell-to-cell spread.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">PNG, 4.2 MB</span>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Resource Card 2 -->
+<div class="resource-card bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-resolution photograph of an international research conference auditorium. A diverse group of scientists is watching a presentation on a large screen displaying complex genomic data. The lighting is warm and intellectual, capturing a moment of intense collaboration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuXvO2-W-DPohAm0t3r6ufv176Em3axy9Q9TMOk3GBfqlKMStSeHmEsbpuVTTZN7f7pAkRPumO-Jqp79EnGUSIy8cSXKJxEc-t895RwABRrggDXIXbiY5p-NgWLSsLDHG79IP7Ee4bmaWLPDqRitTo1i9ORnmNswwL3-CCWxX-QtwWLhQTrxvs0X6UwfsSPRkFPiOT27UbLsWyJ3d6VRmLM7qzGlDOLirarSjBi_Gy_3OJea_Q0aZCOYZBKRWTBq-n0tnxLukm38k">
+<div class="absolute top-3 left-3">
+<span class="bg-surface/90 backdrop-blur-sm text-primary font-label-sm text-label-sm px-2 py-1 rounded border border-primary/20">VIDEO</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<h4 class="font-label-md text-label-md font-bold text-on-surface mb-2 leading-tight group-hover:text-primary transition-colors">Global HTLV Summit: Keynote Presentation 2024</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 flex-grow line-clamp-2">Full recording of Dr. Elena Martinez's speech on the future of retroviral diagnostics in the Global South.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">MP4, 45 Min</span>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Resource Card 3 -->
+<div class="resource-card bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of a pristine, white academic journal page with clean typography and a single burgundy-colored stamp or logo in the corner. The environment is a brightly lit, minimalist library or laboratory study area." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWqytLc2cYllAkj6zIGkQykU4VdpelXQbosPjaHQ6CpHI4DublRYNaxObCK7FWefj9D5bA4M7qfQH3Rrg46YrVzbBitsSla6Yx_oXp8MVvj8CfvvggKwiirH6uPpN_msQXxN3ZqJBIn9Gp3v5-lVa6FuSkJNDKyo3r1mIV4tVEcyru5C9eK9Ixp2hj1tJ3BmQ0beJXJum_C3XIPbcGoMHPiAxrQC0TpWzimIN_Zc467F706r2SVai9fwW29Tm6rdymVO7MfrDZhAU">
+<div class="absolute top-3 left-3">
+<span class="bg-surface/90 backdrop-blur-sm text-primary font-label-sm text-label-sm px-2 py-1 rounded border border-primary/20">PDF</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<h4 class="font-label-md text-label-md font-bold text-on-surface mb-2 leading-tight group-hover:text-primary transition-colors">Standardized HTLV-1 Screening Manual v3.1</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 flex-grow line-clamp-2">The latest institutional protocol for regional blood bank screenings and diagnostic verification.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">PDF, 1.8 MB</span>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Resource Card 4 -->
+<div class="resource-card bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col group transition-all hover:shadow-xl hover:-translate-y-1">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A stylized digital illustration of interconnected global nodes, representing a research network. The nodes glow with soft white light against a deep charcoal background with burgundy accents, emphasizing global connectivity and scientific partnership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTW4bwT7n7d_1V9bDz6fRWaGLSFOBlGA7bsf9d_xoTw9oqyiY3Z7ei4TpzAGnHILE2KzVyYiv7kyQ_9lIR-L2qeybvyl0Wxq7LacJSPAwewMp1S5ncOiekPBJw0ZThNQ-qi30OJHn57wh2w4n9e7P9w4cI3lksmrLv_trqJvhoZu5K9WeHFMjP5xDCWTp-PX0J7EK3NErxJppz6Hh9XTCmVBMViYa4XxpWds6k5uQakYTVABL8A4mXZ_p7svvqETgUnAarjuQaDdg">
+<div class="absolute top-3 left-3">
+<span class="bg-surface/90 backdrop-blur-sm text-primary font-label-sm text-label-sm px-2 py-1 rounded border border-primary/20">PRESENTATION</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<h4 class="font-label-md text-label-md font-bold text-on-surface mb-2 leading-tight group-hover:text-primary transition-colors">Cross-Border HTLV-1 Research Networking</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 flex-grow line-clamp-2">A slide deck outlining the current collaboration infrastructure across EU-LATAM research channels.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">PPTX, 12 MB</span>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA -->
+<section class="mt-section-gap">
+<div class="relative overflow-hidden rounded-3xl bg-primary px-8 py-16 md:px-24 text-center">
+<!-- Abstract Texture overlay (simulated) -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 40px 40px;"></div>
+<h2 class="relative font-display text-headline-lg-mobile md:text-display text-on-primary mb-6">Stay informed on new releases</h2>
+<p class="relative font-body-lg text-body-lg text-on-primary/80 mb-10 max-w-2xl mx-auto">Subscribe to our monthly newsletter to receive the latest guidelines, research highlights, and institutional announcements directly in your inbox.</p>
+<div class="relative flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+<input class="flex-grow px-6 py-4 rounded-xl text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container" placeholder="Your institutional email" type="email">
+<button class="bg-primary-container text-on-primary-container px-8 py-4 rounded-xl font-label-md text-label-md font-bold hover:bg-on-primary hover:text-primary transition-all">Subscribe Now</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-desktop flex flex-col md:flex-row justify-between items-start bg-surface-dim dark:bg-inverse-surface border-t border-outline-variant">
+<div class="mb-8 md:mb-0">
+<span class="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface block mb-4">RIII-HTLV</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant max-w-xs leading-relaxed">
+                Empowering global collaboration and precision research for the eradication of HTLV-associated diseases.
+            </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-2 gap-12">
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface mb-6">Network</p>
+<ul class="flex flex-col gap-4">
+<li class=""><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Research Center</a></li>
+<li class=""><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Partner Login</a></li>
+<li class=""><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Institutional Email</a></li>
+</ul>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface mb-6">Support</p>
+<ul class="flex flex-col gap-4">
+<li class=""><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Contact Us</a></li>
+<li class=""><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Privacy Policy</a></li>
+<li class=""><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline transition-all" href="#">Terms of Use</a></li>
+</ul>
+</div>
+</div>
+<div class="w-full border-t border-outline-variant mt-16 pt-8 flex flex-col md:flex-row justify-between items-center opacity-60">
+<p class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant mb-4 md:mb-0">© 2024 International Research and Innovation Network on HTLV. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-[20px] cursor-pointer hover:text-primary transition-colors">language</span>
+<span class="material-symbols-outlined text-[20px] cursor-pointer hover:text-primary transition-colors">public</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for active state tracking on side nav
+        document.querySelectorAll('aside nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('aside nav a').forEach(l => {
+                    l.classList.remove('text-primary', 'dark:text-primary-fixed', 'font-bold', 'bg-primary-fixed', 'dark:bg-primary-container');
+                    l.classList.add('text-on-surface-variant', 'dark:text-on-tertiary-container');
+                });
+                this.classList.add('text-primary', 'dark:text-primary-fixed', 'font-bold', 'bg-primary-fixed', 'dark:bg-primary-container');
+                this.classList.remove('text-on-surface-variant', 'dark:text-on-tertiary-container');
+            });
+        });
+    </script>
+
+
+
+
+
+
+</body></html>

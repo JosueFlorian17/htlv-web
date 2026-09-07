@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+
+
+@theme {
+  --color-background: #f8f9fb;
+  --color-on-background: #191c1e;
+  --color-surface: #f8f9fb;
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #564242;
+  --color-surface-container-low: #f3f4f6;
+  --color-surface-container-highest: #e1e2e4;
+  --color-surface-dim: #d9dadc;
+  --color-primary: #5b0617;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #ffffff;
+  --color-primary-fixed: #ffdada;
+  --color-primary-fixed-dim: #ffb3b5;
+  --color-on-primary-fixed: #5b0617;
+  --color-on-primary-fixed-variant: #5b0617;
+  --color-secondary: #555f6f;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d6e0f3;
+  --color-on-secondary-container: #191c1e;
+  --color-outline-variant: #dcc0c0;
+  --color-outline: #897172;
+  
+  --spacing-margin-desktop: 40px;
+  --spacing-margin-mobile: 16px;
+  --spacing-base: 8px;
+  --spacing-p-base: 8px;
+  --spacing-gutter: 24px;
+  --spacing-section-gap: 80px;
+  --spacing-max-w-container-max: 1280px;
+}
+
+/* Clases utilitarias mapeadas para las fuentes del documento original */
+.font-display { font-size: 48px; line-height: 56px; letter-spacing: -0.02em; font-weight: 700; }
+.font-headline-lg { font-size: 32px; line-height: 40px; letter-spacing: -0.01em; font-weight: 600; }
+.font-headline-md { font-size: 24px; line-height: 32px; font-weight: 600; }
+.font-body-lg { font-size: 18px; line-height: 28px; font-weight: 400; }
+.font-body-md { font-size: 16px; line-height: 24px; font-weight: 400; }
+.font-label-md { font-size: 14px; line-height: 20px; letter-spacing: 0.01em; font-weight: 500; }
+.font-label-sm { font-size: 12px; line-height: 16px; font-weight: 600; }
