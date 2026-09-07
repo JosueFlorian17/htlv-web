@@ -41,26 +41,133 @@
 .font-label-md { font-size: 14px; line-height: 20px; letter-spacing: 0.01em; font-weight: 500; }
 .font-label-sm { font-size: 12px; line-height: 16px; font-weight: 600; }
 
-/* Estilos de impresión y exportación a PDF */
+/* ==========================================================================
+   ESTILOS PROFESIONALES PARA EXPORTACIÓN A PDF Y FORMATO DE IMPRESIÓN ESTÁNDAR
+   ========================================================================== */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm 15mm 15mm;
+  }
+
+  *, *::before, *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #191c1e !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+  }
+
   body {
     padding-top: 0 !important;
-    background: #ffffff !important;
-    color: #000000 !important;
   }
-  nav, footer, aside, .print\:hidden {
+
+  /* Ocultar elementos irrelevantes para el PDF */
+  nav, footer, aside, .print\:hidden, button, [class*="fixed"] {
     display: none !important;
   }
-  main {
+
+  /* Desbloquear ancho completo de contenedores */
+  main, [class*="max-w-"], .max-w-\[1280px\], [class*="px-margin"] {
     max-width: 100% !important;
-    padding: 0 !important;
+    width: 100% !important;
     margin: 0 !important;
+    padding: 0 !important;
   }
-  section {
-    page-break-inside: avoid;
-    margin-bottom: 24px !important;
-  }
-  details[open] summary ~ * {
+
+  /* Resetear el contenedor de 2 columnas con barra lateral de 280px */
+  .grid-cols-\[280px_1fr\], .lg\:grid-cols-\[280px_1fr\] {
     display: block !important;
+    width: 100% !important;
+  }
+
+  /* Secciones y tarjetas con saltos de página limpios */
+  section, article, .bg-white {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
+    border-color: #dcc0c0 !important;
+  }
+
+  /* Rejillas internas para contenido en 2 o 3 columnas imprimibles */
+  .md\:grid-cols-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  .sm\:grid-cols-3, .md\:grid-cols-3 {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .md\:grid-cols-12 {
+    display: grid !important;
+    grid-template-columns: repeat(12, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  /* Forzar apertura limpia de todas las preguntas frecuentes (details) */
+  details {
+    display: block !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: 1px solid #dcc0c0 !important;
+    margin-bottom: 10px !important;
+  }
+
+  details summary {
+    display: block !important;
+    font-weight: 700 !important;
+    padding: 8px 12px !important;
+    background-color: #f8f9fb !important;
+  }
+
+  details summary span.material-symbols-outlined {
+    display: none !important;
+  }
+
+  details > div {
+    display: block !important;
+    padding: 8px 12px !important;
+    border-top: 1px solid #dcc0c0 !important;
+  }
+
+  /* Tipografías proporcionadas para PDF A4 estándar */
+  .font-display, .text-display {
+    font-size: 20pt !important;
+    line-height: 24pt !important;
+  }
+
+  .font-headline-lg, .text-headline-lg {
+    font-size: 14pt !important;
+    line-height: 18pt !important;
+  }
+
+  .font-headline-md, .text-headline-md {
+    font-size: 12pt !important;
+    line-height: 15pt !important;
+  }
+
+  .font-body-lg, .text-body-lg {
+    font-size: 10.5pt !important;
+    line-height: 14pt !important;
+  }
+
+  .font-body-md, .text-body-md {
+    font-size: 9.5pt !important;
+    line-height: 13pt !important;
   }
 }

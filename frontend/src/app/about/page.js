@@ -131,7 +131,7 @@ export default function AboutHTLVPage() {
           </div>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] print:block print:w-full gap-10 items-start">
           
           {/* Navegación Lateral Interactiva (TOC) */}
           <aside className="hidden lg:block sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-2 print:hidden">
@@ -201,7 +201,7 @@ export default function AboutHTLVPage() {
           </aside>
 
           {/* Secciones de Contenido Visual */}
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-16 print:gap-6 print:w-full">
             
             {/* SECCIÓN 1: ¿QUÉ ES EL HTLV? */}
             <section className="scroll-mt-28" id="what-is-htlv">
