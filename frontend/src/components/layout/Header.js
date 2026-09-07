@@ -45,9 +45,6 @@ export default function Header() {
                             <span className="text-[22px] md:text-[24px] font-extrabold text-[#5b0617] tracking-tight group-hover:opacity-90 transition-opacity">
                                 RIII-HTLV
                             </span>
-                            <span className="hidden sm:inline-block text-[10px] uppercase font-bold tracking-widest bg-[#ffdada] text-[#5b0617] px-2 py-0.5 rounded">
-                                Consorcio Científico
-                            </span>
                         </Link>
                         
                         <div className="hidden lg:flex items-center gap-5">
