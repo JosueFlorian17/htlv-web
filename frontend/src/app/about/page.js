@@ -6,29 +6,57 @@ import Link from 'next/link';
 export default function AboutHTLVPage() {
   const [activeSection, setActiveSection] = useState('what-is-htlv');
 
-  // IntersectionObserver para alternar los estados del menú lateral de manera asíncrona
+  const navItems = [
+    { id: 'what-is-htlv', label: '1. ¿Qué es el HTLV?', icon: 'biotech' },
+    { id: 'clinical-spectrum', label: '2. Espectro Clínico (90/10)', icon: 'pie_chart' },
+    { id: 'transmission', label: '3. Vías de Transmisión', icon: 'share' },
+    { id: 'peru-leadership', label: '4. Liderazgo de Perú y UPCH', icon: 'account_balance' },
+    { id: 'diagnosis', label: '5. Diagnóstico & Manejo', icon: 'medical_services' },
+    { id: 'faqs', label: '6. Preguntas Frecuentes', icon: 'quiz' },
+  ];
+
+  // Scrollspy y sincronización con el hash de la URL
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.3
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hashId = window.location.hash.replace('#', '');
+      const valid = navItems.some(item => item.id === hashId);
+      if (valid) {
+        setActiveSection(hashId);
+      }
+    }
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 140; // Offset del header
+      const sectionElements = navItems
+        .map(item => document.getElementById(item.id))
+        .filter(Boolean);
+
+      for (let i = sectionElements.length - 1; i >= 0; i--) {
+        const el = sectionElements[i];
+        if (el.offsetTop <= scrollPosition) {
+          setActiveSection(el.id);
+          break;
+        }
+      }
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const id = entry.target.getAttribute('id');
-        if (entry.isIntersecting && id) {
-          setActiveSection(id);
-        }
-      });
-    }, observerOptions);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
-    document.querySelectorAll('section[id]').forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => observer.disconnect();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    setActiveSection(id);
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = -90;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.history.pushState(null, '', `#${id}`);
+    }
+  };
 
   const handlePrintPDF = () => {
     if (typeof window !== 'undefined') {
@@ -131,54 +159,26 @@ export default function AboutHTLVPage() {
             <div className="bg-[#f3f4f6] p-5 rounded-xl shadow-xs border border-[#dcc0c0]">
               <h3 className="text-[12px] font-bold uppercase tracking-widest text-[#5b0617] mb-4">Contenido de la Guía</h3>
               <nav className="flex flex-col gap-1.5">
-                <a 
-                  className={`flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-[#564242] hover:bg-[#e7e8ea] transition-all rounded-lg ${
-                    activeSection === 'what-is-htlv' ? 'text-[#5b0617] font-bold bg-[#ffdada]' : ''
-                  }`} 
-                  href="#what-is-htlv"
-                >
-                  <span className="material-symbols-outlined text-[18px]">biotech</span> 1. ¿Qué es el HTLV?
-                </a>
-                <a 
-                  className={`flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-[#564242] hover:bg-[#e7e8ea] transition-all rounded-lg ${
-                    activeSection === 'clinical-spectrum' ? 'text-[#5b0617] font-bold bg-[#ffdada]' : ''
-                  }`} 
-                  href="#clinical-spectrum"
-                >
-                  <span className="material-symbols-outlined text-[18px]">pie_chart</span> 2. Espectro Clínico (90/10)
-                </a>
-                <a 
-                  className={`flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-[#564242] hover:bg-[#e7e8ea] transition-all rounded-lg ${
-                    activeSection === 'transmission' ? 'text-[#5b0617] font-bold bg-[#ffdada]' : ''
-                  }`} 
-                  href="#transmission"
-                >
-                  <span className="material-symbols-outlined text-[18px]">share</span> 3. Vías de Transmisión
-                </a>
-                <a 
-                  className={`flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-[#564242] hover:bg-[#e7e8ea] transition-all rounded-lg ${
-                    activeSection === 'peru-leadership' ? 'text-[#5b0617] font-bold bg-[#ffdada]' : ''
-                  }`} 
-                  href="#peru-leadership"
-                >
-                  <span className="material-symbols-outlined text-[18px]">account_balance</span> 4. Liderazgo de Perú y UPCH
-                </a>
-                <a 
-                  className={`flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-[#564242] hover:bg-[#e7e8ea] transition-all rounded-lg ${
-                    activeSection === 'diagnosis' ? 'text-[#5b0617] font-bold bg-[#ffdada]' : ''
-                  }`} 
-                  href="#diagnosis"
-                >
-                  <span className="material-symbols-outlined text-[18px]">medical_services</span> 5. Diagnóstico & Manejo
-                </a>
-                <a 
-                  className={`flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-[#564242] hover:bg-[#e7e8ea] transition-all rounded-lg ${
-                    activeSection === 'faqs' ? 'text-[#5b0617] font-bold bg-[#ffdada]' : ''
-                  }`} 
-                  href="#faqs"
-                >
-                  <span className="material-symbols-outlined text-[18px]">quiz</span> 6. Preguntas Frecuentes
-                </a>
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      onClick={(e) => scrollToSection(e, item.id)}
+                      className={`flex items-center gap-2.5 px-3.5 py-2.5 text-[13px] rounded-lg transition-all duration-200 cursor-pointer ${
+                        isActive
+                          ? 'bg-[#ffdada] text-[#5b0617] font-bold border-l-4 border-[#5b0617] shadow-2xs'
+                          : 'text-[#564242] font-medium hover:bg-[#e7e8ea] hover:text-[#191c1e]'
+                      }`}
+                    >
+                      <span className={`material-symbols-outlined text-[18px] ${isActive ? 'text-[#5b0617]' : 'text-[#897172]'}`}>
+                        {item.icon}
+                      </span>
+                      {item.label}
+                    </a>
+                  );
+                })}
               </nav>
 
               <div className="mt-6 pt-6 border-t border-[#dcc0c0] text-center space-y-3">
