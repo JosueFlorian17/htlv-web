@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://frontend-ten-ebon-94.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://htlv-web.vercel.app');
   const currentDate = new Date().toISOString();
 
   const routes = [

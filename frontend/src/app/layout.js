@@ -2,8 +2,10 @@ import '../styles/globals.css';
 import Header from '../components/layout/Header';
 import MainLayoutWrapper from '../components/layout/MainLayoutWrapper';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://htlv-web.vercel.app');
+
 export const metadata = {
-  metadataBase: new URL('https://frontend-ten-ebon-94.vercel.app'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'RIII-HTLV | Red Internacional de Investigación e Innovación en HTLV',
     template: '%s | RIII-HTLV'
@@ -25,7 +27,7 @@ export const metadata = {
     'Epidemiología HTLV',
     'Investigación retroviral'
   ],
-  authors: [{ name: 'Consorcio Científico RIII-HTLV & UPCH' }],
+  authors: [{ name: 'RIII-HTLV & UPCH' }],
   creator: 'Red Internacional de Investigación e Innovación en HTLV',
   publisher: 'Universidad Peruana Cayetano Heredia (UPCH)',
   alternates: {
@@ -40,7 +42,7 @@ export const metadata = {
   openGraph: {
     title: 'RIII-HTLV | Red Internacional de Investigación e Innovación en HTLV',
     description: 'Consenso científico, epidemiología y guías clínicas sobre el virus HTLV-1/2 lideradas por la Universidad Peruana Cayetano Heredia y centros internacionales.',
-    url: 'https://frontend-ten-ebon-94.vercel.app',
+    url: siteUrl,
     siteName: 'RIII-HTLV Digital Research Hub',
     locale: 'es_PE',
     type: 'website',
@@ -63,10 +65,10 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-        <link rel="alternate" hrefLang="es" href="https://frontend-ten-ebon-94.vercel.app/" />
-        <link rel="alternate" hrefLang="en" href="https://frontend-ten-ebon-94.vercel.app/en" />
-        <link rel="alternate" hrefLang="pt" href="https://frontend-ten-ebon-94.vercel.app/pt" />
-        <link rel="alternate" hrefLang="x-default" href="https://frontend-ten-ebon-94.vercel.app/" />
+        <link rel="alternate" hrefLang="es" href={`${siteUrl}/`} />
+        <link rel="alternate" hrefLang="en" href={`${siteUrl}/en`} />
+        <link rel="alternate" hrefLang="pt" href={`${siteUrl}/pt`} />
+        <link rel="alternate" hrefLang="x-default" href={`${siteUrl}/`} />
       </head>
       <body className="bg-[#f8f9fb] text-gray-900 flex flex-col min-h-screen pt-20">
         {/* Barra de navegación superior fija */}
