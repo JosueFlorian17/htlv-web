@@ -327,6 +327,7 @@ export default function ResourcesPage() {
 
   // Renderizado continuo en Canvas 3D (Loop de 60fps desacoplado del estado)
   useEffect(() => {
+    if (activeTab !== 'embeds') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -369,7 +370,7 @@ export default function ResourcesPage() {
       if (currentModel === 'virion') {
         // 1. Dibujar espículas posteriores (profundidad z < 0)
         virionSpikes.current.forEach((pt) => {
-          const spikeEnd = rotate3D(pt.x * (baseRadius + 22), pt.y * (baseRadius + 22), pt.z * (baseRadius + 22));
+          const spikeEnd = rotate3D(pt.x * (baseRadius + 24), pt.y * (baseRadius + 24), pt.z * (baseRadius + 24));
           const spikeBase = rotate3D(pt.x * baseRadius, pt.y * baseRadius, pt.z * baseRadius);
           if (spikeEnd.pz < 0) {
             ctx.beginPath();
@@ -389,21 +390,21 @@ export default function ResourcesPage() {
         // 2. Dibujar la esfera central del Virión (Cápside y envoltura lipídica)
         const grad = ctx.createRadialGradient(cx - 20 * currentZoom, cy - 20 * currentZoom, 10, cx, cy, baseRadius);
         grad.addColorStop(0, '#ffb3b5');
-        grad.addColorStop(0.5, '#822530');
-        grad.addColorStop(0.9, '#5b0617');
-        grad.addColorStop(1, '#2c030a');
+        grad.addColorStop(0.4, '#a22f3d');
+        grad.addColorStop(0.8, '#5b0617');
+        grad.addColorStop(1, '#1e0207');
 
         ctx.beginPath();
         ctx.arc(cx, cy, baseRadius, 0, Math.PI * 2);
         ctx.fillStyle = grad;
-        ctx.shadowColor = 'rgba(91, 6, 23, 0.5)';
-        ctx.shadowBlur = 18;
+        ctx.shadowColor = 'rgba(244, 63, 94, 0.4)';
+        ctx.shadowBlur = 20;
         ctx.fill();
         ctx.shadowBlur = 0;
 
         // Núcleo proviral interno animado
         ctx.beginPath();
-        ctx.arc(cx, cy, 26 * currentZoom, 0, Math.PI * 2);
+        ctx.arc(cx, cy, 28 * currentZoom, 0, Math.PI * 2);
         ctx.strokeStyle = '#ffdada';
         ctx.lineWidth = 2;
         ctx.setLineDash([4, 4]);
@@ -411,59 +412,79 @@ export default function ResourcesPage() {
         ctx.setLineDash([]);
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 10px sans-serif';
+        ctx.font = 'bold 11px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText('ARN+ (Tax/HBZ)', cx, cy + 4);
 
         // 3. Dibujar espículas anteriores (profundidad z >= 0)
         virionSpikes.current.forEach((pt) => {
-          const spikeEnd = rotate3D(pt.x * (baseRadius + 22), pt.y * (baseRadius + 22), pt.z * (baseRadius + 22));
+          const spikeEnd = rotate3D(pt.x * (baseRadius + 24), pt.y * (baseRadius + 24), pt.z * (baseRadius + 24));
           const spikeBase = rotate3D(pt.x * baseRadius, pt.y * baseRadius, pt.z * baseRadius);
           if (spikeEnd.pz >= 0) {
             ctx.beginPath();
             ctx.moveTo(spikeBase.px, spikeBase.py);
             ctx.lineTo(spikeEnd.px, spikeEnd.py);
-            ctx.strokeStyle = '#d6e0f3';
+            ctx.strokeStyle = '#93c5fd';
             ctx.lineWidth = 3 * spikeEnd.scale;
             ctx.stroke();
 
             ctx.beginPath();
-            ctx.arc(spikeEnd.px, spikeEnd.py, 5 * spikeEnd.scale, 0, Math.PI * 2);
-            ctx.fillStyle = '#1d2b3a';
+            ctx.arc(spikeEnd.px, spikeEnd.py, 5.5 * spikeEnd.scale, 0, Math.PI * 2);
+            ctx.fillStyle = '#38bdf8';
+            ctx.shadowColor = '#38bdf8';
+            ctx.shadowBlur = 8;
             ctx.fill();
-            ctx.strokeStyle = '#ffdada';
+            ctx.shadowBlur = 0;
+            ctx.strokeStyle = '#ffffff';
             ctx.lineWidth = 1;
             ctx.stroke();
           }
         });
       } else if (currentModel === 'tax') {
-        // Renderizado de Oncoproteína Tax (Cadena tridimensional de aminoácidos)
-        ctx.strokeStyle = '#ffdada';
-        ctx.lineWidth = 3 * currentZoom;
+        // Renderizado de Oncoproteína Tax (Cadena tridimensional helicoidal)
+        ctx.strokeStyle = '#fda4af';
+        ctx.lineWidth = 3.5 * currentZoom;
         ctx.beginPath();
 
-        taxProteinNodes.current.forEach((node, i) => {
-          const p = rotate3D(node.x * 60 * currentZoom, node.y * 60 * currentZoom, node.z * 60 * currentZoom);
+        const projectedNodes = taxProteinNodes.current.map((node) => {
+          return {
+            ...node,
+            ...rotate3D(node.x * 65 * currentZoom, node.y * 65 * currentZoom, node.z * 65 * currentZoom)
+          };
+        });
+
+        projectedNodes.forEach((p, i) => {
           if (i === 0) ctx.moveTo(p.px, p.py);
           else ctx.lineTo(p.px, p.py);
         });
         ctx.stroke();
 
-        taxProteinNodes.current.forEach((node) => {
-          const p = rotate3D(node.x * 60 * currentZoom, node.y * 60 * currentZoom, node.z * 60 * currentZoom);
-          ctx.beginPath();
-          ctx.arc(p.px, p.py, (node.type === 'active-site' ? 6 : 4) * p.scale * currentZoom, 0, Math.PI * 2);
-          ctx.fillStyle = node.type === 'active-site' ? '#5b0617' : '#555f6f';
-          ctx.fill();
-          ctx.strokeStyle = '#ffffff';
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        });
+        // Ordenar nodos por profundidad (z) para renderizado correcto
+        projectedNodes
+          .sort((a, b) => a.pz - b.pz)
+          .forEach((node) => {
+            ctx.beginPath();
+            const radius = (node.type === 'active-site' ? 7 : 4.5) * node.scale * currentZoom;
+            ctx.arc(node.px, node.py, radius, 0, Math.PI * 2);
+            ctx.fillStyle = node.type === 'active-site' ? '#f43f5e' : '#38bdf8';
+            if (node.type === 'active-site') {
+              ctx.shadowColor = '#f43f5e';
+              ctx.shadowBlur = 12;
+            } else {
+              ctx.shadowColor = '#38bdf8';
+              ctx.shadowBlur = 6;
+            }
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+          });
 
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#f1f5f9';
         ctx.font = 'bold 11px sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText('Oncoproteína Tax (Dominio Zinc Finger)', cx, cy + 85 * currentZoom);
+        ctx.fillText('Oncoproteína Tax (Dominio Zinc Finger)', cx, cy + 95 * currentZoom);
       }
 
       if (autoRotateRef.current) {
@@ -476,7 +497,7 @@ export default function ResourcesPage() {
     render();
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  }, [activeTab]);
 
   // -------------------------------------------------------------
   // RECURSOS DESCARGABLES CLÁSICOS
