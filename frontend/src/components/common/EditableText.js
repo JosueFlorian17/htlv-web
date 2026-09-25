@@ -9,15 +9,16 @@ export default function EditableText({
   defaultText,
   className = '',
   as = 'span',
+  multiline = false,
   children
 }) {
   const { isEditMode, updateText, getText } = useContent();
-  const [isFocused, setIsFocused] = useState(false);
-  const elementRef = useRef(null);
-  const isTypingRef = useRef(false);
-  
+  const [isEditing, setIsEditing] = useState(false);
   const fallback = defaultText || (typeof children === 'string' ? children : '');
   const currentVal = getText(id, fallback);
+  const [localVal, setLocalVal] = useState(currentVal);
+  const inputRef = useRef(null);
+
   const meta = initialContentData[id] || {
     id,
     label: id,
@@ -28,95 +29,120 @@ export default function EditableText({
 
   const isModified = currentVal && currentVal !== (meta.defaultValue || fallback);
 
-  // Sincronizar el DOM únicamente cuando el usuario NO está escribiendo en el elemento
   useEffect(() => {
-    if (elementRef.current && !isTypingRef.current) {
-      if (elementRef.current.innerText !== (currentVal || '')) {
-        elementRef.current.innerText = currentVal || '';
-      }
-    }
+    setLocalVal(currentVal);
   }, [currentVal]);
 
-  const handleInput = (e) => {
-    isTypingRef.current = true;
-    const text = e.currentTarget.innerText;
-    updateText(id, text, 'Modificado');
+  useEffect(() => {
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus();
+      // Auto-adjust height for textareas
+      if (inputRef.current.tagName === 'TEXTAREA') {
+        inputRef.current.style.height = 'auto';
+        inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+      }
+    }
+  }, [isEditing]);
+
+  const handleChange = (e) => {
+    const newVal = e.target.value;
+    setLocalVal(newVal);
+    updateText(id, newVal, 'Modificado');
+    if (e.target.tagName === 'TEXTAREA') {
+      e.target.style.height = 'auto';
+      e.target.style.height = `${e.target.scrollHeight}px`;
+    }
   };
 
-  const handleBlur = (e) => {
-    isTypingRef.current = false;
-    setIsFocused(false);
-    const text = e.currentTarget.innerText;
-    updateText(id, text, 'Modificado');
+  const handleBlur = () => {
+    setIsEditing(false);
+    updateText(id, localVal, 'Modificado');
   };
 
-  const handleFocus = () => {
-    setIsFocused(true);
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      setIsEditing(false);
+    }
+    // For single-line inputs, Enter saves
+    if (e.key === 'Enter' && !multiline && !meta.maxLength?.includes('palabras') && (meta.defaultValue?.length || 0) < 60) {
+      setIsEditing(false);
+    }
   };
 
   const handleRevert = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    isTypingRef.current = false;
     const orig = meta.defaultValue || fallback || '';
-    if (elementRef.current) {
-      elementRef.current.innerText = orig;
-    }
+    setLocalVal(orig);
     updateText(id, orig, 'Pendiente');
+    setIsEditing(false);
   };
 
   const Tag = as;
 
-  // Si no está en modo edición, renderizar texto plano normal
+  // Si no está en modo edición, renderizar texto plano normal sin costo
   if (!isEditMode) {
     return <Tag className={className}>{currentVal}</Tag>;
   }
 
-  return (
-    <span className="relative inline-block group/edit max-w-full">
-      {/* 
-        IMPORTANTE: Dejamos el Tag sin hijos directos en JSX cuando es contentEditable.
-        El contenido se maneja a través de dangerouslySetInnerHTML inicial y del ref,
-        evitando que la reconciliación virtual de React resetee la posición del cursor (caret)
-        al inicio de la línea en cada pulsación de tecla.
-      */}
-      <Tag
-        ref={elementRef}
-        contentEditable={true}
-        suppressContentEditableWarning={true}
-        dangerouslySetInnerHTML={{ __html: currentVal || '' }}
-        onInput={handleInput}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        className={`${className} outline-none transition-all duration-200 cursor-text rounded px-1 -mx-1 ${
-          isFocused
-            ? 'ring-2 ring-[#5b0617] bg-amber-50/70 shadow-sm'
-            : isModified
-            ? 'ring-1 ring-amber-400 bg-amber-50/40 hover:bg-amber-100/50'
-            : 'hover:ring-1 hover:ring-dashed hover:ring-[#5b0617]/50 hover:bg-rose-50/40'
-        }`}
-        title="Haz clic para escribir directamente en este texto"
-      />
+  const isLong = multiline || (meta.defaultValue && meta.defaultValue.length > 70) || meta.maxLength?.includes('palabras');
 
-      {/* Burbuja flotante informativa cuando el elemento tiene el foco */}
-      {isFocused && (
-        <span
-          contentEditable={false}
-          className="absolute -top-10 left-0 z-50 bg-[#1d2b3a] text-white text-[11px] px-3 py-1.5 rounded-lg shadow-xl border border-slate-700 flex items-center gap-2 whitespace-nowrap pointer-events-auto animate-scaleUp font-sans font-normal"
-        >
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-bold text-amber-300">{meta.label || id}:</span>
-          <span className="text-slate-300 max-w-xs truncate hidden sm:inline">{meta.guidelines}</span>
-          <span className="text-slate-400 text-[10px]">({currentVal?.length || 0} car.)</span>
-          {isModified && (
+  return (
+    <span className="relative inline-block max-w-full group/editor align-middle">
+      {isEditing ? (
+        <span className="relative inline-block w-full">
+          {isLong ? (
+            <textarea
+              ref={inputRef}
+              value={localVal}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
+              rows={Math.max(2, Math.min(8, Math.ceil((localVal?.length || 1) / 45)))}
+              className={`${className} w-full bg-amber-50/90 text-[#191c1e] ring-2 ring-[#5b0617] rounded-lg p-1.5 shadow-lg resize-none outline-none font-inherit leading-inherit block transition-all`}
+              style={{ minWidth: '180px' }}
+            />
+          ) : (
+            <input
+              ref={inputRef}
+              type="text"
+              value={localVal}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
+              className={`${className} bg-amber-50/90 text-[#191c1e] ring-2 ring-[#5b0617] rounded-lg px-2 py-0.5 shadow-lg outline-none font-inherit leading-inherit inline-block transition-all`}
+              style={{ minWidth: '120px', width: `${Math.max(12, (localVal?.length || 1) + 2)}ch` }}
+            />
+          )}
+
+          {/* Floating Helper Toolbar above the active editor */}
+          <span className="absolute -top-9 left-0 z-50 bg-[#1d2b3a] text-white text-[11px] px-2.5 py-1 rounded-md shadow-xl border border-slate-700 flex items-center gap-2 whitespace-nowrap font-sans font-normal pointer-events-auto">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+            <span className="font-bold text-amber-300">{meta.label || id}</span>
+            <span className="text-slate-400 text-[10px]">({localVal?.length || 0} car.)</span>
             <button
               onMouseDown={handleRevert}
               className="text-rose-400 hover:text-rose-200 underline text-[10px] ml-1 cursor-pointer"
             >
               Revertir
             </button>
-          )}
+            <span className="text-[9.5px] text-slate-400 border-l border-slate-700 pl-1.5">
+              Esc / Clic fuera para cerrar
+            </span>
+          </span>
         </span>
+      ) : (
+        <Tag
+          onClick={() => setIsEditing(true)}
+          className={`${className} cursor-text transition-all duration-150 rounded px-1 -mx-1 border border-transparent ${
+            isModified
+              ? 'bg-amber-100/50 border-amber-400 hover:bg-amber-200/60'
+              : 'hover:border-dashed hover:border-[#5b0617]/60 hover:bg-rose-50/40'
+          }`}
+          title="Haz clic para editar este texto directamente"
+        >
+          {currentVal || <span className="italic text-slate-400">[Texto vacío - Clic para escribir]</span>}
+        </Tag>
       )}
     </span>
   );
