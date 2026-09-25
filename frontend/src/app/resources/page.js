@@ -1022,8 +1022,8 @@ export default function ResourcesPage() {
                   </button>
                   <button
                     onClick={() => {
-                      setRotX(0.3);
-                      setRotY(0.4);
+                      rotXRef.current = 0.35;
+                      rotYRef.current = 0.45;
                       setZoom(1);
                     }}
                     className="p-1 bg-[#f3f4f6] text-[#564242] text-[11px] rounded-lg border border-[#dcc0c0] hover:bg-slate-200 transition-all cursor-pointer"
@@ -1088,7 +1088,7 @@ export default function ResourcesPage() {
                   🖱️ Haz clic y arrastra en cualquier dirección para rotar en 360°
                 </div>
                 <div className="absolute bottom-2 right-2 text-[9.5px] text-white/80 bg-[#5b0617]/80 px-2 py-0.5 rounded pointer-events-none font-mono">
-                  RotX: {rotX.toFixed(2)} | RotY: {rotY.toFixed(2)}
+                  Motor 3D Interactivo
                 </div>
               </div>
 
