@@ -163,10 +163,10 @@ export default function Home() {
 
               <Link href="/resources" className="group bg-white p-6 rounded-2xl border border-[#dcc0c0] flex flex-col items-center text-center transition-all hover:shadow-md hover:border-[#5b0617]">
                 <div className="w-14 h-14 rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                  <span className="material-symbols-outlined text-3xl">folder</span>
+                  <span className="material-symbols-outlined text-3xl">play_circle</span>
                 </div>
-                <h3 className="font-bold text-[14px] text-[#191c1e] mb-1">Recursos</h3>
-                <p className="text-[11px] text-[#564242]">Materiales y manuales</p>
+                <h3 className="font-bold text-[14px] text-[#191c1e] mb-1">Recursos & Multimedia</h3>
+                <p className="text-[11px] text-[#564242]">Videos, 3D y simuladores</p>
               </Link>
 
               <Link href="/contact" className="group bg-white p-6 rounded-2xl border border-[#dcc0c0] flex flex-col items-center text-center transition-all hover:shadow-md hover:border-[#5b0617]">
