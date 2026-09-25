@@ -45,3 +45,7 @@ ENV/
 # IDE / Editor files
 .vscode/
 .idea/
+
+# Office temp files
+~$*
+*.tmp

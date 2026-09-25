@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import EditableText from '../components/common/EditableText';
 
 export default function Home() {
   // Micro-interacciones de scroll-reveal para las secciones
@@ -45,32 +46,38 @@ export default function Home() {
           <div className="relative z-10 max-w-[1280px] mx-auto w-full px-margin-mobile md:px-margin-desktop scroll-reveal">
             <div className="max-w-3xl">
               <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span className="px-3 py-1 bg-[#ffdada] text-[#5b0617] font-label-sm uppercase font-bold tracking-wider rounded-full">
-                  Liderazgo Científico Global
-                </span>
+                <EditableText
+                  id="HOME_HERO_TAG"
+                  className="px-3 py-1 bg-[#ffdada] text-[#5b0617] font-label-sm uppercase font-bold tracking-wider rounded-full inline-block"
+                />
                 <span className="px-3 py-1 bg-white/90 backdrop-blur-xs text-[#191c1e] font-label-sm font-semibold rounded-full border border-[#dcc0c0]">
                   UPCH • IMTAvH • Perú
                 </span>
               </div>
               
-              <h1 className="font-display text-display text-[#5b0617] leading-tight mb-6">
-                Red Internacional de Investigación e Innovación en HTLV
-              </h1>
+              <EditableText
+                id="HOME_HERO_TITLE"
+                as="h1"
+                className="font-display text-display text-[#5b0617] leading-tight mb-6 block"
+              />
               
-              <p className="font-body-lg text-body-lg text-[#564242] mb-8 max-w-2xl leading-relaxed">
-                Conectando a centros de excelencia en retrovirología humana para acelerar diagnósticos tempranos, protocolos terapéuticos y la erradicación global de las patologías asociadas al HTLV-1 y HTLV-2.
-              </p>
+              <EditableText
+                id="HOME_HERO_SUBTITLE"
+                as="p"
+                multiline={true}
+                className="font-body-lg text-body-lg text-[#564242] mb-8 max-w-2xl leading-relaxed block"
+              />
               
               <div className="flex flex-wrap gap-4">
                 <Link href="/about" className="bg-[#5b0617] text-white px-8 py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90 transition-all flex items-center gap-2 cursor-pointer">
-                  ¿Qué es el HTLV? (Guía Clínica)
+                  <EditableText id="HOME_HERO_CTA_1" defaultText="¿Qué es el HTLV? (Guía Clínica)" />
                   <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
                 </Link>
                 <Link href="/research" className="bg-white border border-[#dcc0c0] text-[#5b0617] px-8 py-4 rounded-xl font-label-md font-bold hover:bg-[#ffdada]/30 transition-all cursor-pointer shadow-xs">
-                  Líneas de Investigación
+                  <EditableText id="HOME_HERO_CTA_2" defaultText="Líneas de Investigación" />
                 </Link>
                 <Link href="/repository" className="bg-[#d6e0f3] text-[#1d2b3a] px-8 py-4 rounded-xl font-label-md font-bold hover:bg-[#c0d2f0] transition-all cursor-pointer">
-                  Repositorio Científico
+                  <EditableText id="HOME_HERO_CTA_3" defaultText="Repositorio Científico" />
                 </Link>
               </div>
             </div>
@@ -82,17 +89,28 @@ export default function Home() {
           <div className="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop scroll-reveal">
             <div className="grid md:grid-cols-12 gap-12 items-center">
               <div className="md:col-span-6 space-y-6">
-                <span className="text-[#5b0617] font-bold tracking-widest uppercase text-label-sm block">Consorcio Institucional</span>
-                <h2 className="font-headline-lg text-headline-lg text-[#191c1e]">
-                  Excelencia Científica desde el Foco Endémico hacia el Mundo
-                </h2>
+                <EditableText
+                  id="HOME_AUTH_TAG"
+                  className="text-[#5b0617] font-bold tracking-widest uppercase text-label-sm block"
+                />
+                <EditableText
+                  id="HOME_AUTH_TITLE"
+                  as="h2"
+                  className="font-headline-lg text-headline-lg text-[#191c1e] block"
+                />
                 <div className="space-y-4 text-[#564242] leading-relaxed text-body-lg">
-                  <p>
-                    La <strong>RIII-HTLV</strong> es una red colaborativa internacional creada para unir la experiencia clínica de zonas de alta prevalencia como el Perú con la capacidad de investigación básica y molecular de laboratorios de referencia en Europa, América Latina y Asia.
-                  </p>
-                  <p>
-                    Coordinada con la participación del <strong>Instituto de Medicina Tropical Alexander von Humboldt de la Universidad Peruana Cayetano Heredia (UPCH)</strong>, nuestra plataforma promueve la estandarización de pruebas diagnósticas, cohortes clínicas longitudinales y políticas de salud pública preventivas.
-                  </p>
+                  <EditableText
+                    id="HOME_AUTH_P1"
+                    as="p"
+                    multiline={true}
+                    className="block"
+                  />
+                  <EditableText
+                    id="HOME_AUTH_P2"
+                    as="p"
+                    multiline={true}
+                    className="block"
+                  />
                 </div>
                 
                 <div className="pt-2 flex flex-wrap gap-4">
@@ -108,7 +126,10 @@ export default function Home() {
                   <img className="w-full h-full object-cover" alt="Investigador científico en laboratorio de virología" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU9J5Ywe8zuxZhEIF-eF1CwVXkzqvCzJAqw4JeCxv6wRWHsUSr8sx5qTAzsxlp1bzxZ1s2QU5JAQS9asLX4KeWGPmKpmSC40i6gGfP4HZPEj6wknbzQfarJGDuCHwPMbZgEA0Y8llkwW-D_jFH2NnDVxexP1pwIbDK99IsiziYJgExeBz3NDfr2o4EjiU5lI3k1KIypfBV4AiCHkwd9ADlF-wewbddPVQBrRgPK1BZa95igtDQh6YwVywhE6uG8W6Cprc3yveXr0Q" />
                 </div>
                 <div className="absolute -bottom-8 -left-8 bg-[#5b0617] text-white p-6 rounded-2xl hidden lg:block max-w-[300px] shadow-lg">
-                  <p className="font-bold text-[15px] italic mb-1">"La integración de datos clínicos y genómicos salva vidas."</p>
+                  <EditableText
+                    id="HOME_AUTH_QUOTE"
+                    className="font-bold text-[15px] italic mb-1 block"
+                  />
                   <p className="text-[11px] text-[#ffdada] uppercase tracking-wider font-semibold">— Comité Científico RIII-HTLV</p>
                 </div>
               </div>

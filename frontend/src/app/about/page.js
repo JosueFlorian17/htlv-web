@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import EditableText from '../../components/common/EditableText';
 
 export default function AboutHTLVPage() {
   const [activeSection, setActiveSection] = useState('what-is-htlv');
@@ -118,12 +119,17 @@ export default function AboutHTLVPage() {
                   Respaldo UPCH - Perú
                 </span>
               </div>
-              <h1 className="font-display text-[30px] md:text-[38px] text-[#5b0617] mb-1 leading-tight print:text-[16pt] print:mb-0.5">
-                Virus Linfotrópico de Células T Humanas (HTLV)
-              </h1>
-              <p className="text-[13.5px] md:text-[14.5px] text-[#564242] leading-snug print:text-[8.5pt]">
-                Consenso científico, epidemiología global y protocolos clínicos elaborados por investigadores de la <strong>Universidad Peruana Cayetano Heredia (UPCH)</strong> y la <strong>Red Internacional RIII-HTLV</strong>.
-              </p>
+              <EditableText
+                id="ABOUT_HEADER_TITLE"
+                as="h1"
+                className="font-display text-[30px] md:text-[38px] text-[#5b0617] mb-1 leading-tight print:text-[16pt] print:mb-0.5 block"
+              />
+              <EditableText
+                id="ABOUT_HEADER_SUBTITLE"
+                as="p"
+                multiline={true}
+                className="text-[13.5px] md:text-[14.5px] text-[#564242] leading-snug print:text-[8.5pt] block"
+              />
             </div>
             
             {/* Botón de Exportación en PDF */}

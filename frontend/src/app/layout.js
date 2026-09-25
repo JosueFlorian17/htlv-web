@@ -1,6 +1,8 @@
 import '../styles/globals.css';
 import Header from '../components/layout/Header';
 import MainLayoutWrapper from '../components/layout/MainLayoutWrapper';
+import { ContentProvider } from '../context/ContentContext';
+import EditorFloatingBar from '../components/layout/EditorFloatingBar';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://htlv-web.vercel.app');
 
@@ -71,13 +73,18 @@ export default function RootLayout({ children }) {
         <link rel="alternate" hrefLang="x-default" href={`${siteUrl}/`} />
       </head>
       <body className="bg-[#f8f9fb] text-gray-900 flex flex-col min-h-screen pt-20">
-        {/* Barra de navegación superior fija */}
-        <Header />
-        
-        {/* Contenido dinámico de cada página con layout unificado */}
-        <MainLayoutWrapper>
-          {children}
-        </MainLayoutWrapper>
+        <ContentProvider>
+          {/* Barra de navegación superior fija */}
+          <Header />
+          
+          {/* Contenido dinámico de cada página con layout unificado */}
+          <MainLayoutWrapper>
+            {children}
+          </MainLayoutWrapper>
+
+          {/* Barra flotante interactiva de edición en vivo y sincronización */}
+          <EditorFloatingBar />
+        </ContentProvider>
       </body>
     </html>
   );
