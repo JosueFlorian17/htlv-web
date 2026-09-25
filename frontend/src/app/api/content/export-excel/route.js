@@ -20,7 +20,10 @@ export async function GET() {
 
     // Group items by section
     const sections = {};
+    const processedKeys = new Set();
+
     Object.keys(initialContentData).forEach((key) => {
+      processedKeys.add(key);
       const item = initialContentData[key];
       const sec = item.section || 'OTROS';
       if (!sections[sec]) sections[sec] = [];
@@ -39,6 +42,23 @@ export async function GET() {
       });
     });
 
+    // Also include any other dynamically edited texts across the website
+    Object.keys(saved).forEach((key) => {
+      if (!processedKeys.has(key) && saved[key]?.currentValue) {
+        const sec = 'TEXTOS_EN_VIVO_WEB';
+        if (!sections[sec]) sections[sec] = [];
+        sections[sec].push({
+          ID_TECNICO: key,
+          SECCION_COMPONENTE: 'Elemento en Vivo Editado',
+          TEXTO_PLACEHOLDER_ORIGINAL: '—',
+          TEXTO_OFICIAL_DEFINITIVO: saved[key].currentValue,
+          PAUTAS_Y_RECOMENDACIONES: 'Editado directamente en la web',
+          LONGITUD_SUGERIDA: 'Personalizado',
+          ESTADO: saved[key].status || 'Modificado'
+        });
+      }
+    });
+
     // Create sheets for each section
     Object.keys(sections).sort().forEach((secName) => {
       const rows = sections[secName];
@@ -46,10 +66,10 @@ export async function GET() {
 
       // Set column widths
       ws['!cols'] = [
-        { wch: 22 }, // ID_TECNICO
+        { wch: 25 }, // ID_TECNICO
         { wch: 30 }, // SECCION_COMPONENTE
         { wch: 45 }, // TEXTO_PLACEHOLDER_ORIGINAL
-        { wch: 50 }, // TEXTO_OFICIAL_DEFINITIVO
+        { wch: 55 }, // TEXTO_OFICIAL_DEFINITIVO
         { wch: 45 }, // PAUTAS_Y_RECOMENDACIONES
         { wch: 20 }, // LONGITUD_SUGERIDA
         { wch: 14 }  // ESTADO

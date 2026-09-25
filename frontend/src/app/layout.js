@@ -3,6 +3,7 @@ import Header from '../components/layout/Header';
 import MainLayoutWrapper from '../components/layout/MainLayoutWrapper';
 import { ContentProvider } from '../context/ContentContext';
 import EditorFloatingBar from '../components/layout/EditorFloatingBar';
+import UniversalLiveEditor from '../components/common/UniversalLiveEditor';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://htlv-web.vercel.app');
 
@@ -81,6 +82,9 @@ export default function RootLayout({ children }) {
           <MainLayoutWrapper>
             {children}
           </MainLayoutWrapper>
+
+          {/* Editor Universal en Vivo para todo texto en la web */}
+          <UniversalLiveEditor />
 
           {/* Barra flotante interactiva de edición en vivo y sincronización */}
           <EditorFloatingBar />
