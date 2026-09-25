@@ -12,11 +12,37 @@ export default function ResourcesPage() {
   // -------------------------------------------------------------
   const videoLessons = [
     {
+      id: 'video-youtube-1',
+      title: 'Video Documental de Referencia: Biología y Manejo de Retrovirus HTLV',
+      duration: 'YouTube HD',
+      category: 'Conferencia & Referencia',
+      desc: 'Video educativo de referencia sobre la caracterización viral, impacto global y diagnóstico de HTLV transmitido en plataformas científicas internacionales.',
+      isYoutube: true,
+      youtubeId: '6Aa3aFccue8',
+      thumbnail: 'https://img.youtube.com/vi/6Aa3aFccue8/hqdefault.jpg',
+      checkpoints: [
+        {
+          timePercent: 40,
+          timeLabel: '2:15',
+          question: '¿Por qué el HTLV-1 requiere un monitoreo periódico de carga proviral en lugar de carga viral libre plasmática?',
+          options: [
+            'Porque el virus está integrado en el ADN celular de los linfocitos (provirus) y no suele flotar libre en plasma',
+            'Porque la sangre destruye de inmediato las proteínas virales',
+            'Porque solo infecta células del hígado',
+            'Porque las pruebas de PCR no funcionan en virus'
+          ],
+          correct: 0,
+          explanation: 'A diferencia del VIH que produce millones de viriones libres en sangre, el HTLV se mantiene como provirus integrado dentro de los linfocitos T CD4+, por lo que se cuantifican copias por cada 100 PBMC.'
+        }
+      ]
+    },
+    {
       id: 'video-1',
       title: 'Mecanismos de Transmisión y Sinapsis Viral del HTLV-1',
       duration: '4:15 min',
       category: 'Virología & Patogénesis',
       desc: 'Análisis detallado de cómo el virus se propaga célula a célula a través de la sinapsis virológica y biofilmes extracelulares.',
+      isYoutube: false,
       thumbnail: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARYfAPMBJO95i3OeJqqO1e7PkQnZJtJw7yNBXqmtQc732fQblkTRZG4DLSA4ZAWAAZET0kb6fswrdyxKxCSTWdNRzWGmqfXfYwNLfipwH-p0-m5pXwrZHhnD_a14J9vF5G_IXD3aTl9SyWGwUZadWt6QIpMv8UVhmzRJcE7rURVkVIVqKV9mAY8x7yJ_a9JIfY6JlAAtTqwRCh4kffaOH-fkTmaX0Wo3JhcklYl6kNKHpWPe4B7HgLBpfAzi1F4nG0eOCwUV70CbA',
       checkpoints: [
         {
@@ -53,6 +79,7 @@ export default function ResourcesPage() {
       duration: '5:40 min',
       category: 'Clínica & Neurología',
       desc: 'Criterios clínicos de Osame, análisis de líquido cefalorraquídeo y evaluación de carga proviral en pacientes con compromiso motor.',
+      isYoutube: false,
       thumbnail: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDuXvO2-W-DPohAm0t3r6ufv176Em3axy9Q9TMOk3GBfqlKMStSeHmEsbpuVTTZN7f7pAkRPumO-Jqp79EnGUSIy8cSXKJxEc-t895RwABRrggDXIXbiY5p-NgWLSsLDHG79IP7Ee4bmaWLPDqRitTo1i9ORnmNswwL3-CCWxX-QtwWLhQTrxvs0X6UwfsSPRkFPiOT27UbLsWyJ3d6VRmLM7qzGlDOLirarSjBi_Gy_3OJea_Q0aZCOYZBKRWTBq-n0tnxLukm38k',
       checkpoints: [
         {
@@ -81,14 +108,13 @@ export default function ResourcesPage() {
   const [userScore, setUserScore] = useState(0);
   const [completedCheckpoints, setCompletedCheckpoints] = useState({});
 
-  // Simulación de avance del video interactivo
+  // Simulación de avance del video interactivo cuando no es un iframe externo
   useEffect(() => {
     let interval = null;
-    if (isPlaying && !activeCheckpoint) {
+    if (isPlaying && !activeCheckpoint && !selectedVideo.isYoutube) {
       interval = setInterval(() => {
         setProgress((prev) => {
           const next = prev + 1;
-          // Verificar si alcanzamos un checkpoint no resuelto
           const cp = selectedVideo.checkpoints.find(
             (c) => Math.abs(c.timePercent - next) <= 0.5 && !completedCheckpoints[`${selectedVideo.id}-${c.timePercent}`]
           );
@@ -130,7 +156,15 @@ export default function ResourcesPage() {
     setActiveCheckpoint(null);
     setSelectedOption(null);
     setQuizFeedback(null);
-    setIsPlaying(true);
+    if (!selectedVideo.isYoutube) {
+      setIsPlaying(true);
+    }
+  };
+
+  const handleDismissModal = () => {
+    setActiveCheckpoint(null);
+    setSelectedOption(null);
+    setQuizFeedback(null);
   };
 
   // -------------------------------------------------------------
@@ -195,81 +229,233 @@ export default function ResourcesPage() {
   };
 
   // -------------------------------------------------------------
-  // CANVAS 3D INTERACTIVO PARA MODELO MOLECULAR
+  // MOTOR 3D INTERACTIVO CON ARRASTRE DE MOUSE / TOUCH (GENUINE 3D ENGINE)
   // -------------------------------------------------------------
   const canvasRef = useRef(null);
-  const [rotationAngle, setRotationAngle] = useState(0);
-  const [isRotating, setIsRotating] = useState(true);
+  const [modelType, setModelType] = useState('virion'); // 'virion' | 'tax' | 'gp46'
+  const [rotX, setRotX] = useState(0.3);
+  const [rotY, setRotY] = useState(0.4);
+  const [zoom, setZoom] = useState(1);
+  const [isAutoRotating, setIsAutoRotating] = useState(true);
+  const isDraggingRef = useRef(false);
+  const lastMousePosRef = useRef({ x: 0, y: 0 });
 
+  // Puntos 3D para el virión (Esfera con espículas)
+  const virionSpikes = useRef(
+    Array.from({ length: 36 }, (_, i) => {
+      const phi = Math.acos(-1 + (2 * i) / 36);
+      const theta = Math.sqrt(36 * Math.PI) * phi;
+      return {
+        x: Math.cos(theta) * Math.sin(phi),
+        y: Math.sin(theta) * Math.sin(phi),
+        z: Math.cos(phi)
+      };
+    })
+  );
+
+  // Puntos 3D para la proteína Tax (Cadena helicoidal ribbon)
+  const taxProteinNodes = useRef(
+    Array.from({ length: 48 }, (_, i) => {
+      const t = (i / 48) * Math.PI * 6;
+      return {
+        x: Math.cos(t) * 0.7,
+        y: (i / 48) * 2 - 1,
+        z: Math.sin(t) * 0.7,
+        type: i % 4 === 0 ? 'active-site' : 'helix'
+      };
+    })
+  );
+
+  // Manejo de eventos de ratón para rotación 3D
+  const handleMouseDown = (e) => {
+    isDraggingRef.current = true;
+    lastMousePosRef.current = { x: e.clientX, y: e.clientY };
+    setIsAutoRotating(false);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDraggingRef.current) return;
+    const deltaX = e.clientX - lastMousePosRef.current.x;
+    const deltaY = e.clientY - lastMousePosRef.current.y;
+    setRotY((prev) => prev + deltaX * 0.015);
+    setRotX((prev) => prev + deltaY * 0.015);
+    lastMousePosRef.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseUp = () => {
+    isDraggingRef.current = false;
+  };
+
+  // Manejo de eventos touch en móviles
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 1) {
+      isDraggingRef.current = true;
+      lastMousePosRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      setIsAutoRotating(false);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDraggingRef.current || e.touches.length !== 1) return;
+    const deltaX = e.touches[0].clientX - lastMousePosRef.current.x;
+    const deltaY = e.touches[0].clientY - lastMousePosRef.current.y;
+    setRotY((prev) => prev + deltaX * 0.02);
+    setRotX((prev) => prev + deltaY * 0.02);
+    lastMousePosRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  };
+
+  const handleTouchEnd = () => {
+    isDraggingRef.current = false;
+  };
+
+  // Renderizado continuo en Canvas 3D
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    let animId;
+    let animationFrameId;
 
-    const drawVirion = () => {
+    const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      const radius = 60;
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      const baseRadius = 65 * zoom;
 
-      // Fondo del virión (cápside)
-      const grad = ctx.createRadialGradient(centerX - 15, centerY - 15, 10, centerX, centerY, radius);
-      grad.addColorStop(0, '#ffb3b5');
-      grad.addColorStop(0.7, '#822530');
-      grad.addColorStop(1, '#4a0e17');
+      // Transformación 3D (Matrices de rotación X e Y)
+      const rotate3D = (x, y, z) => {
+        // Rotación alrededor de Y
+        const cosY = Math.cos(rotY);
+        const sinY = Math.sin(rotY);
+        const x1 = x * cosY + z * sinY;
+        const z1 = -x * sinY + z * cosY;
 
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.shadowColor = 'rgba(91, 6, 23, 0.4)';
-      ctx.shadowBlur = 15;
-      ctx.fill();
-      ctx.shadowBlur = 0;
+        // Rotación alrededor de X
+        const cosX = Math.cos(rotX);
+        const sinX = Math.sin(rotX);
+        const y2 = y * cosX - z1 * sinX;
+        const z2 = y * sinX + z1 * cosX;
 
-      // Espículas virales glicoproteicas (gp46 / gp21)
-      const numSpikes = 12;
-      for (let i = 0; i < numSpikes; i++) {
-        const angle = (i * (Math.PI * 2)) / numSpikes + rotationAngle;
-        const spikeX = centerX + Math.cos(angle) * (radius + 14);
-        const spikeY = centerY + Math.sin(angle) * (radius + 14);
+        // Proyección de perspectiva
+        const perspective = 300 / (300 + z2);
+        return {
+          px: cx + x1 * perspective,
+          py: cy + y2 * perspective,
+          pz: z2,
+          scale: perspective
+        };
+      };
+
+      if (modelType === 'virion') {
+        // 1. Dibujar espículas posteriores (profundidad z < 0)
+        virionSpikes.current.forEach((pt) => {
+          const spikeEnd = rotate3D(pt.x * (baseRadius + 22), pt.y * (baseRadius + 22), pt.z * (baseRadius + 22));
+          const spikeBase = rotate3D(pt.x * baseRadius, pt.y * baseRadius, pt.z * baseRadius);
+          if (spikeEnd.pz < 0) {
+            ctx.beginPath();
+            ctx.moveTo(spikeBase.px, spikeBase.py);
+            ctx.lineTo(spikeEnd.px, spikeEnd.py);
+            ctx.strokeStyle = '#555f6f88';
+            ctx.lineWidth = 2 * spikeEnd.scale;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(spikeEnd.px, spikeEnd.py, 4 * spikeEnd.scale, 0, Math.PI * 2);
+            ctx.fillStyle = '#555f6f';
+            ctx.fill();
+          }
+        });
+
+        // 2. Dibujar la esfera central del Virión (Cápside y envoltura lipídica)
+        const grad = ctx.createRadialGradient(cx - 20 * zoom, cy - 20 * zoom, 10, cx, cy, baseRadius);
+        grad.addColorStop(0, '#ffb3b5');
+        grad.addColorStop(0.5, '#822530');
+        grad.addColorStop(0.9, '#5b0617');
+        grad.addColorStop(1, '#2c030a');
 
         ctx.beginPath();
-        ctx.moveTo(centerX + Math.cos(angle) * radius, centerY + Math.sin(angle) * radius);
-        ctx.lineTo(spikeX, spikeY);
-        ctx.strokeStyle = '#d6e0f3';
-        ctx.lineWidth = 3;
+        ctx.arc(cx, cy, baseRadius, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.shadowColor = 'rgba(91, 6, 23, 0.5)';
+        ctx.shadowBlur = 18;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Núcleo proviral interno animado
+        ctx.beginPath();
+        ctx.arc(cx, cy, 26 * zoom, 0, Math.PI * 2);
+        ctx.strokeStyle = '#ffdada';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('ARN+ (Tax/HBZ)', cx, cy + 4);
+
+        // 3. Dibujar espículas anteriores (profundidad z >= 0)
+        virionSpikes.current.forEach((pt) => {
+          const spikeEnd = rotate3D(pt.x * (baseRadius + 22), pt.y * (baseRadius + 22), pt.z * (baseRadius + 22));
+          const spikeBase = rotate3D(pt.x * baseRadius, pt.y * baseRadius, pt.z * baseRadius);
+          if (spikeEnd.pz >= 0) {
+            ctx.beginPath();
+            ctx.moveTo(spikeBase.px, spikeBase.py);
+            ctx.lineTo(spikeEnd.px, spikeEnd.py);
+            ctx.strokeStyle = '#d6e0f3';
+            ctx.lineWidth = 3 * spikeEnd.scale;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(spikeEnd.px, spikeEnd.py, 5 * spikeEnd.scale, 0, Math.PI * 2);
+            ctx.fillStyle = '#1d2b3a';
+            ctx.fill();
+            ctx.strokeStyle = '#ffdada';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        });
+      } else if (modelType === 'tax') {
+        // Renderizado de Oncoproteína Tax (Cadena tridimensional de aminoácidos)
+        ctx.strokeStyle = '#ffdada';
+        ctx.lineWidth = 3 * zoom;
+        ctx.beginPath();
+
+        taxProteinNodes.current.forEach((node, i) => {
+          const p = rotate3D(node.x * 60 * zoom, node.y * 60 * zoom, node.z * 60 * zoom);
+          if (i === 0) ctx.moveTo(p.px, p.py);
+          else ctx.lineTo(p.px, p.py);
+        });
         ctx.stroke();
 
-        ctx.beginPath();
-        ctx.arc(spikeX, spikeY, 5, 0, Math.PI * 2);
-        ctx.fillStyle = '#555f6f';
-        ctx.fill();
+        taxProteinNodes.current.forEach((node) => {
+          const p = rotate3D(node.x * 60 * zoom, node.y * 60 * zoom, node.z * 60 * zoom);
+          ctx.beginPath();
+          ctx.arc(p.px, p.py, (node.type === 'active-site' ? 6 : 4) * p.scale * zoom, 0, Math.PI * 2);
+          ctx.fillStyle = node.type === 'active-site' ? '#5b0617' : '#555f6f';
+          ctx.fill();
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        });
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Oncoproteína Tax (Dominio Zinc Finger)', cx, cy + 85 * zoom);
       }
 
-      // Núcleo de ARN y retrotranscriptasa
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, 24, 0, Math.PI * 2);
-      ctx.strokeStyle = '#ffdada';
-      ctx.setLineDash([4, 4]);
-      ctx.stroke();
-      ctx.setLineDash([]);
+      if (isAutoRotating) {
+        setRotY((prev) => prev + 0.01);
+      }
 
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 11px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('ARN+ (Tax/HBZ)', centerX, centerY + 4);
+      animationFrameId = requestAnimationFrame(render);
     };
 
-    drawVirion();
+    render();
 
-    if (isRotating) {
-      setRotationAngle((prev) => prev + 0.015);
-      animId = requestAnimationFrame(drawVirion);
-    }
-
-    return () => cancelAnimationFrame(animId);
-  }, [rotationAngle, isRotating]);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [rotX, rotY, zoom, isAutoRotating, modelType]);
 
   // -------------------------------------------------------------
   // RECURSOS DESCARGABLES CLÁSICOS
@@ -309,14 +495,14 @@ export default function ResourcesPage() {
                 Centro Multimedia & Educación Biomédica
               </span>
               <span className="inline-block px-3 py-0.5 bg-[#d6e0f3] text-[#1d2b3a] text-[11px] font-semibold rounded-full">
-                Herramientas Interactivas
+                Videos, 3D & Herramientas
               </span>
             </div>
             <h1 className="font-display text-[32px] md:text-[40px] text-[#5b0617] mb-2 leading-tight">
               Recursos, Videos Interactivos & Herramientas
             </h1>
             <p className="text-[14px] md:text-[15.5px] text-[#564242] leading-relaxed">
-              Explora simuladores clínicos, lecciones en video con evaluaciones integradas en tiempo real, modelos 3D y formularios referenciales respaldados por la Red RIII-HTLV y la UPCH.
+              Explora simuladores clínicos, videos educativos de referencia y conferencias en YouTube con evaluaciones integradas, modelos macromoleculares 3D manipulables y formularios respaldados por la Red RIII-HTLV y la UPCH.
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -338,7 +524,7 @@ export default function ResourcesPage() {
             }`}
           >
             <span className="material-symbols-outlined text-[18px]">play_circle</span>
-            Videos Interactivos (Con Quizzes)
+            Videos & YouTube (Con Quizzes)
           </button>
           <button
             onClick={() => setActiveTab('calculators')}
@@ -360,7 +546,7 @@ export default function ResourcesPage() {
             }`}
           >
             <span className="material-symbols-outlined text-[18px]">view_in_ar</span>
-            Modelos 3D & Formularios Referenciales
+            Visor 3D Rotable & Formularios
           </button>
           <button
             onClick={() => setActiveTab('downloads')}
@@ -377,7 +563,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* PESTAÑA 1: VIDEOS INTERACTIVOS CON PREGUNTAS EN PANTALLA */}
+      {/* PESTAÑA 1: VIDEOS INTERACTIVOS & YOUTUBE CON PREGUNTAS */}
       {/* ------------------------------------------------------------- */}
       {activeTab === 'interactive-videos' && (
         <section className="space-y-8 animate-fadeIn">
@@ -385,129 +571,185 @@ export default function ResourcesPage() {
             {/* Reproductor Interactivo Principal */}
             <div className="lg:col-span-2 space-y-4">
               <div className="relative bg-slate-950 rounded-2xl overflow-hidden aspect-video border border-slate-800 shadow-lg flex flex-col justify-between p-4 text-white">
-                {/* Visualizador / Simulador de Video */}
-                <div className="absolute inset-0 z-0">
-                  <img
-                    src={selectedVideo.thumbnail}
-                    alt={selectedVideo.title}
-                    className="w-full h-full object-cover opacity-35"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                </div>
-
-                {/* Banner Superior del Reproductor */}
-                <div className="relative z-10 flex justify-between items-center text-xs">
-                  <span className="bg-[#5b0617]/90 px-3 py-1 rounded-full font-bold uppercase tracking-wider text-[10px]">
-                    {selectedVideo.category}
-                  </span>
-                  <span className="bg-black/60 px-2.5 py-1 rounded-md text-[11px] font-mono">
-                    Checkpoint Interactivo Activo
-                  </span>
-                </div>
-
-                {/* Modal de Pregunta Interactiva Superpuesta en el Video */}
-                {activeCheckpoint && (
-                  <div className="relative z-20 bg-white/95 text-[#191c1e] p-6 rounded-xl shadow-2xl border-2 border-[#5b0617] backdrop-blur-md animate-scaleUp max-w-xl mx-auto my-auto">
-                    <div className="flex items-center gap-2 text-[#5b0617] font-bold text-[12px] uppercase mb-2">
-                      <span className="material-symbols-outlined text-[18px]">help</span>
-                      Pausa de Evaluación Biomédica ({activeCheckpoint.timeLabel})
-                    </div>
-                    <h3 className="font-bold text-[15px] mb-4 text-[#191c1e]">
-                      {activeCheckpoint.question}
-                    </h3>
-
-                    <div className="space-y-2 mb-4">
-                      {activeCheckpoint.options.map((opt, i) => (
-                        <button
-                          key={i}
-                          onClick={() => setSelectedOption(i)}
-                          className={`w-full text-left p-3 rounded-lg border text-[13px] transition-all cursor-pointer ${
-                            selectedOption === i
-                              ? 'border-[#5b0617] bg-[#ffdada]/50 font-semibold text-[#5b0617]'
-                              : 'border-[#dcc0c0] hover:bg-slate-50 text-[#564242]'
-                          }`}
-                        >
-                          <span className="inline-block w-5 font-bold">{String.fromCharCode(65 + i)}.</span> {opt}
-                        </button>
-                      ))}
-                    </div>
-
-                    {quizFeedback ? (
-                      <div className="space-y-3">
-                        <div
-                          className={`p-3 rounded-lg text-[12px] font-medium ${
-                            quizFeedback.correct
-                              ? 'bg-green-100 text-green-900 border border-green-300'
-                              : 'bg-red-100 text-red-900 border border-red-300'
-                          }`}
-                        >
-                          <strong>{quizFeedback.correct ? '✓ ¡Respuesta Correcta (+50 pts)!' : '✗ Respuesta Incorrecta.'}</strong>{' '}
-                          {quizFeedback.explanation}
-                        </div>
-                        <button
-                          onClick={handleContinuePlayback}
-                          className="w-full bg-[#5b0617] text-white py-2.5 rounded-lg font-bold text-[13px] hover:opacity-90 transition-all cursor-pointer"
-                        >
-                          Continuar Reproducción ▶
-                        </button>
-                      </div>
-                    ) : (
-                      <button
-                        onClick={handleOptionSubmit}
-                        disabled={selectedOption === null}
-                        className="w-full bg-[#5b0617] text-white py-2.5 rounded-lg font-bold text-[13px] hover:opacity-90 disabled:opacity-50 transition-all cursor-pointer"
-                      >
-                        Validar Respuesta
-                      </button>
-                    )}
+                {/* Visualizador de Video: YouTube Embed o Simulador Nativo */}
+                {selectedVideo.isYoutube ? (
+                  <div className="absolute inset-0 z-0">
+                    <iframe
+                      className="w-full h-full"
+                      src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=0&rel=0`}
+                      title={selectedVideo.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                ) : (
+                  <div className="absolute inset-0 z-0">
+                    <img
+                      src={selectedVideo.thumbnail}
+                      alt={selectedVideo.title}
+                      className="w-full h-full object-cover opacity-35"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                   </div>
                 )}
 
-                {/* Controles de Reproducción Inferiores */}
-                <div className="relative z-10 space-y-2">
-                  {/* Barra de progreso con marcadores de checkpoints */}
-                  <div className="relative w-full h-2 bg-white/30 rounded-full overflow-visible cursor-pointer">
-                    <div
-                      className="h-full bg-[#5b0617] rounded-full transition-all duration-300"
-                      style={{ width: `${progress}%` }}
-                    />
-                    {selectedVideo.checkpoints.map((cp, idx) => (
-                      <div
-                        key={idx}
-                        style={{ left: `${cp.timePercent}%` }}
-                        className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white -translate-x-1/2 flex items-center justify-center text-[8px] font-bold ${
-                          completedCheckpoints[`${selectedVideo.id}-${cp.timePercent}`]
-                            ? 'bg-green-500 text-white'
-                            : 'bg-amber-400 text-black'
-                        }`}
-                        title={`Pregunta a los ${cp.timeLabel}`}
-                      >
-                        ?
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex justify-between items-center text-xs">
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => setIsPlaying(!isPlaying)}
-                        className="bg-white text-black w-8 h-8 rounded-full flex items-center justify-center hover:scale-105 transition-all cursor-pointer font-bold"
-                      >
-                        <span className="material-symbols-outlined text-[20px]">
-                          {isPlaying ? 'pause' : 'play_arrow'}
-                        </span>
-                      </button>
-                      <span className="font-mono text-[11px]">
-                        {Math.floor(progress / 20)}:{(progress % 20) * 3 < 10 ? '0' : ''}
-                        {(progress % 20) * 3} / {selectedVideo.duration}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[11px] text-white/80">
-                      <span className="material-symbols-outlined text-[16px]">quiz</span>
-                      {selectedVideo.checkpoints.length} Evaluaciones en tiempo real
-                    </div>
-                  </div>
+                {/* Banner Superior del Reproductor */}
+                <div className="relative z-10 flex justify-between items-center text-xs pointer-events-none">
+                  <span className="bg-[#5b0617]/90 px-3 py-1 rounded-full font-bold uppercase tracking-wider text-[10px]">
+                    {selectedVideo.category}
+                  </span>
+                  <button
+                    onClick={() => {
+                      if (selectedVideo.checkpoints.length > 0) {
+                        setActiveCheckpoint(selectedVideo.checkpoints[0]);
+                        setSelectedOption(null);
+                        setQuizFeedback(null);
+                      }
+                    }}
+                    className="pointer-events-auto bg-black/80 hover:bg-[#5b0617] px-3 py-1 rounded-md text-[11px] font-bold text-white transition-all flex items-center gap-1 cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined text-[14px]">quiz</span>
+                    Abrir Quiz de Autoevaluación
+                  </button>
                 </div>
+
+                {/* Modal de Pregunta Interactiva Superpuesta con Scroll y Botón de Cerrar */}
+                {activeCheckpoint && (
+                  <div className="absolute inset-0 z-30 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+                    <div className="bg-white text-[#191c1e] p-6 rounded-xl shadow-2xl border-2 border-[#5b0617] max-w-lg w-full max-h-[85vh] overflow-y-auto relative animate-scaleUp">
+                      {/* Botón de Cerrar Modal */}
+                      <button
+                        onClick={handleDismissModal}
+                        className="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-100 hover:bg-[#ffdada] text-[#564242] hover:text-[#5b0617] flex items-center justify-center transition-all cursor-pointer"
+                        title="Cerrar / Omitir evaluación"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">close</span>
+                      </button>
+
+                      <div className="flex items-center gap-2 text-[#5b0617] font-bold text-[12px] uppercase mb-2">
+                        <span className="material-symbols-outlined text-[18px]">help</span>
+                        Evaluación Biomédica Interactiva ({activeCheckpoint.timeLabel})
+                      </div>
+
+                      <h3 className="font-bold text-[15px] mb-4 text-[#191c1e] pr-6">
+                        {activeCheckpoint.question}
+                      </h3>
+
+                      <div className="space-y-2 mb-4">
+                        {activeCheckpoint.options.map((opt, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setSelectedOption(i)}
+                            className={`w-full text-left p-3 rounded-lg border text-[13px] transition-all cursor-pointer ${
+                              selectedOption === i
+                                ? 'border-[#5b0617] bg-[#ffdada]/50 font-semibold text-[#5b0617]'
+                                : 'border-[#dcc0c0] hover:bg-slate-50 text-[#564242]'
+                            }`}
+                          >
+                            <span className="inline-block w-5 font-bold">{String.fromCharCode(65 + i)}.</span> {opt}
+                          </button>
+                        ))}
+                      </div>
+
+                      {quizFeedback ? (
+                        <div className="space-y-3">
+                          <div
+                            className={`p-3 rounded-lg text-[12px] font-medium ${
+                              quizFeedback.correct
+                                ? 'bg-green-100 text-green-900 border border-green-300'
+                                : 'bg-red-100 text-red-900 border border-red-300'
+                            }`}
+                          >
+                            <strong>{quizFeedback.correct ? '✓ ¡Respuesta Correcta (+50 pts)!' : '✗ Respuesta Incorrecta.'}</strong>{' '}
+                            {quizFeedback.explanation}
+                          </div>
+                          <div className="flex gap-2">
+                            {!quizFeedback.correct && (
+                              <button
+                                onClick={() => {
+                                  setSelectedOption(null);
+                                  setQuizFeedback(null);
+                                }}
+                                className="flex-1 bg-slate-200 text-[#191c1e] py-2.5 rounded-lg font-bold text-[12px] hover:bg-slate-300 transition-all cursor-pointer"
+                              >
+                                Reintentar Pregunta
+                              </button>
+                            )}
+                            <button
+                              onClick={handleContinuePlayback}
+                              className="flex-1 bg-[#5b0617] text-white py-2.5 rounded-lg font-bold text-[12px] hover:opacity-90 transition-all cursor-pointer"
+                            >
+                              Continuar Video ▶
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex gap-2">
+                          <button
+                            onClick={handleDismissModal}
+                            className="px-4 py-2.5 bg-slate-100 text-[#564242] hover:bg-slate-200 rounded-lg text-[12px] font-bold transition-all cursor-pointer"
+                          >
+                            Cerrar
+                          </button>
+                          <button
+                            onClick={handleOptionSubmit}
+                            disabled={selectedOption === null}
+                            className="flex-1 bg-[#5b0617] text-white py-2.5 rounded-lg font-bold text-[13px] hover:opacity-90 disabled:opacity-50 transition-all cursor-pointer"
+                          >
+                            Validar Respuesta
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Controles de Reproducción Inferiores (Solo para videos interactivos nativos) */}
+                {!selectedVideo.isYoutube && (
+                  <div className="relative z-10 space-y-2">
+                    <div className="relative w-full h-2 bg-white/30 rounded-full overflow-visible cursor-pointer">
+                      <div
+                        className="h-full bg-[#5b0617] rounded-full transition-all duration-300"
+                        style={{ width: `${progress}%` }}
+                      />
+                      {selectedVideo.checkpoints.map((cp, idx) => (
+                        <div
+                          key={idx}
+                          style={{ left: `${cp.timePercent}%` }}
+                          className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white -translate-x-1/2 flex items-center justify-center text-[8px] font-bold ${
+                            completedCheckpoints[`${selectedVideo.id}-${cp.timePercent}`]
+                              ? 'bg-green-500 text-white'
+                              : 'bg-amber-400 text-black'
+                          }`}
+                          title={`Pregunta a los ${cp.timeLabel}`}
+                        >
+                          ?
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex justify-between items-center text-xs">
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => setIsPlaying(!isPlaying)}
+                          className="bg-white text-black w-8 h-8 rounded-full flex items-center justify-center hover:scale-105 transition-all cursor-pointer font-bold"
+                        >
+                          <span className="material-symbols-outlined text-[20px]">
+                            {isPlaying ? 'pause' : 'play_arrow'}
+                          </span>
+                        </button>
+                        <span className="font-mono text-[11px]">
+                          {Math.floor(progress / 20)}:{(progress % 20) * 3 < 10 ? '0' : ''}
+                          {(progress % 20) * 3} / {selectedVideo.duration}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-[11px] text-white/80">
+                        <span className="material-symbols-outlined text-[16px]">quiz</span>
+                        {selectedVideo.checkpoints.length} Evaluaciones en tiempo real
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div>
@@ -516,10 +758,10 @@ export default function ResourcesPage() {
               </div>
             </div>
 
-            {/* Lista de Videos Interactivos Disponibles */}
+            {/* Lista de Videos & YouTube Disponibles */}
             <div className="space-y-4">
               <h3 className="text-[13px] font-bold uppercase tracking-wider text-[#5b0617]">
-                Módulos de Aprendizaje Interactivo
+                Videoteca & Módulos Disponibles
               </h3>
               <div className="space-y-3">
                 {videoLessons.map((v) => {
@@ -551,8 +793,10 @@ export default function ResourcesPage() {
                             {v.title}
                           </h4>
                           <span className="inline-flex items-center gap-1 text-[11px] text-[#5b0617] font-semibold mt-1">
-                            <span className="material-symbols-outlined text-[14px]">check_circle</span>
-                            {v.checkpoints.length} Quizzes interactivos
+                            <span className="material-symbols-outlined text-[14px]">
+                              {v.isYoutube ? 'smart_display' : 'quiz'}
+                            </span>
+                            {v.isYoutube ? 'Video YouTube HD' : `${v.checkpoints.length} Quizzes`}
                           </span>
                         </div>
                       </div>
@@ -561,11 +805,11 @@ export default function ResourcesPage() {
                 })}
               </div>
 
-              <div className="p-4 bg-white border border-[#dcc0c0] rounded-xl text-center space-y-2">
-                <span className="material-symbols-outlined text-[#5b0617] text-[28px]">verified</span>
-                <h4 className="font-bold text-[13px] text-[#191c1e]">Acreditación Pedagógica</h4>
+              <div className="p-4 bg-white border border-[#dcc0c0] rounded-xl space-y-2">
+                <span className="material-symbols-outlined text-[#5b0617] text-[24px]">school</span>
+                <h4 className="font-bold text-[13px] text-[#191c1e]">Capacitación para Equipos de Salud</h4>
                 <p className="text-[11.5px] text-[#564242]">
-                  Completa los módulos interactivos para validar conocimientos de consenso biomédico avalados por la red RIII-HTLV.
+                  Recursos diseñados para virólogos, infectólogos, neurólogos y personal asistencial en zonas de prevalencia.
                 </p>
               </div>
             </div>
@@ -729,34 +973,101 @@ export default function ResourcesPage() {
       )}
 
       {/* ------------------------------------------------------------- */}
-      {/* PESTAÑA 3: MODELO 3D & FORMULARIOS REFERENCIALES */}
+      {/* PESTAÑA 3: MODELO 3D ROTABLE CON MOUSE & FORMULARIOS */}
       {/* ------------------------------------------------------------- */}
       {activeTab === 'embeds' && (
         <section className="space-y-8 animate-fadeIn">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Visor Molecular 3D Interactivo */}
+            {/* Visor Macromolecular 3D Interactivo con Mouse Drag */}
             <div className="lg:col-span-6 bg-white border border-[#dcc0c0] p-6 rounded-2xl space-y-4 shadow-xs">
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span className="text-[10.5px] uppercase font-bold text-[#5b0617] tracking-wider block">
-                    Visor Macromolecular
+                    Visor Macromolecular 3D
                   </span>
                   <h3 className="font-bold text-[16px] text-[#191c1e]">
-                    Virión HTLV-1 & Espículas Glicoproteicas (3D)
+                    Estructura 3D Manipulable (Arrastra con el Mouse)
                   </h3>
                 </div>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={() => setIsAutoRotating(!isAutoRotating)}
+                    className="px-2.5 py-1 bg-[#f3f4f6] text-[#5b0617] text-[11px] font-bold rounded-lg border border-[#dcc0c0] hover:bg-[#ffdada] transition-all cursor-pointer flex items-center gap-1"
+                  >
+                    <span className="material-symbols-outlined text-[14px]">
+                      {isAutoRotating ? 'pause' : 'play_arrow'}
+                    </span>
+                    {isAutoRotating ? 'Pausar' : 'Girar'}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setRotX(0.3);
+                      setRotY(0.4);
+                      setZoom(1);
+                    }}
+                    className="p-1 bg-[#f3f4f6] text-[#564242] text-[11px] rounded-lg border border-[#dcc0c0] hover:bg-slate-200 transition-all cursor-pointer"
+                    title="Resetear ángulo 3D"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">restart_alt</span>
+                  </button>
+                  <button
+                    onClick={() => setZoom((z) => Math.min(z + 0.15, 1.6))}
+                    className="px-2 py-1 bg-[#f3f4f6] text-[#564242] text-[11px] font-bold rounded-lg border border-[#dcc0c0] hover:bg-slate-200 transition-all cursor-pointer"
+                    title="Zoom in"
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => setZoom((z) => Math.max(z - 0.15, 0.6))}
+                    className="px-2 py-1 bg-[#f3f4f6] text-[#564242] text-[11px] font-bold rounded-lg border border-[#dcc0c0] hover:bg-slate-200 transition-all cursor-pointer"
+                    title="Zoom out"
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+
+              {/* Selector de Modelos Moleculares */}
+              <div className="flex gap-2">
                 <button
-                  onClick={() => setIsRotating(!isRotating)}
-                  className="px-3 py-1 bg-[#f3f4f6] text-[#5b0617] text-[11px] font-bold rounded-lg border border-[#dcc0c0] hover:bg-[#ffdada] transition-all cursor-pointer"
+                  onClick={() => setModelType('virion')}
+                  className={`px-3 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                    modelType === 'virion'
+                      ? 'bg-[#5b0617] text-white'
+                      : 'bg-slate-100 text-[#564242] hover:bg-slate-200'
+                  }`}
                 >
-                  {isRotating ? 'Pausar Rotación' : 'Reanudar Rotación'}
+                  Virión Completo (Cápside + gp46)
+                </button>
+                <button
+                  onClick={() => setModelType('tax')}
+                  className={`px-3 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                    modelType === 'tax'
+                      ? 'bg-[#5b0617] text-white'
+                      : 'bg-slate-100 text-[#564242] hover:bg-slate-200'
+                  }`}
+                >
+                  Proteína Tax (Hélice 3D)
                 </button>
               </div>
 
-              <div className="relative w-full aspect-square max-h-[300px] bg-radial from-slate-900 to-slate-950 rounded-xl overflow-hidden flex items-center justify-center border border-slate-800">
-                <canvas ref={canvasRef} width={320} height={300} className="w-full h-full cursor-grab" />
-                <div className="absolute bottom-2 left-2 text-[10px] text-slate-400 bg-black/60 px-2 py-0.5 rounded">
-                  Modelo 3D: gp46, gp21, ARN viral
+              {/* Área del Canvas con interactividad de arrastre */}
+              <div
+                className="relative w-full aspect-square max-h-[300px] bg-slate-950 rounded-xl overflow-hidden flex items-center justify-center border border-slate-800 cursor-grab active:cursor-grabbing select-none"
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                <canvas ref={canvasRef} width={340} height={300} className="w-full h-full pointer-events-none" />
+                <div className="absolute top-2 left-2 text-[9.5px] text-slate-400 bg-black/60 px-2 py-0.5 rounded pointer-events-none">
+                  🖱️ Haz clic y arrastra en cualquier dirección para rotar en 360°
+                </div>
+                <div className="absolute bottom-2 right-2 text-[9.5px] text-white/80 bg-[#5b0617]/80 px-2 py-0.5 rounded pointer-events-none font-mono">
+                  RotX: {rotX.toFixed(2)} | RotY: {rotY.toFixed(2)}
                 </div>
               </div>
 
