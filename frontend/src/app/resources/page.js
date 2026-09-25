@@ -232,13 +232,28 @@ export default function ResourcesPage() {
   // MOTOR 3D INTERACTIVO CON ARRASTRE DE MOUSE / TOUCH (GENUINE 3D ENGINE)
   // -------------------------------------------------------------
   const canvasRef = useRef(null);
-  const [modelType, setModelType] = useState('virion'); // 'virion' | 'tax' | 'gp46'
-  const [rotX, setRotX] = useState(0.3);
-  const [rotY, setRotY] = useState(0.4);
+  const [modelType, setModelType] = useState('virion'); // 'virion' | 'tax'
   const [zoom, setZoom] = useState(1);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
   const isDraggingRef = useRef(false);
   const lastMousePosRef = useRef({ x: 0, y: 0 });
+  const rotXRef = useRef(0.35);
+  const rotYRef = useRef(0.45);
+  const zoomRef = useRef(1);
+  const autoRotateRef = useRef(true);
+  const modelTypeRef = useRef('virion');
+
+  useEffect(() => {
+    zoomRef.current = zoom;
+  }, [zoom]);
+
+  useEffect(() => {
+    autoRotateRef.current = isAutoRotating;
+  }, [isAutoRotating]);
+
+  useEffect(() => {
+    modelTypeRef.current = modelType;
+  }, [modelType]);
 
   // Puntos 3D para el virión (Esfera con espículas)
   const virionSpikes = useRef(
@@ -271,14 +286,15 @@ export default function ResourcesPage() {
     isDraggingRef.current = true;
     lastMousePosRef.current = { x: e.clientX, y: e.clientY };
     setIsAutoRotating(false);
+    autoRotateRef.current = false;
   };
 
   const handleMouseMove = (e) => {
     if (!isDraggingRef.current) return;
     const deltaX = e.clientX - lastMousePosRef.current.x;
     const deltaY = e.clientY - lastMousePosRef.current.y;
-    setRotY((prev) => prev + deltaX * 0.015);
-    setRotX((prev) => prev + deltaY * 0.015);
+    rotYRef.current += deltaX * 0.015;
+    rotXRef.current += deltaY * 0.015;
     lastMousePosRef.current = { x: e.clientX, y: e.clientY };
   };
 
@@ -292,6 +308,7 @@ export default function ResourcesPage() {
       isDraggingRef.current = true;
       lastMousePosRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
       setIsAutoRotating(false);
+      autoRotateRef.current = false;
     }
   };
 
@@ -299,8 +316,8 @@ export default function ResourcesPage() {
     if (!isDraggingRef.current || e.touches.length !== 1) return;
     const deltaX = e.touches[0].clientX - lastMousePosRef.current.x;
     const deltaY = e.touches[0].clientY - lastMousePosRef.current.y;
-    setRotY((prev) => prev + deltaX * 0.02);
-    setRotX((prev) => prev + deltaY * 0.02);
+    rotYRef.current += deltaX * 0.02;
+    rotXRef.current += deltaY * 0.02;
     lastMousePosRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
   };
 
@@ -308,7 +325,7 @@ export default function ResourcesPage() {
     isDraggingRef.current = false;
   };
 
-  // Renderizado continuo en Canvas 3D
+  // Renderizado continuo en Canvas 3D (Loop de 60fps desacoplado del estado)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -319,19 +336,23 @@ export default function ResourcesPage() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const cx = canvas.width / 2;
       const cy = canvas.height / 2;
-      const baseRadius = 65 * zoom;
+      const currentZoom = zoomRef.current;
+      const baseRadius = 65 * currentZoom;
+      const curRotX = rotXRef.current;
+      const curRotY = rotYRef.current;
+      const currentModel = modelTypeRef.current;
 
       // Transformación 3D (Matrices de rotación X e Y)
       const rotate3D = (x, y, z) => {
         // Rotación alrededor de Y
-        const cosY = Math.cos(rotY);
-        const sinY = Math.sin(rotY);
+        const cosY = Math.cos(curRotY);
+        const sinY = Math.sin(curRotY);
         const x1 = x * cosY + z * sinY;
         const z1 = -x * sinY + z * cosY;
 
         // Rotación alrededor de X
-        const cosX = Math.cos(rotX);
-        const sinX = Math.sin(rotX);
+        const cosX = Math.cos(curRotX);
+        const sinX = Math.sin(curRotX);
         const y2 = y * cosX - z1 * sinX;
         const z2 = y * sinX + z1 * cosX;
 
@@ -345,7 +366,7 @@ export default function ResourcesPage() {
         };
       };
 
-      if (modelType === 'virion') {
+      if (currentModel === 'virion') {
         // 1. Dibujar espículas posteriores (profundidad z < 0)
         virionSpikes.current.forEach((pt) => {
           const spikeEnd = rotate3D(pt.x * (baseRadius + 22), pt.y * (baseRadius + 22), pt.z * (baseRadius + 22));
@@ -366,7 +387,7 @@ export default function ResourcesPage() {
         });
 
         // 2. Dibujar la esfera central del Virión (Cápside y envoltura lipídica)
-        const grad = ctx.createRadialGradient(cx - 20 * zoom, cy - 20 * zoom, 10, cx, cy, baseRadius);
+        const grad = ctx.createRadialGradient(cx - 20 * currentZoom, cy - 20 * currentZoom, 10, cx, cy, baseRadius);
         grad.addColorStop(0, '#ffb3b5');
         grad.addColorStop(0.5, '#822530');
         grad.addColorStop(0.9, '#5b0617');
@@ -382,7 +403,7 @@ export default function ResourcesPage() {
 
         // Núcleo proviral interno animado
         ctx.beginPath();
-        ctx.arc(cx, cy, 26 * zoom, 0, Math.PI * 2);
+        ctx.arc(cx, cy, 26 * currentZoom, 0, Math.PI * 2);
         ctx.strokeStyle = '#ffdada';
         ctx.lineWidth = 2;
         ctx.setLineDash([4, 4]);
@@ -415,23 +436,23 @@ export default function ResourcesPage() {
             ctx.stroke();
           }
         });
-      } else if (modelType === 'tax') {
+      } else if (currentModel === 'tax') {
         // Renderizado de Oncoproteína Tax (Cadena tridimensional de aminoácidos)
         ctx.strokeStyle = '#ffdada';
-        ctx.lineWidth = 3 * zoom;
+        ctx.lineWidth = 3 * currentZoom;
         ctx.beginPath();
 
         taxProteinNodes.current.forEach((node, i) => {
-          const p = rotate3D(node.x * 60 * zoom, node.y * 60 * zoom, node.z * 60 * zoom);
+          const p = rotate3D(node.x * 60 * currentZoom, node.y * 60 * currentZoom, node.z * 60 * currentZoom);
           if (i === 0) ctx.moveTo(p.px, p.py);
           else ctx.lineTo(p.px, p.py);
         });
         ctx.stroke();
 
         taxProteinNodes.current.forEach((node) => {
-          const p = rotate3D(node.x * 60 * zoom, node.y * 60 * zoom, node.z * 60 * zoom);
+          const p = rotate3D(node.x * 60 * currentZoom, node.y * 60 * currentZoom, node.z * 60 * currentZoom);
           ctx.beginPath();
-          ctx.arc(p.px, p.py, (node.type === 'active-site' ? 6 : 4) * p.scale * zoom, 0, Math.PI * 2);
+          ctx.arc(p.px, p.py, (node.type === 'active-site' ? 6 : 4) * p.scale * currentZoom, 0, Math.PI * 2);
           ctx.fillStyle = node.type === 'active-site' ? '#5b0617' : '#555f6f';
           ctx.fill();
           ctx.strokeStyle = '#ffffff';
@@ -442,11 +463,11 @@ export default function ResourcesPage() {
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 11px sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText('Oncoproteína Tax (Dominio Zinc Finger)', cx, cy + 85 * zoom);
+        ctx.fillText('Oncoproteína Tax (Dominio Zinc Finger)', cx, cy + 85 * currentZoom);
       }
 
-      if (isAutoRotating) {
-        setRotY((prev) => prev + 0.01);
+      if (autoRotateRef.current) {
+        rotYRef.current += 0.01;
       }
 
       animationFrameId = requestAnimationFrame(render);
@@ -455,7 +476,7 @@ export default function ResourcesPage() {
     render();
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [rotX, rotY, zoom, isAutoRotating, modelType]);
+  }, []);
 
   // -------------------------------------------------------------
   // RECURSOS DESCARGABLES CLÁSICOS
