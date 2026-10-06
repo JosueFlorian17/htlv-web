@@ -62,7 +62,7 @@ export default function Home() {
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <Link href="/about#faqs" className="bg-[#5b0617] text-white px-8 py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90 transition-all flex items-center gap-2 cursor-pointer">
+                <Link href="/faqs" className="bg-[#5b0617] text-white px-8 py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90 transition-all flex items-center gap-2 cursor-pointer">
                   <span className="material-symbols-outlined text-[20px]">quiz</span>
                   Preguntas Frecuentes (FAQs)
                   <span className="material-symbols-outlined text-[20px]">arrow_forward</span>

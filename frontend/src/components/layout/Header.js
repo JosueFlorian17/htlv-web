@@ -29,7 +29,7 @@ export default function Header() {
     };
 
     const isNosotrosActive = () => {
-        return pathname === '/network' || pathname === '/about';
+        return pathname === '/network' || pathname === '/about' || pathname === '/faqs';
     };
 
     return (
@@ -70,12 +70,18 @@ export default function Header() {
                                 >
                                     Sobre HTLV & La Red <span className="material-symbols-outlined text-sm">expand_more</span>
                                 </button>
-                                <div className="absolute top-[80%] left-0 hidden group-hover:block bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg shadow-lg py-2 min-w-[210px] z-50">
+                                <div className="absolute top-[80%] left-0 hidden group-hover:block bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg shadow-lg py-2 min-w-[220px] z-50">
                                     <Link 
                                         href="/about" 
                                         className={`block px-4 py-2 text-[14px] font-medium hover:bg-[#e7e8ea] ${pathname === '/about' ? 'text-[#5b0617] font-bold bg-[#e7e8ea]' : 'text-[#564242]'}`}
                                     >
                                         ¿Qué es el HTLV?
+                                    </Link>
+                                    <Link 
+                                        href="/faqs" 
+                                        className={`block px-4 py-2 text-[14px] font-medium hover:bg-[#e7e8ea] ${pathname === '/faqs' ? 'text-[#5b0617] font-bold bg-[#e7e8ea]' : 'text-[#564242]'}`}
+                                    >
+                                        Preguntas Frecuentes (FAQs)
                                     </Link>
                                     <Link 
                                         href="/network" 

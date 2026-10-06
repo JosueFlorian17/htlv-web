@@ -45,6 +45,7 @@ export default function Footer({ hasSidebar = false }) {
             </h6>
             <nav className="flex flex-col gap-2 text-[13px]">
               <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/about">¿Qué es el HTLV?</Link>
+              <Link className="hover:text-[#5b0617] hover:underline transition-colors font-medium text-[#5b0617]" href="/faqs">Preguntas Frecuentes (FAQs)</Link>
               <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/network">La Red y Miembros</Link>
               <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/research">Líneas de Investigación</Link>
               <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/repository">Repositorio Documental</Link>
