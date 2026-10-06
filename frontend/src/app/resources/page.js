@@ -13,13 +13,13 @@ export default function ResourcesPage() {
   const videoLessons = [
     {
       id: 'video-youtube-1',
-      title: 'Video Documental de Referencia: Biología y Manejo de Retrovirus HTLV',
+      title: 'Conferencia Magistral: Infección por Retrovirus HTLV-1/2 y Enfoque Clínico',
       duration: 'YouTube HD',
-      category: 'Conferencia & Referencia',
-      desc: 'Video educativo de referencia sobre la caracterización viral, impacto global y diagnóstico de HTLV transmitido en plataformas científicas internacionales.',
+      category: 'UPCH • Telesalud Cayetano Heredia',
+      desc: 'Guía clínica y epidemiológica sobre el virus linfotrópico de células T humanas (HTLV), diagnóstico serológico, carga proviral y manifestaciones clínicas a cargo de especialistas de la Universidad Peruana Cayetano Heredia.',
       isYoutube: true,
-      youtubeId: '6Aa3aFccue8',
-      thumbnail: 'https://img.youtube.com/vi/6Aa3aFccue8/hqdefault.jpg',
+      youtubeId: 'p-xTMvuecnM',
+      thumbnail: 'https://img.youtube.com/vi/p-xTMvuecnM/hqdefault.jpg',
       checkpoints: [
         {
           timePercent: 40,
@@ -33,6 +33,31 @@ export default function ResourcesPage() {
           ],
           correct: 0,
           explanation: 'A diferencia del VIH que produce millones de viriones libres en sangre, el HTLV se mantiene como provirus integrado dentro de los linfocitos T CD4+, por lo que se cuantifican copias por cada 100 PBMC.'
+        }
+      ]
+    },
+    {
+      id: 'video-youtube-2',
+      title: 'Manifestaciones Clínicas y Diagnóstico del HTLV (HAM/TSP y ATL)',
+      duration: 'Sesión Clínica',
+      category: 'Clínica & Diagnóstico',
+      desc: 'Abordaje integral del compromiso neurológico, mielopatía asociada a HTLV (HAM/TSP), criterios diagnósticos confirmatorios y seguimiento de pacientes.',
+      isYoutube: true,
+      youtubeId: 'Cf215t0X86U',
+      thumbnail: 'https://img.youtube.com/vi/Cf215t0X86U/hqdefault.jpg',
+      checkpoints: [
+        {
+          timePercent: 50,
+          timeLabel: '2:50',
+          question: 'En un paciente con sospecha de HAM/TSP, ¿qué hallazgo en LCR confirma el compromiso retroviral?',
+          options: [
+            'Ausencia total de anticuerpos y glucosa elevada',
+            'Presencia de anticuerpos anti-HTLV-1 con síntesis intratecal y bandas oligoclonales',
+            'Presencia de bacterias Gram negativas',
+            'Disminución severa de hematocrito'
+          ],
+          correct: 1,
+          explanation: 'El diagnóstico confirmatorio de HAM/TSP requiere la demostración de anticuerpos anti-HTLV-1 en LCR, demostrando inflamación intratecal específica.'
         }
       ]
     },
@@ -70,30 +95,6 @@ export default function ResourcesPage() {
           ],
           correct: 1,
           explanation: 'La suspensión de la lactancia materna y el uso de sucedáneos (fórmula) previene hasta el 85-90% de los casos de transmisión vertical de madre a hijo.'
-        }
-      ]
-    },
-    {
-      id: 'video-2',
-      title: 'Diagnóstico Diferencial: Paraparesia Espástica Tropical (HAM/TSP)',
-      duration: '5:40 min',
-      category: 'Clínica & Neurología',
-      desc: 'Criterios clínicos de Osame, análisis de líquido cefalorraquídeo y evaluación de carga proviral en pacientes con compromiso motor.',
-      isYoutube: false,
-      thumbnail: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDuXvO2-W-DPohAm0t3r6ufv176Em3axy9Q9TMOk3GBfqlKMStSeHmEsbpuVTTZN7f7pAkRPumO-Jqp79EnGUSIy8cSXKJxEc-t895RwABRrggDXIXbiY5p-NgWLSsLDHG79IP7Ee4bmaWLPDqRitTo1i9ORnmNswwL3-CCWxX-QtwWLhQTrxvs0X6UwfsSPRkFPiOT27UbLsWyJ3d6VRmLM7qzGlDOLirarSjBi_Gy_3OJea_Q0aZCOYZBKRWTBq-n0tnxLukm38k',
-      checkpoints: [
-        {
-          timePercent: 50,
-          timeLabel: '2:50',
-          question: 'En un paciente con sospecha de HAM/TSP, ¿qué hallazgo en LCR confirma el compromiso retroviral?',
-          options: [
-            'Ausencia total de anticuerpos y glucosa elevada',
-            'Presencia de anticuerpos anti-HTLV-1 con síntesis intratecal y bandas oligoclonales',
-            'Presencia de bacterias Gram negativas',
-            'Disminución severa de hematocrito'
-          ],
-          correct: 1,
-          explanation: 'El diagnóstico confirmatorio de HAM/TSP requiere la demostración de anticuerpos anti-HTLV-1 en LCR, demostrando inflamación intratecal específica.'
         }
       ]
     }
