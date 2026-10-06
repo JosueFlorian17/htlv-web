@@ -22,6 +22,14 @@ export default function AboutHTLVPage() {
       const valid = navItems.some(item => item.id === hashId);
       if (valid) {
         setActiveSection(hashId);
+        setTimeout(() => {
+          const el = document.getElementById(hashId);
+          if (el) {
+            const yOffset = -90;
+            const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }, 150);
       }
     }
 
@@ -33,7 +41,7 @@ export default function AboutHTLVPage() {
 
       for (let i = sectionElements.length - 1; i >= 0; i--) {
         const el = sectionElements[i];
-        if (el.offsetTop <= scrollPosition) {
+        if (el && el.offsetTop <= scrollPosition) {
           setActiveSection(el.id);
           break;
         }
@@ -45,6 +53,114 @@ export default function AboutHTLVPage() {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const [faqCategoryFilter, setFaqCategoryFilter] = useState('all');
+  const [faqSearchQuery, setFaqSearchQuery] = useState('');
+
+  const faqItems = [
+    {
+      id: "faq-1",
+      category: "Virología & Generalidades",
+      q: "1. ¿Qué es el HTLV?",
+      a: "El Virus Linfotrópico de Células T Humanas (HTLV, por sus siglas en inglés) es el primer retrovirus humano oncogénico descubierto en la historia de la virología (Poiesz et al., 1980; Hinuma et al., 1981). Afecta predominantemente a los linfocitos T humanos (CD4+ en HTLV-1 y CD8+ en HTLV-2). A diferencia del VIH, que destruye progresivamente las células inmunitarias causando inmunodeficiencia masiva (SIDA), el HTLV promueve la activación y proliferación clonal celular crónica mediante sus oncoproteínas Tax y HBZ. (Bangham, 2018; Matsuoka & Jeang, 2011)."
+    },
+    {
+      id: "faq-2",
+      category: "Epidemiología",
+      q: "2. ¿Qué tan común es el HTLV en el mundo y en el Perú?",
+      a: "A nivel global, se estima que entre 5 y 10 millones de personas viven con HTLV-1, con una distribución geográfica altamente heterogénea en zonas endémicas como el suroeste de Japón, África subsahariana, el Caribe, comunidades indígenas de Australia y la región Andina de Sudamérica (Gessain & Cassar, 2012; OMS, 2021). En el Perú, la seroprevalencia oscila entre el 1% y 3% en población general y donantes de sangre, y puede alcanzar del 4% al 7% en poblaciones específicas de la sierra y la selva, convirtiendo al país en uno de los principales centros mundiales de investigación clínica. (Gotuzzo et al., 2010; Zunt et al., 2006)."
+    },
+    {
+      id: "faq-3",
+      category: "Transmisión",
+      q: "3. ¿Cómo se transmite el HTLV?",
+      a: "El HTLV requiere la transferencia de células infectadas vivas a través de tres vías conocidas: (1) Vertical (Materno-Infantil): Principalmente por lactancia materna prolongada (>6 meses), transmitida por linfocitos presentes en la leche materna; (2) Sexual: A través de relaciones sexuales desprotegidas (más eficiente de hombre a mujer); (3) Parenteral / Transfusional: Por transfusión de componentes celulares de sangre no tamizada o trasplante de órganos. No se transmite por contacto casual, saliva superficial, alimentos ni picaduras de insectos. (Paiva & Casseb, 2015; Rosadas & Taylor, 2019; CDC, 2021)."
+    },
+    {
+      id: "faq-4",
+      category: "Clínica & Síntomas",
+      q: "4. ¿Qué síntomas causa el HTLV y cuál es la regla del 90/10?",
+      a: "Aproximadamente el 90% al 95% de las personas infectadas son portadores asintomáticos a lo largo de toda su vida y no manifestarán síntomas (Bangham et al., 2015). No obstante, entre el 5% y el 10% desarrollará patologías graves tras décadas de latencia: la Paraparesia Espástica Tropical / Mielopatía Asociada a HTLV-1 (HAM/TSP), caracterizada por rigidez progresiva de piernas, marcha espástica y disfunción vesical; o la Leucemia/Linfoma de Células T del Adulto (ATL), una neoplasia hematológica agresiva. También se asocia a Uveítis intermedia y Dermatitis infecciosa infantil. (Einsiedel et al., 2018; Martin et al., 2018)."
+    },
+    {
+      id: "faq-5",
+      category: "Virología & Mecanismo",
+      q: "5. ¿Qué significa infección latente e integración proviral?",
+      a: "El HTLV es un retrovirus que integra su genoma en el ADN cromosómico del linfocito infectado en forma de provirus. Una vez integrado, el virus ingresa en una latencia transcripcional con muy baja liberación de partículas virales libres en sangre. En su lugar, el provirus se propaga y persiste a través de la replicación mitótica y proliferación clonal de la célula infectada. El gen antisense HBZ se transcribe de forma continua, manteniendo la viabilidad del clon celular e impidiendo la apoptosis inmunológica. (Satou et al., 2016; Matsuoka & Green, 2009)."
+    },
+    {
+      id: "faq-6",
+      category: "Diagnóstico",
+      q: "6. ¿Cómo se diagnostica y confirma la infección por HTLV?",
+      a: "El diagnóstico clínico estandarizado comprende dos etapas: (1) Tamizaje Serológico: Detección de anticuerpos mediante pruebas de ELISA o Quimioluminiscencia (CLIA) de alta sensibilidad; (2) Confirmación Obligatoria: Toda muestra reactiva debe confirmarse mediante Western Blot (WB), ensayo de inmunotransferencia en línea (LIA) o pruebas moleculares de PCR en tiempo real (qPCR) para confirmar la seropositividad, discriminar con certeza entre HTLV-1 y HTLV-2, y descartar falsos positivos serológicos. (da Silva et al., 2018; OMS/OPS, 2020)."
+    },
+    {
+      id: "faq-7",
+      category: "Tratamiento & Vacuna",
+      q: "7. ¿Existe cura o vacuna para el HTLV?",
+      a: "Actualmente no existe una vacuna preventiva aprobada ni un tratamiento curativo erradicador del provirus en el organismo. La infección persiste de por vida. El estándar de manejo internacional se enfoca en: monitoreo médico continuo de portadores asintomáticos, diagnóstico y tratamiento precoz de patologías inflamatorias u oncohematológicas asociadas, y la aplicación rigurosa de medidas preventivas para cortar la cadena de transmisión materno-infantil y sexual. (Taylor et al., 2021; Tagaya et al., 2023)."
+    },
+    {
+      id: "faq-8",
+      category: "Tratamiento",
+      q: "8. ¿Cómo se tratan las patologías asociadas al HTLV (ATL y HAM/TSP)?",
+      a: "El tratamiento está estrictamente protocolizado según la patología: en ATL se emplean esquemas de quimioterapia combinada (CHOP/LSG15), terapia antiviral con Zidovudina más Interferón alfa (AZT/IFN-α), el anticuerpo monoclonal Mogamulizumab (anti-CCR4) y trasplante alogénico de progenitores hematopoyéticos en casos elegibles (Tsukasaki et al., 2020). En HAM/TSP, el abordaje busca frenar el daño neuroinflamatorio mediante pulsos de corticosteroides (metilprednisolona), inmunomoduladores y rehabilitación kinesiológica y urológica integral. (Yamano & Sato, 2012)."
+    },
+    {
+      id: "faq-9",
+      category: "Biomarcadores",
+      q: "9. ¿Qué es la Carga Proviral (CPV) y por qué es crucial medirla?",
+      a: "La Carga Proviral (CPV) mide el porcentaje de células mononucleares en sangre periférica (PBMC) que albergan el genoma proviral integrado (copias por cada 100 células). Es el biomarcador pronóstico y de riesgo de mayor valor clínico: niveles elevados de CPV (>1% al 5%) se correlacionan directamente con una mayor probabilidad de progresión clínica hacia HAM/TSP y una mayor tasa de transmisión vertical o sexual. El monitoreo longitudinal de la CPV mediante PCR cuantitativa es un pilar de la atención en centros de excelencia como el IMTAvH-UPCH. (Iwanaga et al., 2010; Grassi et al., 2011)."
+    },
+    {
+      id: "faq-10",
+      category: "Prevención",
+      q: "10. ¿Cómo se previene la transmisión del virus?",
+      a: "La transmisión es prevenible mediante tres intervenciones clave de salud pública: (1) Tamizaje serológico prenatal a todas las mujeres embarazadas, indicando la sustitución de la lactancia materna por fórmula infantil en madres seropositivas (o acortamiento de la lactancia a menos de 3-6 meses si la fórmula no está disponible); (2) Uso constante y correcto de preservativos en las relaciones sexuales; (3) Tamizaje universal y obligatorio en donantes de sangre y órganos, complementado con la leucorreducción de hemoderivados. (Rosadas et al., 2020; Gotuzzo et al., 2010; OMS, 2021)."
+    },
+    {
+      id: "faq-11",
+      category: "Salud Pública",
+      q: "11. ¿Por qué el HTLV es una prioridad de salud pública desatendida?",
+      a: "Históricamente, el HTLV ha recibido menos atención y financiamiento internacional en comparación con el VIH o la Hepatitis C, en parte debido a su prolongado periodo de latencia silenciosa y a su concentración en poblaciones vulnerables de países en vías de desarrollo. En 2021, la Organización Mundial de la Salud (OMS) emitió un informe técnico histórico instando a los países a implementar políticas de tamizaje materno, fortalecer la vigilancia epidemiológica y respaldar la investigación de vacunas y tratamientos innovadores. (Watanabe, 2017; Martin et al., 2018; OMS, 2021)."
+    },
+    {
+      id: "faq-12",
+      category: "Innovación & Investigación",
+      q: "12. ¿Qué avances existen en edición genética (CRISPR/Cas9) y terapias moleculares?",
+      a: "Diversos grupos internacionales investigan terapias de precisión para escindir o inactivar el provirus latente en linfocitos T mediante el sistema de edición genética CRISPR/Cas9 dirigido a las regiones LTR y a los genes oncogénicos tax y hbz (Raza et al., 2022). Adicionalmente, se investigan fármacos inhibidores selectivos de HBZ, inhibidores de quinasas dependientes de ciclinas (CDK9) y células T con receptores quiméricos de antígenos (CAR-T) para erradicar selectivamente clones malignos en ATL. (Fujisawa et al., 2021; Tagaya et al., 2023)."
+    },
+    {
+      id: "faq-13",
+      category: "Liderazgo Científico",
+      q: "13. ¿Qué rol cumplen el Perú y el Instituto Alexander von Humboldt en los estudios de HTLV?",
+      a: "El Perú es un referente científico internacional en retrovirología humana. A través del Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) de la Universidad Peruana Cayetano Heredia (UPCH), se mantiene desde hace más de tres décadas una de las cohortes clínicas prospectivas más extensas del mundo. El IMTAvH aporta al desarrollo de guías clínicas de la OMS/OPS, evalúa nuevos biomarcadores de progresión y lidera la Red Internacional RIII-HTLV para acelerar la transferencia de conocimiento entre centros endémicos y laboratorios de vanguardia global. (Gotuzzo et al., 2023; Clark et al., 2016; RIII-HTLV, 2026)."
+    }
+  ];
+
+  const categories = ['all', ...new Set(faqItems.map(item => item.category))];
+
+  const filteredFaqs = faqItems.filter(item => {
+    const matchesCategory = faqCategoryFilter === 'all' || item.category === faqCategoryFilter;
+    const matchesSearch = faqSearchQuery.trim() === '' || 
+      item.q.toLowerCase().includes(faqSearchQuery.toLowerCase()) || 
+      item.a.toLowerCase().includes(faqSearchQuery.toLowerCase()) ||
+      item.category.toLowerCase().includes(faqSearchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a
+      }
+    }))
+  };
 
   const scrollToSection = (e, id) => {
     e.preventDefault();
@@ -62,38 +178,6 @@ export default function AboutHTLVPage() {
     if (typeof window !== 'undefined') {
       window.print();
     }
-  };
-
-  const faqItems = [
-    {
-      q: "¿El HTLV-1 es lo mismo que el VIH?",
-      a: "No. Aunque ambos son retrovirus, el HTLV no produce el síndrome de inmunodeficiencia adquirida (SIDA). En lugar de destruir masivamente las células T, el HTLV-1 causa proliferación celular desregulada (que en raros casos evoluciona a leucemia ATL) o respuestas inflamatorias crónicas en la médula espinal (HAM/TSP)."
-    },
-    {
-      q: "¿Existe cura o vacuna para el HTLV?",
-      a: "Actualmente no existe una vacuna disponible ni un tratamiento curativo que elimine el virus. El enfoque médico consiste en la prevención activa, el monitoreo periódico de la carga proviral y el tratamiento oportuno de las complicaciones inflamatorias o hematológicas."
-    },
-    {
-      q: "¿Cómo se previene la transmisión de madre a hijo?",
-      a: "La principal medida preventiva es el tamizaje serológico prenatal de la madre. En madres seropositivas para HTLV-1, la recomendación pediátrica internacional es suspender la lactancia materna y alimentar al recién nacido con sucedáneos de leche materna (fórmula)."
-    },
-    {
-      q: "¿Dónde puedo realizarme una prueba de descarte en el Perú?",
-      a: "En el Perú, el despistaje serológico se realiza en bancos de sangre autorizados, hospitales de referencia nacional y en centros de excelencia como el Instituto de Medicina Tropical Alexander von Humboldt (UPCH) en Lima."
-    }
-  ];
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
-      "@type": "Question",
-      "name": item.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.a
-      }
-    }))
   };
 
   return (
@@ -465,28 +549,80 @@ export default function AboutHTLVPage() {
 
             {/* SECCIÓN 6: PREGUNTAS FRECUENTES (FAQ) */}
             <section className="scroll-mt-28 print-card print-avoid-break" id="faqs">
-              <div className="bg-white md:p-6 p-4 rounded-2xl print:p-0 print:border-0">
-                <div className="flex items-center gap-2.5 mb-3 print:mb-1.5">
-                  <span className="w-7 h-7 rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center font-bold text-[13px] print:w-5 print:h-5 print:text-[8.5pt]">6</span>
-                  <div>
-                    <h2 className="font-headline-lg text-[20px] md:text-[22px] text-[#5b0617] font-bold print:text-[11.5pt]">
-                      Preguntas Frecuentes sobre el HTLV
-                    </h2>
-                    <p className="text-[11px] text-[#564242] print:text-[7pt]">
-                      Respuestas directas basadas en evidencia biomédica
-                    </p>
+              <div className="bg-white md:p-6 p-4 rounded-2xl print:p-0 print:border-0 border border-[#dcc0c0] shadow-sm">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5 print:mb-2 border-b border-[#f0dede] pb-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-full bg-[#5b0617] text-white flex items-center justify-center font-bold text-[14px] print:w-5 print:h-5 print:text-[8.5pt]">6</span>
+                    <div>
+                      <h2 className="font-headline-lg text-[20px] md:text-[24px] text-[#5b0617] font-bold print:text-[11.5pt]">
+                        Preguntas Frecuentes sobre el HTLV
+                      </h2>
+                      <p className="text-[12px] text-[#564242] print:text-[7pt]">
+                        13 preguntas clave sobre virología, transmisión, diagnóstico, carga proviral y tratamientos (Consenso UPCH / RIII-HTLV)
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Buscador interactivo (oculto en print) */}
+                  <div className="print:hidden relative w-full md:w-64">
+                    <span className="material-symbols-outlined absolute left-3 top-2.5 text-[#897172] text-[18px]">search</span>
+                    <input
+                      type="text"
+                      placeholder="Buscar en preguntas..."
+                      value={faqSearchQuery}
+                      onChange={(e) => setFaqSearchQuery(e.target.value)}
+                      className="w-full pl-9 pr-3 py-1.5 text-[12px] rounded-lg border border-[#dcc0c0] bg-[#f8f9fb] focus:bg-white focus:outline-none focus:border-[#5b0617] text-[#191c1e]"
+                    />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 print-grid-faqs gap-2.5 print:gap-1.5">
-                  {faqItems.map((item, index) => (
-                    <div key={index} className="bg-[#f8f9fb] border border-[#dcc0c0] rounded-xl p-3 print:p-1.5">
-                      <h4 className="font-bold text-[12.5px] text-[#5b0617] mb-1 print:text-[8pt]">
-                        {item.q}
-                      </h4>
-                      <p className="text-[11.5px] text-[#564242] leading-snug print:text-[7pt]">
-                        {item.a}
-                      </p>
+                {/* Filtros de Categoría (ocultos en print) */}
+                <div className="flex flex-wrap gap-1.5 mb-5 print:hidden">
+                  <button
+                    onClick={() => setFaqCategoryFilter('all')}
+                    className={`px-3 py-1 text-[11px] font-semibold rounded-full transition-all cursor-pointer ${
+                      faqCategoryFilter === 'all'
+                        ? 'bg-[#5b0617] text-white shadow-xs'
+                        : 'bg-[#f8f9fb] text-[#564242] border border-[#dcc0c0] hover:bg-[#ffdada]/30'
+                    }`}
+                  >
+                    Todas ({faqItems.length})
+                  </button>
+                  {categories.filter(c => c !== 'all').map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => setFaqCategoryFilter(cat)}
+                      className={`px-2.5 py-1 text-[11px] font-semibold rounded-full transition-all cursor-pointer ${
+                        faqCategoryFilter === cat
+                          ? 'bg-[#5b0617] text-white shadow-xs'
+                          : 'bg-[#f8f9fb] text-[#564242] border border-[#dcc0c0] hover:bg-[#ffdada]/30'
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Grid de Preguntas */}
+                <div className="grid grid-cols-1 md:grid-cols-2 print-grid-faqs gap-3.5 print:gap-1.5">
+                  {(filteredFaqs.length > 0 ? filteredFaqs : faqItems).map((item) => (
+                    <div
+                      key={item.id}
+                      className="bg-[#f8f9fb] hover:bg-[#faf4f4] border border-[#dcc0c0] rounded-xl p-3.5 transition-colors print:p-1.5 print:bg-white flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-1.5 print:mb-0.5">
+                          <span className="px-2 py-0.5 bg-[#ffdada] text-[#5b0617] text-[10px] font-bold uppercase rounded-md tracking-wider print:text-[6.5pt] print:py-0">
+                            {item.category}
+                          </span>
+                        </div>
+                        <h4 className="font-bold text-[13px] text-[#5b0617] mb-1.5 leading-snug print:text-[8pt] print:mb-0.5">
+                          {item.q}
+                        </h4>
+                        <p className="text-[12px] text-[#332222] leading-relaxed print:text-[7pt] print:leading-tight">
+                          {item.a}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>

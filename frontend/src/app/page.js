@@ -62,15 +62,18 @@ export default function Home() {
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <Link href="/about" className="bg-[#5b0617] text-white px-8 py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90 transition-all flex items-center gap-2 cursor-pointer">
-                  ¿Qué es el HTLV? (Guía Clínica)
+                <Link href="/about#faqs" className="bg-[#5b0617] text-white px-8 py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90 transition-all flex items-center gap-2 cursor-pointer">
+                  <span className="material-symbols-outlined text-[20px]">quiz</span>
+                  Preguntas Frecuentes (FAQs)
                   <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
                 </Link>
-                <Link href="/research" className="bg-white border border-[#dcc0c0] text-[#5b0617] px-8 py-4 rounded-xl font-label-md font-bold hover:bg-[#ffdada]/30 transition-all cursor-pointer shadow-xs">
-                  Líneas de Investigación
+                <Link href="/about" className="bg-white border border-[#dcc0c0] text-[#5b0617] px-8 py-4 rounded-xl font-label-md font-bold hover:bg-[#ffdada]/30 transition-all cursor-pointer shadow-xs flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[20px]">menu_book</span>
+                  ¿Qué es el HTLV? (Guía Clínica)
                 </Link>
-                <Link href="/repository" className="bg-[#d6e0f3] text-[#1d2b3a] px-8 py-4 rounded-xl font-label-md font-bold hover:bg-[#c0d2f0] transition-all cursor-pointer">
-                  Repositorio Científico
+                <Link href="/research" className="bg-[#d6e0f3] text-[#1d2b3a] px-8 py-4 rounded-xl font-label-md font-bold hover:bg-[#c0d2f0] transition-all cursor-pointer flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[20px]">science</span>
+                  Líneas de Investigación
                 </Link>
               </div>
             </div>
