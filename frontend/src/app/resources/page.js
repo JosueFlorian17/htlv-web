@@ -702,8 +702,13 @@ export default function ResourcesPage() {
                                 : 'bg-red-100 text-red-900 border border-red-300'
                             }`}
                           >
-                            <strong>{quizFeedback.correct ? '✓ ¡Respuesta Correcta (+50 pts)!' : '✗ Respuesta Incorrecta.'}</strong>{' '}
-                            {quizFeedback.explanation}
+                            <div className="flex items-center gap-1.5 font-bold mb-1">
+                              <span className="material-symbols-outlined text-[18px]">
+                                {quizFeedback.correct ? 'check_circle' : 'cancel'}
+                              </span>
+                              <span>{quizFeedback.correct ? '¡Respuesta Correcta (+50 pts)!' : 'Respuesta Incorrecta.'}</span>
+                            </div>
+                            <p>{quizFeedback.explanation}</p>
                           </div>
                           <div className="flex gap-2">
                             {!quizFeedback.correct && (
@@ -1105,8 +1110,9 @@ export default function ResourcesPage() {
                 onTouchEnd={handleTouchEnd}
               >
                 <canvas ref={canvasRef} width={340} height={300} className="w-full h-full pointer-events-none" />
-                <div className="absolute top-2 left-2 text-[9.5px] text-slate-400 bg-black/60 px-2 py-0.5 rounded pointer-events-none">
-                  🖱️ Haz clic y arrastra en cualquier dirección para rotar en 360°
+                <div className="absolute top-2 left-2 text-[10px] text-slate-200 bg-black/70 backdrop-blur-xs px-2.5 py-1 rounded-md pointer-events-none flex items-center gap-1.5 border border-white/10">
+                  <span className="material-symbols-outlined text-[13px] text-[#ffdada]">3d_rotation</span>
+                  <span>Haz clic y arrastra en cualquier dirección para rotar en 360°</span>
                 </div>
                 <div className="absolute bottom-2 right-2 text-[9.5px] text-white/80 bg-[#5b0617]/80 px-2 py-0.5 rounded pointer-events-none font-mono">
                   Motor 3D Interactivo
@@ -1118,17 +1124,19 @@ export default function ResourcesPage() {
                   href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=11908"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg text-center font-bold text-[#5b0617] hover:bg-[#ffdada] transition-all"
+                  className="p-2.5 bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg text-center font-bold text-[#5b0617] hover:bg-[#ffdada] transition-all flex items-center justify-center gap-1"
                 >
-                  NCBI Taxonomy (HTLV-1) ↗
+                  <span>NCBI Taxonomy (HTLV-1)</span>
+                  <span className="material-symbols-outlined text-[14px]">open_in_new</span>
                 </a>
                 <a
                   href="https://www.rcsb.org/"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg text-center font-bold text-[#555f6f] hover:bg-[#d6e0f3] transition-all"
+                  className="p-2.5 bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg text-center font-bold text-[#555f6f] hover:bg-[#d6e0f3] transition-all flex items-center justify-center gap-1"
                 >
-                  Protein Data Bank (PDB) ↗
+                  <span>Protein Data Bank (PDB)</span>
+                  <span className="material-symbols-outlined text-[14px]">open_in_new</span>
                 </a>
               </div>
             </div>
