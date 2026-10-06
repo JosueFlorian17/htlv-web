@@ -88,51 +88,6 @@ export default function FAQsPage() {
     }
   ];
 
-  const references = [
-    { text: "Aubert M, et al. (2020). Gene editing and elimination of latent retroviral infection. Nature Communications." },
-    { text: "Bangham CRM. (2018). Human T-lymphotropic virus type 1 (HTLV-1) and associated diseases. Nature Reviews Microbiology, 16(7), 441-454." },
-    { text: "Bangham CRM, et al. (2015). HTLV-1 infection, disease and clinical guidelines. Lancet Infectious Diseases." },
-    { text: "Bernstein DI, et al. (2017). Retroviral vaccine development and immunogenicity. Clinical Infectious Diseases." },
-    { text: "Bloom DC. (2016). Viral latency and reactivation mechanisms. Annual Review of Virology." },
-    { text: "Centers for Disease Control and Prevention (CDC). (2021). Sexually Transmitted Infections Treatment Guidelines and HTLV Advisory." },
-    { text: "Clark T, et al. (2016). Long-term outcomes in HTLV-1 carriers: The Peruvian cohort experience. American Journal of Tropical Medicine and Hygiene." },
-    { text: "Corey L, et al. (2004). Antiviral therapies and transmission dynamics. New England Journal of Medicine." },
-    { text: "da Silva M, et al. (2018). Diagnostic algorithms for HTLV-1/2: Serology and molecular confirmation. Journal of Clinical Microbiology." },
-    { text: "Einsiedel L, et al. (2018). Clinical manifestations of HTLV-1 infection in endemic populations. The Lancet Global Health." },
-    { text: "Freeman EE, et al. (2006). Retroviral co-infections and immunological risk. AIDS." },
-    { text: "Fujisawa J, et al. (2021). Novel molecular approaches targeting HTLV-1 viral persistence. Cancer Science." },
-    { text: "Gessain A & Cassar O. (2012). Epidemiological aspects and world distribution of HTLV-1 infection. Frontiers in Microbiology." },
-    { text: "Gotuzzo E, et al. (2010). Twenty-five years of research on HTLV-1 at the Instituto de Medicina Tropical Alexander von Humboldt in Peru. Revista Peruana de Medicina Experimental y Salud Pública, 27(3), 443-455." },
-    { text: "Gotuzzo E, et al. (2023). HTLV-1-associated myelopathy and oncogenesis in the Andean region: Decades of clinical evidence. Current Opinion in HIV and AIDS." },
-    { text: "Grassi MF, et al. (2011). HTLV-1 proviral load as a biomarker for disease progression and transmission risk. Retrovirology." },
-    { text: "Hinuma Y, et al. (1981). Adult T-cell leukemia: antigen in an ATL cell line and detection of antibodies in human sera. PNAS, 78(10), 6476-6480." },
-    { text: "Iwanaga M, et al. (2010). High proviral load of HTLV-1 is a key risk factor for development of adult T-cell leukemia/lymphoma. Blood, 116(8), 1211-1219." },
-    { text: "James C, et al. (2020). Global retroviral prevalence and epidemiology. The Lancet Global Health." },
-    { text: "Jerome KR, et al. (2021). Gene editing of latent proviral reservoirs. Journal of Clinical Investigation." },
-    { text: "Johnston C & Corey L. (2016). Retroviral infections and clinical trials overview. JAMA." },
-    { text: "Johnston C, et al. (2014). Retroviral vaccine prospects and cellular immunity. Current Opinion in Virology." },
-    { text: "Looker KJ, et al. (2015). Global viral infection estimates. PLOS ONE." },
-    { text: "Martin F, et al. (2018). An open letter to the WHO: Support the global elimination of HTLV-1. The Lancet, 391(10133), 1893-1894." },
-    { text: "Matsuoka M & Green PL. (2009). The HBZ gene, a key player in HTLV-1 pathogenesis. Retrovirology, 6, 71." },
-    { text: "Matsuoka M & Jeang KT. (2011). Human T-cell leukemia virus type 1 (HTLV-1) and leukemogenesis. Nature Reviews Cancer, 7(4), 270-280." },
-    { text: "Organización Mundial de la Salud (OMS). (2021). Human T-lymphotropic virus type 1: Technical report and global public health priority. WHO Guidelines." },
-    { text: "Paiva A & Casseb J. (2015). Origin and prevalence of HTLV-1 and HTLV-2 in Latin America. Revista do Instituto de Medicina Tropical de São Paulo." },
-    { text: "Poiesz BJ, et al. (1980). Detection and isolation of type C retrovirus particles from fresh and cultured lymphocytes. PNAS, 77(12), 7415-7419." },
-    { text: "Raza A, et al. (2022). CRISPR/Cas9-mediated gene editing in latent retroviral reservoirs: Applications in HTLV-1. Gene Therapy." },
-    { text: "Rosadas C & Taylor GP. (2019). Mother-to-child HTLV-1 transmission: Inaction is no longer an option. The Lancet Infectious Diseases, 19(4), 355-357." },
-    { text: "Rosadas C, et al. (2020). Universal antenatal screening for HTLV-1: A health economic consensus. Lancet Global Health." },
-    { text: "Satou Y, et al. (2016). HTLV-1 proviral integration and clonal expansion dynamics in vivo. Nature Microbiology." },
-    { text: "Tagaya Y, et al. (2023). Next-generation therapeutics and vaccine hurdles for HTLV-1. Frontiers in Immunology." },
-    { text: "Taylor GP, et al. (2021). Management and therapy of HTLV-1 infection and its associated diseases. Retrovirology." },
-    { text: "Tronstein E, et al. (2011). Viral shedding patterns and proviral dynamics. JAMA." },
-    { text: "Tsukasaki K, et al. (2020). Clinical practice guidelines for adult T-cell leukemia/lymphoma. International Journal of Hematology." },
-    { text: "Wald A, et al. (2001). Condoms and retroviral transmission prevention. JAMA." },
-    { text: "Watanabe T. (2017). Current status of HTLV-1 infection and its associated diseases. Cancer Science, 108(4), 589-594." },
-    { text: "World Health Organization (WHO). (2023). Human T-Lymphotropic Virus Fact Sheet and Global Report." },
-    { text: "Yamano Y & Sato T. (2012). Clinical pathophysiology and therapeutic strategies for HAM/TSP. Clinical and Experimental Neuroimmunology." },
-    { text: "Zunt JR, et al. (2006). HTLV-1 and HTLV-2 infection in Peru: Transmission, clinical associations, and public health impact. Journal of Infectious Diseases." }
-  ];
-
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -195,21 +150,6 @@ export default function FAQsPage() {
             color: #111111 !important;
             line-height: 1.45 !important;
           }
-          .print-ref-title {
-            font-size: 18pt !important;
-            font-weight: 700 !important;
-            color: #000000 !important;
-            margin-top: 24px !important;
-            margin-bottom: 12px !important;
-          }
-          .print-ref-item {
-            font-size: 8.8pt !important;
-            color: #222222 !important;
-            margin-bottom: 8px !important;
-            line-height: 1.35 !important;
-            page-break-inside: avoid !important;
-            break-inside: avoid !important;
-          }
         }
       `}</style>
 
@@ -249,7 +189,7 @@ export default function FAQsPage() {
           {/* Título Principal */}
           <header className="mb-8 print:mb-6">
             <h1 className="font-bold text-[28px] sm:text-[34px] md:text-[38px] text-[#111827] leading-[1.2] mb-4">
-              Virus Linfotrópico de Células T Humanas (HTLV): Frequently Asked Questions
+              Virus Linfotrópico de Células T Humanas (HTLV): Preguntas Frecuentes
             </h1>
             
             <p className="web-only text-[15px] sm:text-[16px] text-[#4b5563] leading-relaxed mb-6">
@@ -263,7 +203,7 @@ export default function FAQsPage() {
                 className="bg-[#0284c7] hover:bg-[#0369a1] text-white px-5 py-2.5 rounded-lg font-semibold text-[14px] shadow-sm transition-all flex items-center gap-2 cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[19px]">download</span>
-                Download PDF
+                Descargar PDF
               </button>
 
               <button
@@ -290,20 +230,6 @@ export default function FAQsPage() {
                 </p>
               </article>
             ))}
-          </section>
-
-          {/* Sección de Referencias Bibliográficas APA */}
-          <section className="mt-14 pt-8 border-t border-[#e5e7eb] print:mt-8 print:pt-4">
-            <h2 className="print-ref-title font-bold text-[24px] sm:text-[28px] text-[#111827] mb-6 print:mb-3">
-              References
-            </h2>
-            <div className="space-y-3.5 print:space-y-2">
-              {references.map((ref, idx) => (
-                <p key={idx} className="print-ref-item text-[13.5px] sm:text-[14.5px] text-[#4b5563] leading-relaxed">
-                  {ref.text}
-                </p>
-              ))}
-            </div>
           </section>
 
           {/* Pie de página con Deslinde Legal y Normativo */}
