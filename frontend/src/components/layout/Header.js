@@ -111,13 +111,13 @@ export default function Header() {
                 {/* Logo Principal Oficial (Fondo contrastante no blanco ni negro oscuro, pegado a la izquierda) */}
                 <Link 
                     href="/" 
-                    className="h-full bg-[#E5EDF2] px-3 sm:px-6 flex items-center justify-center shrink-0 border-r border-[#CBD5E1] shadow-xs hover:bg-[#DCE6ED] transition-colors py-1" 
+                    className="h-full bg-[#E5EDF2] px-2 sm:px-3 flex items-center justify-center shrink-0 border-r border-[#CBD5E1] shadow-xs hover:bg-[#DCE6ED] transition-colors py-0.5" 
                     title={lang === 'es' ? "Ir al Inicio" : "Go to Home"}
                 >
                     <img 
                         src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
                         alt={lang === 'es' ? "Logo Oficial Red HTLV" : "Official HTLV Network Logo"}
-                        className="h-[70px] sm:h-[74px] w-auto object-contain max-w-[280px] sm:max-w-[360px]"
+                        className="h-[78px] sm:h-[82px] w-auto object-contain max-w-[320px] sm:max-w-[420px]"
                     />
                 </Link>
 
