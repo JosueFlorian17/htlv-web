@@ -194,9 +194,6 @@ function AboutContent() {
         
         {/* Cabecera con 4 Pestañas */}
         <div className="pb-6 mb-8 border-b border-slate-200">
-          <span className="text-xs font-semibold uppercase tracking-wider text-[#087E8B] block mb-1">
-            {lang === 'es' ? 'Acerca de la Red' : 'About the Network'}
-          </span>
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'quienes-somos' && (lang === 'es' ? 'Quiénes Somos y Objetivos' : 'About Us & Objectives')}
             {activeTab === 'estructura' && (lang === 'es' ? 'Estructura y Gobernanza' : 'Structure & Governance')}
@@ -211,9 +208,6 @@ function AboutContent() {
             <div className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
                 <div>
-                  <span className="px-2.5 py-0.5 bg-[#A10D3A] text-white text-xs font-semibold uppercase rounded-md inline-block mb-2">
-                    RIII-HTLV
-                  </span>
                   <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                     {lang === 'es' ? 'Quiénes Somos' : 'Who We Are'}
                   </h2>
@@ -477,27 +471,17 @@ function AboutContent() {
                     {node.members.map((member, mIdx) => (
                       <div 
                         key={mIdx}
-                        className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-[#087E8B] transition-colors flex items-center gap-3.5 group"
+                        className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-[#087E8B] transition-colors flex flex-col justify-center space-y-1 group"
                       >
-                        <div className="w-14 h-14 rounded-lg overflow-hidden border border-[#003B49]/30 shrink-0 bg-[#087E8B]/10">
-                          <img 
-                            src={member.image} 
-                            alt={member.name} 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-
-                        <div className="space-y-0.5">
-                          <h4 className="text-sm font-bold text-[#003B49] group-hover:text-[#A10D3A] transition-colors">
-                            {member.name}
-                          </h4>
-                          <span className="inline-block text-xs font-semibold text-[#A10D3A] bg-[#A10D3A]/10 px-2 py-0.5 rounded">
-                            {member.role}
-                          </span>
-                          <p className="text-xs text-slate-500">
-                            {member.title}
-                          </p>
-                        </div>
+                        <h4 className="text-sm font-bold text-[#003B49] group-hover:text-[#A10D3A] transition-colors">
+                          {member.name}
+                        </h4>
+                        <p className="text-xs font-semibold text-[#A10D3A]">
+                          {member.role}
+                        </p>
+                        <p className="text-xs text-slate-500">
+                          {member.title}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -513,7 +497,7 @@ function AboutContent() {
           </div>
         )}
 
-        {/* 4. ALIADOS ESTRATÉGICOS */}
+        {/* 4. ALIADOS ESTRATÉGICOS (Sin chips ni subtítulos) */}
         {activeTab === 'aliados' && (
           <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
             <div className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6">
@@ -531,10 +515,7 @@ function AboutContent() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-5 bg-slate-50 border border-slate-200 rounded-lg space-y-4 flex flex-col justify-between">
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[#087E8B] block">
-                      Gobernanza
-                    </span>
-                    <h4 className="text-base font-bold text-[#003B49] mt-1">
+                    <h4 className="text-base font-bold text-[#003B49]">
                       {lang === 'es' ? 'Reglamento Interno de la Red' : 'Internal Network Bylaws'}
                     </h4>
                     <p className="text-sm text-slate-600 mt-2">
@@ -543,21 +524,18 @@ function AboutContent() {
                         : 'Guidelines on joint authorship, committee operations, and new node admissions.'}
                     </p>
                   </div>
-                  <button 
-                    onClick={() => alert('Documento normativo disponible vía secretaría académica.')}
+                  <Link 
+                    href="/contact"
                     className="w-full bg-[#003B49] hover:bg-[#002B36] text-white py-2.5 px-4 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#087E8B]"
                   >
-                    <span className="material-symbols-outlined text-[18px]">download</span>
-                    <span>{lang === 'es' ? 'Consultar Reglamento' : 'Download Bylaws'}</span>
-                  </button>
+                    <span className="material-symbols-outlined text-[18px]">description</span>
+                    <span>{lang === 'es' ? 'Solicitar Reglamento' : 'Request Bylaws'}</span>
+                  </Link>
                 </div>
 
                 <div className="p-5 bg-slate-50 border border-slate-200 rounded-lg space-y-4 flex flex-col justify-between">
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[#A10D3A] block">
-                      Convenios
-                    </span>
-                    <h4 className="text-base font-bold text-[#003B49] mt-1">
+                    <h4 className="text-base font-bold text-[#003B49]">
                       {lang === 'es' ? 'Convenio Marco de Colaboración' : 'Framework Collaboration Agreement'}
                     </h4>
                     <p className="text-sm text-slate-600 mt-2">
@@ -566,13 +544,13 @@ function AboutContent() {
                         : 'Inter-institutional agreement for researcher mobility and multicenter projects.'}
                     </p>
                   </div>
-                  <button 
-                    onClick={() => alert('Convenio disponible a través de la coordinación institucional.')}
+                  <Link 
+                    href="/contact"
                     className="w-full bg-[#A10D3A] hover:bg-[#850a2f] text-white py-2.5 px-4 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A10D3A]"
                   >
-                    <span className="material-symbols-outlined text-[18px]">download</span>
-                    <span>{lang === 'es' ? 'Consultar Convenio Marco' : 'Download Agreement'}</span>
-                  </button>
+                    <span className="material-symbols-outlined text-[18px]">handshake</span>
+                    <span>{lang === 'es' ? 'Consultar Adhesión' : 'Inquire Partnership'}</span>
+                  </Link>
                 </div>
               </div>
             </div>

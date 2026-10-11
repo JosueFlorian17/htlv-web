@@ -90,13 +90,10 @@ export default function PublicacionesPage() {
         {/* Cabecera Estilo QuEST LAC */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b-2 border-[#003B49]/15">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block mb-1">
-              {lang === 'es' ? 'Evidencia Científica' : 'Scientific Evidence'}
-            </span>
             <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
               {lang === 'es' ? 'Publicaciones' : 'Publications'}
             </h1>
-            <p className="text-sm text-slate-600 mt-1">
+            <p className="text-sm sm:text-base text-slate-600 mt-1">
               {lang === 'es' ? 'Artículos indexados elaborados por miembros de la Red RIII-HTLV.' : 'Peer-reviewed articles authored by members of the RIII-HTLV Network.'}
             </p>
           </div>
@@ -162,16 +159,16 @@ export default function PublicacionesPage() {
                     </button>
                   </div>
 
-                  {/* Cuadro Desplegable de Resumen (Solo enlace al DOI) */}
+                  {/* Cuadro Desplegable de Resumen (Sin borde izquierdo de color) */}
                   {isOpen && (
-                    <div className="mt-3 p-5 sm:p-6 bg-[#fffdf5] border-l-4 border-[#E5A400] border-y border-r border-amber-200/60 rounded-r-xl shadow-xs space-y-3 animate-fadeIn">
+                    <div className="mt-3 p-5 sm:p-6 bg-[#fffdf5] border border-amber-200/80 rounded-xl shadow-xs space-y-3 animate-fadeIn">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold uppercase tracking-wider text-[#b38000]">
-                          {lang === 'es' ? 'Resumen del Artículo' : 'Article Abstract'} • {pub.journal}
+                        <span className="text-xs font-semibold text-amber-900">
+                          {pub.journal}
                         </span>
                         <button
                           onClick={() => toggleAbstract(pub.id)}
-                          className="text-xs font-semibold text-[#b38000] hover:underline cursor-pointer"
+                          className="text-xs font-semibold text-amber-800 hover:underline cursor-pointer"
                         >
                           {lang === 'es' ? 'Cerrar' : 'Close'} [x]
                         </button>

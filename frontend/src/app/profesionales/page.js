@@ -97,9 +97,6 @@ function ProfesionalesContent() {
         
         {/* Cabecera con Pestañas Horizontales */}
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block mb-1">
-            {lang === 'es' ? 'Educación Médica & Guías' : 'Medical Education & Guidelines'}
-          </span>
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'recursos' && (lang === 'es' ? 'Recursos Clínicos y Guías Diagnósticas' : 'Clinical Resources & Guidelines')}
             {activeTab === 'webinars' && (lang === 'es' ? 'Webinars y Conferencias Internacionales' : 'International Webinars & Conferences')}
@@ -107,16 +104,16 @@ function ProfesionalesContent() {
           </h1>
         </div>
 
-        {/* 1. RECURSOS CLÍNICOS */}
+        {/* 1. RECURSOS CLÍNICOS (Sin chips) */}
         {activeTab === 'recursos' && (
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {clinicalGuides.map((guide, idx) => (
                 <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
                   <div className="space-y-3">
-                    <span className="text-xs font-semibold text-[#A10D3A] bg-[#A10D3A]/10 px-2.5 py-0.5 rounded-md inline-block">
+                    <p className="text-xs font-semibold text-[#A10D3A]">
                       {guide.year} • {guide.institution.split(' - ')[0]}
-                    </span>
+                    </p>
                     <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
                       {guide.title}
                     </h3>
@@ -125,13 +122,13 @@ function ProfesionalesContent() {
                     </p>
                   </div>
                   <div>
-                    <button
-                      onClick={() => alert(`Descargando: ${guide.title}`)}
+                    <Link
+                      href="/contact"
                       className="w-full bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                     >
                       <span className="material-symbols-outlined text-base">download</span>
                       <span>{lang === 'es' ? 'Descargar Guía Oficial' : 'Download Guideline'}</span>
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -139,15 +136,15 @@ function ProfesionalesContent() {
           </div>
         )}
 
-        {/* 2. WEBINARS */}
+        {/* 2. WEBINARS (Sin chips) */}
         {activeTab === 'webinars' && (
           <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
             {webinars.map((webinar, idx) => (
               <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6">
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#A10D3A] block mb-1">
+                  <p className="text-xs font-semibold text-slate-500 mb-1">
                     {webinar.date} • {webinar.duration}
-                  </span>
+                  </p>
                   <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                     {webinar.title}
                   </h3>
@@ -173,16 +170,16 @@ function ProfesionalesContent() {
           </div>
         )}
 
-        {/* 3. CURSOS CORTOS */}
+        {/* 3. CURSOS CORTOS (Sin chips) */}
         {activeTab === 'cursos' && (
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {courses.map((course, idx) => (
                 <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
                   <div className="space-y-3">
-                    <span className="px-2.5 py-1 bg-[#087E8B]/10 text-[#087E8B] text-xs font-semibold uppercase tracking-wider rounded-md inline-block">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[#087E8B]">
                       {course.modality}
-                    </span>
+                    </p>
                     <h3 className="text-xl font-bold text-[#003B49] leading-snug">
                       {course.title}
                     </h3>
@@ -191,9 +188,9 @@ function ProfesionalesContent() {
                     </p>
 
                     <div className="space-y-2 pt-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#003B49] block">
+                      <p className="text-xs font-bold uppercase tracking-wider text-[#003B49]">
                         {lang === 'es' ? 'Módulos Temáticos:' : 'Syllabus:'}
-                      </span>
+                      </p>
                       {course.modules.map((m, mIdx) => (
                         <div key={mIdx} className="flex items-center gap-2 text-sm text-slate-700">
                           <span className="material-symbols-outlined text-base text-[#E5A400]">check_circle</span>

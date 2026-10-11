@@ -176,9 +176,6 @@ function HTLVContent() {
         {/* Cabecera de Página */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 mb-8 border-b border-slate-200">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#087E8B] block mb-1">
-              {lang === 'es' ? 'Portal Informativo Oficial' : 'Official Educational Hub'}
-            </span>
             <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
               {activeTab === 'que-es' ? (lang === 'es' ? '¿Qué es el HTLV?' : 'What is HTLV?') : (lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions')}
             </h1>
@@ -231,9 +228,6 @@ function HTLVContent() {
                 
                 {activeTopic === 'definicion' && (
                   <div className="space-y-4 animate-fadeIn">
-                    <span className="px-2.5 py-0.5 bg-[#003B49]/10 text-[#003B49] text-xs font-semibold uppercase rounded-md inline-block">
-                      Biología Viral
-                    </span>
                     <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                       {lang === 'es' ? 'Naturaleza Retroviral del HTLV' : 'Retroviral Nature of HTLV'}
                     </h3>
@@ -250,9 +244,6 @@ function HTLVContent() {
 
                 {activeTopic === 'tipos' && (
                   <div className="space-y-4 animate-fadeIn">
-                    <span className="px-2.5 py-0.5 bg-[#087E8B]/10 text-[#087E8B] text-xs font-semibold uppercase rounded-md inline-block">
-                      Clasificación
-                    </span>
                     <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                       {lang === 'es' ? 'Diferencias entre HTLV-1 y HTLV-2' : 'Differences between HTLV-1 & HTLV-2'}
                     </h3>
@@ -279,9 +270,6 @@ function HTLVContent() {
 
                 {activeTopic === 'espectro' && (
                   <div className="space-y-4 animate-fadeIn">
-                    <span className="px-2.5 py-0.5 bg-[#E5A400] text-[#002538] text-xs font-semibold uppercase rounded-md inline-block">
-                      Evolución
-                    </span>
                     <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                       {lang === 'es' ? 'La Regla del 90/10' : 'The 90/10 Rule'}
                     </h3>
@@ -302,9 +290,6 @@ function HTLVContent() {
 
                 {activeTopic === 'transmision' && (
                   <div className="space-y-4 animate-fadeIn">
-                    <span className="px-2.5 py-0.5 bg-[#087E8B]/10 text-[#087E8B] text-xs font-semibold uppercase rounded-md inline-block">
-                      Vías de Transmisión
-                    </span>
                     <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                       {lang === 'es' ? '¿Cómo se Transmite?' : 'How is it Transmitted?'}
                     </h3>

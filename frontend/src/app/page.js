@@ -124,9 +124,6 @@ export default function Home() {
             <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
               
               <div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#087E8B] block mb-1">
-                  {lang === 'es' ? 'Presentación de la Red' : 'Network Overview'}
-                </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#003B49] leading-tight">
                   {lang === 'es' ? '¿Qué es la Red RIII-HTLV?' : 'What is the RIII-HTLV Network?'}
                 </h2>

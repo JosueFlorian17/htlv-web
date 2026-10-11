@@ -53,9 +53,6 @@ export default function ContactPage() {
         <section className="pb-6 border-b-2 border-[#003B49]/15 mb-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block mb-1">
-                {lang === 'es' ? 'Canal Institucional' : 'Institutional Channel'}
-              </span>
               <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
                 {lang === 'es' ? 'Contacto' : 'Contact'}
               </h1>

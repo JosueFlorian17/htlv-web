@@ -99,9 +99,6 @@ function ProyectosContent() {
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block mb-1">
-            {lang === 'es' ? 'Ciencia & Innovación' : 'Science & Innovation'}
-          </span>
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'investigacion' && (lang === 'es' ? 'Proyectos de Investigación Científica' : 'Scientific Research Projects')}
             {activeTab === 'avances' && (lang === 'es' ? 'Resultados, Hitos y Avances Clínicos' : 'Results, Milestones & Breakthroughs')}
@@ -116,13 +113,9 @@ function ProyectosContent() {
               {researchProjects.map((proj, idx) => (
                 <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="px-2.5 py-0.5 bg-[#A10D3A]/10 text-[#A10D3A] text-xs font-semibold rounded-md">
-                        {proj.status}
-                      </span>
-                      <span className="text-xs font-medium text-slate-500">
-                        {proj.funding}
-                      </span>
+                    <div className="flex items-center justify-between gap-2 text-xs font-medium text-slate-500">
+                      <span>{proj.status}</span>
+                      <span>{proj.funding}</span>
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
                       {proj.title}
@@ -150,19 +143,15 @@ function ProyectosContent() {
           </div>
         )}
 
-        {/* 2. RESULTADOS Y AVANCES */}
+        {/* 2. RESULTADOS Y AVANCES (Sin chips) */}
         {activeTab === 'avances' && (
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {resultsList.map((res, idx) => (
                 <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-4">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="px-2.5 py-1 bg-[#E5A400] text-[#003B49] text-xs font-bold rounded-md uppercase">
-                      {res.impact}
-                    </span>
-                    <span className="text-xs font-bold text-[#087E8B]">
-                      {res.achievement}
-                    </span>
+                  <div className="flex items-center justify-between gap-2 text-xs font-semibold text-slate-500">
+                    <span>{res.impact}</span>
+                    <span className="text-[#087E8B]">{res.achievement}</span>
                   </div>
                   <h3 className="text-xl font-bold text-[#003B49] leading-snug">
                     {res.title}
@@ -176,31 +165,31 @@ function ProyectosContent() {
           </div>
         )}
 
-        {/* 3. OPORTUNIDADES PARA TESISTAS */}
+        {/* 3. OPORTUNIDADES PARA TESISTAS (Con más separación del título, sin chips, y perfil todo en negrita) */}
         {activeTab === 'tesistas' && (
-          <div className="space-y-6 animate-fadeIn">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="mt-8 space-y-8 animate-fadeIn">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {thesisOpportunities.map((opp, idx) => (
                 <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
                   <div className="space-y-3">
-                    <span className="px-2.5 py-1 bg-[#003B49] text-white text-xs font-semibold rounded-md uppercase">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                       {opp.area}
-                    </span>
+                    </p>
                     <h3 className="text-xl font-bold text-[#003B49] leading-snug">
                       {opp.title}
                     </h3>
                     <p className="text-xs font-semibold text-[#A10D3A]">
                       {lang === 'es' ? 'Sede:' : 'Location:'} {opp.location}
                     </p>
-                    <p className="text-sm text-slate-600">
-                      <strong>{lang === 'es' ? 'Perfil:' : 'Profile:'}</strong> {opp.requirements}
+                    <p className="text-sm font-bold text-slate-900 leading-snug">
+                      {lang === 'es' ? 'Perfil: ' : 'Profile: '}{opp.requirements}
                     </p>
                     <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                       {opp.desc}
                     </p>
                   </div>
 
-                  <div>
+                  <div className="pt-2">
                     <Link
                       href="/contact"
                       className="inline-flex items-center gap-2 bg-[#087E8B] hover:bg-[#066772] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-5 rounded-lg text-sm transition-colors shadow-sm"
