@@ -212,11 +212,11 @@ function AboutContent() {
                     {lang === 'es' ? 'Quiénes Somos' : 'Who We Are'}
                   </h2>
                 </div>
-                <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 self-start sm:self-auto">
+                <div className="self-start sm:self-auto">
                   <img 
                     src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
                     alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
-                    className="h-10 sm:h-12 w-auto object-contain"
+                    className="h-16 sm:h-20 w-auto object-contain"
                   />
                 </div>
               </div>
