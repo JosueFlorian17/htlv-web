@@ -73,6 +73,7 @@ function AboutContent() {
       id: 'pasteur',
       title: 'Institut Pasteur',
       subtitle: lang === 'es' ? 'Centro Afiliado - Francia' : 'Affiliated Center - France',
+      country: lang === 'es' ? 'Francia' : 'France',
       flag: '🇫🇷',
       description: lang === 'es'
         ? 'Institución miembro de la Red. Centro de referencia en oncogénesis viral, mecanismos de leucemogénesis en ATL y diagnóstico retrovirológico avanzado.'
@@ -84,6 +85,7 @@ function AboutContent() {
       id: 'fiocruz',
       title: 'Fundação Oswaldo Cruz (Fiocruz)',
       subtitle: lang === 'es' ? 'Centro Afiliado - Brasil' : 'Affiliated Center - Brazil',
+      country: lang === 'es' ? 'Brasil' : 'Brazil',
       flag: '🇧🇷',
       description: lang === 'es'
         ? 'Institución miembro de la Red. Líder en vigilancia epidemiológica comunitaria, estudios de coinfecciones tropicales y salud pública en Sudamérica.'
@@ -95,6 +97,7 @@ function AboutContent() {
       id: 'isciii',
       title: 'Instituto de Salud Carlos III (ISCIII)',
       subtitle: lang === 'es' ? 'Centro Afiliado - España' : 'Affiliated Center - Spain',
+      country: lang === 'es' ? 'España' : 'Spain',
       flag: '🇪🇸',
       description: lang === 'es'
         ? 'Institución miembro de la Red. Centro Nacional de Microbiología en Madrid, registro de HTLV y evaluación de cohortes en la cuenca mediterránea.'
@@ -106,6 +109,7 @@ function AboutContent() {
       id: 'stmarianna',
       title: 'St. Marianna University School of Medicine',
       subtitle: lang === 'es' ? 'Centro Afiliado - Japón' : 'Affiliated Center - Japan',
+      country: lang === 'es' ? 'Japón' : 'Japan',
       flag: '🇯🇵',
       description: lang === 'es'
         ? 'Institución miembro de la Red. Centro de excelencia internacional en ensayos clínicos terapéuticos y biomarcadores inmunológicos en HAM/TSP.'
@@ -275,106 +279,109 @@ function AboutContent() {
 
             {/* Diagrama directo sin borde ni nada exterior */}
             <div className="w-full relative overflow-x-auto py-4">
-              <div className="min-w-[700px] flex flex-col items-center">
+              <div className="min-w-[760px] flex flex-col items-center">
                 
                 {/* NIVEL 1: Comité Directivo */}
                 <div 
                   onClick={() => setSelectedNode(structureNodes.directivo)}
-                  className="w-full max-w-[500px] bg-[#002538] hover:bg-[#00314a] border border-[#002538] p-5 rounded-xl text-center cursor-pointer shadow-xs transition-colors text-white"
+                  className="w-full max-w-[560px] bg-[#1A4B82] p-5 sm:p-6 rounded-2xl text-center cursor-pointer shadow-sm text-white transition-opacity hover:opacity-95"
                 >
-                  <h4 className="text-[19px] font-black tracking-tight text-white">
+                  <h4 className="text-lg sm:text-xl font-bold tracking-tight text-white">
                     {structureNodes.directivo.title}
                   </h4>
-                  <p className="text-[12px] uppercase font-bold text-[#E5A400] mt-1">
+                  <p className="text-sm font-bold text-white/95 mt-1.5">
                     {lang === 'es' ? 'Directores' : 'Directors'}
                   </p>
-                  <p className="text-[14px] text-white/95 font-medium">
+                  <p className="text-sm text-white/90 font-medium mt-0.5">
                     Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor
                   </p>
                 </div>
 
-                {/* CONECTOR ORTOGONAL 1 (Vertical desde Nivel 1) */}
-                <div className="w-0.5 h-6 bg-gray-400"></div>
+                {/* CONECTOR ENTRE NIVEL 1 Y NIVEL 2 */}
+                <div className="w-0.5 h-6 bg-[#54738C]"></div>
 
                 {/* BARRA HORIZONTAL QUE CONECTA CAT Y GEPR */}
-                <div className="w-full max-w-[680px] relative">
-                  <div className="h-0.5 bg-gray-400 w-full"></div>
+                <div className="w-full max-w-[700px] relative">
+                  <div className="h-0.5 bg-[#54738C] w-full"></div>
                   {/* Bajada izquierda a CAT */}
-                  <div className="absolute left-0 top-0 w-0.5 h-6 bg-gray-400"></div>
+                  <div className="absolute left-[25%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
                   {/* Bajada derecha a GEPR */}
-                  <div className="absolute right-0 top-0 w-0.5 h-6 bg-gray-400"></div>
+                  <div className="absolute left-[75%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
                 </div>
 
-                {/* NIVEL 2: Comités Asesores (CAT y GEPR) */}
-                <div className="grid grid-cols-2 gap-8 w-full max-w-[680px] pt-6">
-                  
-                  {/* CAT (Tono ámbar suave sobre fondo claro) */}
-                  <div 
-                    onClick={() => setSelectedNode(structureNodes.cat)}
-                    className="bg-[#FFF9F0] hover:bg-[#FFF3E0] border-2 border-[#D98A2C] p-4.5 rounded-xl text-center cursor-pointer shadow-xs transition-colors"
-                  >
-                    <h5 className="text-[16px] font-black text-[#2D1B08]">
-                      {structureNodes.cat.title}
-                    </h5>
-                    <p className="text-[13px] text-[#7A4B13] mt-1 font-medium">
-                      {structureNodes.cat.subtitle}
-                    </p>
-                  </div>
+                {/* NIVEL 2: Comités Asesores (CAT y GEPR) con línea vertical central */}
+                <div className="relative w-full max-w-[700px]">
+                  {/* Línea vertical continua que cruza por el centro conectando directo con Centros Core */}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-[#54738C]"></div>
 
-                  {/* GEPR (Tono vino suave sobre fondo claro) */}
-                  <div 
-                    onClick={() => setSelectedNode(structureNodes.gepr)}
-                    className="bg-[#FFF0F3] hover:bg-[#FFE6EC] border-2 border-[#A10D3A] p-4.5 rounded-xl text-center cursor-pointer shadow-xs transition-colors"
-                  >
-                    <h5 className="text-[16px] font-black text-[#330814]">
-                      {structureNodes.gepr.title}
-                    </h5>
-                    <p className="text-[13px] text-[#7A132C] mt-1 font-medium">
-                      {structureNodes.gepr.subtitle}
-                    </p>
-                  </div>
+                  <div className="grid grid-cols-2 gap-8 w-full pt-6 relative z-10">
+                    {/* CAT */}
+                    <div 
+                      onClick={() => setSelectedNode(structureNodes.cat)}
+                      className="bg-[#ED7D31] p-4.5 rounded-xl text-center cursor-pointer shadow-sm transition-opacity hover:opacity-95 text-white flex flex-col justify-center min-h-[92px]"
+                    >
+                      <h5 className="text-base font-bold text-white leading-snug">
+                        {structureNodes.cat.title}
+                      </h5>
+                      <p className="text-xs text-white/95 mt-1 font-medium">
+                        {structureNodes.cat.subtitle}
+                      </p>
+                    </div>
 
+                    {/* GEPR */}
+                    <div 
+                      onClick={() => setSelectedNode(structureNodes.gepr)}
+                      className="bg-[#ED7D31] p-4.5 rounded-xl text-center cursor-pointer shadow-sm transition-opacity hover:opacity-95 text-white flex flex-col justify-center min-h-[92px]"
+                    >
+                      <h5 className="text-base font-bold text-white leading-snug">
+                        {structureNodes.gepr.title}
+                      </h5>
+                      <p className="text-xs text-white/95 mt-1 font-medium">
+                        {structureNodes.gepr.subtitle}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                {/* CONECTOR ORTOGONAL 2 (Vertical desde centro hacia Centros Core) */}
-                <div className="w-0.5 h-8 bg-gray-400"></div>
+                {/* CONECTOR VERTICAL DIRECTO A CENTROS CORE */}
+                <div className="w-0.5 h-8 bg-[#54738C]"></div>
 
                 {/* NIVEL 3: Centros Core de Coordinación */}
                 <div 
                   onClick={() => setSelectedNode(structureNodes.core)}
-                  className="w-full max-w-[580px] bg-[#003B49] hover:bg-[#004758] border border-[#003B49] p-5 rounded-xl text-center cursor-pointer shadow-xs transition-colors text-white"
+                  className="w-full max-w-[640px] bg-[#2E75B6] p-5 sm:p-6 rounded-2xl text-center cursor-pointer shadow-sm text-white transition-opacity hover:opacity-95"
                 >
-                  <div className="flex items-center justify-center gap-2 mb-1">
-                    <span className="text-lg">🇵🇪</span>
-                    <h4 className="text-[18px] font-black text-white">
-                      {structureNodes.core.title}
-                    </h4>
-                    <span className="text-lg">🇬🇧</span>
+                  <div className="flex items-center justify-between px-3 mb-2">
+                    <span className="text-2xl drop-shadow-xs">🇵🇪</span>
+                    <span className="text-2xl drop-shadow-xs">🇬🇧</span>
                   </div>
-                  <p className="text-[13.5px] text-white/95">
+                  <h4 className="text-lg sm:text-xl font-bold text-white tracking-wide">
+                    {lang === 'es' ? 'Centros Core' : 'Core Centers'}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-white/95 font-medium mt-1.5 leading-snug">
                     Instituto de Medicina Tropical Alexander von Humboldt (UPCH) – Perú
                   </p>
-                  <p className="text-[13.5px] text-white/95">
+                  <p className="text-xs sm:text-sm text-white/95 font-medium leading-snug">
                     National Centre for Human Retrovirology, Imperial College London – Reino Unido
                   </p>
                 </div>
 
-                {/* CONECTOR ORTOGONAL 3 (Vertical hacia la barra horizontal de Nodos Afiliados) */}
-                <div className="w-0.5 h-8 bg-gray-400"></div>
+                {/* CONECTOR HACIA CENTROS AFILIADOS */}
+                <div className="w-0.5 h-8 bg-[#54738C]"></div>
 
                 {/* BARRA HORIZONTAL CONECTANDO LOS 4 CENTROS AFILIADOS */}
-                <div className="w-full max-w-[880px] relative">
-                  <div className="h-0.5 bg-gray-400 w-full"></div>
-                  {/* 4 bajadas verticales alineadas a cada tarjeta */}
-                  <div className="absolute left-[12.5%] top-0 w-0.5 h-6 bg-gray-400"></div>
-                  <div className="absolute left-[37.5%] top-0 w-0.5 h-6 bg-gray-400"></div>
-                  <div className="absolute left-[62.5%] top-0 w-0.5 h-6 bg-gray-400"></div>
-                  <div className="absolute left-[87.5%] top-0 w-0.5 h-6 bg-gray-400"></div>
+                <div className="w-full max-w-[940px] relative">
+                  <div className="h-0.5 bg-[#54738C] w-full"></div>
+                  {/* 4 bajadas verticales alineadas exactamente al centro de cada tarjeta */}
+                  <div className="absolute left-[12.5%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
+                  <div className="absolute left-[37.5%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
+                  <div className="absolute left-[62.5%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
+                  <div className="absolute left-[87.5%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
                 </div>
 
                 {/* NIVEL 4: Centros Afiliados (4 columnas) */}
-                <div className="w-full max-w-[880px] pt-6">
-                  <div className="grid grid-cols-4 gap-4">
+                <div className="w-full max-w-[940px] pt-6">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
                     {[
                       structureNodes.pasteur,
                       structureNodes.fiocruz,
@@ -384,19 +391,21 @@ function AboutContent() {
                       <div 
                         key={i}
                         onClick={() => setSelectedNode(node)}
-                        className="bg-white hover:border-[#087E8B] border-2 border-gray-200 p-4 rounded-xl text-center cursor-pointer transition-colors flex flex-col justify-between min-h-[140px] shadow-2xs"
+                        className="bg-[#DCE4EC] hover:bg-[#D3DEE8] p-4 sm:p-5 rounded-2xl text-center cursor-pointer transition-colors flex flex-col justify-between min-h-[160px] shadow-2xs"
                       >
-                        <div>
-                          <div className="text-xl mb-1">{node.flag}</div>
-                          <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block">
+                        <div className="flex items-center justify-start w-full mb-1">
+                          <span className="text-2xl leading-none">{node.flag}</span>
+                        </div>
+                        <div className="my-auto py-1">
+                          <span className="text-xs sm:text-[13px] font-bold text-[#1A4B82] uppercase tracking-wide block">
                             {lang === 'es' ? 'Centro Afiliado' : 'Affiliated Center'}
                           </span>
-                          <h6 className="font-bold text-[13.5px] text-[#002538] mt-1 leading-snug">
+                          <h6 className="font-semibold text-xs text-slate-700 mt-1 leading-snug">
                             {node.title}
                           </h6>
                         </div>
-                        <span className="text-[12px] text-gray-500 mt-2 block font-medium">
-                          {node.subtitle.split(' - ')[1] || node.subtitle}
+                        <span className="text-xs sm:text-sm font-bold italic text-[#1A4B82] mt-2 block">
+                          {node.country}
                         </span>
                       </div>
                     ))}
