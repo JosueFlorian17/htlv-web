@@ -106,105 +106,112 @@ export default function Header() {
                 ? 'bg-[#001D2C] shadow-xl border-b border-white/10' 
                 : 'bg-[#002538] border-b border-white/10'
         }`}>
-            <div className="max-w-[1400px] mx-auto w-full h-full flex justify-between items-center px-4 md:px-8">
+            <div className="w-full h-full flex items-center justify-between">
                 
-                {/* Logo Principal Oficial (Dinámico por idioma: ES / EN) */}
-                <Link href="/" className="flex items-center gap-3 group" title={lang === 'es' ? "Ir al Inicio" : "Go to Home"}>
-                    <div className="bg-white px-3 py-1.5 rounded-xl shadow-xs flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <img 
-                            src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
-                            alt={lang === 'es' ? "Logo Oficial Red HTLV" : "Official HTLV Network Logo"}
-                            className="h-9 md:h-10 w-auto object-contain"
-                        />
-                    </div>
+                {/* Logo Principal Oficial (Dentro de un rectángulo blanco que toma TODO el alto del header y pegado al extremo izquierdo) */}
+                <Link 
+                    href="/" 
+                    className="h-full bg-white px-5 sm:px-8 flex items-center justify-center shrink-0 border-r border-gray-200/60 shadow-sm hover:bg-gray-50 transition-colors" 
+                    title={lang === 'es' ? "Ir al Inicio" : "Go to Home"}
+                >
+                    <img 
+                        src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
+                        alt={lang === 'es' ? "Logo Oficial Red HTLV" : "Official HTLV Network Logo"}
+                        className="h-14 sm:h-16 w-auto object-contain max-w-[250px] sm:max-w-[320px]"
+                    />
                 </Link>
 
-                {/* Menú de Escritorio con Desplegables en Hover */}
-                <nav className="hidden xl:flex items-center gap-1">
-                    {menuStructure.map((menu, idx) => {
-                        const active = isActive(menu.basePath);
-                        const hasItems = menu.items && menu.items.length > 0;
+                {/* Contenedor de Navegación e Idioma a la derecha */}
+                <div className="flex items-center justify-end gap-3 sm:gap-6 px-4 md:px-8 flex-1">
+                    
+                    {/* Menú de Escritorio con Desplegables en Hover */}
+                    <nav className="hidden xl:flex items-center gap-1">
+                        {menuStructure.map((menu, idx) => {
+                            const active = isActive(menu.basePath);
+                            const hasItems = menu.items && menu.items.length > 0;
 
-                        return (
-                            <div 
-                                key={idx}
-                                className="relative group py-6"
-                                onMouseEnter={() => setActiveDropdown(menu.title)}
-                                onMouseLeave={() => setActiveDropdown(null)}
-                            >
-                                <Link
-                                    href={menu.href}
-                                    className={`px-3 py-2 rounded-xl text-[14.5px] font-bold transition-all flex items-center gap-1 ${
-                                        active 
-                                            ? 'text-[#E5A400] bg-white/10' 
-                                            : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
-                                    }`}
+                            return (
+                                <div 
+                                    key={idx}
+                                    className="relative group py-6"
+                                    onMouseEnter={() => setActiveDropdown(menu.title)}
+                                    onMouseLeave={() => setActiveDropdown(null)}
                                 >
-                                    <span>{menu.title}</span>
-                                    {hasItems && (
-                                        <span className="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
-                                            expand_more
-                                        </span>
-                                    )}
-                                </Link>
+                                    <Link
+                                        href={menu.href}
+                                        className={`px-3 py-2 rounded-xl text-[16px] font-bold transition-all flex items-center gap-1 ${
+                                            active 
+                                                ? 'text-[#E5A400] bg-white/10' 
+                                                : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
+                                        }`}
+                                    >
+                                        <span>{menu.title}</span>
+                                        {hasItems && (
+                                            <span className="material-symbols-outlined text-[17px] transition-transform group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
+                                                expand_more
+                                            </span>
+                                        )}
+                                    </Link>
 
-                                {/* Desplegable al hacer Hover */}
-                                {hasItems && (
-                                    <div className="absolute top-[85%] left-0 pt-2 hidden group-hover:block z-50">
-                                        <div className="bg-[#001D2C] rounded-2xl shadow-2xl border border-white/15 py-3 min-w-[270px] animate-fadeIn backdrop-blur-md">
-                                            <div className="px-4 pb-2 border-b border-white/10 text-[11px] font-black uppercase tracking-wider text-[#1E9CD7]">
-                                                {menu.title}
-                                            </div>
-                                            <div className="pt-1">
-                                                {menu.items.map((subItem, sIdx) => (
-                                                    <Link
-                                                        key={sIdx}
-                                                        href={subItem.href}
-                                                        className="block px-4 py-2.5 text-[14px] font-bold text-white/85 hover:bg-white/10 hover:text-[#E5A400] transition-colors"
-                                                    >
-                                                        {subItem.label}
-                                                    </Link>
-                                                ))}
+                                    {/* Desplegable al hacer Hover */}
+                                    {hasItems && (
+                                        <div className="absolute top-[85%] left-0 pt-2 hidden group-hover:block z-50">
+                                            <div className="bg-[#001D2C] rounded-2xl shadow-2xl border border-white/15 py-3 min-w-[280px] animate-fadeIn backdrop-blur-md">
+                                                <div className="px-4 pb-2 border-b border-white/10 text-[12px] font-black uppercase tracking-wider text-[#1E9CD7]">
+                                                    {menu.title}
+                                                </div>
+                                                <div className="pt-1">
+                                                    {menu.items.map((subItem, sIdx) => (
+                                                        <Link
+                                                            key={sIdx}
+                                                            href={subItem.href}
+                                                            className="block px-4 py-2.5 text-[15px] font-bold text-white/85 hover:bg-white/10 hover:text-[#E5A400] transition-colors"
+                                                        >
+                                                            {subItem.label}
+                                                        </Link>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })}
-                </nav>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </nav>
 
-                {/* Selector de Idiomas (Solo ES y EN) */}
-                <div className="flex items-center gap-3">
-                    <div className="flex items-center border border-white/20 rounded-full p-1 bg-white/5 shadow-xs">
+                    {/* Selector de Idiomas (Solo ES y EN) */}
+                    <div className="flex items-center gap-3">
+                        <div className="flex items-center border border-white/20 rounded-full p-1 bg-white/5 shadow-xs">
+                            <button 
+                                onClick={() => setLang('es')}
+                                className={`px-3 py-1 rounded-full text-[13.5px] font-black cursor-pointer transition-all ${
+                                    lang === 'es' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
+                                }`}
+                            >
+                                ES
+                            </button>
+                            <button 
+                                onClick={() => setLang('en')}
+                                className={`px-3 py-1 rounded-full text-[13.5px] font-black cursor-pointer transition-all ${
+                                    lang === 'en' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
+                                }`}
+                            >
+                                EN
+                            </button>
+                        </div>
+
+                        {/* Botón Móvil Hamburguesa */}
                         <button 
-                            onClick={() => setLang('es')}
-                            className={`px-3 py-1 rounded-full text-[12.5px] font-black cursor-pointer transition-all ${
-                                lang === 'es' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
-                            }`}
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="xl:hidden p-2 rounded-xl text-white hover:bg-white/10 transition-colors cursor-pointer"
+                            aria-label="Menú"
                         >
-                            ES
-                        </button>
-                        <button 
-                            onClick={() => setLang('en')}
-                            className={`px-3 py-1 rounded-full text-[12.5px] font-black cursor-pointer transition-all ${
-                                lang === 'en' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
-                            }`}
-                        >
-                            EN
+                            <span className="material-symbols-outlined text-3xl">
+                                {isMobileMenuOpen ? 'close' : 'menu'}
+                            </span>
                         </button>
                     </div>
 
-                    {/* Botón Móvil Hamburguesa */}
-                    <button 
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="xl:hidden p-2 rounded-xl text-white hover:bg-white/10 transition-colors cursor-pointer"
-                        aria-label="Menú"
-                    >
-                        <span className="material-symbols-outlined text-3xl">
-                            {isMobileMenuOpen ? 'close' : 'menu'}
-                        </span>
-                    </button>
                 </div>
 
             </div>

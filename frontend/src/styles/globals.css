@@ -32,14 +32,28 @@
   --spacing-max-w-container-max: 1280px;
 }
 
-/* Clases utilitarias mapeadas para las fuentes del documento original */
-.font-display { font-size: 48px; line-height: 56px; letter-spacing: -0.02em; font-weight: 700; }
-.font-headline-lg { font-size: 32px; line-height: 40px; letter-spacing: -0.01em; font-weight: 600; }
-.font-headline-md { font-size: 24px; line-height: 32px; font-weight: 600; }
-.font-body-lg { font-size: 18px; line-height: 28px; font-weight: 400; }
-.font-body-md { font-size: 16px; line-height: 24px; font-weight: 400; }
-.font-label-md { font-size: 14px; line-height: 20px; letter-spacing: 0.01em; font-weight: 500; }
-.font-label-sm { font-size: 12px; line-height: 16px; font-weight: 600; }
+html {
+  font-size: 17.5px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+p {
+  line-height: 1.65;
+}
+
+/* Clases utilitarias mapeadas para las fuentes del documento con escala ampliada */
+.font-display { font-size: 54px; line-height: 62px; letter-spacing: -0.02em; font-weight: 700; }
+.font-headline-lg { font-size: 36px; line-height: 44px; letter-spacing: -0.01em; font-weight: 600; }
+.font-headline-md { font-size: 28px; line-height: 36px; font-weight: 600; }
+.font-body-lg { font-size: 20px; line-height: 30px; font-weight: 400; }
+.font-body-md { font-size: 18px; line-height: 27px; font-weight: 400; }
+.font-label-md { font-size: 15.5px; line-height: 22px; letter-spacing: 0.01em; font-weight: 500; }
+.font-label-sm { font-size: 13.5px; line-height: 18px; font-weight: 600; }
 
 /* ==========================================================================
    ESTILOS PROFESIONALES PARA EXPORTACIÓN A PDF Y FORMATO DE IMPRESIÓN ESTÁNDAR
