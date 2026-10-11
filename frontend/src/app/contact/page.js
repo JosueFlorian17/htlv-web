@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function ContactPage() {
+  const { lang } = useLanguage();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -37,97 +39,103 @@ export default function ContactPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.termsAccepted) {
-      alert("Por favor, confirme la autorización de contacto.");
+      alert(lang === 'es' ? "Por favor, autorice el tratamiento de contacto." : "Please accept contact authorization.");
       return;
     }
     setSubmitted(true);
   };
 
   return (
-    <main className="w-full bg-[#f8f9fb] min-h-screen py-10 md:py-16">
-      <div className="max-w-[1360px] mx-auto px-4 md:px-8">
+    <main className="w-full bg-[#f8f9fb] min-h-[calc(100vh-80px)] py-10 md:py-16 text-[#191c1e]">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         
         {/* Cabecera Principal */}
-        <section className="max-w-4xl mx-auto text-center space-y-4 mb-12">
+        <section className="max-w-3xl mx-auto text-center space-y-4 mb-12">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="px-3 py-1 bg-[#ffdada] text-[#5b0617] text-[12px] font-black uppercase tracking-widest rounded-full">
-              Canal de Comunicación
+            <span className="px-3.5 py-1 bg-[#A10D3A] text-white text-[12px] font-black uppercase tracking-widest rounded-md">
+              {lang === 'es' ? 'Canal Institucional' : 'Institutional Channel'}
             </span>
-            <span className="px-3 py-1 bg-[#d6e0f3] text-[#1d2b3a] text-[12px] font-bold rounded-full">
+            <span className="px-3.5 py-1 bg-[#087E8B]/10 text-[#087E8B] text-[12px] font-bold rounded-md">
               Sede Central IMTAvH • UPCH (Lima, Perú)
             </span>
           </div>
 
-          <h1 className="text-[34px] sm:text-[46px] font-black text-[#191c1e] tracking-tight leading-tight">
-            Contacto & Enlaces Institucionales
+          <h1 className="text-[34px] sm:text-[46px] font-black text-[#003B49] tracking-tight leading-tight">
+            {lang === 'es' ? 'Contacto & Enlaces Institucionales' : 'Contact & Institutional Links'}
           </h1>
-          <p className="text-[17px] text-[#564242] max-w-3xl mx-auto leading-relaxed">
-            Canal oficial para consultas institucionales, solicitudes de colaboración científica, acreditaciones de proyectos y acceso a las instituciones miembros de la Red RIII-HTLV.
+          <p className="text-[17px] text-[#443333] leading-relaxed">
+            {lang === 'es'
+              ? 'Canal oficial para consultas académicas, propuestas de colaboración científica, solicitudes de acreditación de proyectos y vinculación con la red.'
+              : 'Official channel for academic inquiries, research collaborations, project endorsement requests, and institutional liaisons.'}
           </p>
 
-          {/* Banner Amigable de Orientación a Pacientes */}
-          <div className="p-4 bg-white border border-[#dcc0c0] rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3 text-left shadow-xs">
+          {/* Banner de Orientación a Pacientes */}
+          <div className="p-4 bg-white border-2 border-[#003B49]/15 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3 text-left shadow-xs">
             <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-[#5b0617] text-2xl">favorite</span>
-              <span className="text-[14px] text-[#564242]">
-                ¿Eres paciente o familiar y deseas hacer una consulta sobre HTLV?
+              <span className="material-symbols-outlined text-[#A10D3A] text-2xl">favorite</span>
+              <span className="text-[14.5px] text-[#003B49] font-bold">
+                {lang === 'es' ? '¿Eres paciente o familiar y deseas hacer una consulta médica o personal?' : 'Are you a patient or family member looking for guidance?'}
               </span>
             </div>
             <Link
-              href="/pacientes"
-              className="bg-[#5b0617] text-white px-4 py-2 rounded-xl text-[13px] font-bold hover:opacity-90 transition-all flex items-center gap-1.5 flex-shrink-0"
+              href="/pacientes?tab=haz-tu-pregunta"
+              className="bg-[#A10D3A] hover:bg-[#850a2f] text-white px-5 py-2.5 rounded-xl text-[13.5px] font-black transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer shadow-xs"
             >
-              <span>Ir al Espacio de Pacientes</span>
+              <span>{lang === 'es' ? 'Ir a Haz tu pregunta' : 'Go to Ask a Question'}</span>
               <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
             </Link>
           </div>
         </section>
 
         {/* Rejilla de Formulario e Información */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16 max-w-6xl mx-auto">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 max-w-6xl mx-auto">
           
           {/* Columna del Formulario */}
-          <div className="md:col-span-7 bg-white border border-[#dcc0c0] p-6 md:p-8 rounded-2xl shadow-xs">
-            <h2 className="text-[22px] font-black mb-6 text-[#191c1e]">
-              Formulario de Contacto Institucional
+          <div className="md:col-span-7 bg-white border-2 border-gray-200 p-8 rounded-3xl shadow-xs">
+            <h2 className="text-[22px] font-black mb-6 text-[#003B49]">
+              {lang === 'es' ? 'Formulario de Contacto Institucional' : 'Institutional Contact Form'}
             </h2>
 
             {submitted ? (
-              <div className="p-8 bg-[#f8f9fb] border border-[#dcc0c0] rounded-xl text-center space-y-4 animate-fadeIn">
-                <span className="material-symbols-outlined text-[#5b0617] text-5xl">check_circle</span>
-                <h3 className="font-bold text-[18px] text-[#191c1e]">Solicitud Registrada Exitosamente</h3>
-                <p className="text-[13.5px] text-[#564242] max-w-md mx-auto">
-                  Gracias por comunicarse con la Red RIII-HTLV. La coordinación general en el IMTAvH - UPCH evaluará su mensaje y responderá a su correo electrónico a la brevedad.
+              <div className="p-8 bg-[#f8f9fb] border-2 border-[#087E8B]/30 rounded-2xl text-center space-y-4 animate-fadeIn">
+                <span className="material-symbols-outlined text-[#087E8B] text-5xl">check_circle</span>
+                <h3 className="font-black text-[20px] text-[#003B49]">
+                  {lang === 'es' ? 'Solicitud Registrada Exitosamente' : 'Inquiry Successfully Submitted'}
+                </h3>
+                <p className="text-[14.5px] text-gray-600 max-w-md mx-auto">
+                  {lang === 'es'
+                    ? 'Gracias por comunicarse con la Red RIII-HTLV. La coordinación general en el IMTAvH - UPCH responderá a su correo a la brevedad.'
+                    : 'Thank you for contacting RIII-HTLV. The coordination secretariat at IMTAvH - UPCH will respond shortly.'}
                 </p>
                 <button 
                   onClick={() => setSubmitted(false)}
-                  className="px-6 py-2.5 bg-[#5b0617] text-white rounded-xl text-[13px] font-bold hover:opacity-90 transition-all cursor-pointer"
+                  className="px-6 py-2.5 bg-[#003B49] text-white rounded-xl text-[13px] font-bold hover:bg-[#087E8B] transition-all cursor-pointer"
                 >
-                  Enviar otra solicitud
+                  {lang === 'es' ? 'Enviar otra solicitud' : 'Submit another inquiry'}
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-[13px] font-bold text-[#564242]">Nombre *</label>
+                    <label className="text-[13px] font-bold text-[#003B49]">{lang === 'es' ? 'Nombre *' : 'First Name *'}</label>
                     <input 
                       name="firstName" 
                       value={formData.firstName} 
                       onChange={handleChange}
-                      className="w-full p-2.5 rounded-xl border border-[#dcc0c0] bg-[#f8f9fb] focus:bg-white focus:outline-none focus:border-[#5b0617] text-[14px]" 
+                      className="w-full p-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:border-[#087E8B] text-[14px]" 
                       type="text" 
                       required 
                       placeholder="Ej. Carlos"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[13px] font-bold text-[#564242]">Apellidos *</label>
+                    <label className="text-[13px] font-bold text-[#003B49]">{lang === 'es' ? 'Apellidos *' : 'Last Name *'}</label>
                     <input 
                       name="lastName" 
                       value={formData.lastName} 
                       onChange={handleChange}
-                      className="w-full p-2.5 rounded-xl border border-[#dcc0c0] bg-[#f8f9fb] focus:bg-white focus:outline-none focus:border-[#5b0617] text-[14px]" 
+                      className="w-full p-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:border-[#087E8B] text-[14px]" 
                       type="text" 
                       required 
                       placeholder="Ej. Mendoza"
@@ -136,12 +144,12 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[13px] font-bold text-[#564242]">Correo Electrónico *</label>
+                  <label className="text-[13px] font-bold text-[#003B49]">{lang === 'es' ? 'Correo Electrónico *' : 'Email Address *'}</label>
                   <input 
                     name="email" 
                     value={formData.email} 
                     onChange={handleChange}
-                    className="w-full p-2.5 rounded-xl border border-[#dcc0c0] bg-[#f8f9fb] focus:bg-white focus:outline-none focus:border-[#5b0617] text-[14px]" 
+                    className="w-full p-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:border-[#087E8B] text-[14px]" 
                     type="email" 
                     required 
                     placeholder="nombre@institucion.edu"
@@ -149,43 +157,43 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[13px] font-bold text-[#564242]">Institución u Organización</label>
+                  <label className="text-[13px] font-bold text-[#003B49]">{lang === 'es' ? 'Institución / Universidad' : 'Institution / University'}</label>
                   <input 
                     name="organization" 
                     value={formData.organization} 
                     onChange={handleChange}
-                    className="w-full p-2.5 rounded-xl border border-[#dcc0c0] bg-[#f8f9fb] focus:bg-white focus:outline-none focus:border-[#5b0617] text-[14px]" 
+                    className="w-full p-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:border-[#087E8B] text-[14px]" 
                     type="text" 
-                    placeholder="Ej. Hospital / Universidad / Centro de Investigación"
+                    placeholder="Ej. Universidad / Centro de Investigación"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[13px] font-bold text-[#564242]">Motivo de la Comunicación</label>
+                  <label className="text-[13px] font-bold text-[#003B49]">{lang === 'es' ? 'Motivo de la Comunicación' : 'Inquiry Reason'}</label>
                   <select 
                     name="inquiryType" 
                     value={formData.inquiryType} 
                     onChange={handleChange}
-                    className="w-full p-2.5 rounded-xl border border-[#dcc0c0] bg-[#f8f9fb] focus:bg-white focus:outline-none focus:border-[#5b0617] text-[14px] cursor-pointer"
+                    className="w-full p-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:border-[#087E8B] text-[14px] cursor-pointer"
                   >
-                    <option value="Investigación Científica">Propuesta de Investigación o Proyecto</option>
-                    <option value="Acreditación">Solicitud de Carta de Acreditación de la Red</option>
-                    <option value="Capacitación">Consultas sobre Cursos o Webinars</option>
-                    <option value="Adhesión">Incorporación de Nueva Institución Aliada</option>
-                    <option value="Otro">Otro Asunto Institucional</option>
+                    <option value="Investigación Científica">{lang === 'es' ? 'Propuesta de Investigación o Proyecto' : 'Research Proposal or Project'}</option>
+                    <option value="Acreditación">{lang === 'es' ? 'Solicitud de Carta de Acreditación de la Red' : 'Network Endorsement Letter Request'}</option>
+                    <option value="Capacitación">{lang === 'es' ? 'Consultas sobre Cursos o Webinars' : 'Courses or Webinars Information'}</option>
+                    <option value="Adhesión">{lang === 'es' ? 'Incorporación de Nueva Institución Aliada' : 'New Member Node Affiliation'}</option>
+                    <option value="Otro">{lang === 'es' ? 'Otro Asunto Institucional' : 'Other Institutional Subject'}</option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[13px] font-bold text-[#564242]">Mensaje o Detalle *</label>
+                  <label className="text-[13px] font-bold text-[#003B49]">{lang === 'es' ? 'Mensaje *' : 'Message *'}</label>
                   <textarea 
                     name="message" 
                     value={formData.message} 
                     onChange={handleChange}
                     rows="4" 
-                    className="w-full p-2.5 rounded-xl border border-[#dcc0c0] bg-[#f8f9fb] focus:bg-white focus:outline-none focus:border-[#5b0617] text-[14px] resize-y" 
+                    className="w-full p-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:border-[#087E8B] text-[14px] resize-none" 
                     required
-                    placeholder="Describa su solicitud, proyecto o consulta institucional..."
+                    placeholder={lang === 'es' ? "Describa su consulta o propuesta institucional..." : "Describe your request or institutional inquiry..."}
                   ></textarea>
                 </div>
 
@@ -197,20 +205,21 @@ export default function ContactPage() {
                       checked={formData.termsAccepted}
                       onChange={handleChange}
                       required
-                      className="mt-1 h-4 w-4 rounded border-[#dcc0c0] text-[#5b0617] focus:ring-[#5b0617] cursor-pointer"
+                      className="mt-1 h-4 w-4 rounded text-[#003B49] cursor-pointer"
                     />
-                    <span className="text-[12px] text-[#564242] leading-tight">
-                      Autorizo el tratamiento de mis datos exclusivamente para coordinaciones institucionales de la Red conforme a la Ley N° 29733 de Protección de Datos Personales.
+                    <span className="text-[12px] text-gray-600 leading-tight">
+                      {lang === 'es'
+                        ? 'Autorizo el tratamiento de mis datos de contacto exclusivamente para coordinaciones institucionales conforme a la Ley N° 29733 de Protección de Datos Personales.'
+                        : 'I authorize processing of contact data exclusively for institutional coordination under Data Protection standards.'}
                     </span>
                   </label>
                 </div>
 
                 <button 
-                  className="w-full sm:w-auto bg-[#5b0617] text-white font-bold py-3 px-8 rounded-xl hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs text-[14px]" 
+                  className="w-full sm:w-auto bg-[#003B49] hover:bg-[#087E8B] text-white font-black py-3 px-8 rounded-xl transition-all shadow-md text-[14px] cursor-pointer" 
                   type="submit"
                 >
-                  <span>Enviar Mensaje</span>
-                  <span className="material-symbols-outlined text-[18px]">send</span>
+                  {lang === 'es' ? 'Enviar Solicitud Institucional' : 'Submit Institutional Request'}
                 </button>
               </form>
             )}
@@ -220,39 +229,39 @@ export default function ContactPage() {
           <div className="md:col-span-5 flex flex-col gap-6">
             
             {/* Tarjeta Sede Central */}
-            <div className="bg-[#5b0617] text-white p-7 rounded-2xl shadow-xs space-y-5">
-              <h3 className="text-[20px] font-bold text-white">
-                Sede de Coordinación
+            <div className="bg-[#003B49] text-white p-7 rounded-3xl shadow-sm space-y-4">
+              <h3 className="text-[20px] font-black text-white">
+                {lang === 'es' ? 'Sede de Coordinación' : 'Coordination Center'}
               </h3>
               
-              <div className="space-y-4 text-[13.5px]">
+              <div className="space-y-3 text-[14px]">
                 <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-[#ffdada] text-xl mt-0.5">location_on</span>
+                  <span className="material-symbols-outlined text-[#E5A400] text-xl mt-0.5">location_on</span>
                   <div>
-                    <p className="font-bold text-[#ffdada]">Instituto IMTAvH • UPCH</p>
-                    <p className="text-white mt-0.5 leading-snug">
+                    <p className="font-bold text-[#E5A400]">Instituto IMTAvH • UPCH</p>
+                    <p className="text-white/80 mt-0.5">
                       Av. Honorio Delgado 430, San Martín de Porres, Lima, Perú
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-[#ffdada] text-xl mt-0.5">mail</span>
+                  <span className="material-symbols-outlined text-[#E5A400] text-xl mt-0.5">mail</span>
                   <div>
-                    <p className="font-bold text-[#ffdada]">Correo de Coordinación</p>
-                    <p className="text-white font-semibold mt-0.5">contacto.riii@cayetano.edu.pe</p>
+                    <p className="font-bold text-[#E5A400]">{lang === 'es' ? 'Correo de Coordinación' : 'Coordination Email'}</p>
+                    <p className="text-white/90 font-semibold mt-0.5">contacto.riii@cayetano.edu.pe</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-[#ffdada] text-xl mt-0.5">language</span>
+                  <span className="material-symbols-outlined text-[#E5A400] text-xl mt-0.5">language</span>
                   <div>
-                    <p className="font-bold text-[#ffdada]">Sitio Web IMTAvH</p>
+                    <p className="font-bold text-[#E5A400]">Sitio Web IMTAvH</p>
                     <a 
                       href="https://medicina.cayetano.edu.pe/imtavh/" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-white underline hover:text-[#ffdada]"
+                      className="text-white underline hover:text-[#E5A400]"
                     >
                       medicina.cayetano.edu.pe/imtavh/
                     </a>
@@ -262,23 +271,25 @@ export default function ContactPage() {
             </div>
 
             {/* Directorio de Enlaces a Instituciones Miembros */}
-            <div className="bg-white p-6 rounded-2xl border border-[#dcc0c0] text-[#191c1e] shadow-xs space-y-3">
-              <h3 className="font-bold text-[16px]">Enlaces a las Instituciones Miembros</h3>
-              <p className="text-[13px] text-[#564242]">
-                Acceda directamente a los portales oficiales de cada entidad de la red:
+            <div className="bg-white p-6 rounded-3xl border-2 border-gray-200 text-[#191c1e] shadow-xs space-y-3">
+              <h4 className="font-black text-[16px] text-[#003B49]">
+                {lang === 'es' ? 'Directorio de Nodos Miembros' : 'Member Nodes Directory'}
+              </h4>
+              <p className="text-[13px] text-gray-600">
+                {lang === 'es' ? 'Enlaces oficiales a las instituciones fundadoras:' : 'Official links to founding institutions:'}
               </p>
 
-              <div className="space-y-2 pt-1 text-[13px]">
+              <div className="space-y-2 pt-1 text-[13.5px]">
                 {memberInstitutions.map((inst, i) => (
                   <a
                     key={i}
                     href={inst.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2 rounded-lg hover:bg-[#ffdada]/30 text-[#564242] hover:text-[#5b0617] transition-all group"
+                    className="flex items-center justify-between p-2.5 rounded-xl hover:bg-gray-100 text-[#003B49] font-bold transition-all group"
                   >
-                    <span className="font-semibold text-[13px]">{inst.name}</span>
-                    <span className="material-symbols-outlined text-[15px] text-[#897172] group-hover:text-[#5b0617]">open_in_new</span>
+                    <span>{inst.name}</span>
+                    <span className="material-symbols-outlined text-[15px] text-gray-400 group-hover:text-[#A10D3A]">open_in_new</span>
                   </a>
                 ))}
               </div>

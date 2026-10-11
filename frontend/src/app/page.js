@@ -6,246 +6,197 @@ import { useLanguage } from '../context/LanguageContext';
 export default function Home() {
   const { lang, t } = useLanguage();
 
-  const memberInstitutions = [
-    {
-      name: 'Universidad Peruana Cayetano Heredia',
-      acronym: 'UPCH',
-      location: 'Lima, Perú',
-      url: 'https://www.cayetano.edu.pe',
-      address: 'Av. Honorio Delgado 430, Urb. Ingeniería, Lima',
-      phone: '(+51 1) 319-0000'
-    },
-    {
-      name: 'Instituto de Medicina Tropical Alexander von Humboldt',
-      acronym: 'IMTAvH',
-      location: 'Lima, Perú',
-      url: 'https://medicina.cayetano.edu.pe/imtavh/',
-      address: 'Sede Clínica e Investigación en Retrovirología',
-      phone: 'contacto.riii@cayetano.edu.pe'
-    },
-    {
-      name: 'Imperial College London',
-      acronym: 'ICL',
-      location: 'Londres, Reino Unido',
-      url: 'https://www.imperial.ac.uk',
-      address: 'National Centre for Human Retrovirology',
-      phone: 'imperial.ac.uk'
-    }
-  ];
-
   return (
-    <main className="w-full min-h-[calc(100vh-80px)] flex flex-col justify-between bg-white text-[#191c1e]">
+    <main className="w-full bg-white text-[#191c1e]">
       
-      {/* Sección Principal (Inspirada fielmente en la imagen de QuEST LAC: Todo de un vistazo) */}
-      <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12 py-8 lg:py-10 flex-1 flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+      {/* 1. SECCIÓN SUPERIOR HERO (Exacta a la Imagen 2 de QuEST LAC) */}
+      <section className="w-full bg-[#003B49] py-12 md:py-16 px-6 md:px-12 text-white relative overflow-hidden">
+        <div className="max-w-[1400px] mx-auto">
           
-          {/* Columna Izquierda: Gráfica / Ilustración Visual Estilo QuEST */}
-          <div className="lg:col-span-5 flex items-center justify-center">
-            <div className="relative w-full max-w-[460px] aspect-4/3 lg:aspect-square rounded-3xl bg-gradient-to-br from-[#ffdada]/60 via-[#f8f9fb] to-[#ffdada]/30 border-2 border-[#dcc0c0] p-8 flex flex-col justify-between overflow-hidden shadow-xs">
-              
-              {/* Patrón arquitectónico de líneas diagonales como QuEST */}
-              <div className="absolute -right-10 -bottom-10 w-72 h-72 opacity-15 pointer-events-none">
-                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-[#5b0617]">
-                  <line x1="0" y1="20" x2="200" y2="20" stroke="currentColor" strokeWidth="6" />
-                  <line x1="0" y1="50" x2="200" y2="50" stroke="currentColor" strokeWidth="6" />
-                  <line x1="0" y1="80" x2="200" y2="80" stroke="currentColor" strokeWidth="6" />
-                  <line x1="0" y1="110" x2="200" y2="110" stroke="currentColor" strokeWidth="6" />
-                  <line x1="0" y1="140" x2="200" y2="140" stroke="currentColor" strokeWidth="6" />
-                  <line x1="0" y1="170" x2="200" y2="170" stroke="currentColor" strokeWidth="6" />
-                </svg>
-              </div>
-
-              {/* Distintivo de la Red */}
-              <div className="flex items-center gap-3">
-                <div className="w-14 h-14 rounded-2xl bg-[#5b0617] text-white flex items-center justify-center font-black text-2xl shadow-sm">
-                  R
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Composión Fotográfica Hexagonal (Igual a la imagen 2 con fotos de clínica, centro de salud y laboratorio) */}
+            <div className="lg:col-span-7 flex justify-center items-center">
+              <div className="relative w-full max-w-[620px] aspect-16/10 sm:aspect-16/9 flex items-center justify-center">
+                
+                {/* Elementos geométricos de fondo en mostaza, turquesa y guinda */}
+                <div className="absolute left-4 top-6 w-32 h-32 bg-[#E5A400] opacity-80 -skew-x-12 rounded-3xl transform -rotate-6"></div>
+                <div className="absolute left-28 bottom-4 w-32 h-32 bg-[#087E8B] opacity-80 -skew-x-12 rounded-3xl transform rotate-12"></div>
+                
+                {/* Rejilla de fotos de actividades de salud y clínicas */}
+                <div className="relative z-10 grid grid-cols-3 gap-3 w-full h-full p-2">
+                  <div className="rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20">
+                    <img 
+                      src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80" 
+                      alt="Centro de salud y atención comunitaria"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 transform -translate-y-3">
+                    <img 
+                      src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" 
+                      alt="Atención médica y cuidado de pacientes"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 transform translate-y-3">
+                    <img 
+                      src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" 
+                      alt="Laboratorio de investigación molecular"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[22px] font-black text-[#5b0617] leading-tight">
+
+              </div>
+            </div>
+
+            {/* Tarjeta de Titular con Botón Mostaza (Exacto a la tarjeta blanca flotante de la imagen 2) */}
+            <div className="lg:col-span-5">
+              <div className="bg-[#f8f9fb] text-[#003B49] p-8 md:p-10 rounded-3xl shadow-2xl border-2 border-white/30 space-y-6">
+                
+                <div className="space-y-3">
+                  <span className="px-3 py-1 bg-[#A10D3A] text-white text-[12px] font-black uppercase tracking-wider rounded-md inline-block">
                     RIII-HTLV
                   </span>
-                  <span className="text-[12px] font-bold text-[#897172] uppercase tracking-wider">
-                    {lang === 'es' ? 'Consorcio Científico' : 'Scientific Consortium'}
+                  <h1 className="text-[26px] sm:text-[32px] font-black leading-snug text-[#003B49]">
+                    {lang === 'es'
+                      ? 'RIII-HTLV: Generando Evidencia de Calidad para la Transformación de la Salud en Poblaciones Afectadas'
+                      : 'RIII-HTLV: Generating Quality Evidence for Health Transformation in HTLV-Affected Populations'}
+                  </h1>
+                </div>
+
+                <p className="text-[15.5px] text-[#443333] leading-relaxed">
+                  {lang === 'es'
+                    ? 'Alianza internacional de centros de excelencia liderada por el Instituto de Medicina Tropical Alexander von Humboldt (UPCH) para el diagnóstico temprano, la investigación clínica y el cuidado integral.'
+                    : 'International alliance of excellence led by Alexander von Humboldt Tropical Medicine Institute (UPCH) for early diagnosis, clinical research, and patient care.'}
+                </p>
+
+                <div>
+                  <Link
+                    href="/about?tab=quienes-somos"
+                    className="inline-block bg-[#E5A400] hover:bg-[#cca300] text-[#003B49] font-black px-8 py-3.5 rounded-xl text-[15.5px] transition-all shadow-md hover:scale-105 cursor-pointer"
+                  >
+                    {lang === 'es' ? 'Conoce más' : 'Learn more'}
+                  </Link>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* 2. SECCIÓN INFERIOR: 1 VIDEO DE YOUTUBE + TEXTO CORTO CON BULLETS Y BOTÓN "CONOCE MÁS" (Requerimiento explícito) */}
+      <section className="w-full py-14 px-6 md:px-12 bg-gray-50 border-t border-gray-200">
+        <div className="max-w-[1400px] mx-auto">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Columna Izquierda: 1 Video de YouTube (Como se solicitó: solo pon 1 video) */}
+            <div className="lg:col-span-6 space-y-4">
+              <div className="aspect-video w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-black">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube-nocookie.com/embed/n3GzS_WnQ0I?rel=0"
+                  title="Video RIII-HTLV"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="text-center">
+                <h3 className="font-black text-[18px] text-[#003B49]">
+                  {lang === 'es' ? 'Video Institucional y Objetivos de la Red RIII-HTLV' : 'RIII-HTLV Institutional Video & Objectives'}
+                </h3>
+                <p className="text-[13.5px] text-[#087E8B] font-bold mt-0.5">
+                  UPCH • Imperial College • Pasteur • Fiocruz • ISCIII • St. Marianna
+                </p>
+              </div>
+            </div>
+
+            {/* Columna Derecha: Texto Corto con los Bullets y Botón "Conoce más" */}
+            <div className="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border-2 border-gray-200 shadow-sm space-y-6">
+              
+              <div>
+                <span className="text-[12.5px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
+                  {lang === 'es' ? 'Presentación de la Red' : 'Network Overview'}
+                </span>
+                <h2 className="text-[26px] sm:text-[30px] font-black text-[#003B49] leading-tight">
+                  {lang === 'es' ? '¿Qué es la Red RIII-HTLV?' : 'What is the RIII-HTLV Network?'}
+                </h2>
+                <p className="text-[16px] text-[#443333] leading-relaxed mt-2">
+                  {lang === 'es'
+                    ? 'La Red Internacional de Investigación e Innovación en HTLV articula a los principales centros de referencia en América Latina, Europa y Asia para transformar la respuesta médica y social ante el HTLV-1 y HTLV-2.'
+                    : 'The International Research and Innovation Network on HTLV coordinates leading reference centers across Latin America, Europe, and Asia to transform the clinical and social response to HTLV-1 and HTLV-2.'}
+                </p>
+              </div>
+
+              {/* Bullets solicitados */}
+              <div className="space-y-3.5 text-[15.5px] text-[#332222]">
+                <div className="flex items-start gap-3">
+                  <span className="material-symbols-outlined text-[#A10D3A] text-2xl flex-shrink-0 mt-0.5">
+                    biotech
                   </span>
+                  <p className="leading-snug">
+                    {lang === 'es' 
+                      ? 'Investiga sobre la virología molecular, epidemiología y patogénesis del virus.' 
+                      : 'Researches molecular virology, epidemiology, and viral pathogenesis.'}
+                  </p>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="material-symbols-outlined text-[#087E8B] text-2xl flex-shrink-0 mt-0.5">
+                    hub
+                  </span>
+                  <p className="leading-snug">
+                    {lang === 'es'
+                      ? 'Promueve sinergias clínicas multicéntricas en Paraparesia Espástica Tropical (HAM/TSP) y Leucemia/Linfoma (ATL).'
+                      : 'Promotes multicenter clinical synergies in HAM/TSP and Adult T-cell Leukemia (ATL).'}
+                  </p>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="material-symbols-outlined text-[#E5A400] text-2xl flex-shrink-0 mt-0.5">
+                    verified
+                  </span>
+                  <p className="leading-snug">
+                    {lang === 'es'
+                      ? 'Estandariza protocolos de diagnóstico oportuno, carga proviral y prevención de la transmisión vertical.'
+                      : 'Standardizes early diagnosis protocols, proviral load assays, and vertical transmission prevention.'}
+                  </p>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="material-symbols-outlined text-[#003B49] text-2xl flex-shrink-0 mt-0.5">
+                    groups
+                  </span>
+                  <p className="leading-snug">
+                    {lang === 'es'
+                      ? 'Fortalece las capacidades regionales y orienta con evidencia científica a los tomadores de decisiones.'
+                      : 'Empowers regional health systems and guides policymakers with robust scientific evidence.'}
+                  </p>
                 </div>
               </div>
 
-              {/* Mensaje Focal */}
-              <div className="space-y-3 relative z-10">
-                <span className="inline-block px-3.5 py-1 bg-[#5b0617] text-white text-[13px] font-extrabold uppercase tracking-wider rounded-lg">
-                  {lang === 'es' ? 'Evidencia & Salud Pública' : 'Evidence & Public Health'}
-                </span>
-                <h3 className="text-[26px] font-black text-[#191c1e] leading-snug">
-                  {lang === 'es' 
-                    ? 'Investigación de excelencia desde las regiones endémicas hacia el mundo' 
-                    : 'Excellence in research from endemic regions to the world'}
-                </h3>
-              </div>
-
-              {/* Enlace Directo */}
+              {/* Botón que lleva a Conoce más */}
               <div className="pt-2">
                 <Link
-                  href="/about"
-                  className="inline-flex items-center gap-2 text-[15px] font-extrabold text-[#5b0617] hover:underline"
+                  href="/about?tab=quienes-somos"
+                  className="inline-flex items-center gap-2 bg-[#003B49] hover:bg-[#087E8B] text-white px-7 py-3.5 rounded-xl text-[15px] font-black transition-all shadow-md cursor-pointer"
                 >
-                  <span>{lang === 'es' ? 'Conocer Estructura y Miembros' : 'Explore Structure & Members'}</span>
+                  <span>{lang === 'es' ? 'Conoce más sobre la Red' : 'Learn more about the Network'}</span>
                   <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                 </Link>
               </div>
-            </div>
-          </div>
 
-          {/* Columna Derecha: Contenido Exacto al Estilo QuEST LAC (Letras Grandes, sin scroll excesivo) */}
-          <div className="lg:col-span-7 space-y-6">
-            
-            {/* Título Principal */}
-            <div>
-              <h1 className="text-[34px] sm:text-[42px] font-black text-[#191c1e] tracking-tight leading-tight">
-                {t('home_title')}
-              </h1>
-              
-              {/* Descripción Oficial en 2 Oraciones */}
-              <p className="text-[18px] sm:text-[20px] text-[#443333] leading-relaxed mt-3 font-normal">
-                {t('home_desc')}
-              </p>
-            </div>
-
-            {/* Dos Logotipos de la Red Lado a Lado (Como en QuEST LAC) */}
-            <div className="flex flex-wrap items-center gap-6 py-2 border-y border-[#dcc0c0]/60">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#5b0617] text-white flex items-center justify-center font-bold text-lg">
-                  R
-                </div>
-                <div>
-                  <span className="block text-[17px] font-black text-[#5b0617]">RIII-HTLV</span>
-                  <span className="text-[11.5px] font-bold text-[#897172] uppercase tracking-wider">Global Research</span>
-                </div>
-              </div>
-
-              <div className="h-8 w-px bg-[#dcc0c0] hidden sm:block"></div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#1d2b3a] text-white flex items-center justify-center font-bold text-lg">
-                  UPCH
-                </div>
-                <div>
-                  <span className="block text-[17px] font-black text-[#1d2b3a]">IMTAvH • Perú</span>
-                  <span className="text-[11.5px] font-bold text-[#897172] uppercase tracking-wider">Coordinating Node</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Puntos Clave con Iconos Circulares (Exacto al diseño de QuEST LAC) */}
-            <div className="space-y-3.5 text-[16px] sm:text-[17px] text-[#332222]">
-              <div className="flex items-start gap-3.5">
-                <span className="material-symbols-outlined text-[#5b0617] text-2xl mt-0.5 flex-shrink-0">
-                  language
-                </span>
-                <p className="leading-snug">{t('home_bullet1')}</p>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <span className="material-symbols-outlined text-[#5b0617] text-2xl mt-0.5 flex-shrink-0">
-                  biotech
-                </span>
-                <p className="leading-snug">{t('home_bullet2')}</p>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <span className="material-symbols-outlined text-[#5b0617] text-2xl mt-0.5 flex-shrink-0">
-                  verified
-                </span>
-                <p className="leading-snug">{t('home_bullet3')}</p>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <span className="material-symbols-outlined text-[#5b0617] text-2xl mt-0.5 flex-shrink-0">
-                  groups
-                </span>
-                <p className="leading-snug">{t('home_bullet4')}</p>
-              </div>
-            </div>
-
-            {/* Botones de Navegación Rápida */}
-            <div className="pt-2 flex flex-wrap gap-3.5">
-              <Link 
-                href="/htlv"
-                className="bg-[#5b0617] text-white px-6 py-3 rounded-xl text-[16px] font-bold hover:opacity-95 transition-all shadow-xs flex items-center gap-2"
-              >
-                <span className="material-symbols-outlined text-[20px]">medical_information</span>
-                <span>{t('home_btn_htlv')}</span>
-              </Link>
-              
-              <Link 
-                href="/pacientes"
-                className="bg-[#ffdada] text-[#5b0617] border border-[#5b0617]/30 px-6 py-3 rounded-xl text-[16px] font-bold hover:bg-[#ffdada]/70 transition-all flex items-center gap-2"
-              >
-                <span className="material-symbols-outlined text-[20px]">favorite</span>
-                <span>{t('home_btn_patients')}</span>
-              </Link>
-
-              <Link 
-                href="/about"
-                className="bg-[#f8f9fb] border border-[#dcc0c0] text-[#332222] hover:text-[#5b0617] px-6 py-3 rounded-xl text-[16px] font-bold hover:bg-white transition-all flex items-center gap-2"
-              >
-                <span className="material-symbols-outlined text-[20px]">account_tree</span>
-                <span>{t('home_btn_members')}</span>
-              </Link>
             </div>
 
           </div>
 
         </div>
-      </div>
-
-      {/* Barra Inferior de Instituciones Miembros (Estilo Barra QuEST: Fondo Sólido con Nombres y Enlaces) */}
-      <div className="w-full bg-[#5b0617] text-white py-6 px-6 md:px-12 border-t-2 border-[#3d030e]">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-[13.5px]">
-          
-          {/* Nodo UPCH */}
-          <div className="space-y-1">
-            <a 
-              href="https://www.cayetano.edu.pe" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="font-bold text-[15px] text-[#ffdada] hover:underline flex items-center gap-1.5"
-            >
-              <span>Universidad Peruana Cayetano Heredia</span>
-              <span className="material-symbols-outlined text-[15px]">open_in_new</span>
-            </a>
-            <p className="text-white/80">Av. Honorio Delgado 430, Urb. Ingeniería, Lima, Perú</p>
-            <p className="text-white/70 text-[12.5px]">(+51 1) 319-0000</p>
-          </div>
-
-          {/* Nodo IMTAvH */}
-          <div className="space-y-1">
-            <a 
-              href="https://medicina.cayetano.edu.pe/imtavh/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="font-bold text-[15px] text-[#ffdada] hover:underline flex items-center gap-1.5"
-            >
-              <span>Instituto de Medicina Tropical Alexander von Humboldt</span>
-              <span className="material-symbols-outlined text-[15px]">open_in_new</span>
-            </a>
-            <p className="text-white/80">Sede Científica Central de la Red RIII-HTLV</p>
-            <p className="text-white/70 text-[12.5px]">contacto.riii@cayetano.edu.pe</p>
-          </div>
-
-          {/* Contacto & Nodos Internacionales */}
-          <div className="space-y-1 md:text-right">
-            <p className="font-bold text-[15px] text-[#ffdada]">Nodos Colaboradores Internacionales</p>
-            <p className="text-white/80">Imperial College London • Pasteur • Fiocruz • ISCIII • St. Marianna</p>
-            <div className="pt-1">
-              <Link href="/contact" className="text-[#ffdada] underline font-bold hover:text-white">
-                {lang === 'es' ? 'Contáctanos / Redes Oficiales' : 'Contact Us / Official Channels'}
-              </Link>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      </section>
 
     </main>
   );
