@@ -98,37 +98,15 @@ function ProyectosContent() {
     <main className="w-full bg-[#f8f9fb] min-h-[calc(100vh-80px)] py-8 md:py-12 text-[#191c1e] flex flex-col justify-between">
       <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12">
         
-        {/* Cabecera con Pestañas Horizontales */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <div>
-            <span className="text-[12px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
-              {lang === 'es' ? 'Ciencia & Innovación' : 'Science & Innovation'}
-            </span>
-            <h1 className="text-[32px] sm:text-[42px] font-black text-[#003B49] tracking-tight leading-none">
-              {lang === 'es' ? 'Proyectos de la Red' : 'Network Projects'}
-            </h1>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2">
-            {[
-              { id: 'investigacion', label: lang === 'es' ? 'Proyectos de investigación' : 'Research projects', icon: 'science' },
-              { id: 'avances', label: lang === 'es' ? 'Resultados y avances' : 'Results & breakthroughs', icon: 'trending_up' },
-              { id: 'tesistas', label: lang === 'es' ? 'Oportunidades para tesistas' : 'Opportunities for students', icon: 'school' }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => switchTab(tab.id)}
-                className={`px-5 py-3 rounded-2xl text-[15px] font-extrabold flex items-center gap-2 transition-all cursor-pointer ${
-                  activeTab === tab.id
-                    ? 'bg-[#003B49] text-white shadow-md'
-                    : 'bg-white border-2 border-gray-200 text-[#003B49] hover:border-[#087E8B] hover:bg-white'
-                }`}
-              >
-                <span className="material-symbols-outlined text-[18px]">{tab.icon}</span>
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </div>
+        <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
+          <span className="text-[12.5px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
+            {lang === 'es' ? 'Ciencia & Innovación' : 'Science & Innovation'}
+          </span>
+          <h1 className="text-[32px] sm:text-[40px] font-black text-[#003B49] tracking-tight leading-none">
+            {activeTab === 'investigacion' && (lang === 'es' ? 'Proyectos de Investigación Científica' : 'Scientific Research Projects')}
+            {activeTab === 'avances' && (lang === 'es' ? 'Resultados, Hitos y Avances Clínicos' : 'Results, Milestones & Breakthroughs')}
+            {activeTab === 'tesistas' && (lang === 'es' ? 'Oportunidades para Tesistas e Investigadores' : 'Opportunities for Researchers')}
+          </h1>
         </div>
 
         {/* 1. PROYECTOS DE INVESTIGACIÓN */}

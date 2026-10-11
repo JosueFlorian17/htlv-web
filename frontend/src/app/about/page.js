@@ -198,37 +198,16 @@ function AboutContent() {
             3. Instituciones miembros
             4. Aliados estratégicos
         */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <div>
-            <span className="text-[12px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
-              {lang === 'es' ? 'Identidad & Organización' : 'Identity & Governance'}
-            </span>
-            <h1 className="text-[32px] sm:text-[42px] font-black text-[#003B49] tracking-tight leading-none">
-              {lang === 'es' ? 'Acerca de la Red' : 'About the Network'}
-            </h1>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2">
-            {[
-              { id: 'quienes-somos', label: lang === 'es' ? 'Quiénes somos y objetivos' : 'About us & objectives', icon: 'info' },
-              { id: 'estructura', label: lang === 'es' ? 'Estructura y gobernanza' : 'Structure & governance', icon: 'account_tree' },
-              { id: 'miembros', label: lang === 'es' ? 'Instituciones miembros' : 'Member institutions', icon: 'groups' },
-              { id: 'aliados', label: lang === 'es' ? 'Aliados estratégicos' : 'Strategic allies', icon: 'handshake' }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => switchTab(tab.id)}
-                className={`px-4 py-3 rounded-2xl text-[14.5px] font-extrabold flex items-center gap-2 transition-all cursor-pointer ${
-                  activeTab === tab.id
-                    ? 'bg-[#003B49] text-white shadow-md'
-                    : 'bg-white border-2 border-gray-200 text-[#003B49] hover:border-[#087E8B] hover:bg-white'
-                }`}
-              >
-                <span className="material-symbols-outlined text-[18px]">{tab.icon}</span>
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </div>
+        <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
+          <span className="text-[12.5px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
+            {lang === 'es' ? 'Acerca de la Red' : 'About the Network'}
+          </span>
+          <h1 className="text-[32px] sm:text-[40px] font-black text-[#003B49] tracking-tight leading-none">
+            {activeTab === 'quienes-somos' && (lang === 'es' ? 'Quiénes Somos y Objetivos' : 'About Us & Objectives')}
+            {activeTab === 'estructura' && (lang === 'es' ? 'Estructura y Gobernanza' : 'Structure & Governance')}
+            {activeTab === 'miembros' && (lang === 'es' ? 'Instituciones Miembros' : 'Member Institutions')}
+            {activeTab === 'aliados' && (lang === 'es' ? 'Aliados Estratégicos' : 'Strategic Allies')}
+          </h1>
         </div>
 
         {/* 1. QUIÉNES SOMOS Y OBJETIVOS */}
@@ -290,15 +269,6 @@ function AboutContent() {
                 </div>
               </div>
 
-              <div className="pt-2 text-right">
-                <button
-                  onClick={() => switchTab('estructura')}
-                  className="bg-[#003B49] hover:bg-[#087E8B] text-white px-6 py-3 rounded-xl font-bold text-[14.5px] transition-all inline-flex items-center gap-2 cursor-pointer shadow-sm"
-                >
-                  <span>{lang === 'es' ? 'Ver Estructura y Gobernanza' : 'View Structure & Governance'}</span>
-                  <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-                </button>
-              </div>
             </div>
           </div>
         )}
@@ -325,22 +295,22 @@ function AboutContent() {
               </span>
             </div>
 
-            {/* Canvas Oscuro del Organigrama (Exacto a QuEST LAC - Imagen 2) */}
-            <div className="bg-[#15202D] text-white p-6 md:p-12 rounded-3xl border border-gray-800 shadow-2xl relative overflow-x-auto">
+            {/* Canvas Claro del Organigrama (Sin fondo negro ni efectos hover) */}
+            <div className="bg-[#F8F9FA] text-[#002538] p-6 md:p-12 rounded-2xl border border-gray-200 shadow-xs relative overflow-x-auto">
               <div className="min-w-[700px] flex flex-col items-center">
                 
                 {/* NIVEL 1: Comité Directivo */}
                 <div 
                   onClick={() => setSelectedNode(structureNodes.directivo)}
-                  className="w-full max-w-[500px] bg-[#0A1624] hover:bg-[#0e1e30] border border-white/20 p-5 rounded-xl text-center cursor-pointer shadow-md transition-all hover:scale-[1.01]"
+                  className="w-full max-w-[500px] bg-[#002538] hover:bg-[#00314a] border border-[#002538] p-5 rounded-xl text-center cursor-pointer shadow-xs transition-colors text-white"
                 >
                   <h4 className="text-[19px] font-black tracking-tight text-white">
                     {structureNodes.directivo.title}
                   </h4>
-                  <p className="text-[12px] uppercase font-bold text-gray-400 mt-1">
+                  <p className="text-[12px] uppercase font-bold text-[#E5A400] mt-1">
                     {lang === 'es' ? 'Directores' : 'Directors'}
                   </p>
-                  <p className="text-[14px] text-white/90 font-medium">
+                  <p className="text-[14px] text-white/95 font-medium">
                     Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor
                   </p>
                 </div>
@@ -360,28 +330,28 @@ function AboutContent() {
                 {/* NIVEL 2: Comités Asesores (CAT y GEPR) */}
                 <div className="grid grid-cols-2 gap-8 w-full max-w-[680px] pt-6">
                   
-                  {/* CAT (Tono ámbar/marrón como QuEST LAC) */}
+                  {/* CAT (Tono ámbar suave sobre fondo claro) */}
                   <div 
                     onClick={() => setSelectedNode(structureNodes.cat)}
-                    className="bg-[#362215] hover:bg-[#452b1b] border border-[#D98A2C]/40 p-4.5 rounded-xl text-center cursor-pointer shadow-sm transition-all hover:scale-[1.01]"
+                    className="bg-[#FFF9F0] hover:bg-[#FFF3E0] border-2 border-[#D98A2C] p-4.5 rounded-xl text-center cursor-pointer shadow-xs transition-colors"
                   >
-                    <h5 className="text-[16px] font-black text-white">
+                    <h5 className="text-[16px] font-black text-[#2D1B08]">
                       {structureNodes.cat.title}
                     </h5>
-                    <p className="text-[13px] text-white/80 mt-1">
+                    <p className="text-[13px] text-[#7A4B13] mt-1 font-medium">
                       {structureNodes.cat.subtitle}
                     </p>
                   </div>
 
-                  {/* GEPR (Tono vino/rojizo como QuEST LAC) */}
+                  {/* GEPR (Tono vino suave sobre fondo claro) */}
                   <div 
                     onClick={() => setSelectedNode(structureNodes.gepr)}
-                    className="bg-[#361522] hover:bg-[#451b2c] border border-[#A10D3A]/40 p-4.5 rounded-xl text-center cursor-pointer shadow-sm transition-all hover:scale-[1.01]"
+                    className="bg-[#FFF0F3] hover:bg-[#FFE6EC] border-2 border-[#A10D3A] p-4.5 rounded-xl text-center cursor-pointer shadow-xs transition-colors"
                   >
-                    <h5 className="text-[16px] font-black text-white">
+                    <h5 className="text-[16px] font-black text-[#330814]">
                       {structureNodes.gepr.title}
                     </h5>
-                    <p className="text-[13px] text-white/80 mt-1">
+                    <p className="text-[13px] text-[#7A132C] mt-1 font-medium">
                       {structureNodes.gepr.subtitle}
                     </p>
                   </div>
@@ -394,7 +364,7 @@ function AboutContent() {
                 {/* NIVEL 3: Centros Core de Coordinación */}
                 <div 
                   onClick={() => setSelectedNode(structureNodes.core)}
-                  className="w-full max-w-[580px] bg-[#0A1A28] hover:bg-[#0e2336] border border-white/20 p-5 rounded-xl text-center cursor-pointer shadow-md transition-all hover:scale-[1.01]"
+                  className="w-full max-w-[580px] bg-[#003B49] hover:bg-[#004758] border border-[#003B49] p-5 rounded-xl text-center cursor-pointer shadow-xs transition-colors text-white"
                 >
                   <div className="flex items-center justify-center gap-2 mb-1">
                     <span className="text-lg">🇵🇪</span>
@@ -403,10 +373,10 @@ function AboutContent() {
                     </h4>
                     <span className="text-lg">🇬🇧</span>
                   </div>
-                  <p className="text-[13.5px] text-white/90">
+                  <p className="text-[13.5px] text-white/95">
                     Instituto de Medicina Tropical Alexander von Humboldt (UPCH) – Perú
                   </p>
-                  <p className="text-[13.5px] text-white/90">
+                  <p className="text-[13.5px] text-white/95">
                     National Centre for Human Retrovirology, Imperial College London – Reino Unido
                   </p>
                 </div>
@@ -436,18 +406,18 @@ function AboutContent() {
                       <div 
                         key={i}
                         onClick={() => setSelectedNode(node)}
-                        className="bg-[#1A2634] hover:bg-[#223346] border border-white/10 hover:border-white/30 p-4 rounded-xl text-center cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between min-h-[140px]"
+                        className="bg-white hover:border-[#087E8B] border-2 border-gray-200 p-4 rounded-xl text-center cursor-pointer transition-colors flex flex-col justify-between min-h-[140px] shadow-2xs"
                       >
                         <div>
                           <div className="text-xl mb-1">{node.flag}</div>
-                          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">
+                          <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block">
                             {lang === 'es' ? 'Centro Afiliado' : 'Affiliated Center'}
                           </span>
-                          <h6 className="font-bold text-[13.5px] text-white mt-1 leading-snug">
+                          <h6 className="font-bold text-[13.5px] text-[#002538] mt-1 leading-snug">
                             {node.title}
                           </h6>
                         </div>
-                        <span className="text-[12px] text-gray-400 mt-2 block font-medium">
+                        <span className="text-[12px] text-gray-500 mt-2 block font-medium">
                           {node.subtitle.split(' - ')[1] || node.subtitle}
                         </span>
                       </div>
@@ -458,32 +428,32 @@ function AboutContent() {
               </div>
             </div>
 
-            {/* MODAL INSTITUCIONAL SOBRIO (Exacto a QuEST LAC - Imagen 2) */}
+            {/* MODAL INSTITUCIONAL SOBRIO (Claro, sin fondo negro) */}
             {selectedNode && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-xs animate-fadeIn">
-                <div className="bg-[#182330] text-white w-full max-w-md rounded-2xl p-6 border border-white/10 shadow-2xl relative text-center space-y-4">
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-fadeIn">
+                <div className="bg-white text-[#002538] w-full max-w-md rounded-2xl p-6 border border-gray-200 shadow-2xl relative text-center space-y-4">
                   
-                  {/* Título en negrita exacto a QuEST LAC */}
-                  <h4 className="text-[17px] font-bold text-white leading-snug">
+                  {/* Título en negrita */}
+                  <h4 className="text-[17px] font-bold text-[#002538] leading-snug">
                     {selectedNode.title}:
                   </h4>
 
                   {/* Descripción clara y sobria */}
-                  <p className="text-[14px] text-white/90 leading-relaxed max-w-sm mx-auto">
+                  <p className="text-[14.5px] text-gray-700 leading-relaxed max-w-sm mx-auto">
                     {selectedNode.description}
                   </p>
 
-                  {/* Botones estilo QuEST LAC: Botón ámbar "Ver más" y botón oscuro "Cerrar" */}
+                  {/* Botones estilo institucional: Botón ámbar "Ver más" y botón sutil "Cerrar" */}
                   <div className="pt-2 flex flex-col items-center gap-2">
                     <button
                       onClick={() => handleModalAction(selectedNode)}
-                      className="w-44 bg-[#D98A2C] hover:bg-[#c27923] text-white font-bold py-2 px-5 rounded-md text-[14.5px] transition-all cursor-pointer shadow-sm"
+                      className="w-44 bg-[#D98A2C] hover:bg-[#c27923] text-white font-bold py-2 px-5 rounded-md text-[14.5px] transition-colors cursor-pointer shadow-sm"
                     >
                       {selectedNode.linkText || (lang === 'es' ? 'Ver más' : 'See more')}
                     </button>
                     <button
                       onClick={() => setSelectedNode(null)}
-                      className="bg-[#213346] hover:bg-[#2c435c] text-white/90 text-[12px] font-medium py-1 px-4 rounded-md transition-all cursor-pointer"
+                      className="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[12px] font-medium py-1 px-4 rounded-md transition-colors cursor-pointer"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
@@ -525,7 +495,7 @@ function AboutContent() {
                         key={mIdx}
                         className="p-4 rounded-2xl bg-gray-50 border border-gray-200 hover:border-[#087E8B] transition-all flex items-center gap-4 group"
                       >
-                        <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-[#003B49] flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform bg-[#087E8B]/20">
+                        <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-[#003B49] flex-shrink-0 shadow-2xs bg-[#087E8B]/20">
                           <img 
                             src={member.image} 
                             alt={member.name} 

@@ -176,28 +176,10 @@ function HTLVContent() {
             </h1>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {[
-              { id: 'que-es', label: lang === 'es' ? '¿Qué es el HTLV?' : 'What is HTLV?', icon: 'coronavirus' },
-              { id: 'faqs', label: lang === 'es' ? `Preguntas frecuentes (${faqs.length})` : `FAQs (${faqs.length})`, icon: 'quiz' }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => switchTab(tab.id)}
-                className={`px-5 py-3 rounded-2xl text-[15px] font-extrabold flex items-center gap-2 transition-all cursor-pointer ${
-                  activeTab === tab.id
-                    ? 'bg-[#003B49] text-white shadow-md'
-                    : 'bg-white border-2 border-gray-200 text-[#003B49] hover:border-[#087E8B] hover:bg-white'
-                }`}
-              >
-                <span className="material-symbols-outlined text-[18px]">{tab.icon}</span>
-                <span>{tab.label}</span>
-              </button>
-            ))}
-
+          <div className="flex items-center gap-3">
             <button
               onClick={handlePrint}
-              className="bg-[#A10D3A] text-white px-5 py-3 rounded-2xl text-[14px] font-bold hover:opacity-90 transition-all flex items-center gap-2 cursor-pointer shadow-xs"
+              className="bg-[#A10D3A] hover:bg-[#850a2f] text-white px-5 py-2.5 rounded-xl text-[14px] font-bold transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
             >
               <span className="material-symbols-outlined text-[18px]">print</span>
               <span>{lang === 'es' ? 'Imprimir PDF' : 'Print PDF'}</span>
@@ -335,15 +317,6 @@ function HTLVContent() {
                   </div>
                 )}
 
-                <div className="pt-6 border-t border-gray-200 text-right">
-                  <button
-                    onClick={() => switchTab('faqs')}
-                    className="text-[#087E8B] font-black hover:underline inline-flex items-center gap-1 text-[14.5px]"
-                  >
-                    <span>{lang === 'es' ? `Ver las ${faqs.length} Preguntas Frecuentes` : `View all ${faqs.length} FAQs`}</span>
-                    <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                  </button>
-                </div>
 
               </div>
 

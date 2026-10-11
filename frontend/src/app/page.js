@@ -32,14 +32,14 @@ export default function Home() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 transform -translate-y-3">
+                  <div className="rounded-2xl overflow-hidden shadow-lg border border-white/20">
                     <img 
                       src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" 
                       alt="Atención médica y cuidado de pacientes"
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 transform translate-y-3">
+                  <div className="rounded-2xl overflow-hidden shadow-lg border border-white/20">
                     <img 
                       src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" 
                       alt="Laboratorio de investigación molecular"
@@ -51,9 +51,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Tarjeta de Titular con Botón Mostaza (Exacto a la tarjeta blanca flotante de la imagen 2) */}
+            {/* Tarjeta de Titular con Botón Mostaza */}
             <div className="lg:col-span-5">
-              <div className="bg-[#f8f9fb] text-[#003B49] p-8 md:p-10 rounded-3xl shadow-2xl border-2 border-white/30 space-y-6">
+              <div className="bg-[#f8f9fb] text-[#003B49] p-8 md:p-10 rounded-2xl shadow-xl border border-white/40 space-y-6">
                 
                 <div className="space-y-4">
                   <div>
@@ -70,7 +70,7 @@ export default function Home() {
                   </h1>
                 </div>
 
-                <p className="text-[15.5px] text-[#443333] leading-relaxed">
+                <p className="text-[16px] text-[#443333] leading-relaxed">
                   {lang === 'es'
                     ? 'Alianza internacional de centros de excelencia liderada por el Instituto de Medicina Tropical Alexander von Humboldt (UPCH) para el diagnóstico temprano, la investigación clínica y el cuidado integral.'
                     : 'International alliance of excellence led by Alexander von Humboldt Tropical Medicine Institute (UPCH) for early diagnosis, clinical research, and patient care.'}
@@ -79,7 +79,7 @@ export default function Home() {
                 <div>
                   <Link
                     href="/about?tab=quienes-somos"
-                    className="inline-block bg-[#E5A400] hover:bg-[#cca300] text-[#003B49] font-black px-8 py-3.5 rounded-xl text-[15.5px] transition-all shadow-md hover:scale-105 cursor-pointer"
+                    className="inline-block bg-[#E5A400] hover:bg-[#cca300] text-[#003B49] font-black px-8 py-3.5 rounded-xl text-[16px] transition-colors shadow-sm cursor-pointer"
                   >
                     {lang === 'es' ? 'Conoce más' : 'Learn more'}
                   </Link>

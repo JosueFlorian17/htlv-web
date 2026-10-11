@@ -108,10 +108,10 @@ export default function Header() {
         }`}>
             <div className="w-full h-full flex items-center justify-between">
                 
-                {/* Logo Principal Oficial (Dentro de un rectángulo blanco que toma TODO el alto del header y pegado al extremo izquierdo) */}
+                {/* Logo Principal Oficial (Fondo contrastante no blanco ni negro oscuro, pegado a la izquierda) */}
                 <Link 
                     href="/" 
-                    className="h-full bg-white px-5 sm:px-8 flex items-center justify-center shrink-0 border-r border-gray-200/60 shadow-sm hover:bg-gray-50 transition-colors" 
+                    className="h-full bg-[#E5EDF2] px-5 sm:px-8 flex items-center justify-center shrink-0 border-r border-[#CBD5E1] shadow-xs hover:bg-[#DCE6ED] transition-colors" 
                     title={lang === 'es' ? "Ir al Inicio" : "Go to Home"}
                 >
                     <img 
@@ -137,23 +137,35 @@ export default function Header() {
                                     onMouseEnter={() => setActiveDropdown(menu.title)}
                                     onMouseLeave={() => setActiveDropdown(null)}
                                 >
-                                    <Link
-                                        href={menu.href}
-                                        className={`px-3 py-2 rounded-xl text-[16px] font-bold transition-all flex items-center gap-1 ${
-                                            active 
-                                                ? 'text-[#E5A400] bg-white/10' 
-                                                : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
-                                        }`}
-                                    >
-                                        <span>{menu.title}</span>
-                                        {hasItems && (
+                                    {/* Si tiene opciones múltiples, el botón padre NO es un enlace clickable, solo despliega en hover */}
+                                    {hasItems ? (
+                                        <button
+                                            type="button"
+                                            className={`px-3 py-2 rounded-xl text-[16px] font-bold transition-all flex items-center gap-1 cursor-default ${
+                                                active 
+                                                    ? 'text-[#E5A400] bg-white/10' 
+                                                    : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
+                                            }`}
+                                        >
+                                            <span>{menu.title}</span>
                                             <span className="material-symbols-outlined text-[17px] transition-transform group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
                                                 expand_more
                                             </span>
-                                        )}
-                                    </Link>
+                                        </button>
+                                    ) : (
+                                        <Link
+                                            href={menu.href}
+                                            className={`px-3 py-2 rounded-xl text-[16px] font-bold transition-all flex items-center gap-1 ${
+                                                active 
+                                                    ? 'text-[#E5A400] bg-white/10' 
+                                                    : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
+                                            }`}
+                                        >
+                                            <span>{menu.title}</span>
+                                        </Link>
+                                    )}
 
-                                    {/* Desplegable al hacer Hover */}
+                                    {/* Desplegable al hacer Hover (Solo los elementos internos son clickables) */}
                                     {hasItems && (
                                         <div className="absolute top-[85%] left-0 pt-2 hidden group-hover:block z-50">
                                             <div className="bg-[#001D2C] rounded-2xl shadow-2xl border border-white/15 py-3 min-w-[280px] animate-fadeIn backdrop-blur-md">
@@ -222,12 +234,19 @@ export default function Header() {
                     <nav className="space-y-4">
                         {menuStructure.map((menu, idx) => (
                             <div key={idx} className="space-y-1">
-                                <Link
-                                    href={menu.href}
-                                    className="block font-black text-[17px] text-white hover:text-[#E5A400] py-1 border-b border-white/10"
-                                >
-                                    {menu.title}
-                                </Link>
+                                {menu.items ? (
+                                    <div className="font-black text-[17px] text-white py-1 border-b border-white/10 flex items-center justify-between">
+                                        <span>{menu.title}</span>
+                                        <span className="material-symbols-outlined text-sm text-[#E5A400]">expand_more</span>
+                                    </div>
+                                ) : (
+                                    <Link
+                                        href={menu.href}
+                                        className="block font-black text-[17px] text-white hover:text-[#E5A400] py-1 border-b border-white/10"
+                                    >
+                                        {menu.title}
+                                    </Link>
+                                )}
                                 {menu.items && (
                                     <div className="pl-3 space-y-1 pt-1">
                                         {menu.items.map((sub, sIdx) => (

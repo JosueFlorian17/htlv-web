@@ -247,37 +247,15 @@ function PacientesContent() {
       <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12">
         
         {/* Cabecera con Pestañas Horizontales (1. Preguntas frecuentes, 2. Recursos, 3. Haz tu pregunta) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <div>
-            <span className="text-[12px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
-              {lang === 'es' ? 'Comunidad y Bienestar' : 'Community & Well-being'}
-            </span>
-            <h1 className="text-[32px] sm:text-[42px] font-black text-[#003B49] tracking-tight leading-none">
-              {lang === 'es' ? 'Espacio para Pacientes' : 'Patient Space'}
-            </h1>
-          </div>
-
-          {/* Selector de Pestañas Horizontales */}
-          <div className="flex flex-wrap items-center gap-2">
-            {[
-              { id: 'faqs', label: lang === 'es' ? '1. Preguntas frecuentes' : '1. FAQs', icon: 'quiz' },
-              { id: 'recursos', label: lang === 'es' ? '2. Recursos de apoyo' : '2. Resources', icon: 'library_books' },
-              { id: 'haz-tu-pregunta', label: lang === 'es' ? '3. Haz tu pregunta' : '3. Ask a question', icon: 'send' }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => switchTab(tab.id)}
-                className={`px-5 py-3 rounded-2xl text-[15px] font-extrabold flex items-center gap-2 transition-all cursor-pointer ${
-                  activeTab === tab.id
-                    ? 'bg-[#003B49] text-white shadow-md'
-                    : 'bg-white border-2 border-gray-200 text-[#003B49] hover:border-[#087E8B] hover:bg-white'
-                }`}
-              >
-                <span className="material-symbols-outlined text-[18px]">{tab.icon}</span>
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </div>
+        <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
+          <span className="text-[12.5px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
+            {lang === 'es' ? 'Comunidad y Bienestar' : 'Community & Well-being'}
+          </span>
+          <h1 className="text-[32px] sm:text-[40px] font-black text-[#003B49] tracking-tight leading-none">
+            {activeTab === 'faqs' && (lang === 'es' ? 'Preguntas Frecuentes para Pacientes' : 'Patient Frequently Asked Questions')}
+            {activeTab === 'recursos' && (lang === 'es' ? 'Recursos de Apoyo y Material Educativo' : 'Support Resources & Educational Materials')}
+            {activeTab === 'haz-tu-pregunta' && (lang === 'es' ? 'Haz tu Pregunta a la Red' : 'Ask Your Question to the Network')}
+          </h1>
         </div>
 
         {/* 1. PESTAÑA: PREGUNTAS FRECUENTES (Formato de corrido, sin buscador, sin cards ni categorías) */}
