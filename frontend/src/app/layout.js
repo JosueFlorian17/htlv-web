@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import Header from '../components/layout/Header';
 import MainLayoutWrapper from '../components/layout/MainLayoutWrapper';
+import { LanguageProvider } from '../context/LanguageContext';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://htlv-web.vercel.app');
 
@@ -23,9 +24,7 @@ export const metadata = {
     'Cayetano Heredia',
     'UPCH',
     'IMTAvH',
-    'Perú',
-    'Epidemiología HTLV',
-    'Investigación retroviral'
+    'Perú'
   ],
   authors: [{ name: 'RIII-HTLV & UPCH' }],
   creator: 'Red Internacional de Investigación e Innovación en HTLV',
@@ -34,8 +33,7 @@ export const metadata = {
     canonical: '/',
     languages: {
       'es': '/',
-      'en': '/en',
-      'pt': '/pt',
+      'en': '/?lang=en',
       'x-default': '/'
     }
   },
@@ -49,14 +47,7 @@ export const metadata = {
   },
   robots: {
     index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+    follow: true
   },
 };
 
@@ -65,19 +56,14 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-        <link rel="alternate" hrefLang="es" href={`${siteUrl}/`} />
-        <link rel="alternate" hrefLang="en" href={`${siteUrl}/en`} />
-        <link rel="alternate" hrefLang="pt" href={`${siteUrl}/pt`} />
-        <link rel="alternate" hrefLang="x-default" href={`${siteUrl}/`} />
       </head>
       <body className="bg-[#f8f9fb] text-gray-900 flex flex-col min-h-screen pt-20">
-        {/* Barra de navegación superior fija */}
-        <Header />
-        
-        {/* Contenido dinámico de cada página con layout unificado */}
-        <MainLayoutWrapper>
-          {children}
-        </MainLayoutWrapper>
+        <LanguageProvider>
+          <Header />
+          <MainLayoutWrapper>
+            {children}
+          </MainLayoutWrapper>
+        </LanguageProvider>
       </body>
     </html>
   );

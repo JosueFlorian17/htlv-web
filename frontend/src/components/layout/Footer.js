@@ -1,8 +1,11 @@
 "use client";
 
 import Link from 'next/link';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Footer({ hasSidebar = false }) {
+  const { lang, t } = useLanguage();
+
   const memberInstitutions = [
     { name: 'Universidad Peruana Cayetano Heredia (UPCH)', url: 'https://www.cayetano.edu.pe' },
     { name: 'Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH)', url: 'https://medicina.cayetano.edu.pe/imtavh/' },
@@ -14,8 +17,8 @@ export default function Footer({ hasSidebar = false }) {
   ];
 
   return (
-    <footer className="w-full py-12 px-6 md:px-10 bg-[#f1f3f5] border-t border-[#dcc0c0] text-[#564242]">
-      <div className={`max-w-[1360px] w-full mx-auto space-y-10 ${hasSidebar ? 'lg:pl-64' : ''}`}>
+    <footer className="w-full py-12 px-6 md:px-12 bg-[#f1f3f5] border-t border-[#dcc0c0] text-[#443333]">
+      <div className={`max-w-[1400px] w-full mx-auto space-y-10 ${hasSidebar ? 'lg:pl-64' : ''}`}>
         
         {/* Columnas Principales */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -23,54 +26,54 @@ export default function Footer({ hasSidebar = false }) {
           {/* Identidad de la Red */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#5b0617] text-white flex items-center justify-center font-black text-lg">
+              <div className="w-11 h-11 rounded-2xl bg-[#5b0617] text-white flex items-center justify-center font-black text-xl">
                 R
               </div>
               <div>
-                <span className="text-[20px] font-black text-[#5b0617] block leading-tight">RIII-HTLV</span>
-                <span className="text-[11px] font-bold text-[#897172] uppercase tracking-wider">Red Internacional HTLV</span>
+                <span className="text-[22px] font-black text-[#5b0617] block leading-tight">RIII-HTLV</span>
+                <span className="text-[12px] font-bold text-[#897172] uppercase tracking-wider">
+                  {lang === 'es' ? 'Red Internacional HTLV' : 'International HTLV Network'}
+                </span>
               </div>
             </div>
-            <p className="text-[13px] text-[#564242] leading-relaxed">
-              Alianza científica y colaborativa entre centros de referencia en América Latina, Europa y Asia para la investigación integral, prevención, diagnóstico oportuno y acompañamiento en HTLV-1 y HTLV-2.
+            <p className="text-[14.5px] text-[#564242] leading-relaxed">
+              {lang === 'es'
+                ? 'Alianza científica global coordinada desde el IMTAvH de la Universidad Peruana Cayetano Heredia (UPCH) para la investigación de excelencia, prevención y acompañamiento en HTLV-1 y HTLV-2.'
+                : 'Global scientific alliance coordinated from IMTAvH - Universidad Peruana Cayetano Heredia (UPCH) for research excellence, prevention, and patient care in HTLV-1 and HTLV-2.'}
             </p>
-            <div className="pt-1 text-[12px] text-[#897172]">
-              <span>Sede de Coordinación: IMTAvH • UPCH (Lima, Perú)</span>
-            </div>
           </div>
 
-          {/* Navegación Principal (7 Secciones Acordadas) */}
+          {/* Navegación */}
           <div className="flex flex-col gap-3">
-            <h6 className="text-[13px] font-bold text-[#191c1e] uppercase tracking-wider border-b border-[#dcc0c0]/60 pb-2">
-              Secciones
-            </h6>
-            <nav className="flex flex-col gap-2 text-[13px]">
-              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/">Inicio</Link>
-              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/about">Acerca de la Red</Link>
-              <Link className="hover:text-[#5b0617] hover:underline transition-colors font-medium text-[#5b0617]" href="/htlv">HTLV (Información & FAQs)</Link>
-              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/proyectos">Proyectos de la Red</Link>
-              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/profesionales">Profesionales de la Salud</Link>
-              <Link className="hover:text-[#5b0617] hover:underline transition-colors font-medium text-[#5b0617]" href="/pacientes">Pacientes & Preguntas</Link>
-              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/publicaciones">Publicaciones Científicas</Link>
-              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/contact">Contacto</Link>
+            <h4 className="text-[14px] font-black text-[#191c1e] uppercase tracking-wider border-b border-[#dcc0c0]/60 pb-2">
+              {lang === 'es' ? 'Secciones' : 'Navigation'}
+            </h4>
+            <nav className="flex flex-col gap-2 text-[14.5px] font-semibold">
+              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/about">{t('nav_about')}</Link>
+              <Link className="hover:text-[#5b0617] hover:underline transition-colors text-[#5b0617]" href="/htlv">{t('nav_htlv')}</Link>
+              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/proyectos">{t('nav_projects')}</Link>
+              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/profesionales">{t('nav_professionals')}</Link>
+              <Link className="hover:text-[#5b0617] hover:underline transition-colors text-[#5b0617]" href="/pacientes">{t('nav_patients')}</Link>
+              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/publicaciones">{t('nav_publications')}</Link>
+              <Link className="hover:text-[#5b0617] hover:underline transition-colors" href="/contact">{t('nav_contact')}</Link>
             </nav>
           </div>
 
-          {/* Instituciones Miembros y Enlaces Directos */}
+          {/* Instituciones Miembros */}
           <div className="flex flex-col gap-3">
-            <h6 className="text-[13px] font-bold text-[#191c1e] uppercase tracking-wider border-b border-[#dcc0c0]/60 pb-2">
-              Instituciones Miembros
-            </h6>
-            <div className="flex flex-col gap-1.5 text-[12.5px]">
+            <h4 className="text-[14px] font-black text-[#191c1e] uppercase tracking-wider border-b border-[#dcc0c0]/60 pb-2">
+              {lang === 'es' ? 'Instituciones Miembros' : 'Member Institutions'}
+            </h4>
+            <div className="flex flex-col gap-2 text-[13.5px]">
               {memberInstitutions.map((inst, idx) => (
                 <a 
                   key={idx}
                   href={inst.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#564242] hover:text-[#5b0617] hover:underline flex items-center gap-1 transition-colors"
+                  className="text-[#443333] hover:text-[#5b0617] hover:underline flex items-center gap-1.5 transition-colors"
                 >
-                  <span className="material-symbols-outlined text-[13px] text-[#897172]">open_in_new</span>
+                  <span className="material-symbols-outlined text-[14px] text-[#897172]">open_in_new</span>
                   <span>{inst.name}</span>
                 </a>
               ))}
@@ -79,20 +82,20 @@ export default function Footer({ hasSidebar = false }) {
 
           {/* Sede y Contacto */}
           <div className="flex flex-col gap-3">
-            <h6 className="text-[13px] font-bold text-[#191c1e] uppercase tracking-wider border-b border-[#dcc0c0]/60 pb-2">
-              Sede Central & Consultas
-            </h6>
-            <div className="space-y-2 text-[13px]">
-              <p className="font-semibold text-[#191c1e]">Instituto de Medicina Tropical Alexander von Humboldt</p>
-              <p className="text-[12px]">Universidad Peruana Cayetano Heredia (UPCH)</p>
-              <p className="text-[12px] text-[#564242]">Av. Honorio Delgado 430, San Martín de Porres, Lima, Perú</p>
+            <h4 className="text-[14px] font-black text-[#191c1e] uppercase tracking-wider border-b border-[#dcc0c0]/60 pb-2">
+              {lang === 'es' ? 'Sede Central' : 'Central Coordination'}
+            </h4>
+            <div className="space-y-2 text-[14px]">
+              <p className="font-bold text-[#191c1e]">Instituto de Medicina Tropical Alexander von Humboldt</p>
+              <p className="text-[13px] text-[#564242]">Universidad Peruana Cayetano Heredia (UPCH)</p>
+              <p className="text-[13px] text-[#564242]">Av. Honorio Delgado 430, San Martín de Porres, Lima, Perú</p>
               <div className="pt-2">
                 <Link 
                   href="/contact"
-                  className="inline-flex items-center gap-1.5 text-[12.5px] font-bold text-[#5b0617] hover:underline bg-[#ffdada]/60 px-3 py-1.5 rounded-lg"
+                  className="inline-flex items-center gap-1.5 text-[13.5px] font-bold text-[#5b0617] hover:underline bg-[#ffdada]/60 px-3 py-1.5 rounded-xl"
                 >
                   <span className="material-symbols-outlined text-[16px]">mail</span>
-                  Formulario de Contacto
+                  <span>{lang === 'es' ? 'Formulario de Contacto' : 'Contact Form'}</span>
                 </Link>
               </div>
             </div>
@@ -100,14 +103,14 @@ export default function Footer({ hasSidebar = false }) {
         </div>
 
         {/* Barra Inferior */}
-        <div className="pt-6 border-t border-[#dcc0c0] flex flex-col sm:flex-row justify-between items-center gap-4 text-[12px] text-[#897172]">
+        <div className="pt-6 border-t border-[#dcc0c0] flex flex-col sm:flex-row justify-between items-center gap-4 text-[13px] text-[#897172]">
           <p suppressHydrationWarning>
             © {new Date().getFullYear()} Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV).
           </p>
-          <div className="flex items-center gap-4 text-[12px]">
-            <span>Protección de Datos Personales (Ley N° 29733)</span>
+          <div className="flex items-center gap-4">
+            <span>{lang === 'es' ? 'Protección de Datos (Ley N° 29733)' : 'Data Protection'}</span>
             <span>•</span>
-            <span>Acceso Abierto a la Información</span>
+            <span>{lang === 'es' ? 'Acceso Abierto a la Información' : 'Open Access'}</span>
           </div>
         </div>
 
