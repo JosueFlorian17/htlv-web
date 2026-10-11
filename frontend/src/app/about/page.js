@@ -234,23 +234,23 @@ function AboutContent() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                <div className="p-5 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#087E8B] block">
-                    {lang === 'es' ? 'Misión Institucional' : 'Institutional Mission'}
-                  </span>
-                  <p className="text-sm text-slate-700 leading-relaxed">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
+                <div className="space-y-2 text-center">
+                  <h3 className="font-bold text-base sm:text-lg text-[#087E8B] tracking-wide">
+                    – {lang === 'es' ? 'Misión Institucional' : 'Institutional Mission'} –
+                  </h3>
+                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                     {lang === 'es'
                       ? 'Generar evidencia clínica rigurosa, estandarizar metodologías diagnósticas de carga proviral y guiar políticas de salud pública preventivas en la región.'
                       : 'Generate rigorous clinical evidence, standardize proviral load diagnostic assays, and guide preventive public health policies.'}
                   </p>
                 </div>
 
-                <div className="p-5 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#E5A400] block">
-                    {lang === 'es' ? 'Visión Global' : 'Global Vision'}
-                  </span>
-                  <p className="text-sm text-slate-700 leading-relaxed">
+                <div className="space-y-2 text-center">
+                  <h3 className="font-bold text-base sm:text-lg text-[#E5A400] tracking-wide">
+                    – {lang === 'es' ? 'Visión Global' : 'Global Vision'} –
+                  </h3>
+                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                     {lang === 'es'
                       ? 'Consolidarse como la plataforma científica de referencia mundial en retrovirología humana, integrando a pacientes, médicos y organismos multilaterales.'
                       : 'Become the world benchmark scientific platform in human retrovirology, integrating patients, clinicians, and multilateral agencies.'}
