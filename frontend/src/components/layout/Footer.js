@@ -73,9 +73,9 @@ export default function Footer() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             
-            {/* TARJETA CONTACT US CELESTE (Sobresale hacia la franja blanca con bordes redondeados asimétricos) */}
+            {/* TARJETA CONTACT US CELESTE (Sobresale hacia la franja blanca con bordes redondeados) */}
             <div className="lg:col-span-4 relative z-20 mt-2 lg:-mt-24">
-              <div className="bg-[#1E9CD7] text-white p-7 rounded-tl-2xl rounded-tr-[54px] rounded-bl-none rounded-br-none shadow-2xl space-y-4">
+              <div className="bg-[#1E9CD7] text-white p-7 rounded-tl-2xl rounded-tr-[54px] rounded-b-3xl shadow-2xl space-y-4">
                 
                 {/* Ícono de sobre blanco idéntico a IRVA */}
                 <div className="w-12 h-9 bg-white rounded-lg flex items-center justify-center text-[#1E9CD7] shadow-sm">
@@ -215,75 +215,6 @@ export default function Footer() {
             </div>
 
           </div>
-        </div>
-      </div>
-
-      {/* 3. BARRA INFERIOR CURVADA (Fondo azul medio con esquina superior izquierda redondeada a 50px) */}
-      <div className="w-full bg-[#073656] py-5 px-6 md:px-12 rounded-tl-[48px] lg:rounded-tl-[58px] -mt-6 relative z-10 shadow-lg">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-[13px] text-white/80">
-          
-          {/* Legales & Copyright a la izquierda */}
-          <div className="space-y-0.5 text-center md:text-left">
-            <p className="space-x-2 text-[12.5px] font-medium text-white/90">
-              <Link href="/contact" className="hover:underline hover:text-white">
-                {lang === 'es' ? 'Política de Privacidad' : 'Privacy Policy'}
-              </Link>
-              <span>|</span>
-              <Link href="/contact" className="hover:underline hover:text-white">
-                {lang === 'es' ? 'Descargo de Responsabilidad' : 'Disclaimer'}
-              </Link>
-            </p>
-            <p className="text-[12px] text-white/70">
-              Copyright © {new Date().getFullYear()} RIII-HTLV. {lang === 'es' ? 'Todos los derechos reservados.' : 'All Rights Reserved.'}
-            </p>
-          </div>
-
-          {/* Logotipo Central estilo IRVA (Dinámico por idioma) */}
-          <div className="flex items-center">
-            <Link href="/" className="bg-white/95 px-3 py-1 rounded-lg shadow-xs hover:bg-white transition-all flex items-center">
-              <img
-                src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
-                alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
-                className="h-7 w-auto object-contain"
-              />
-            </Link>
-          </div>
-
-          {/* Redes Sociales y Botón Circular Flotante */}
-          <div className="flex items-center gap-4">
-            
-            <div className="flex items-center gap-2">
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-7 h-7 rounded-xs border border-white/40 hover:border-white hover:bg-white/10 flex items-center justify-center text-white transition-colors text-xs font-bold"
-                title="Facebook"
-              >
-                f
-              </a>
-              <a 
-                href="https://twitter.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-7 h-7 rounded-xs border border-white/40 hover:border-white hover:bg-white/10 flex items-center justify-center text-white transition-colors text-xs font-bold"
-                title="X (Twitter)"
-              >
-                𝕏
-              </a>
-            </div>
-
-            {/* Botón Circular Celeste de Subir Arriba */}
-            <button
-              onClick={scrollToTop}
-              className="w-9 h-9 rounded-full bg-[#1E9CD7] hover:bg-[#1589C0] text-white flex items-center justify-center shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer ml-1"
-              title={lang === 'es' ? "Volver arriba" : "Back to top"}
-            >
-              <span className="material-symbols-outlined text-2xl leading-none">expand_less</span>
-            </button>
-
-          </div>
-
         </div>
       </div>
 
