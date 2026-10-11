@@ -34,7 +34,7 @@ export default function Header() {
         return pathname === path || pathname.startsWith(path + '/');
     };
 
-    // Estructura exacta solicitada por el usuario
+    // Estructura acordada
     const menuStructure = [
         {
             title: lang === 'es' ? 'Acerca de la Red' : 'About the Network',
@@ -90,30 +90,34 @@ export default function Header() {
             title: lang === 'es' ? 'Publicaciones' : 'Publications',
             href: '/publicaciones',
             basePath: '/publicaciones',
-            items: null // enlace directo
+            items: null
         },
         {
             title: lang === 'es' ? 'Contacto' : 'Contact',
             href: '/contact',
             basePath: '/contact',
-            items: null // enlace directo
+            items: null
         }
     ];
 
     return (
-        <header className={`fixed top-0 left-0 right-0 h-20 w-full z-50 bg-white transition-all duration-200 ${isScrolled ? 'shadow-md border-b border-[#087E8B]/20' : 'border-b border-gray-200'}`}>
+        <header className={`fixed top-0 left-0 right-0 h-20 w-full z-50 transition-all duration-200 ${
+            isScrolled 
+                ? 'bg-[#001D2C] shadow-xl border-b border-white/10' 
+                : 'bg-[#002538] border-b border-white/10'
+        }`}>
             <div className="max-w-[1400px] mx-auto w-full h-full flex justify-between items-center px-4 md:px-8">
                 
                 {/* Logo Principal (Clickable para ir a Inicio) */}
                 <Link href="/" className="flex items-center gap-3 group" title="Ir al Inicio">
-                    <div className="w-12 h-12 rounded-2xl bg-[#003B49] text-white flex items-center justify-center font-black text-2xl shadow-sm group-hover:scale-105 transition-transform">
+                    <div className="w-11 h-11 rounded-2xl bg-[#087E8B] text-white flex items-center justify-center font-black text-2xl shadow-sm group-hover:bg-[#1E9CD7] transition-all">
                         R
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-[24px] md:text-[26px] font-black text-[#003B49] tracking-tight leading-none group-hover:text-[#A10D3A] transition-colors">
+                        <span className="text-[23px] md:text-[25px] font-black text-white tracking-tight leading-none group-hover:text-[#E5A400] transition-colors">
                             RIII-HTLV
                         </span>
-                        <span className="text-[11px] font-extrabold text-[#087E8B] tracking-wider uppercase mt-1">
+                        <span className="text-[10.5px] font-extrabold text-[#1E9CD7] tracking-wider uppercase mt-1">
                             {lang === 'es' ? 'Red Internacional HTLV' : 'International HTLV Network'}
                         </span>
                     </div>
@@ -134,15 +138,15 @@ export default function Header() {
                             >
                                 <Link
                                     href={menu.href}
-                                    className={`px-3 py-2 rounded-xl text-[15px] font-bold transition-all flex items-center gap-1 ${
+                                    className={`px-3 py-2 rounded-xl text-[14.5px] font-bold transition-all flex items-center gap-1 ${
                                         active 
-                                            ? 'text-[#A10D3A] bg-[#A10D3A]/10' 
-                                            : 'text-[#003B49] hover:text-[#A10D3A] hover:bg-gray-100'
+                                            ? 'text-[#E5A400] bg-white/10' 
+                                            : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
                                     }`}
                                 >
                                     <span>{menu.title}</span>
                                     {hasItems && (
-                                        <span className="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180 text-gray-500">
+                                        <span className="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
                                             expand_more
                                         </span>
                                     )}
@@ -151,8 +155,8 @@ export default function Header() {
                                 {/* Desplegable al hacer Hover */}
                                 {hasItems && (
                                     <div className="absolute top-[85%] left-0 pt-2 hidden group-hover:block z-50">
-                                        <div className="bg-white rounded-2xl shadow-xl border-2 border-[#003B49]/15 py-3 min-w-[260px] animate-fadeIn">
-                                            <div className="px-4 pb-2 border-b border-gray-100 text-[11px] font-black uppercase tracking-wider text-[#087E8B]">
+                                        <div className="bg-[#001D2C] rounded-2xl shadow-2xl border border-white/15 py-3 min-w-[270px] animate-fadeIn backdrop-blur-md">
+                                            <div className="px-4 pb-2 border-b border-white/10 text-[11px] font-black uppercase tracking-wider text-[#1E9CD7]">
                                                 {menu.title}
                                             </div>
                                             <div className="pt-1">
@@ -160,7 +164,7 @@ export default function Header() {
                                                     <Link
                                                         key={sIdx}
                                                         href={subItem.href}
-                                                        className="block px-4 py-2.5 text-[14px] font-bold text-[#003B49] hover:bg-[#A10D3A]/10 hover:text-[#A10D3A] transition-colors"
+                                                        className="block px-4 py-2.5 text-[14px] font-bold text-white/85 hover:bg-white/10 hover:text-[#E5A400] transition-colors"
                                                     >
                                                         {subItem.label}
                                                     </Link>
@@ -176,16 +180,20 @@ export default function Header() {
 
                 {/* Selector de Idiomas (Solo ES y EN) */}
                 <div className="flex items-center gap-3">
-                    <div className="flex items-center border-2 border-[#003B49]/20 rounded-full p-1 bg-white shadow-xs">
+                    <div className="flex items-center border border-white/20 rounded-full p-1 bg-white/5 shadow-xs">
                         <button 
                             onClick={() => setLang('es')}
-                            className={`px-3 py-1 rounded-full text-[13px] font-black cursor-pointer transition-all ${lang === 'es' ? 'bg-[#003B49] text-white' : 'text-gray-500 hover:text-[#003B49]'}`}
+                            className={`px-3 py-1 rounded-full text-[12.5px] font-black cursor-pointer transition-all ${
+                                lang === 'es' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
+                            }`}
                         >
                             ES
                         </button>
                         <button 
                             onClick={() => setLang('en')}
-                            className={`px-3 py-1 rounded-full text-[13px] font-black cursor-pointer transition-all ${lang === 'en' ? 'bg-[#003B49] text-white' : 'text-gray-500 hover:text-[#003B49]'}`}
+                            className={`px-3 py-1 rounded-full text-[12.5px] font-black cursor-pointer transition-all ${
+                                lang === 'en' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
+                            }`}
                         >
                             EN
                         </button>
@@ -194,7 +202,7 @@ export default function Header() {
                     {/* Botón Móvil Hamburguesa */}
                     <button 
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="xl:hidden p-2 rounded-xl text-[#003B49] hover:bg-gray-100 transition-colors"
+                        className="xl:hidden p-2 rounded-xl text-white hover:bg-white/10 transition-colors cursor-pointer"
                         aria-label="Menú"
                     >
                         <span className="material-symbols-outlined text-3xl">
@@ -207,13 +215,13 @@ export default function Header() {
 
             {/* Menú Desplegable Móvil */}
             {isMobileMenuOpen && (
-                <div className="xl:hidden fixed inset-x-0 top-20 bg-white border-b-2 border-[#003B49]/20 shadow-2xl py-6 px-6 z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
+                <div className="xl:hidden fixed inset-x-0 top-20 bg-[#002538] border-b border-white/15 shadow-2xl py-6 px-6 z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
                     <nav className="space-y-4">
                         {menuStructure.map((menu, idx) => (
                             <div key={idx} className="space-y-1">
                                 <Link
                                     href={menu.href}
-                                    className="block font-black text-[17px] text-[#003B49] hover:text-[#A10D3A] py-1 border-b border-gray-100"
+                                    className="block font-black text-[17px] text-white hover:text-[#E5A400] py-1 border-b border-white/10"
                                 >
                                     {menu.title}
                                 </Link>
@@ -223,7 +231,7 @@ export default function Header() {
                                             <Link
                                                 key={sIdx}
                                                 href={sub.href}
-                                                className="block text-[14px] font-bold text-gray-700 hover:text-[#A10D3A] py-1"
+                                                className="block text-[14px] font-bold text-white/80 hover:text-[#E5A400] py-1"
                                             >
                                                 • {sub.label}
                                             </Link>

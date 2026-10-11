@@ -27,66 +27,46 @@ function AboutContent() {
     router.push(`/about?tab=${tabId}`, { scroll: false });
   };
 
-  // Organigrama interactivo (Estructura y Gobernanza)
+  // Organigrama interactivo (Estructura y Gobernanza fiel a QuEST LAC - Imagen 2)
   const structureNodes = {
     directivo: {
       id: 'directivo',
-      title: lang === 'es' ? 'Comité Directivo RIII-HTLV' : 'RIII-HTLV Steering Committee',
+      title: lang === 'es' ? 'Comité directivo RIII-HTLV' : 'RIII-HTLV Steering Committee',
       subtitle: lang === 'es' ? 'Directores: Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor' : 'Directors: Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor',
-      flag: '🌐',
       description: lang === 'es'
-        ? 'Máximo órgano de gobierno de la red. Fija la dirección científica, supervisa ensayos multicéntricos y representa a la alianza ante organismos sanitarios internacionales.'
-        : 'Supreme governing body of the network. Sets scientific strategy, oversees clinical trials, and represents the alliance before global health agencies.',
-      members: [
-        'Dr. Eduardo Gotuzzo (Presidente Honorario - IMTAvH / UPCH)',
-        'Prof. Graham P. Taylor (Vicepresidente - Imperial College London)'
-      ],
-      linkText: lang === 'es' ? 'Ver investigadores del equipo' : 'View Team Investigators',
+        ? 'Máximo órgano de gobierno y dirección científica de la Red. Encargado de definir las líneas estratégicas, supervisar el cumplimiento del convenio marco y coordinar las actividades académicas internacionales entre los nodos fundadores.'
+        : 'Supreme governing body of the network. Responsible for strategic planning, multi-center trials oversight, and international institutional coordination.',
+      linkText: lang === 'es' ? 'Ver más' : 'See more',
       actionUrl: '/about?tab=miembros'
     },
     cat: {
       id: 'cat',
-      title: lang === 'es' ? 'Comité Asesor Técnico (CAT)' : 'Technical Advisory Committee (TAC)',
+      title: lang === 'es' ? 'Comité Asesor Técnico (CAT)' : 'Technical Advisory Committee (CAT)',
       subtitle: lang === 'es' ? 'Dra. Elsa González & Dr. Yoshi Ishikawa' : 'Dr. Elsa González & Dr. Yoshi Ishikawa',
-      flag: '🔬',
       description: lang === 'es'
-        ? 'Equipo técnico en virología molecular y estandarización diagnóstica. Define protocolos de carga proviral y control inter-laboratorios.'
-        : 'Technical team in molecular virology and diagnostic standardization. Sets proviral load protocols and quality control.',
-      members: [
-        'Dra. Elsa González (Epidemiología Molecular - UPCH)',
-        'Dr. Yoshi Ishikawa (Investigación Clínica & Biomarcadores)'
-      ],
-      linkText: lang === 'es' ? 'Ver Recursos Clínicos' : 'View Clinical Resources',
+        ? 'Encargados de asesorar en líneas de investigación y actividades para el fortalecimiento de la Red. Además, asesorará a la Red en otros aspectos que generen capacidad y mayores recursos.'
+        : 'In charge of advising on research lines and activities for strengthening the Network, as well as building research capacity and resources.',
+      linkText: lang === 'es' ? 'Ver más' : 'See more',
       actionUrl: '/profesionales?tab=recursos'
     },
     gepr: {
       id: 'gepr',
-      title: lang === 'es' ? 'Grupo Estratégico de Políticas y Comunidad' : 'Strategic Policy & Community Group',
-      subtitle: lang === 'es' ? 'Prevención, Tamizaje y Apoyo a Pacientes' : 'Prevention, Screening & Patient Support',
-      flag: '🏛️',
+      title: lang === 'es' ? 'Grupo estratégico de políticas regionales (GEPR)' : 'Strategic Regional Policy Group (GEPR)',
+      subtitle: lang === 'es' ? 'Prevención, Tamizaje y Apoyo Comunitario' : 'Prevention, Screening & Patient Support',
       description: lang === 'es'
-        ? 'Articula la evidencia con políticas sanitarias, erradicación de transmisión vertical y orientación comunitaria.'
-        : 'Connects scientific evidence with health policy, vertical transmission prevention, and community counseling.',
-      members: [
-        'Comité de Perinatología y Lactancia Segura',
-        'Coordinación de Orientación al Paciente'
-      ],
-      linkText: lang === 'es' ? 'Ir al Espacio de Pacientes' : 'Go to Patient Space',
+        ? 'Encargados de articular la evidencia científica con las políticas públicas de salud regional, promoviendo guías de práctica clínica, tamizaje materno y espacios de orientación ética y comunitaria.'
+        : 'Tasked with connecting scientific evidence with regional public health policies, clinical guidelines, and community support.',
+      linkText: lang === 'es' ? 'Ver más' : 'See more',
       actionUrl: '/pacientes?tab=faqs'
     },
     core: {
       id: 'core',
       title: lang === 'es' ? 'Centros Core de Coordinación' : 'Core Coordinating Centers',
-      subtitle: 'IMTAvH - UPCH (Perú 🇵🇪) & Imperial College London (UK 🇬🇧)',
-      flag: '🇵🇪 🇬🇧',
+      subtitle: 'IMTAvH - UPCH (Perú) & Imperial College London (Reino Unido)',
       description: lang === 'es'
         ? 'Centros fundadores de la Red RIII-HTLV. Albergan la secretaría ejecutiva, las cohortes clínicas históricas y los laboratorios de referencia en retrovirología humana.'
         : 'Founding centers hosting executive coordination, historical clinical cohorts, and reference retrovirology laboratories.',
-      members: [
-        'Instituto de Medicina Tropical Alexander von Humboldt (UPCH - Lima, Perú)',
-        'National Centre for Human Retrovirology (Imperial College London - UK)'
-      ],
-      linkText: lang === 'es' ? 'Ver Proyectos Activos' : 'View Active Projects',
+      linkText: lang === 'es' ? 'Ver más' : 'See more',
       actionUrl: '/proyectos?tab=investigacion'
     },
     pasteur: {
@@ -94,8 +74,10 @@ function AboutContent() {
       title: 'Institut Pasteur',
       subtitle: lang === 'es' ? 'Centro Afiliado - Francia' : 'Affiliated Center - France',
       flag: '🇫🇷',
-      description: lang === 'es' ? 'Nodo líder en oncogénesis viral y transformación leucémica de células T (ATL).' : 'Leading node in viral oncogenesis and adult T-cell leukemia (ATL).',
-      linkText: lang === 'es' ? 'Visitar Sitio Web Oficial' : 'Visit Official Website',
+      description: lang === 'es'
+        ? 'Institución miembro de la Red. Centro de referencia en oncogénesis viral, mecanismos de leucemogénesis en ATL y diagnóstico retrovirológico avanzado.'
+        : 'Network member institution. Reference center in viral oncogenesis, leukemogenesis mechanisms in ATL, and retrovirology diagnostics.',
+      linkText: lang === 'es' ? 'Ver más' : 'See more',
       externalUrl: 'https://www.pasteur.fr'
     },
     fiocruz: {
@@ -103,8 +85,10 @@ function AboutContent() {
       title: 'Fundação Oswaldo Cruz (Fiocruz)',
       subtitle: lang === 'es' ? 'Centro Afiliado - Brasil' : 'Affiliated Center - Brazil',
       flag: '🇧🇷',
-      description: lang === 'es' ? 'Vigilancia epidemiológica comunitaria y coinfecciones en Sudamérica.' : 'Epidemiological surveillance and coinfections in South America.',
-      linkText: lang === 'es' ? 'Visitar Sitio Web Oficial' : 'Visit Official Website',
+      description: lang === 'es'
+        ? 'Institución miembro de la Red. Líder en vigilancia epidemiológica comunitaria, estudios de coinfecciones tropicales y salud pública en Sudamérica.'
+        : 'Network member institution. Leader in community epidemiological surveillance, coinfections, and South American public health.',
+      linkText: lang === 'es' ? 'Ver más' : 'See more',
       externalUrl: 'https://portal.fiocruz.br'
     },
     isciii: {
@@ -112,8 +96,10 @@ function AboutContent() {
       title: 'Instituto de Salud Carlos III (ISCIII)',
       subtitle: lang === 'es' ? 'Centro Afiliado - España' : 'Affiliated Center - Spain',
       flag: '🇪🇸',
-      description: lang === 'es' ? 'Centro Nacional de Microbiología en Madrid y registro de HTLV.' : 'National Microbiology Center in Madrid and national registry.',
-      linkText: lang === 'es' ? 'Visitar Sitio Web Oficial' : 'Visit Official Website',
+      description: lang === 'es'
+        ? 'Institución miembro de la Red. Centro Nacional de Microbiología en Madrid, registro de HTLV y evaluación de cohortes en la cuenca mediterránea.'
+        : 'Network member institution. National Microbiology Center in Madrid, HTLV registry, and cohort evaluations.',
+      linkText: lang === 'es' ? 'Ver más' : 'See more',
       externalUrl: 'https://www.isciii.es'
     },
     stmarianna: {
@@ -121,8 +107,10 @@ function AboutContent() {
       title: 'St. Marianna University School of Medicine',
       subtitle: lang === 'es' ? 'Centro Afiliado - Japón' : 'Affiliated Center - Japan',
       flag: '🇯🇵',
-      description: lang === 'es' ? 'Ensayos terapéuticos y biomarcadores en HAM/TSP.' : 'Therapeutic trials and biomarkers in HAM/TSP.',
-      linkText: lang === 'es' ? 'Visitar Sitio Web Oficial' : 'Visit Official Website',
+      description: lang === 'es'
+        ? 'Institución miembro de la Red. Centro de excelencia internacional en ensayos clínicos terapéuticos y biomarcadores inmunológicos en HAM/TSP.'
+        : 'Network member institution. Center of excellence in therapeutic clinical trials and immunological biomarkers in HAM/TSP.',
+      linkText: lang === 'es' ? 'Ver más' : 'See more',
       externalUrl: 'https://www.marianna-u.ac.jp'
     }
   };
@@ -303,110 +291,130 @@ function AboutContent() {
           </div>
         )}
 
-        {/* 2. ESTRUCTURA Y GOBERNANZA (Mapa interactivo con modal moderno) */}
+        {/* 2. ESTRUCTURA Y GOBERNANZA (Organigrama conectado idéntico a QuEST LAC - Imagen 2) */}
         {activeTab === 'estructura' && (
           <div className="space-y-6 animate-fadeIn max-w-5xl mx-auto">
-            <div className="bg-white p-6 rounded-3xl border-2 border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
+            
+            {/* Cabecera Informativa */}
+            <div className="bg-white p-6 rounded-3xl border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-[#087E8B] text-3xl">account_tree</span>
                 <div>
                   <h3 className="text-[20px] font-black text-[#003B49]">
-                    {lang === 'es' ? 'Mapa de Gobernanza de la Red' : 'Network Governance Organigram'}
+                    {lang === 'es' ? 'Estructura y Gobernanza de la Red' : 'Network Structure & Governance'}
                   </h3>
                   <p className="text-[14px] text-gray-600">
-                    {lang === 'es' ? 'Haga clic en cualquiera de los cuadros para abrir el detalle:' : 'Click on any box to open details:'}
+                    {lang === 'es' ? 'Haga clic en cualquiera de las áreas para consultar los detalles:' : 'Click on any area to view details:'}
                   </p>
                 </div>
               </div>
-              <span className="text-[12px] font-black uppercase tracking-wider px-3 py-1 bg-[#E5A400] text-[#003B49] rounded-lg">
-                {lang === 'es' ? 'Clickable' : 'Clickable'}
+              <span className="text-[12px] font-bold uppercase tracking-wider px-3 py-1 bg-gray-100 text-[#003B49] rounded-lg">
+                {lang === 'es' ? 'Interactivo' : 'Interactive'}
               </span>
             </div>
 
-            <div className="bg-white p-8 md:p-12 rounded-3xl border-2 border-gray-200 shadow-sm relative">
-              <div className="flex flex-col items-center space-y-8">
+            {/* Canvas Oscuro del Organigrama (Exacto a QuEST LAC - Imagen 2) */}
+            <div className="bg-[#15202D] text-white p-6 md:p-12 rounded-3xl border border-gray-800 shadow-2xl relative overflow-x-auto">
+              <div className="min-w-[700px] flex flex-col items-center">
                 
-                {/* Nivel 1: Comité Directivo */}
+                {/* NIVEL 1: Comité Directivo */}
                 <div 
                   onClick={() => setSelectedNode(structureNodes.directivo)}
-                  className="w-full max-w-[580px] bg-[#003B49] hover:bg-[#002b36] text-white p-6 rounded-2xl text-center cursor-pointer shadow-md transition-all hover:scale-[1.02] border-2 border-transparent hover:border-[#E5A400]"
+                  className="w-full max-w-[500px] bg-[#0A1624] hover:bg-[#0e1e30] border border-white/20 p-5 rounded-xl text-center cursor-pointer shadow-md transition-all hover:scale-[1.01]"
                 >
-                  <span className="text-[12px] font-black uppercase tracking-widest text-[#E5A400] block mb-1">
-                    {lang === 'es' ? 'Gobernanza General' : 'General Governance'}
-                  </span>
-                  <h4 className="text-[22px] font-black">
+                  <h4 className="text-[19px] font-black tracking-tight text-white">
                     {structureNodes.directivo.title}
                   </h4>
-                  <p className="text-[15px] text-white/90 mt-1 font-semibold">
-                    {structureNodes.directivo.subtitle}
+                  <p className="text-[12px] uppercase font-bold text-gray-400 mt-1">
+                    {lang === 'es' ? 'Directores' : 'Directors'}
                   </p>
-                  <span className="mt-2 inline-block text-[12px] text-[#E5A400] underline font-bold">
-                    {lang === 'es' ? 'Click para ver detalles' : 'Click to see details'} →
-                  </span>
+                  <p className="text-[14px] text-white/90 font-medium">
+                    Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor
+                  </p>
                 </div>
 
-                <div className="w-1 h-8 bg-[#087E8B]/40"></div>
+                {/* CONECTOR ORTOGONAL 1 (Vertical desde Nivel 1) */}
+                <div className="w-0.5 h-6 bg-gray-400"></div>
 
-                {/* Nivel 2: Comités Asesores */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-[780px]">
+                {/* BARRA HORIZONTAL QUE CONECTA CAT Y GEPR */}
+                <div className="w-full max-w-[680px] relative">
+                  <div className="h-0.5 bg-gray-400 w-full"></div>
+                  {/* Bajada izquierda a CAT */}
+                  <div className="absolute left-0 top-0 w-0.5 h-6 bg-gray-400"></div>
+                  {/* Bajada derecha a GEPR */}
+                  <div className="absolute right-0 top-0 w-0.5 h-6 bg-gray-400"></div>
+                </div>
+
+                {/* NIVEL 2: Comités Asesores (CAT y GEPR) */}
+                <div className="grid grid-cols-2 gap-8 w-full max-w-[680px] pt-6">
+                  
+                  {/* CAT (Tono ámbar/marrón como QuEST LAC) */}
                   <div 
                     onClick={() => setSelectedNode(structureNodes.cat)}
-                    className="bg-[#087E8B] hover:bg-[#0aa0b0] text-white p-5 rounded-2xl text-center cursor-pointer shadow-sm transition-all hover:scale-[1.02]"
+                    className="bg-[#362215] hover:bg-[#452b1b] border border-[#D98A2C]/40 p-4.5 rounded-xl text-center cursor-pointer shadow-sm transition-all hover:scale-[1.01]"
                   >
-                    <span className="text-[12px] font-black uppercase tracking-widest text-white/90 block mb-1">
-                      {structureNodes.cat.flag} {lang === 'es' ? 'Asesoría Molecular' : 'Molecular Advisory'}
-                    </span>
-                    <h5 className="text-[18px] font-black">
+                    <h5 className="text-[16px] font-black text-white">
                       {structureNodes.cat.title}
                     </h5>
-                    <p className="text-[13.5px] text-white/90 mt-1">
+                    <p className="text-[13px] text-white/80 mt-1">
                       {structureNodes.cat.subtitle}
                     </p>
                   </div>
 
+                  {/* GEPR (Tono vino/rojizo como QuEST LAC) */}
                   <div 
                     onClick={() => setSelectedNode(structureNodes.gepr)}
-                    className="bg-[#A10D3A] hover:bg-[#850a2f] text-white p-5 rounded-2xl text-center cursor-pointer shadow-sm transition-all hover:scale-[1.02]"
+                    className="bg-[#361522] hover:bg-[#451b2c] border border-[#A10D3A]/40 p-4.5 rounded-xl text-center cursor-pointer shadow-sm transition-all hover:scale-[1.01]"
                   >
-                    <span className="text-[12px] font-black uppercase tracking-widest text-white/90 block mb-1">
-                      {structureNodes.gepr.flag} {lang === 'es' ? 'Salud Pública' : 'Public Health'}
-                    </span>
-                    <h5 className="text-[18px] font-black">
+                    <h5 className="text-[16px] font-black text-white">
                       {structureNodes.gepr.title}
                     </h5>
-                    <p className="text-[13.5px] text-white/90 mt-1">
+                    <p className="text-[13px] text-white/80 mt-1">
                       {structureNodes.gepr.subtitle}
                     </p>
                   </div>
+
                 </div>
 
-                <div className="w-1 h-8 bg-[#087E8B]/40"></div>
+                {/* CONECTOR ORTOGONAL 2 (Vertical desde centro hacia Centros Core) */}
+                <div className="w-0.5 h-8 bg-gray-400"></div>
 
-                {/* Nivel 3: Centros Core */}
+                {/* NIVEL 3: Centros Core de Coordinación */}
                 <div 
                   onClick={() => setSelectedNode(structureNodes.core)}
-                  className="w-full max-w-[680px] bg-[#003B49] hover:bg-[#002b36] text-white p-6 rounded-2xl text-center cursor-pointer shadow-md transition-all hover:scale-[1.02]"
+                  className="w-full max-w-[580px] bg-[#0A1A28] hover:bg-[#0e2336] border border-white/20 p-5 rounded-xl text-center cursor-pointer shadow-md transition-all hover:scale-[1.01]"
                 >
                   <div className="flex items-center justify-center gap-2 mb-1">
-                    <span className="text-xl">🇵🇪</span>
-                    <span className="text-[12px] font-black uppercase tracking-widest text-[#E5A400]">
+                    <span className="text-lg">🇵🇪</span>
+                    <h4 className="text-[18px] font-black text-white">
                       {structureNodes.core.title}
-                    </span>
-                    <span className="text-xl">🇬🇧</span>
+                    </h4>
+                    <span className="text-lg">🇬🇧</span>
                   </div>
-                  <h4 className="text-[20px] font-black">
-                    Instituto de Medicina Tropical Alexander von Humboldt (UPCH)
-                  </h4>
-                  <p className="text-[15px] text-[#E5A400] mt-0.5 font-bold">
-                    & Imperial College London
+                  <p className="text-[13.5px] text-white/90">
+                    Instituto de Medicina Tropical Alexander von Humboldt (UPCH) – Perú
+                  </p>
+                  <p className="text-[13.5px] text-white/90">
+                    National Centre for Human Retrovirology, Imperial College London – Reino Unido
                   </p>
                 </div>
 
-                <div className="w-1 h-8 bg-[#087E8B]/40"></div>
+                {/* CONECTOR ORTOGONAL 3 (Vertical hacia la barra horizontal de Nodos Afiliados) */}
+                <div className="w-0.5 h-8 bg-gray-400"></div>
 
-                {/* Nivel 4: Nodos Afiliados */}
-                <div className="w-full">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {/* BARRA HORIZONTAL CONECTANDO LOS 4 CENTROS AFILIADOS */}
+                <div className="w-full max-w-[880px] relative">
+                  <div className="h-0.5 bg-gray-400 w-full"></div>
+                  {/* 4 bajadas verticales alineadas a cada tarjeta */}
+                  <div className="absolute left-[12.5%] top-0 w-0.5 h-6 bg-gray-400"></div>
+                  <div className="absolute left-[37.5%] top-0 w-0.5 h-6 bg-gray-400"></div>
+                  <div className="absolute left-[62.5%] top-0 w-0.5 h-6 bg-gray-400"></div>
+                  <div className="absolute left-[87.5%] top-0 w-0.5 h-6 bg-gray-400"></div>
+                </div>
+
+                {/* NIVEL 4: Centros Afiliados (4 columnas) */}
+                <div className="w-full max-w-[880px] pt-6">
+                  <div className="grid grid-cols-4 gap-4">
                     {[
                       structureNodes.pasteur,
                       structureNodes.fiocruz,
@@ -416,11 +424,20 @@ function AboutContent() {
                       <div 
                         key={i}
                         onClick={() => setSelectedNode(node)}
-                        className="bg-gray-50 hover:bg-gray-100 border-2 border-gray-200 hover:border-[#087E8B] p-5 rounded-2xl text-center cursor-pointer transition-all hover:scale-105"
+                        className="bg-[#1A2634] hover:bg-[#223346] border border-white/10 hover:border-white/30 p-4 rounded-xl text-center cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between min-h-[140px]"
                       >
-                        <div className="text-2xl mb-1">{node.flag}</div>
-                        <span className="text-[11.5px] font-bold text-gray-500 uppercase block">{node.subtitle}</span>
-                        <h5 className="font-black text-[16px] text-[#003B49] mt-1">{node.title}</h5>
+                        <div>
+                          <div className="text-xl mb-1">{node.flag}</div>
+                          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">
+                            {lang === 'es' ? 'Centro Afiliado' : 'Affiliated Center'}
+                          </span>
+                          <h6 className="font-bold text-[13.5px] text-white mt-1 leading-snug">
+                            {node.title}
+                          </h6>
+                        </div>
+                        <span className="text-[12px] text-gray-400 mt-2 block font-medium">
+                          {node.subtitle.replace(/.*- /, '')}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -429,50 +446,41 @@ function AboutContent() {
               </div>
             </div>
 
-            {/* MODAL MODERNO */}
+            {/* MODAL INSTITUCIONAL SOBRIO (Exacto a QuEST LAC - Imagen 2) */}
             {selectedNode && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
-                <div className="bg-[#003B49] text-white w-full max-w-lg rounded-3xl p-8 border-2 border-[#E5A400] shadow-2xl relative space-y-6">
-                  <div className="text-center space-y-1">
-                    <span className="text-3xl block mb-1">{selectedNode.flag}</span>
-                    <h3 className="text-[24px] font-black text-white">
-                      {selectedNode.title}
-                    </h3>
-                    <p className="text-[14px] text-[#E5A400] font-semibold">
-                      {selectedNode.subtitle}
-                    </p>
-                  </div>
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-xs animate-fadeIn">
+                <div className="bg-[#182330] text-white w-full max-w-md rounded-2xl p-6 border border-white/10 shadow-2xl relative text-center space-y-4">
+                  
+                  {/* Título en negrita exacto a QuEST LAC */}
+                  <h4 className="text-[17px] font-bold text-white leading-snug">
+                    {selectedNode.title}:
+                  </h4>
 
-                  <div className="p-4 bg-white/10 rounded-2xl text-[15px] text-white/90 leading-relaxed text-center">
+                  {/* Descripción clara y sobria */}
+                  <p className="text-[14px] text-white/90 leading-relaxed max-w-sm mx-auto">
                     {selectedNode.description}
-                  </div>
+                  </p>
 
-                  {selectedNode.members && (
-                    <div className="space-y-1 text-center text-[14px] text-white/80">
-                      {selectedNode.members.map((m, i) => (
-                        <p key={i}>• {m}</p>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                  {/* Botones estilo QuEST LAC: Botón ámbar "Ver más" y botón oscuro "Cerrar" */}
+                  <div className="pt-2 flex flex-col items-center gap-2">
                     <button
                       onClick={() => handleModalAction(selectedNode)}
-                      className="flex-1 bg-[#E5A400] hover:bg-[#cca300] text-[#003B49] py-3 px-6 rounded-xl text-[15px] font-black transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                      className="w-44 bg-[#D98A2C] hover:bg-[#c27923] text-white font-bold py-2 px-5 rounded-md text-[14.5px] transition-all cursor-pointer shadow-sm"
                     >
-                      <span>{selectedNode.linkText || 'Ver más'}</span>
-                      <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                      {selectedNode.linkText || (lang === 'es' ? 'Ver más' : 'See more')}
                     </button>
                     <button
                       onClick={() => setSelectedNode(null)}
-                      className="sm:w-32 bg-white/20 hover:bg-white/30 text-white py-3 px-6 rounded-xl text-[15px] font-bold transition-all cursor-pointer"
+                      className="bg-[#213346] hover:bg-[#2c435c] text-white/90 text-[12px] font-medium py-1 px-4 rounded-md transition-all cursor-pointer"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
                   </div>
+
                 </div>
               </div>
             )}
+
           </div>
         )}
 
