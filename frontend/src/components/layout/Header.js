@@ -8,6 +8,7 @@ export default function Header() {
     const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [currentLang, setCurrentLang] = useState('es');
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,6 +22,11 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Cerrar menú móvil al cambiar de ruta
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+    }, [pathname]);
+
     const isActivePath = (path) => {
         if (path === '/') {
             return pathname === '/';
@@ -28,119 +34,66 @@ export default function Header() {
         return pathname.startsWith(path);
     };
 
-    const isNosotrosActive = () => {
-        return pathname === '/network' || pathname === '/about' || pathname === '/faqs';
-    };
+    const navLinks = [
+        { href: '/', label: 'Inicio' },
+        { href: '/about', label: 'Acerca de' },
+        { href: '/htlv', label: 'HTLV' },
+        { href: '/proyectos', label: 'Proyectos' },
+        { href: '/profesionales', label: 'Profesionales de la salud' },
+        { href: '/pacientes', label: 'Pacientes' },
+        { href: '/publicaciones', label: 'Publicaciones' },
+        { href: '/contact', label: 'Contacto' },
+    ];
 
     return (
         <>
-            {/* Iconos de Google Material Symbols oficiales */}
+            {/* Google Material Symbols */}
             <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-            {/* TopNavBar - Ancho completo y contenido alineado */}
-            <nav className={`fixed top-0 left-0 right-0 h-20 w-full z-50 bg-[#f8f9fb] transition-all duration-200 ${isScrolled ? 'shadow-md' : 'border-b border-[#dcc0c0]'}`}>
-                <div className="max-w-[1280px] mx-auto w-full h-full flex justify-between items-center px-6 md:px-10">
-                    <div className="flex items-center gap-6">
-                        <Link href="/" className="flex items-center gap-2 group">
-                            <span className="text-[22px] md:text-[24px] font-extrabold text-[#5b0617] tracking-tight group-hover:opacity-90 transition-opacity">
-                                RIII-HTLV
-                            </span>
-                        </Link>
-                        
-                        <div className="hidden lg:flex items-center gap-5">
-                            <Link 
-                                className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
-                                    isActivePath('/') && !pathname.includes('#')
-                                        ? 'text-[#5b0617] font-bold border-[#5b0617]' 
-                                        : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                }`} 
-                                href="/"
-                            >
-                                Inicio
-                            </Link>
-                            
-                            {/* Nosotros Dropdown */}
-                            <div className="relative group flex items-center h-20">
-                                <button 
-                                    className={`flex items-center gap-1 text-[14px] font-medium transition-colors border-b-2 pb-1 cursor-pointer ${
-                                        isNosotrosActive()
-                                            ? 'text-[#5b0617] font-bold border-[#5b0617]' 
-                                            : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                    }`}
-                                >
-                                    Sobre HTLV & La Red <span className="material-symbols-outlined text-sm">expand_more</span>
-                                </button>
-                                <div className="absolute top-[80%] left-0 hidden group-hover:block bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg shadow-lg py-2 min-w-[220px] z-50">
-                                    <Link 
-                                        href="/about" 
-                                        className={`block px-4 py-2 text-[14px] font-medium hover:bg-[#e7e8ea] ${pathname === '/about' ? 'text-[#5b0617] font-bold bg-[#e7e8ea]' : 'text-[#564242]'}`}
-                                    >
-                                        ¿Qué es el HTLV?
-                                    </Link>
-                                    <Link 
-                                        href="/faqs" 
-                                        className={`block px-4 py-2 text-[14px] font-medium hover:bg-[#e7e8ea] ${pathname === '/faqs' ? 'text-[#5b0617] font-bold bg-[#e7e8ea]' : 'text-[#564242]'}`}
-                                    >
-                                        Preguntas Frecuentes (FAQs)
-                                    </Link>
-                                    <Link 
-                                        href="/network" 
-                                        className={`block px-4 py-2 text-[14px] font-medium hover:bg-[#e7e8ea] ${pathname === '/network' ? 'text-[#5b0617] font-bold bg-[#e7e8ea]' : 'text-[#564242]'}`}
-                                    >
-                                        La Red y Miembros
-                                    </Link>
-                                </div>
+            {/* TopNavBar Principal */}
+            <header className={`fixed top-0 left-0 right-0 h-20 w-full z-50 bg-[#f8f9fb] transition-all duration-200 ${isScrolled ? 'shadow-md border-b border-[#dcc0c0]' : 'border-b border-[#e5d5d5]'}`}>
+                <div className="max-w-[1360px] mx-auto w-full h-full flex justify-between items-center px-4 md:px-8">
+                    
+                    {/* Logotipo Principal - Más visible y destacado */}
+                    <div className="flex items-center">
+                        <Link href="/" className="flex items-center gap-3 group">
+                            <div className="w-11 h-11 rounded-xl bg-[#5b0617] text-white flex items-center justify-center font-black text-xl shadow-sm group-hover:scale-105 transition-transform">
+                                R
                             </div>
-
-                            <Link 
-                                className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
-                                    isActivePath('/research')
-                                        ? 'text-[#5b0617] font-bold border-[#5b0617]' 
-                                        : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                }`} 
-                                href="/research"
-                            >
-                                Investigación
-                            </Link>
-                            
-                            <Link 
-                                className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
-                                    isActivePath('/repository')
-                                        ? 'text-[#5b0617] font-bold border-[#5b0617]' 
-                                        : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                }`} 
-                                href="/repository"
-                            >
-                                Repositorio
-                            </Link>
-                            
-                            <Link 
-                                className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
-                                    isActivePath('/resources')
-                                        ? 'text-[#5b0617] font-bold border-[#5b0617]' 
-                                        : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                }`} 
-                                href="/resources"
-                            >
-                                Recursos
-                            </Link>
-
-                            <Link 
-                                className={`text-[14px] font-medium transition-colors border-b-2 pb-1 ${
-                                    isActivePath('/foro')
-                                        ? 'text-[#5b0617] font-bold border-[#5b0617]' 
-                                        : 'text-[#564242] hover:text-[#5b0617] border-transparent'
-                                }`} 
-                                href="/foro"
-                            >
-                                Foro
-                            </Link>
-                        </div>
+                            <div className="flex flex-col">
+                                <span className="text-[22px] md:text-[25px] font-black text-[#5b0617] tracking-tight leading-none group-hover:opacity-90 transition-opacity">
+                                    RIII-HTLV
+                                </span>
+                                <span className="text-[10px] md:text-[11px] font-bold text-[#897172] tracking-wider uppercase mt-0.5">
+                                    Red Internacional HTLV
+                                </span>
+                            </div>
+                        </Link>
                     </div>
 
-                    <div className="flex items-center gap-4">
-                        {/* Selector de Idioma */}
-                        <div className="flex items-center border border-[#dcc0c0] rounded-full px-2.5 py-1 text-[12px] font-bold bg-white text-[#564242] shadow-sm">
+                    {/* Menú de Navegación de Escritorio (7 Secciones Acordadas + Contacto) */}
+                    <nav className="hidden xl:flex items-center gap-1 lg:gap-2">
+                        {navLinks.map((link) => {
+                            const active = isActivePath(link.href);
+                            return (
+                                <Link 
+                                    key={link.href}
+                                    href={link.href}
+                                    className={`px-3 py-1.5 rounded-lg text-[13.5px] font-semibold transition-all ${
+                                        active 
+                                            ? 'text-[#5b0617] bg-[#ffdada]/60 font-bold' 
+                                            : 'text-[#564242] hover:text-[#5b0617] hover:bg-black/5'
+                                    }`}
+                                >
+                                    {link.label}
+                                </Link>
+                            );
+                        })}
+                    </nav>
+
+                    {/* Selector de Idioma e Interacción */}
+                    <div className="flex items-center gap-3">
+                        <div className="flex items-center border border-[#dcc0c0] rounded-full px-2.5 py-1 text-[12px] font-bold bg-white text-[#564242] shadow-xs">
                             <span className="material-symbols-outlined text-[14px] mr-1 text-[#5b0617]">language</span>
                             <button 
                                 onClick={() => setCurrentLang('es')}
@@ -167,15 +120,44 @@ export default function Header() {
                             </button>
                         </div>
 
-                        {/* Botón de Contacto Institucional */}
-                        <Link href="/contact">
-                            <button className="bg-[#5b0617] text-white px-5 py-2 rounded-full text-[13px] md:text-[14px] font-semibold hover:opacity-90 transition-all cursor-pointer shadow-sm">
-                                Contacto
-                            </button>
-                        </Link>
+                        {/* Botón Móvil Hamburguesa */}
+                        <button 
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="xl:hidden p-2 rounded-lg text-[#5b0617] hover:bg-[#ffdada]/30 transition-colors focus:outline-none"
+                            aria-label="Abrir menú de navegación"
+                        >
+                            <span className="material-symbols-outlined text-3xl">
+                                {isMobileMenuOpen ? 'close' : 'menu'}
+                            </span>
+                        </button>
                     </div>
                 </div>
-            </nav>
+
+                {/* Menú Desplegable Móvil */}
+                {isMobileMenuOpen && (
+                    <div className="xl:hidden fixed inset-x-0 top-20 bg-[#f8f9fb] border-b border-[#dcc0c0] shadow-xl py-4 px-6 z-40 max-h-[calc(100vh-80px)] overflow-y-auto animate-fadeIn">
+                        <nav className="flex flex-col space-y-1">
+                            {navLinks.map((link) => {
+                                const active = isActivePath(link.href);
+                                return (
+                                    <Link 
+                                        key={link.href}
+                                        href={link.href}
+                                        className={`px-4 py-3 rounded-xl text-[15px] font-bold transition-all flex items-center justify-between ${
+                                            active 
+                                                ? 'bg-[#5b0617] text-white' 
+                                                : 'text-[#564242] hover:bg-[#ffdada]/40 hover:text-[#5b0617]'
+                                        }`}
+                                    >
+                                        <span>{link.label}</span>
+                                        <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+                                    </Link>
+                                );
+                            })}
+                        </nav>
+                    </div>
+                )}
+            </header>
         </>
     );
 }

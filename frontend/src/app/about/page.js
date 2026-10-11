@@ -1,471 +1,361 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 
-export default function AboutHTLVPage() {
-  const [activeSection, setActiveSection] = useState('what-is-htlv');
+export default function AboutPage() {
+  const [activeTab, setActiveTab] = useState('quienes-somos');
 
-  const navItems = [
-    { id: 'what-is-htlv', label: '1. ¿Qué es el HTLV?', icon: 'biotech' },
-    { id: 'clinical-spectrum', label: '2. Espectro Clínico (90/10)', icon: 'pie_chart' },
-    { id: 'transmission', label: '3. Vías de Transmisión', icon: 'share' },
-    { id: 'peru-leadership', label: '4. Liderazgo de Perú y UPCH', icon: 'account_balance' },
-    { id: 'diagnosis', label: '5. Diagnóstico & Manejo', icon: 'medical_services' },
+  const leaders = [
+    {
+      name: 'Dr. Eduardo Gotuzzo',
+      role: 'Presidente Honorario',
+      institution: 'Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) - UPCH (Perú)',
+      bio: 'Profesor emérito e investigador pionero en enfermedades infecciosas y tropicales en América Latina. Ha liderado durante más de tres décadas las cohortes clínicas y estudios de transmisión de HTLV-1 en el Perú.',
+      specialty: 'Infectología & Medicina Tropical'
+    },
+    {
+      name: 'Prof. Graham P. Taylor',
+      role: 'Vicepresidente',
+      institution: 'Section of Virology, Imperial College London (Reino Unido)',
+      bio: 'Director del Centro Nacional de Retrovirología Humana de Reino Unido en el St Mary\'s Hospital. Referente global en la fisiopatología, diagnóstico y ensayos terapéuticos en HAM/TSP y ATL.',
+      specialty: 'Retrovirología Clínica'
+    },
+    {
+      name: 'Dra. Elsa González',
+      role: 'Coordinadora Científica',
+      institution: 'Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) - UPCH (Perú)',
+      bio: 'Investigadora principal enfocada en la epidemiología molecular del HTLV-1, coinfecciones con tuberculosis y estrongiloidiasis, y protocolos de prevención de la transmisión vertical.',
+      specialty: 'Epidemiología & Virología Molecular'
+    }
   ];
 
-  // Scrollspy y sincronización con el hash de la URL
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash) {
-      const hashId = window.location.hash.replace('#', '');
-      const valid = navItems.some(item => item.id === hashId);
-      if (valid) {
-        setActiveSection(hashId);
-        setTimeout(() => {
-          const el = document.getElementById(hashId);
-          if (el) {
-            const yOffset = -90;
-            const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-          }
-        }, 150);
-      }
+  const allies = [
+    {
+      name: 'Universidad Peruana Cayetano Heredia (UPCH)',
+      country: 'Perú',
+      role: 'Coordinación General y Sede Académica',
+      url: 'https://www.cayetano.edu.pe'
+    },
+    {
+      name: 'Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH)',
+      country: 'Perú',
+      role: 'Sede Clínica e Investigación de Campo',
+      url: 'https://medicina.cayetano.edu.pe/imtavh/'
+    },
+    {
+      name: 'Imperial College London',
+      country: 'Reino Unido',
+      role: 'Biología Celular e Inmunología Viral',
+      url: 'https://www.imperial.ac.uk'
+    },
+    {
+      name: 'Institut Pasteur',
+      country: 'Francia',
+      role: 'Patogénesis Viral y Oncogénesis',
+      url: 'https://www.pasteur.fr'
+    },
+    {
+      name: 'Fundação Oswaldo Cruz (Fiocruz)',
+      country: 'Brasil',
+      role: 'Vigilancia Epidemiológica en Donantes y Comunidades',
+      url: 'https://portal.fiocruz.br'
+    },
+    {
+      name: 'Instituto de Salud Carlos III (ISCIII)',
+      country: 'España',
+      role: 'Registro y Epidemiología Transfronteriza',
+      url: 'https://www.isciii.es'
+    },
+    {
+      name: 'St. Marianna University School of Medicine',
+      country: 'Japón',
+      role: 'Ensayos Terapéuticos y Biomarcadores en HAM/TSP',
+      url: 'https://www.marianna-u.ac.jp'
     }
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 140; // Offset del header
-      const sectionElements = navItems
-        .map(item => document.getElementById(item.id))
-        .filter(Boolean);
-
-      for (let i = sectionElements.length - 1; i >= 0; i--) {
-        const el = sectionElements[i];
-        if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(el.id);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (e, id) => {
-    e.preventDefault();
-    setActiveSection(id);
-    const element = document.getElementById(id);
-    if (element) {
-      const yOffset = -90;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      window.history.pushState(null, '', `#${id}`);
-    }
-  };
-
-  const handlePrintPDF = () => {
-    if (typeof window !== 'undefined') {
-      window.print();
-    }
-  };
+  ];
 
   return (
-    <>
-      <main className="pt-8 pb-20 px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto print:p-0 print:m-0 print:max-w-full">
+    <main className="w-full bg-[#f8f9fb] min-h-screen py-10 md:py-16">
+      <div className="max-w-[1360px] mx-auto px-4 md:px-8">
         
-        {/* Cabecera Principal con Autoridad y Botón de PDF */}
-        <header className="mb-8 border-b border-[#dcc0c0] pb-4 print:mb-2 print:pb-2">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div className="max-w-3xl">
-              <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                <span className="inline-block px-3 py-0.5 bg-[#ffdada] text-[#5b0617] text-[11px] uppercase font-bold tracking-wider rounded-full print:text-[8pt] print:py-0">
-                  Guía Clínica & Científica
-                </span>
-                <span className="inline-block px-3 py-0.5 bg-[#d6e0f3] text-[#1d2b3a] text-[11px] font-semibold rounded-full print:text-[8pt] print:py-0">
-                  Respaldo UPCH - Perú
-                </span>
-              </div>
-              <h1 className="font-display text-[30px] md:text-[38px] text-[#5b0617] mb-1 leading-tight print:text-[16pt] print:mb-0.5">
-                Virus Linfotrópico de Células T Humanas (HTLV)
-              </h1>
-              <p className="text-[13.5px] md:text-[14.5px] text-[#564242] leading-snug print:text-[8.5pt]">
-                Consenso científico, epidemiología global y protocolos clínicos elaborados por investigadores de la <strong>Universidad Peruana Cayetano Heredia (UPCH)</strong> y la <strong>Red Internacional RIII-HTLV</strong>.
-              </p>
-            </div>
-            
-            {/* Botón de Exportación en PDF */}
-            <div className="flex-shrink-0 print:hidden">
+        {/* Cabecera Principal */}
+        <div className="max-w-4xl mx-auto text-center space-y-4 mb-12">
+          <span className="px-3 py-1 bg-[#ffdada] text-[#5b0617] text-[12px] font-black uppercase tracking-widest rounded-full inline-block">
+            Institucional
+          </span>
+          <h1 className="text-[34px] sm:text-[44px] font-black text-[#191c1e] tracking-tight leading-tight">
+            Acerca de la Red RIII-HTLV
+          </h1>
+          <p className="text-[17px] text-[#564242] leading-relaxed max-w-3xl mx-auto">
+            Conozca nuestra historia, principios fundacionales, estructura de gobernanza y documentos que rigen nuestra labor científica internacional.
+          </p>
+
+          {/* Selector de Pestañas Rápidas */}
+          <div className="pt-4 flex flex-wrap justify-center gap-2">
+            {[
+              { id: 'quienes-somos', label: 'Quiénes Somos & Objetivos', icon: 'info' },
+              { id: 'estructura', label: 'Estructura & Miembros', icon: 'groups' },
+              { id: 'aliados', label: 'Aliados Estratégicos', icon: 'handshake' },
+              { id: 'documentos', label: 'Reglamento & Convenio', icon: 'description' }
+            ].map(tab => (
               <button
-                onClick={handlePrintPDF}
-                className="flex items-center gap-2 bg-[#5b0617] text-white px-5 py-3 rounded-xl font-label-md font-bold hover:opacity-90 transition-all shadow-sm cursor-pointer"
-                title="Descargar o imprimir documento clínico"
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-4 py-2.5 rounded-xl text-[14px] font-bold flex items-center gap-2 transition-all cursor-pointer ${
+                  activeTab === tab.id
+                    ? 'bg-[#5b0617] text-white shadow-sm'
+                    : 'bg-white border border-[#dcc0c0] text-[#564242] hover:bg-[#ffdada]/30 hover:text-[#5b0617]'
+                }`}
               >
-                <span className="material-symbols-outlined text-[20px]">picture_as_pdf</span>
-                Descargar Guía en PDF
+                <span className="material-symbols-outlined text-[18px]">{tab.icon}</span>
+                <span>{tab.label}</span>
               </button>
-            </div>
-          </div>
-
-          {/* Insignia de Validación Científica */}
-          <div className="mt-3 flex flex-wrap items-center gap-2.5 text-[11px] text-[#897172] bg-white p-2 rounded-lg border border-[#dcc0c0] print:mt-1.5 print:p-1.5 print:text-[7.5pt]">
-            <span className="flex items-center gap-1 font-bold text-[#5b0617]">
-              <span className="material-symbols-outlined text-[14px] print:hidden">verified</span>
-              Revisión Médica Oficial:
-            </span>
-            <span>Supervisado por infectólogos y virólogos del Instituto de Medicina Tropical Alexander von Humboldt (UPCH)</span>
-            <span>•</span>
-            <span className="text-[#564242] font-semibold">Actualizado: 2026</span>
-          </div>
-        </header>
-
-        {/* Contenedor Principal: 2 columnas en Web, bloque continuo en Print */}
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] print:block gap-8 items-start">
-          
-          {/* Navegación Lateral Interactiva (TOC) - Oculta en PDF */}
-          <aside className="hidden lg:block sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-2 print:hidden">
-            <div className="bg-[#f3f4f6] p-5 rounded-xl shadow-xs border border-[#dcc0c0]">
-              <h3 className="text-[12px] font-bold uppercase tracking-widest text-[#5b0617] mb-4">Contenido de la Guía</h3>
-              <nav className="flex flex-col gap-1.5">
-                {navItems.map((item) => {
-                  const isActive = activeSection === item.id;
-                  return (
-                    <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      onClick={(e) => scrollToSection(e, item.id)}
-                      className={`flex items-center gap-2.5 px-3.5 py-2.5 text-[13px] rounded-lg transition-all duration-200 cursor-pointer ${
-                        isActive
-                          ? 'bg-[#ffdada] text-[#5b0617] font-bold border-l-4 border-[#5b0617] shadow-2xs'
-                          : 'text-[#564242] font-medium hover:bg-[#e7e8ea] hover:text-[#191c1e]'
-                      }`}
-                    >
-                      <span className={`material-symbols-outlined text-[18px] ${isActive ? 'text-[#5b0617]' : 'text-[#897172]'}`}>
-                        {item.icon}
-                      </span>
-                      {item.label}
-                    </a>
-                  );
-                })}
-              </nav>
-
-              <div className="mt-6 pt-6 border-t border-[#dcc0c0] text-center space-y-3">
-                <p className="text-[11px] text-[#564242]">¿Requieres información técnica de investigación?</p>
-                <Link 
-                  href="/repository"
-                  className="block w-full py-2 bg-white border border-[#5b0617] text-[#5b0617] text-[12px] font-bold rounded-lg hover:bg-[#ffdada] transition-all"
-                >
-                  Consultar Repositorio
-                </Link>
-              </div>
-            </div>
-          </aside>
-
-          {/* Secciones de Contenido Visual */}
-          <div className="flex flex-col gap-10 print:gap-2.5 print:w-full">
-            
-            {/* SECCIÓN 1: ¿QUÉ ES EL HTLV? */}
-            <section className="scroll-mt-28 print-card print-avoid-break" id="what-is-htlv">
-              <div className="bg-white md:p-6 p-4 rounded-2xl print:p-0 print:border-0">
-                <div className="flex items-center gap-2.5 mb-3 print:mb-1.5">
-                  <span className="w-7 h-7 rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center font-bold text-[13px] print:w-5 print:h-5 print:text-[8.5pt]">1</span>
-                  <h2 className="font-headline-lg text-[20px] md:text-[22px] text-[#5b0617] font-bold print:text-[11.5pt]">
-                    ¿Qué se sabe del HTLV?
-                  </h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 print-grid-2 gap-4 items-center">
-                  <div className="space-y-2 text-[13px] text-[#191c1e] leading-snug print:text-[8pt] print:space-y-1">
-                    <p>
-                      El <strong>Virus Linfotrópico de Células T Humanas (HTLV)</strong> fue el <strong>primer retrovirus humano descubierto</strong> (1980). Pertenece a la familia <em>Retroviridae</em> y afecta predominantemente a los linfocitos T CD4+.
-                    </p>
-                    <div className="grid grid-cols-2 gap-2 pt-0.5">
-                      <div className="p-2 bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg text-center print:p-1">
-                        <span className="block text-[13.5px] font-extrabold text-[#5b0617] print:text-[9pt]">HTLV-1</span>
-                        <span className="text-[10.5px] text-[#564242] leading-tight print:text-[7.5pt]">Oncogénico y neurotrópico de alto impacto.</span>
-                      </div>
-                      <div className="p-2 bg-[#f8f9fb] border border-[#dcc0c0] rounded-lg text-center print:p-1">
-                        <span className="block text-[13.5px] font-extrabold text-[#555f6f] print:text-[9pt]">HTLV-2</span>
-                        <span className="text-[10.5px] text-[#564242] leading-tight print:text-[7.5pt]">Menor patogenicidad, prevalencia focal.</span>
-                      </div>
-                    </div>
-                    <p className="text-[12px] text-[#564242] print:text-[7.5pt]">
-                      A diferencia de otros virus, el HTLV se integra al genoma del hospedero en forma de <strong>provirus</strong> y se propaga por contacto célula a célula.
-                    </p>
-                  </div>
-
-                  <div className="bg-[#f8f9fb] p-3.5 rounded-xl border border-[#dcc0c0] space-y-2 print:p-2 print:space-y-1">
-                    <h4 className="text-[12px] font-bold text-[#191c1e] uppercase tracking-wider flex items-center gap-1.5 print:text-[8pt]">
-                      <span className="material-symbols-outlined text-[#5b0617] text-[16px] print:hidden">public</span>
-                      Datos Epidemiológicos Globales
-                    </h4>
-                    <div className="space-y-1.5 text-[12px] print:text-[7.5pt]">
-                      <div className="flex justify-between items-center border-b border-[#dcc0c0]/50 pb-1">
-                        <span className="text-[#564242]">Población Afectada:</span>
-                        <strong className="text-[#5b0617]">5 - 10 Millones</strong>
-                      </div>
-                      <div className="flex justify-between items-center border-b border-[#dcc0c0]/50 pb-1">
-                        <span className="text-[#564242]">Focos Principales:</span>
-                        <strong className="text-[#191c1e]">Perú, Brasil, Japón, Caribe</strong>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-[#564242]">Tipo de Retrovirus:</span>
-                        <strong className="text-[#191c1e]">Deltaretrovirus (Integrado)</strong>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* SECCIÓN 2: ESPECTRO CLÍNICO (90% ASINTOMÁTICOS VS 10% SINTOMÁTICOS) */}
-            <section className="scroll-mt-28 print-card print-avoid-break" id="clinical-spectrum">
-              <div className="bg-white md:p-6 p-4 rounded-2xl print:p-0 print:border-0">
-                <div className="flex items-center gap-2.5 mb-3 print:mb-1.5">
-                  <span className="w-7 h-7 rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center font-bold text-[13px] print:w-5 print:h-5 print:text-[8.5pt]">2</span>
-                  <div>
-                    <h2 className="font-headline-lg text-[20px] md:text-[22px] text-[#5b0617] font-bold print:text-[11.5pt]">
-                      Espectro Clínico: El Modelo 90% vs 10%
-                    </h2>
-                    <p className="text-[11.5px] text-[#564242] print:text-[7.5pt]">
-                      Comprensión del curso natural de la infección y patologías asociadas
-                    </p>
-                  </div>
-                </div>
-
-                {/* Infografía de Proporciones Clínicas */}
-                <div className="grid grid-cols-1 md:grid-cols-12 print-grid-90-10 gap-3 items-stretch">
-                  
-                  {/* Tarjeta 90% Asintomáticos */}
-                  <div className="md:col-span-5 bg-[#f3f4f6] border border-[#555f6f]/30 p-4 rounded-xl flex flex-col justify-between print:p-2">
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-[26px] font-black text-[#555f6f] leading-none print:text-[15pt]">~90%</span>
-                        <span className="material-symbols-outlined text-xl text-[#555f6f] print:hidden">health_and_safety</span>
-                      </div>
-                      <h3 className="text-[14px] font-bold text-[#191c1e] mb-1 print:text-[9pt]">Portadores Asintomáticos</h3>
-                      <p className="text-[11.5px] text-[#564242] leading-snug print:text-[7.5pt]">
-                        La gran mayoría no desarrollará síntomas. No obstante, son portadores del provirus y pueden transmitirlo si no se aplican medidas preventivas.
-                      </p>
-                    </div>
-                    <div className="mt-2 pt-1 border-t border-[#dcc0c0] text-[10.5px] font-bold text-[#555f6f] print:text-[7pt]">
-                      Control recomendado: Anual.
-                    </div>
-                  </div>
-
-                  {/* Tarjeta 10% Patologías Graves */}
-                  <div className="md:col-span-7 bg-[#ffdada]/25 border border-[#5b0617] p-4 rounded-xl flex flex-col justify-between print:p-2">
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-[26px] font-black text-[#5b0617] leading-none print:text-[15pt]">5% - 10%</span>
-                        <span className="material-symbols-outlined text-xl text-[#5b0617] print:hidden">warning</span>
-                      </div>
-                      <h3 className="text-[14px] font-bold text-[#5b0617] mb-0.5 print:text-[9pt]">Enfermedades Asociadas a HTLV-1</h3>
-                      <p className="text-[11px] text-[#191c1e] mb-2 print:text-[7pt]">
-                        Un porcentaje menor puede desarrollar patologías severas:
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-1.5">
-                        <div className="bg-white p-1.5 rounded border border-[#dcc0c0]">
-                          <strong className="block text-[11px] text-[#5b0617] print:text-[7.5pt]">PET / HAM</strong>
-                          <span className="text-[9.5px] text-[#564242] leading-tight block print:text-[6.8pt]">Paraparesia espástica progresiva.</span>
-                        </div>
-                        <div className="bg-white p-1.5 rounded border border-[#dcc0c0]">
-                          <strong className="block text-[11px] text-[#5b0617] print:text-[7.5pt]">LLTA / ATL</strong>
-                          <span className="text-[9.5px] text-[#564242] leading-tight block print:text-[6.8pt]">Leucemia/Linfoma células T adulto.</span>
-                        </div>
-                        <div className="bg-white p-1.5 rounded border border-[#dcc0c0]">
-                          <strong className="block text-[11px] text-[#5b0617] print:text-[7.5pt]">Uveítis HTLV-1</strong>
-                          <span className="text-[9.5px] text-[#564242] leading-tight block print:text-[6.8pt]">Inflamación ocular crónica.</span>
-                        </div>
-                        <div className="bg-white p-1.5 rounded border border-[#dcc0c0]">
-                          <strong className="block text-[11px] text-[#5b0617] print:text-[7.5pt]">Dermatitis Inf.</strong>
-                          <span className="text-[9.5px] text-[#564242] leading-tight block print:text-[6.8pt]">Eczema recidivante en niños.</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </section>
-
-            {/* SECCIÓN 3: VÍAS DE TRANSMISIÓN */}
-            <section className="scroll-mt-28 print-card print-avoid-break" id="transmission">
-              <div className="bg-white md:p-6 p-4 rounded-2xl print:p-0 print:border-0">
-                <div className="flex items-center gap-2.5 mb-3 print:mb-1.5">
-                  <span className="w-7 h-7 rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center font-bold text-[13px] print:w-5 print:h-5 print:text-[8.5pt]">3</span>
-                  <h2 className="font-headline-lg text-[20px] md:text-[22px] text-[#5b0617] font-bold print:text-[11.5pt]">
-                    Vías de Transmisión y Prevención
-                  </h2>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 print-grid-3 gap-3">
-                  {/* Vía Vertical */}
-                  <div className="bg-[#f8f9fb] border border-[#dcc0c0] p-3 rounded-xl text-center space-y-1.5 print:p-2 print:space-y-1">
-                    <div className="w-8 h-8 mx-auto rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center print:hidden">
-                      <span className="material-symbols-outlined text-lg">child_care</span>
-                    </div>
-                    <h3 className="font-bold text-[13px] text-[#191c1e] print:text-[8.5pt]">1. Madre a Hijo (Vertical)</h3>
-                    <p className="text-[11px] text-[#564242] leading-snug print:text-[7.2pt]">
-                      Por <strong>lactancia materna prolongada (&gt; 6 meses)</strong> por linfocitos en leche.
-                    </p>
-                    <div className="p-1 bg-white rounded border border-[#dcc0c0] text-[9.5px] font-bold text-[#5b0617] print:text-[6.8pt]">
-                      Prevención: Sucedáneos de leche materna.
-                    </div>
-                  </div>
-
-                  {/* Vía Sexual */}
-                  <div className="bg-[#f8f9fb] border border-[#dcc0c0] p-3 rounded-xl text-center space-y-1.5 print:p-2 print:space-y-1">
-                    <div className="w-8 h-8 mx-auto rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center print:hidden">
-                      <span className="material-symbols-outlined text-lg">favorite</span>
-                    </div>
-                    <h3 className="font-bold text-[13px] text-[#191c1e] print:text-[8.5pt]">2. Vía Sexual</h3>
-                    <p className="text-[11px] text-[#564242] leading-snug print:text-[7.2pt]">
-                      Relaciones sin protección. Mayor tasa documentada de hombre a mujer.
-                    </p>
-                    <div className="p-1 bg-white rounded border border-[#dcc0c0] text-[9.5px] font-bold text-[#5b0617] print:text-[6.8pt]">
-                      Prevención: Preservativos de barrera.
-                    </div>
-                  </div>
-
-                  {/* Vía Parenteral */}
-                  <div className="bg-[#f8f9fb] border border-[#dcc0c0] p-3 rounded-xl text-center space-y-1.5 print:p-2 print:space-y-1">
-                    <div className="w-8 h-8 mx-auto rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center print:hidden">
-                      <span className="material-symbols-outlined text-lg">bloodtype</span>
-                    </div>
-                    <h3 className="font-bold text-[13px] text-[#191c1e] print:text-[8.5pt]">3. Vía Parenteral</h3>
-                    <p className="text-[11px] text-[#564242] leading-snug print:text-[7.2pt]">
-                      Transfusiones celulares no tamizadas, trasplante o agujas compartidas.
-                    </p>
-                    <div className="p-1 bg-white rounded border border-[#dcc0c0] text-[9.5px] font-bold text-[#5b0617] print:text-[6.8pt]">
-                      Prevención: Tamizaje estricto en sangre.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* SECCIÓN 4: LIDERAZGO CIENTÍFICO DE PERÚ Y LA UPCH (Inicia Página 2 en Print) */}
-            <section className="scroll-mt-28 print-page-break-before print-peru-card print-avoid-break" id="peru-leadership">
-              <div className="bg-[#5b0617] text-white rounded-2xl p-6 md:p-8 shadow-xs print:p-0 print:bg-transparent print:text-[#191c1e] print:border-0">
-                <div className="flex items-center gap-2.5 mb-3 print:mb-1.5">
-                  <span className="w-7 h-7 rounded-full bg-white text-[#5b0617] print:bg-[#ffdada] print:text-[#5b0617] flex items-center justify-center font-bold text-[13px] print:w-5 print:h-5 print:text-[8.5pt]">4</span>
-                  <h2 className="text-[20px] md:text-[22px] font-bold print-peru-header print:text-[11.5pt]">
-                    Perú y Cayetano Heredia: Referentes Mundiales
-                  </h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-12 print-grid-peru gap-4 items-center">
-                  <div className="md:col-span-7 space-y-2 text-[12.5px] leading-snug opacity-95 print:opacity-100 print:text-[8pt] print:space-y-1">
-                    <p>
-                      El <strong>Perú</strong> alberga una de las poblaciones con mayor prevalencia de HTLV-1 a nivel global, con focos históricos en la cuenca andina y costa.
-                    </p>
-                    <p>
-                      El <strong>Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH)</strong> de la <strong>Universidad Peruana Cayetano Heredia (UPCH)</strong> lidera estudios mundiales en:
-                    </p>
-                    <ul className="list-disc pl-4 space-y-0.5 text-[11.5px] print:text-[7.5pt]">
-                      <li>Evolución clínica y factores de riesgo en Paraparesia Espástica Tropical (HAM/TSP).</li>
-                      <li>Coinfección de HTLV-1 con Tuberculosis (TB) y Estrongiloidiasis.</li>
-                      <li>Desarrollo y validación de técnicas de diagnóstico molecular por PCR en tiempo real.</li>
-                    </ul>
-                  </div>
-
-                  <div className="md:col-span-5 bg-white/10 print-peru-subbox p-3 rounded-xl border border-white/20 space-y-2 print:p-2 print:space-y-1">
-                    <h4 className="text-[11px] uppercase font-bold tracking-wider text-[#ffdada] print:text-[#5b0617] print:text-[7.5pt]">
-                      Comité y Doctores Referentes
-                    </h4>
-                    <div className="space-y-1.5 text-[11.5px] print:text-[7.5pt]">
-                      <div className="border-b border-white/20 print:border-[#dcc0c0] pb-1">
-                        <strong className="block text-white print:text-[#191c1e]">Dr. Eduardo Gotuzzo</strong>
-                        <span className="text-[10px] opacity-80 print:opacity-100 print:text-[6.8pt]">Profesor Emérito UPCH • Referente Mundial en Enf. Tropicales</span>
-                      </div>
-                      <div className="border-b border-white/20 print:border-[#dcc0c0] pb-1">
-                        <strong className="block text-white print:text-[#191c1e]">Dra. Elsa González</strong>
-                        <span className="text-[10px] opacity-80 print:opacity-100 print:text-[6.8pt]">Investigadora Principal IMTAvH-UPCH • Retrovirología</span>
-                      </div>
-                      <div>
-                        <strong className="block text-white print:text-[#191c1e]">Red Internacional RIII-HTLV</strong>
-                        <span className="text-[10px] opacity-80 print:opacity-100 print:text-[6.8pt]">Imperial College London, Institut Pasteur, Fiocruz</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* SECCIÓN 5: DIAGNÓSTICO Y MANEJO CLÍNICO */}
-            <section className="scroll-mt-28 print-card print-avoid-break" id="diagnosis">
-              <div className="bg-white md:p-6 p-4 rounded-2xl print:p-0 print:border-0">
-                <div className="flex items-center gap-2.5 mb-3 print:mb-1.5">
-                  <span className="w-7 h-7 rounded-full bg-[#ffdada] text-[#5b0617] flex items-center justify-center font-bold text-[13px] print:w-5 print:h-5 print:text-[8.5pt]">5</span>
-                  <h2 className="font-headline-lg text-[20px] md:text-[22px] text-[#5b0617] font-bold print:text-[11.5pt]">
-                    Algoritmo de Diagnóstico y Manejo
-                  </h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 print-grid-3 gap-3 mb-3 print:mb-1.5">
-                  <div className="p-3 bg-[#f8f9fb] border border-[#dcc0c0] rounded-xl print:p-2">
-                    <span className="text-[10.5px] font-bold text-[#5b0617] uppercase block mb-0.5 print:text-[7pt]">Paso 1: Tamizaje</span>
-                    <h4 className="font-bold text-[13px] text-[#191c1e] mb-0.5 print:text-[8.5pt]">ELISA / Quimioluminiscencia</h4>
-                    <p className="text-[11px] text-[#564242] print:text-[7.2pt]">Detección de anticuerpos totales anti-HTLV-1/2.</p>
-                  </div>
-                  <div className="p-3 bg-[#f8f9fb] border border-[#dcc0c0] rounded-xl print:p-2">
-                    <span className="text-[10.5px] font-bold text-[#5b0617] uppercase block mb-0.5 print:text-[7pt]">Paso 2: Confirmación</span>
-                    <h4 className="font-bold text-[13px] text-[#191c1e] mb-0.5 print:text-[8.5pt]">Western Blot / LIA</h4>
-                    <p className="text-[11px] text-[#564242] print:text-[7.2pt]">Diferenciación entre serotipos HTLV-1 y HTLV-2.</p>
-                  </div>
-                  <div className="p-3 bg-[#f8f9fb] border border-[#dcc0c0] rounded-xl print:p-2">
-                    <span className="text-[10.5px] font-bold text-[#5b0617] uppercase block mb-0.5 print:text-[7pt]">Paso 3: Monitoreo</span>
-                    <h4 className="font-bold text-[13px] text-[#191c1e] mb-0.5 print:text-[8.5pt]">PCR Cuantitativa (Carga Proviral)</h4>
-                    <p className="text-[11px] text-[#564242] print:text-[7.2pt]">Medición de copias virales por 100 células.</p>
-                  </div>
-                </div>
-
-                <div className="p-2.5 bg-[#ffdada]/25 border border-[#dcc0c0] rounded-xl flex items-start gap-2 print:p-1.5">
-                  <span className="material-symbols-outlined text-[#5b0617] text-[16px] mt-0.5 print:hidden">info</span>
-                  <p className="text-[11px] text-[#564242] leading-snug print:text-[7pt]">
-                    <strong>Pauta de Seguimiento:</strong> Personas asintomáticas requieren control clínico anual. En casos de HAM/TSP o ATL, se activa el protocolo multidisciplinario (infectología, neurología, hematología).
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* Acceso a Preguntas Frecuentes (FAQs) */}
-            <div className="bg-white border border-[#dcc0c0] rounded-2xl p-6 shadow-xs print:hidden flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-xl bg-[#5b0617] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
-                  <span className="material-symbols-outlined text-[26px]">quiz</span>
-                </div>
-                <div>
-                  <h3 className="font-bold text-[16px] text-[#191c1e]">
-                    Preguntas Frecuentes (FAQs) sobre el HTLV
-                  </h3>
-                  <p className="text-[13px] text-[#564242]">
-                    Conoce las 13 respuestas oficiales sobre virología, diagnóstico, síntomas y descarga la guía clínica en PDF.
-                  </p>
-                </div>
-              </div>
-              <Link
-                href="/faqs"
-                className="bg-[#5b0617] hover:opacity-90 text-white px-5 py-3 rounded-xl font-bold text-[13.5px] transition-all flex items-center gap-2 flex-shrink-0 shadow-sm cursor-pointer"
-              >
-                <span>Ver Guía de FAQs</span>
-                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-              </Link>
-            </div>
-
-            {/* Pie de página institucional para la versión impresa */}
-            <div className="hidden print:block pt-1 border-t border-[#dcc0c0] text-center text-[6.8pt] text-[#897172]">
-              <p>
-                <strong>Deslinde Médico:</strong> Este documento es de carácter divulgativo y científico. No sustituye la consulta médica especializada. Desarrollado con el respaldo de investigadores del Instituto de Medicina Tropical Alexander von Humboldt (UPCH) y la Red RIII-HTLV. Conforme a la Ley N° 29733 de Protección de Datos Personales.
-              </p>
-            </div>
-
+            ))}
           </div>
         </div>
-      </main>
-    </>
+
+        {/* Contenido Dinámico por Pestaña */}
+        <div className="max-w-4xl mx-auto">
+          
+          {/* 1. Quiénes Somos y Objetivos */}
+          {activeTab === 'quienes-somos' && (
+            <div className="space-y-8 animate-fadeIn">
+              <div className="bg-white p-8 md:p-10 rounded-2xl border border-[#dcc0c0] shadow-xs space-y-6">
+                <div>
+                  <h2 className="text-[24px] font-black text-[#5b0617] mb-3">
+                    Quiénes Somos
+                  </h2>
+                  <p className="text-[15.5px] text-[#564242] leading-relaxed">
+                    La <strong>Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV)</strong> es un consorcio académico y científico que reúne a investigadores clínicos, biomédicos y epidemiólogos de instituciones de prestigio en América Latina, Europa y Asia.
+                  </p>
+                  <p className="text-[15.5px] text-[#564242] leading-relaxed mt-3">
+                    Bajo la coordinación del <strong>Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) de la Universidad Peruana Cayetano Heredia (UPCH)</strong>, la red articula esfuerzos de centros ubicados en regiones endémicas con laboratorios de alta complejidad biológica para cerrar la brecha en el estudio de los Retrovirus Humanos T-Linfotrópicos (HTLV-1 y HTLV-2).
+                  </p>
+                </div>
+
+                <div className="border-t border-[#dcc0c0] pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-[#f8f9fb] p-6 rounded-xl border border-[#dcc0c0]">
+                    <div className="w-10 h-10 rounded-lg bg-[#ffdada] text-[#5b0617] flex items-center justify-center font-bold mb-3">
+                      <span className="material-symbols-outlined">flag</span>
+                    </div>
+                    <h3 className="text-[18px] font-bold text-[#191c1e] mb-2">Misión</h3>
+                    <p className="text-[14px] text-[#564242] leading-relaxed">
+                      Generar conocimiento científico riguroso, promover políticas preventivas de salud pública y facilitar la transferencia de tecnologías diagnósticas y terapéuticas para reducir el impacto del HTLV en las personas afectadas.
+                    </p>
+                  </div>
+
+                  <div className="bg-[#f8f9fb] p-6 rounded-xl border border-[#dcc0c0]">
+                    <div className="w-10 h-10 rounded-lg bg-[#d6e0f3] text-[#1d2b3a] flex items-center justify-center font-bold mb-3">
+                      <span className="material-symbols-outlined">visibility</span>
+                    </div>
+                    <h3 className="text-[18px] font-bold text-[#191c1e] mb-2">Visión</h3>
+                    <p className="text-[14px] text-[#564242] leading-relaxed">
+                      Consolidarse como la plataforma internacional de referencia en la investigación de retrovirología humana, integrando a centros de salud, universidades y organismos sanitarios globales en favor de la erradicación de las enfermedades por HTLV.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="border-t border-[#dcc0c0] pt-6 space-y-4">
+                  <h3 className="text-[20px] font-bold text-[#191c1e]">
+                    Objetivos Principales
+                  </h3>
+                  <ul className="space-y-3 text-[15px] text-[#564242]">
+                    <li className="flex items-start gap-3">
+                      <span className="material-symbols-outlined text-[#5b0617] text-xl mt-0.5">check_circle</span>
+                      <span><strong>Diagnóstico Oportuno:</strong> Estandarizar métodos serológicos y moleculares de confirmación accesibles en países de alta prevalencia.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="material-symbols-outlined text-[#5b0617] text-xl mt-0.5">check_circle</span>
+                      <span><strong>Investigación Clínica & Ensayos:</strong> Desarrollar estudios de cohortes longitudinales en Paraparesia Espástica Tropical (HAM/TSP) y Leucemia/Linfoma de Células T (ATL).</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="material-symbols-outlined text-[#5b0617] text-xl mt-0.5">check_circle</span>
+                      <span><strong>Prevención de la Transmisión:</strong> Promover el tamizaje prenatal, la consejería de lactancia segura y el control estricto en bancos de sangre.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="material-symbols-outlined text-[#5b0617] text-xl mt-0.5">check_circle</span>
+                      <span><strong>Formación y Apoyo:</strong> Capacitar a profesionales de la salud y brindar un canal de orientación confiable para pacientes y sus familias.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 2. Estructura y Biografías Integradas */}
+          {activeTab === 'estructura' && (
+            <div className="space-y-6 animate-fadeIn">
+              <div className="bg-white p-8 rounded-2xl border border-[#dcc0c0] shadow-xs">
+                <h2 className="text-[24px] font-black text-[#5b0617] mb-2">
+                  Estructura de Gobernanza & Comité Científico
+                </h2>
+                <p className="text-[14.5px] text-[#564242] mb-6">
+                  La Red cuenta con una estructura simplificada que reúne el liderazgo de investigadores clínicos de amplia trayectoria internacional.
+                </p>
+
+                <div className="space-y-6">
+                  {leaders.map((leader, idx) => (
+                    <div 
+                      key={idx}
+                      className="p-6 bg-[#f8f9fb] border border-[#dcc0c0] rounded-xl flex flex-col md:flex-row gap-5 items-start"
+                    >
+                      <div className="w-14 h-14 rounded-2xl bg-[#5b0617] text-white flex items-center justify-center font-bold text-2xl flex-shrink-0">
+                        {leader.name.split(' ')[1]?.[0] || 'D'}
+                      </div>
+                      <div className="space-y-2 flex-1">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <h3 className="text-[18px] font-bold text-[#191c1e]">
+                            {leader.name}
+                          </h3>
+                          <span className="px-3 py-0.5 bg-[#ffdada] text-[#5b0617] text-[12px] font-bold rounded-full">
+                            {leader.role}
+                          </span>
+                        </div>
+                        <p className="text-[13px] font-semibold text-[#897172]">
+                          {leader.institution} • <span className="text-[#5b0617]">{leader.specialty}</span>
+                        </p>
+                        <p className="text-[14px] text-[#564242] leading-relaxed pt-1">
+                          {leader.bio}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 3. Aliados Estratégicos */}
+          {activeTab === 'aliados' && (
+            <div className="space-y-6 animate-fadeIn">
+              <div className="bg-white p-8 rounded-2xl border border-[#dcc0c0] shadow-xs">
+                <h2 className="text-[24px] font-black text-[#5b0617] mb-2">
+                  Aliados Estratégicos e Instituciones Participantes
+                </h2>
+                <p className="text-[14.5px] text-[#564242] mb-6">
+                  Centros de investigación, universidades y hospitales que conforman formalmente la alianza RIII-HTLV.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {allies.map((ally, idx) => (
+                    <a
+                      key={idx}
+                      href={ally.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-5 bg-[#f8f9fb] border border-[#dcc0c0] rounded-xl hover:border-[#5b0617] hover:shadow-xs transition-all flex flex-col justify-between group"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#897172]">
+                            {ally.country}
+                          </span>
+                          <span className="material-symbols-outlined text-[16px] text-[#897172] group-hover:text-[#5b0617]">
+                            open_in_new
+                          </span>
+                        </div>
+                        <h3 className="text-[16px] font-bold text-[#191c1e] group-hover:text-[#5b0617] transition-colors">
+                          {ally.name}
+                        </h3>
+                        <p className="text-[13px] text-[#564242] mt-1">
+                          {ally.role}
+                        </p>
+                      </div>
+                      <div className="pt-3 mt-2 border-t border-[#dcc0c0]/50 text-[12px] font-semibold text-[#5b0617]">
+                        Ir al sitio institucional →
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 4. Documentos Institucionales: Reglamento y Convenio */}
+          {activeTab === 'documentos' && (
+            <div className="space-y-6 animate-fadeIn">
+              <div className="bg-white p-8 rounded-2xl border border-[#dcc0c0] shadow-xs space-y-6">
+                <div>
+                  <h2 className="text-[24px] font-black text-[#5b0617] mb-2">
+                    Documentos Institucionales
+                  </h2>
+                  <p className="text-[14.5px] text-[#564242]">
+                    Instrumentos legales y normativos que rigen el funcionamiento, la gobernanza y los acuerdos de cooperación de la red.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  
+                  {/* Ficha: Reglamento Interno */}
+                  <div className="p-6 bg-[#f8f9fb] border border-[#dcc0c0] rounded-xl space-y-4 flex flex-col justify-between">
+                    <div>
+                      <div className="w-12 h-12 rounded-xl bg-[#ffdada] text-[#5b0617] flex items-center justify-center font-bold mb-3">
+                        <span className="material-symbols-outlined text-2xl">gavel</span>
+                      </div>
+                      <span className="text-[11px] font-bold text-[#897172] uppercase tracking-wider">
+                        Normativa de Funcionamiento
+                      </span>
+                      <h3 className="text-[18px] font-bold text-[#191c1e] mt-1">
+                        Reglamento Interno de la Red RIII-HTLV
+                      </h3>
+                      <p className="text-[13.5px] text-[#564242] mt-2 leading-relaxed">
+                        Define los derechos y deberes de las instituciones miembros, los procedimientos para la incorporación de nuevos nodos, las pautas de autoría científica en publicaciones conjuntas y la toma de decisiones del comité.
+                      </p>
+                    </div>
+                    <div className="pt-3 border-t border-[#dcc0c0]">
+                      <button 
+                        onClick={() => alert('El documento oficial del Reglamento Interno está en proceso de firma y aprobación por los miembros del consorcio.')}
+                        className="w-full bg-[#5b0617] text-white py-2.5 px-4 rounded-xl text-[13px] font-bold hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">download</span>
+                        <span>Consultar Reglamento</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Ficha: Convenio Marco */}
+                  <div className="p-6 bg-[#f8f9fb] border border-[#dcc0c0] rounded-xl space-y-4 flex flex-col justify-between">
+                    <div>
+                      <div className="w-12 h-12 rounded-xl bg-[#d6e0f3] text-[#1d2b3a] flex items-center justify-center font-bold mb-3">
+                        <span className="material-symbols-outlined text-2xl">history_edu</span>
+                      </div>
+                      <span className="text-[11px] font-bold text-[#897172] uppercase tracking-wider">
+                        Acuerdo Interinstitucional
+                      </span>
+                      <h3 className="text-[18px] font-bold text-[#191c1e] mt-1">
+                        Convenio Marco de Colaboración
+                      </h3>
+                      <p className="text-[13.5px] text-[#564242] mt-2 leading-relaxed">
+                        Acuerdo interinstitucional suscrito para el intercambio académico, transferencia mutua de metodologías de diagnóstico, movilidad de investigadores y desarrollo de proyectos científicos multicéntricos.
+                      </p>
+                    </div>
+                    <div className="pt-3 border-t border-[#dcc0c0]">
+                      <button 
+                        onClick={() => alert('El documento marco del Convenio Interinstitucional se encuentra disponible a través de la secretaría de coordinación en IMTAvH.')}
+                        className="w-full bg-[#1d2b3a] text-white py-2.5 px-4 rounded-xl text-[13px] font-bold hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">download</span>
+                        <span>Consultar Convenio Marco</span>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div className="p-4 bg-[#ffdada]/30 border border-[#dcc0c0] rounded-xl text-[13px] text-[#564242] flex items-start gap-3">
+                  <span className="material-symbols-outlined text-[#5b0617] text-xl mt-0.5">verified</span>
+                  <p>
+                    Para solicitar copias certificadas o requerir acreditación de membresía para la postulación a fondos concursables, comuníquese a través del <Link href="/contact" className="text-[#5b0617] font-bold underline">formulario institucional de contacto</Link>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
+
+      </div>
+    </main>
   );
 }
