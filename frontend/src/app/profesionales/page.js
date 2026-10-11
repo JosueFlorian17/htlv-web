@@ -92,15 +92,15 @@ function ProfesionalesContent() {
   ];
 
   return (
-    <main className="w-full bg-[#f8f9fb] min-h-[calc(100vh-80px)] py-8 md:py-12 text-[#191c1e] flex flex-col justify-between">
-      <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12">
+    <main className="w-full bg-[#f8fafc] min-h-[calc(100vh-80px)] py-8 sm:py-12 text-slate-900 flex flex-col justify-between">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Cabecera con Pestañas Horizontales */}
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <span className="text-[12.5px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block mb-1">
             {lang === 'es' ? 'Educación Médica & Guías' : 'Medical Education & Guidelines'}
           </span>
-          <h1 className="text-[32px] sm:text-[40px] font-black text-[#003B49] tracking-tight leading-none">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'recursos' && (lang === 'es' ? 'Recursos Clínicos y Guías Diagnósticas' : 'Clinical Resources & Guidelines')}
             {activeTab === 'webinars' && (lang === 'es' ? 'Webinars y Conferencias Internacionales' : 'International Webinars & Conferences')}
             {activeTab === 'cursos' && (lang === 'es' ? 'Cursos Cortos y Capacitación Médica' : 'Short Courses & Medical Training')}
@@ -112,24 +112,24 @@ function ProfesionalesContent() {
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {clinicalGuides.map((guide, idx) => (
-                <div key={idx} className="bg-white p-7 rounded-3xl border-2 border-gray-200 shadow-xs flex flex-col justify-between space-y-6">
+                <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
                   <div className="space-y-3">
-                    <span className="text-[12px] font-extrabold text-[#A10D3A] bg-[#A10D3A]/10 px-2.5 py-0.5 rounded-md inline-block">
+                    <span className="text-xs font-semibold text-[#A10D3A] bg-[#A10D3A]/10 px-2.5 py-0.5 rounded-md inline-block">
                       {guide.year} • {guide.institution.split(' - ')[0]}
                     </span>
-                    <h3 className="text-[20px] font-black text-[#003B49] leading-snug">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
                       {guide.title}
                     </h3>
-                    <p className="text-[15px] text-[#443333] leading-relaxed">
+                    <p className="text-sm text-slate-600 leading-relaxed">
                       {guide.desc}
                     </p>
                   </div>
                   <div>
                     <button
                       onClick={() => alert(`Descargando: ${guide.title}`)}
-                      className="w-full bg-[#003B49] hover:bg-[#087E8B] text-white font-bold py-3 px-4 rounded-xl text-[14px] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                      className="w-full bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                     >
-                      <span className="material-symbols-outlined text-[18px]">download</span>
+                      <span className="material-symbols-outlined text-base">download</span>
                       <span>{lang === 'es' ? 'Descargar Guía Oficial' : 'Download Guideline'}</span>
                     </button>
                   </div>
@@ -143,23 +143,23 @@ function ProfesionalesContent() {
         {activeTab === 'webinars' && (
           <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
             {webinars.map((webinar, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-3xl border-2 border-gray-200 shadow-xs space-y-5">
+              <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6">
                 <div>
-                  <span className="text-[12px] font-black uppercase tracking-wider text-[#A10D3A] block mb-1">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-[#A10D3A] block mb-1">
                     {webinar.date} • {webinar.duration}
                   </span>
-                  <h3 className="text-[22px] font-black text-[#003B49]">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                     {webinar.title}
                   </h3>
-                  <p className="text-[14px] font-bold text-[#087E8B] mt-1">
+                  <p className="text-sm font-semibold text-[#087E8B] mt-1">
                     {webinar.speaker}
                   </p>
-                  <p className="text-[15.5px] text-[#443333] mt-2 leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
                     {webinar.desc}
                   </p>
                 </div>
 
-                <div className="aspect-video w-full rounded-2xl overflow-hidden border-2 border-gray-200 bg-black">
+                <div className="aspect-video w-full rounded-lg overflow-hidden border border-slate-200 bg-slate-950">
                   <iframe
                     className="w-full h-full"
                     src={`https://www.youtube-nocookie.com/embed/${webinar.videoId}?rel=0`}
@@ -178,25 +178,25 @@ function ProfesionalesContent() {
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {courses.map((course, idx) => (
-                <div key={idx} className="bg-white p-8 rounded-3xl border-2 border-gray-200 shadow-xs space-y-5 flex flex-col justify-between">
+                <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
                   <div className="space-y-3">
-                    <span className="px-3 py-1 bg-[#087E8B]/10 text-[#087E8B] text-[12px] font-black uppercase tracking-wider rounded-md inline-block">
+                    <span className="px-2.5 py-1 bg-[#087E8B]/10 text-[#087E8B] text-xs font-semibold uppercase tracking-wider rounded-md inline-block">
                       {course.modality}
                     </span>
-                    <h3 className="text-[22px] font-black text-[#003B49] leading-snug">
+                    <h3 className="text-xl font-bold text-[#003B49] leading-snug">
                       {course.title}
                     </h3>
-                    <p className="text-[14.5px] text-gray-600">
+                    <p className="text-sm text-slate-600">
                       <strong>{lang === 'es' ? 'Dirigido a:' : 'Audience:'}</strong> {course.target}
                     </p>
 
-                    <div className="space-y-1.5 pt-2">
-                      <span className="text-[12px] font-black uppercase tracking-wider text-[#003B49] block">
+                    <div className="space-y-2 pt-2">
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#003B49] block">
                         {lang === 'es' ? 'Módulos Temáticos:' : 'Syllabus:'}
                       </span>
                       {course.modules.map((m, mIdx) => (
-                        <div key={mIdx} className="flex items-center gap-2 text-[14px] text-[#332222]">
-                          <span className="material-symbols-outlined text-[16px] text-[#E5A400]">check_circle</span>
+                        <div key={mIdx} className="flex items-center gap-2 text-sm text-slate-700">
+                          <span className="material-symbols-outlined text-base text-[#E5A400]">check_circle</span>
                           <span>{m}</span>
                         </div>
                       ))}
@@ -206,10 +206,10 @@ function ProfesionalesContent() {
                   <div>
                     <Link
                       href="/contact"
-                      className="w-full bg-[#E5A400] hover:bg-[#cca300] text-[#003B49] font-black py-3 px-5 rounded-xl text-[14px] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                      className="w-full bg-[#E5A400] hover:bg-[#cca300] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003B49] text-[#003B49] font-bold py-2.5 px-5 rounded-lg text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                     >
                       <span>{lang === 'es' ? 'Solicitar Inscripción Institucional' : 'Request Enrollment'}</span>
-                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                      <span className="material-symbols-outlined text-base">arrow_forward</span>
                     </Link>
                   </div>
                 </div>

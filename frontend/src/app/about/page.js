@@ -189,20 +189,15 @@ function AboutContent() {
   };
 
   return (
-    <main className="w-full bg-[#f8f9fb] min-h-[calc(100vh-80px)] py-8 md:py-12 text-[#191c1e] flex flex-col justify-between">
-      <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12">
+    <main className="w-full bg-slate-50 min-h-[calc(100vh-80px)] py-8 md:py-12 text-slate-900 flex flex-col justify-between">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Cabecera con 4 Pestañas Exactas Solicitadas:
-            1. Quiénes somos y objetivos
-            2. Estructura y gobernanza
-            3. Instituciones miembros
-            4. Aliados estratégicos
-        */}
-        <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <span className="text-[12.5px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
+        {/* Cabecera con 4 Pestañas */}
+        <div className="pb-6 mb-8 border-b border-slate-200">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#087E8B] block mb-1">
             {lang === 'es' ? 'Acerca de la Red' : 'About the Network'}
           </span>
-          <h1 className="text-[32px] sm:text-[40px] font-black text-[#003B49] tracking-tight leading-none">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'quienes-somos' && (lang === 'es' ? 'Quiénes Somos y Objetivos' : 'About Us & Objectives')}
             {activeTab === 'estructura' && (lang === 'es' ? 'Estructura y Gobernanza' : 'Structure & Governance')}
             {activeTab === 'miembros' && (lang === 'es' ? 'Instituciones Miembros' : 'Member Institutions')}
@@ -213,17 +208,17 @@ function AboutContent() {
         {/* 1. QUIÉNES SOMOS Y OBJETIVOS */}
         {activeTab === 'quienes-somos' && (
           <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
-            <div className="bg-white p-8 md:p-10 rounded-3xl border-2 border-gray-200 shadow-xs space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-100">
+            <div className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
                 <div>
-                  <span className="px-3 py-1 bg-[#A10D3A] text-white text-[12px] font-black uppercase rounded-md inline-block mb-2">
+                  <span className="px-2.5 py-0.5 bg-[#A10D3A] text-white text-xs font-semibold uppercase rounded-md inline-block mb-2">
                     RIII-HTLV
                   </span>
-                  <h2 className="text-[28px] font-black text-[#003B49]">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                     {lang === 'es' ? 'Quiénes Somos' : 'Who We Are'}
                   </h2>
                 </div>
-                <div className="bg-gray-50 p-2.5 rounded-2xl border border-gray-200 shadow-2xs self-start sm:self-auto">
+                <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 self-start sm:self-auto">
                   <img 
                     src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
                     alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
@@ -232,13 +227,13 @@ function AboutContent() {
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <p className="text-[17px] text-[#443333] leading-relaxed">
+              <div className="space-y-4">
+                <p className="text-base text-slate-700 leading-relaxed">
                   {lang === 'es'
                     ? 'La Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV) es una alianza científica y académica internacional coordinada por el Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) de la Universidad Peruana Cayetano Heredia (UPCH).'
                     : 'The International Research and Innovation Network on HTLV (RIII-HTLV) is an international scientific alliance coordinated by the Alexander von Humboldt Tropical Medicine Institute (IMTAvH) at Universidad Peruana Cayetano Heredia (UPCH).'}
                 </p>
-                <p className="text-[17px] text-[#443333] leading-relaxed">
+                <p className="text-base text-slate-700 leading-relaxed">
                   {lang === 'es'
                     ? 'Nuestra meta es articular a centros situados en focos endémicos con laboratorios de referencia en Europa, América Latina y Asia para acelerar el diagnóstico oportuno, los protocolos terapéuticos y la erradicación progresiva de las patologías asociadas al HTLV-1 y HTLV-2.'
                     : 'Our goal is to connect centers located in endemic areas with reference laboratories in Europe, Latin America, and Asia to accelerate early diagnosis, therapeutics, and progressive eradication of HTLV-1 and HTLV-2.'}
@@ -246,25 +241,25 @@ function AboutContent() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                <div className="p-6 rounded-2xl bg-[#f8f9fb] border-2 border-[#003B49]/15 space-y-2">
-                  <span className="text-[13px] font-black uppercase text-[#087E8B] block">
+                <div className="p-5 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-[#087E8B] block">
                     {lang === 'es' ? 'Misión Institucional' : 'Institutional Mission'}
                   </span>
-                  <p className="text-[15px] text-[#332222] leading-relaxed">
+                  <p className="text-sm text-slate-700 leading-relaxed">
                     {lang === 'es'
                       ? 'Generar evidencia clínica rigurosa, estandarizar metodologías diagnósticas de carga proviral y guiar políticas de salud pública preventivas en la región.'
                       : 'Generate rigorous clinical evidence, standardize proviral load diagnostic assays, and guide preventive public health policies.'}
                   </p>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-[#f8f9fb] border-2 border-[#003B49]/15 space-y-2">
-                  <span className="text-[13px] font-black uppercase text-[#E5A400] block">
+                <div className="p-5 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-[#E5A400] block">
                     {lang === 'es' ? 'Visión Global' : 'Global Vision'}
                   </span>
-                  <p className="text-[15px] text-[#332222] leading-relaxed">
+                  <p className="text-sm text-slate-700 leading-relaxed">
                     {lang === 'es'
                       ? 'Consolidarse como la plataforma científica de referencia mundial en retrovirología humana, integrando a pacientes, médicos y organismos multilaterales.'
-                      : 'Become the world’s benchmark scientific platform in human retrovirology, integrando a pacientes, clínicos y agencias multilaterales.'}
+                      : 'Become the world benchmark scientific platform in human retrovirology, integrating patients, clinicians, and multilateral agencies.'}
                   </p>
                 </div>
               </div>
@@ -273,13 +268,13 @@ function AboutContent() {
           </div>
         )}
 
-        {/* 2. ESTRUCTURA Y GOBERNANZA (Organigrama conectado idéntico a QuEST LAC - Imagen 2) */}
+        {/* 2. ESTRUCTURA Y GOBERNANZA */}
         {activeTab === 'estructura' && (
           <div className="space-y-6 animate-fadeIn max-w-5xl mx-auto">
             
             {/* Título limpio sin card ni segmento de interactivo */}
             <div>
-              <h3 className="text-[26px] font-black text-[#003B49]">
+              <h3 className="text-2xl font-bold text-[#003B49]">
                 {lang === 'es' ? 'Estructura y Gobernanza de la Red' : 'Network Structure & Governance'}
               </h3>
             </div>
@@ -417,32 +412,32 @@ function AboutContent() {
               </div>
             </div>
 
-            {/* MODAL INSTITUCIONAL SOBRIO (Claro, sin fondo negro) */}
+            {/* MODAL INSTITUCIONAL SOBRIO */}
             {selectedNode && (
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-fadeIn">
-                <div className="bg-white text-[#002538] w-full max-w-md rounded-2xl p-6 border border-gray-200 shadow-2xl relative text-center space-y-4">
+                <div className="bg-white text-slate-900 w-full max-w-md rounded-xl p-6 border border-slate-200 shadow-xl relative text-center space-y-4">
                   
-                  {/* Título en negrita */}
-                  <h4 className="text-[17px] font-bold text-[#002538] leading-snug">
+                  {/* Título */}
+                  <h4 className="text-base font-bold text-[#003B49] leading-snug">
                     {selectedNode.title}:
                   </h4>
 
                   {/* Descripción clara y sobria */}
-                  <p className="text-[14.5px] text-gray-700 leading-relaxed max-w-sm mx-auto">
+                  <p className="text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
                     {selectedNode.description}
                   </p>
 
-                  {/* Botones estilo institucional: Botón ámbar "Ver más" y botón sutil "Cerrar" */}
+                  {/* Botones */}
                   <div className="pt-2 flex flex-col items-center gap-2">
                     <button
                       onClick={() => handleModalAction(selectedNode)}
-                      className="w-44 bg-[#D98A2C] hover:bg-[#c27923] text-white font-bold py-2 px-5 rounded-md text-[14.5px] transition-colors cursor-pointer shadow-sm"
+                      className="w-44 bg-[#E5A400] hover:bg-[#CCA300] text-[#002538] font-semibold py-2 px-4 rounded-lg text-sm transition-colors cursor-pointer shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400]"
                     >
                       {selectedNode.linkText || (lang === 'es' ? 'Ver más' : 'See more')}
                     </button>
                     <button
                       onClick={() => setSelectedNode(null)}
-                      className="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[12px] font-medium py-1 px-4 rounded-md transition-colors cursor-pointer"
+                      className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium py-1.5 px-4 rounded-lg transition-colors cursor-pointer focus-visible:outline-none"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
@@ -455,36 +450,36 @@ function AboutContent() {
           </div>
         )}
 
-        {/* 3. INSTITUCIONES MIEMBROS & INTEGRANTES (Imagen 4) */}
+        {/* 3. INSTITUCIONES MIEMBROS & INTEGRANTES */}
         {activeTab === 'miembros' && (
           <div className="space-y-8 animate-fadeIn max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
               {teamNodes.map((node, nodeIdx) => (
                 <div 
                   key={nodeIdx}
-                  className="bg-white p-8 rounded-3xl border-2 border-gray-200 shadow-xs space-y-6 flex flex-col justify-between"
+                  className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between"
                 >
-                  <div className="border-b-2 border-gray-100 pb-4 flex items-center justify-between">
+                  <div className="border-b border-slate-100 pb-4 flex items-center justify-between">
                     <div>
-                      <span className="text-[12px] font-black uppercase tracking-wider text-[#A10D3A] block">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-[#A10D3A] block">
                         {node.nodeName}
                       </span>
-                      <h3 className="text-[20px] font-black text-[#003B49] mt-0.5">
+                      <h3 className="text-lg font-bold text-[#003B49] mt-0.5">
                         {node.institution}
                       </h3>
                     </div>
-                    <div className="w-12 h-12 rounded-2xl bg-[#003B49] text-white flex items-center justify-center font-black text-xl">
+                    <div className="w-10 h-10 rounded-lg bg-[#003B49] text-white flex items-center justify-center font-bold text-lg">
                       R
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {node.members.map((member, mIdx) => (
                       <div 
                         key={mIdx}
-                        className="p-4 rounded-2xl bg-gray-50 border border-gray-200 hover:border-[#087E8B] transition-all flex items-center gap-4 group"
+                        className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-[#087E8B] transition-colors flex items-center gap-3.5 group"
                       >
-                        <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-[#003B49] flex-shrink-0 shadow-2xs bg-[#087E8B]/20">
+                        <div className="w-14 h-14 rounded-lg overflow-hidden border border-[#003B49]/30 shrink-0 bg-[#087E8B]/10">
                           <img 
                             src={member.image} 
                             alt={member.name} 
@@ -493,13 +488,13 @@ function AboutContent() {
                         </div>
 
                         <div className="space-y-0.5">
-                          <h4 className="text-[17px] font-black text-[#003B49] group-hover:text-[#A10D3A] transition-colors">
+                          <h4 className="text-sm font-bold text-[#003B49] group-hover:text-[#A10D3A] transition-colors">
                             {member.name}
                           </h4>
-                          <span className="inline-block text-[13px] font-bold text-[#A10D3A] bg-[#A10D3A]/10 px-2 py-0.5 rounded-md">
+                          <span className="inline-block text-xs font-semibold text-[#A10D3A] bg-[#A10D3A]/10 px-2 py-0.5 rounded">
                             {member.role}
                           </span>
-                          <p className="text-[13px] text-gray-600">
+                          <p className="text-xs text-slate-500">
                             {member.title}
                           </p>
                         </div>
@@ -507,8 +502,8 @@ function AboutContent() {
                     ))}
                   </div>
 
-                  <div className="pt-3 border-t border-gray-100 text-center">
-                    <span className="text-[13px] font-semibold text-gray-500">
+                  <div className="pt-3 border-t border-slate-100 text-center">
+                    <span className="text-xs font-medium text-slate-500">
                       {lang === 'es' ? 'Afiliación formal a la Red RIII-HTLV' : 'Formal RIII-HTLV Network affiliation'}
                     </span>
                   </div>
@@ -518,15 +513,15 @@ function AboutContent() {
           </div>
         )}
 
-        {/* 4. ALIADOS ESTRATÉGICOS (Documentos, convenios y reglamento) */}
+        {/* 4. ALIADOS ESTRATÉGICOS */}
         {activeTab === 'aliados' && (
           <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
-            <div className="bg-white p-8 md:p-10 rounded-3xl border-2 border-gray-200 shadow-xs space-y-6">
+            <div className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6">
               <div>
-                <h3 className="text-[26px] font-black text-[#003B49] mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#003B49] mb-1">
                   {lang === 'es' ? 'Aliados Estratégicos & Documentos Institucionales' : 'Strategic Allies & Institutional Documents'}
                 </h3>
-                <p className="text-[16px] text-gray-600">
+                <p className="text-sm text-slate-600">
                   {lang === 'es'
                     ? 'Convenio marco y estatutos que respaldan las alianzas científicas internacionales.'
                     : 'Framework agreement and bylaws underpinning international scientific partnerships.'}
@@ -534,15 +529,15 @@ function AboutContent() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 bg-gray-50 border-2 border-gray-200 rounded-2xl space-y-4 flex flex-col justify-between">
+                <div className="p-5 bg-slate-50 border border-slate-200 rounded-lg space-y-4 flex flex-col justify-between">
                   <div>
-                    <span className="text-[12px] font-black uppercase text-[#087E8B] block">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[#087E8B] block">
                       Gobernanza
                     </span>
-                    <h4 className="text-[19px] font-black text-[#003B49] mt-1">
+                    <h4 className="text-base font-bold text-[#003B49] mt-1">
                       {lang === 'es' ? 'Reglamento Interno de la Red' : 'Internal Network Bylaws'}
                     </h4>
-                    <p className="text-[14.5px] text-gray-600 mt-2">
+                    <p className="text-sm text-slate-600 mt-2">
                       {lang === 'es'
                         ? 'Normativa sobre autorías científicas compartidas, comités y adhesión de nuevos nodos.'
                         : 'Guidelines on joint authorship, committee operations, and new node admissions.'}
@@ -550,22 +545,22 @@ function AboutContent() {
                   </div>
                   <button 
                     onClick={() => alert('Documento normativo disponible vía secretaría académica.')}
-                    className="w-full bg-[#003B49] hover:bg-[#087E8B] text-white py-3 px-4 rounded-xl text-[14px] font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full bg-[#003B49] hover:bg-[#002B36] text-white py-2.5 px-4 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#087E8B]"
                   >
                     <span className="material-symbols-outlined text-[18px]">download</span>
                     <span>{lang === 'es' ? 'Consultar Reglamento' : 'Download Bylaws'}</span>
                   </button>
                 </div>
 
-                <div className="p-6 bg-gray-50 border-2 border-gray-200 rounded-2xl space-y-4 flex flex-col justify-between">
+                <div className="p-5 bg-slate-50 border border-slate-200 rounded-lg space-y-4 flex flex-col justify-between">
                   <div>
-                    <span className="text-[12px] font-black uppercase text-[#A10D3A] block">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[#A10D3A] block">
                       Convenios
                     </span>
-                    <h4 className="text-[19px] font-black text-[#003B49] mt-1">
+                    <h4 className="text-base font-bold text-[#003B49] mt-1">
                       {lang === 'es' ? 'Convenio Marco de Colaboración' : 'Framework Collaboration Agreement'}
                     </h4>
-                    <p className="text-[14.5px] text-gray-600 mt-2">
+                    <p className="text-sm text-slate-600 mt-2">
                       {lang === 'es'
                         ? 'Acuerdo interinstitucional para movilidad de investigadores y proyectos multicéntricos.'
                         : 'Inter-institutional agreement for researcher mobility and multicenter projects.'}
@@ -573,7 +568,7 @@ function AboutContent() {
                   </div>
                   <button 
                     onClick={() => alert('Convenio disponible a través de la coordinación institucional.')}
-                    className="w-full bg-[#A10D3A] hover:bg-[#850a2f] text-white py-3 px-4 rounded-xl text-[14px] font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full bg-[#A10D3A] hover:bg-[#850a2f] text-white py-2.5 px-4 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A10D3A]"
                   >
                     <span className="material-symbols-outlined text-[18px]">download</span>
                     <span>{lang === 'es' ? 'Consultar Convenio Marco' : 'Download Agreement'}</span>

@@ -84,19 +84,19 @@ export default function PublicacionesPage() {
   });
 
   return (
-    <main className="w-full bg-white min-h-screen py-10 md:py-16 text-[#191c1e]">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+    <main className="w-full bg-[#f8fafc] min-h-[calc(100vh-80px)] py-8 sm:py-12 text-slate-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Cabecera Estilo QuEST LAC */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b-2 border-[#003B49]/15">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b-2 border-[#003B49]/15">
           <div>
-            <span className="text-[13px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block mb-1">
               {lang === 'es' ? 'Evidencia Científica' : 'Scientific Evidence'}
             </span>
-            <h1 className="text-[36px] sm:text-[46px] font-black text-[#003B49] tracking-tight leading-none">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
               {lang === 'es' ? 'Publicaciones' : 'Publications'}
             </h1>
-            <p className="text-[17px] text-gray-600 mt-2">
+            <p className="text-sm text-slate-600 mt-1">
               {lang === 'es' ? 'Artículos indexados elaborados por miembros de la Red RIII-HTLV.' : 'Peer-reviewed articles authored by members of the RIII-HTLV Network.'}
             </p>
           </div>
@@ -104,22 +104,22 @@ export default function PublicacionesPage() {
           {/* Buscador Simple */}
           <div className="w-full md:w-80">
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-3 top-3 text-gray-400">search</span>
+              <span className="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg">search</span>
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={lang === 'es' ? "Buscar por autor, título o año..." : "Search by author, title or year..."}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-gray-200 focus:border-[#087E8B] focus:outline-none text-[15px]"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 bg-white focus:border-[#087E8B] focus:ring-2 focus:ring-[#087E8B] focus:outline-none text-sm text-slate-800 transition"
               />
             </div>
           </div>
         </div>
 
-        {/* Listado de Artículos (Fiel a QuEST LAC) */}
-        <div className="divide-y divide-gray-200 py-4">
+        {/* Listado de Artículos */}
+        <div className="divide-y divide-slate-200 py-4">
           {filtered.length === 0 ? (
-            <div className="py-12 text-center text-gray-500 text-[16px]">
+            <div className="py-12 text-center text-slate-500 text-sm">
               {lang === 'es' ? 'No se encontraron publicaciones.' : 'No publications found.'}
             </div>
           ) : (
@@ -128,15 +128,15 @@ export default function PublicacionesPage() {
               const doiUrl = `https://doi.org/${pub.doi}`;
 
               return (
-                <div key={pub.id} className="py-7 space-y-2">
+                <div key={pub.id} className="py-6 space-y-2">
                   
                   {/* Autores */}
-                  <p className="text-[15px] font-medium text-gray-600">
+                  <p className="text-sm font-medium text-slate-600">
                     {pub.authors}
                   </p>
 
                   {/* [Año] Título del Artículo como HIPERVÍNCULO directo al DOI */}
-                  <h3 className="text-[18px] sm:text-[20px] font-black leading-snug">
+                  <h3 className="text-base sm:text-lg font-bold leading-snug">
                     <span className="text-[#A10D3A]">[{pub.year}]</span>{' '}
                     <a
                       href={doiUrl}
@@ -153,10 +153,10 @@ export default function PublicacionesPage() {
                   <div className="pt-1">
                     <button
                       onClick={() => toggleAbstract(pub.id)}
-                      className="inline-flex items-center gap-1 text-[15px] font-black text-[#E5A400] hover:text-[#c48d00] transition-colors cursor-pointer bg-transparent p-0 border-0 focus:outline-none"
+                      className="inline-flex items-center gap-1 text-sm font-bold text-[#E5A400] hover:text-[#c48d00] transition-colors cursor-pointer bg-transparent p-0 border-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] rounded-sm"
                     >
                       <span>{lang === 'es' ? 'Resumen' : 'Abstract'}</span>
-                      <span className="material-symbols-outlined text-[19px] leading-none transition-transform">
+                      <span className="material-symbols-outlined text-lg leading-none transition-transform">
                         {isOpen ? 'expand_less' : 'expand_more'}
                       </span>
                     </button>
@@ -164,32 +164,32 @@ export default function PublicacionesPage() {
 
                   {/* Cuadro Desplegable de Resumen (Solo enlace al DOI) */}
                   {isOpen && (
-                    <div className="mt-4 p-6 bg-[#fffbf0] border-l-4 border-[#E5A400] rounded-r-2xl shadow-xs space-y-4 animate-fadeIn">
+                    <div className="mt-3 p-5 sm:p-6 bg-[#fffdf5] border-l-4 border-[#E5A400] border-y border-r border-amber-200/60 rounded-r-xl shadow-xs space-y-3 animate-fadeIn">
                       <div className="flex items-center justify-between">
-                        <span className="text-[12.5px] font-black uppercase tracking-wider text-[#b38000]">
+                        <span className="text-xs font-bold uppercase tracking-wider text-[#b38000]">
                           {lang === 'es' ? 'Resumen del Artículo' : 'Article Abstract'} • {pub.journal}
                         </span>
                         <button
                           onClick={() => toggleAbstract(pub.id)}
-                          className="text-[13px] font-bold text-[#b38000] hover:underline cursor-pointer"
+                          className="text-xs font-semibold text-[#b38000] hover:underline cursor-pointer"
                         >
                           {lang === 'es' ? 'Cerrar' : 'Close'} [x]
                         </button>
                       </div>
 
-                      <p className="text-[15.5px] text-[#2c2214] leading-relaxed">
+                      <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
                         {pub.abstract}
                       </p>
 
                       {/* Solo el enlace DOI */}
-                      <div className="pt-2 border-t border-[#E5A400]/30 flex items-center text-[14px]">
+                      <div className="pt-3 border-t border-amber-200/60 flex items-center text-sm">
                         <a
                           href={doiUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-bold text-[#A10D3A] hover:underline flex items-center gap-1.5"
+                          className="font-semibold text-[#A10D3A] hover:underline flex items-center gap-1.5"
                         >
-                          <span className="material-symbols-outlined text-[17px]">open_in_new</span>
+                          <span className="material-symbols-outlined text-base">open_in_new</span>
                           <span>DOI: {pub.doi}</span>
                         </a>
                       </div>

@@ -95,14 +95,14 @@ function ProyectosContent() {
   ];
 
   return (
-    <main className="w-full bg-[#f8f9fb] min-h-[calc(100vh-80px)] py-8 md:py-12 text-[#191c1e] flex flex-col justify-between">
-      <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12">
+    <main className="w-full bg-[#f8fafc] min-h-[calc(100vh-80px)] py-8 sm:py-12 text-slate-900 flex flex-col justify-between">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <span className="text-[12.5px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block mb-1">
             {lang === 'es' ? 'Ciencia & Innovación' : 'Science & Innovation'}
           </span>
-          <h1 className="text-[32px] sm:text-[40px] font-black text-[#003B49] tracking-tight leading-none">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'investigacion' && (lang === 'es' ? 'Proyectos de Investigación Científica' : 'Scientific Research Projects')}
             {activeTab === 'avances' && (lang === 'es' ? 'Resultados, Hitos y Avances Clínicos' : 'Results, Milestones & Breakthroughs')}
             {activeTab === 'tesistas' && (lang === 'es' ? 'Oportunidades para Tesistas e Investigadores' : 'Opportunities for Researchers')}
@@ -114,34 +114,34 @@ function ProyectosContent() {
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {researchProjects.map((proj, idx) => (
-                <div key={idx} className="bg-white p-7 rounded-3xl border-2 border-gray-200 shadow-xs flex flex-col justify-between space-y-5">
+                <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="px-2.5 py-0.5 bg-[#A10D3A]/10 text-[#A10D3A] text-[12px] font-black rounded-md">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="px-2.5 py-0.5 bg-[#A10D3A]/10 text-[#A10D3A] text-xs font-semibold rounded-md">
                         {proj.status}
                       </span>
-                      <span className="text-[12px] font-bold text-gray-500">
+                      <span className="text-xs font-medium text-slate-500">
                         {proj.funding}
                       </span>
                     </div>
-                    <h3 className="text-[19px] font-black text-[#003B49] leading-snug">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
                       {proj.title}
                     </h3>
-                    <p className="text-[13.5px] font-bold text-[#087E8B]">
+                    <p className="text-xs font-semibold text-[#087E8B]">
                       {proj.node}
                     </p>
-                    <p className="text-[15px] text-[#443333] leading-relaxed">
+                    <p className="text-sm text-slate-600 leading-relaxed">
                       {proj.desc}
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-gray-200">
+                  <div className="pt-4 border-t border-slate-200">
                     <Link
                       href="/contact"
-                      className="text-[#003B49] font-black hover:text-[#087E8B] flex items-center gap-1 text-[13.5px]"
+                      className="text-[#003B49] font-semibold hover:text-[#087E8B] flex items-center gap-1 text-sm transition-colors"
                     >
                       <span>{lang === 'es' ? 'Consultar detalles del protocolo' : 'Inquire protocol details'}</span>
-                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                      <span className="material-symbols-outlined text-base">arrow_forward</span>
                     </Link>
                   </div>
                 </div>
@@ -155,19 +155,19 @@ function ProyectosContent() {
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {resultsList.map((res, idx) => (
-                <div key={idx} className="bg-white p-8 rounded-3xl border-2 border-gray-200 shadow-xs space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 bg-[#E5A400] text-[#003B49] text-[12px] font-black rounded-md uppercase">
+                <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="px-2.5 py-1 bg-[#E5A400] text-[#003B49] text-xs font-bold rounded-md uppercase">
                       {res.impact}
                     </span>
-                    <span className="text-[13px] font-black text-[#087E8B]">
+                    <span className="text-xs font-bold text-[#087E8B]">
                       {res.achievement}
                     </span>
                   </div>
-                  <h3 className="text-[21px] font-black text-[#003B49] leading-snug">
+                  <h3 className="text-xl font-bold text-[#003B49] leading-snug">
                     {res.title}
                   </h3>
-                  <p className="text-[15.5px] text-[#443333] leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                     {res.desc}
                   </p>
                 </div>
@@ -181,21 +181,21 @@ function ProyectosContent() {
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {thesisOpportunities.map((opp, idx) => (
-                <div key={idx} className="bg-white p-8 rounded-3xl border-2 border-gray-200 shadow-xs space-y-4 flex flex-col justify-between">
+                <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
                   <div className="space-y-3">
-                    <span className="px-3 py-1 bg-[#003B49] text-white text-[12px] font-black rounded-md uppercase">
+                    <span className="px-2.5 py-1 bg-[#003B49] text-white text-xs font-semibold rounded-md uppercase">
                       {opp.area}
                     </span>
-                    <h3 className="text-[21px] font-black text-[#003B49] leading-snug">
+                    <h3 className="text-xl font-bold text-[#003B49] leading-snug">
                       {opp.title}
                     </h3>
-                    <p className="text-[13.5px] font-bold text-[#A10D3A]">
+                    <p className="text-xs font-semibold text-[#A10D3A]">
                       {lang === 'es' ? 'Sede:' : 'Location:'} {opp.location}
                     </p>
-                    <p className="text-[14px] text-gray-600 font-medium">
+                    <p className="text-sm text-slate-600">
                       <strong>{lang === 'es' ? 'Perfil:' : 'Profile:'}</strong> {opp.requirements}
                     </p>
-                    <p className="text-[15px] text-[#443333] leading-relaxed">
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                       {opp.desc}
                     </p>
                   </div>
@@ -203,10 +203,10 @@ function ProyectosContent() {
                   <div>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 bg-[#087E8B] hover:bg-[#0aa0b0] text-white font-bold py-3 px-5 rounded-xl text-[14px] transition-all shadow-sm"
+                      className="inline-flex items-center gap-2 bg-[#087E8B] hover:bg-[#066772] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-5 rounded-lg text-sm transition-colors shadow-sm"
                     >
                       <span>{lang === 'es' ? 'Postular / Consultar Convocatoria' : 'Apply / Inquire Call'}</span>
-                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                      <span className="material-symbols-outlined text-base">arrow_forward</span>
                     </Link>
                   </div>
                 </div>

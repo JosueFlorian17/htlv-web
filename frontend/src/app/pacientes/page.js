@@ -270,15 +270,15 @@ function PacientesContent() {
   ], [lang]);
 
   return (
-    <main className="w-full bg-[#f8f9fb] min-h-[calc(100vh-80px)] py-8 md:py-12 text-[#191c1e] flex flex-col justify-between">
-      <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12">
+    <main className="w-full bg-[#f8fafc] min-h-[calc(100vh-80px)] py-8 sm:py-12 text-slate-900 flex flex-col justify-between">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Cabecera con Pestañas Horizontales (1. Preguntas frecuentes, 2. Recursos, 3. Haz tu pregunta) */}
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <span className="text-[12.5px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block mb-1">
             {lang === 'es' ? 'Comunidad y Bienestar' : 'Community & Well-being'}
           </span>
-          <h1 className="text-[32px] sm:text-[40px] font-black text-[#003B49] tracking-tight leading-none">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'faqs' && (lang === 'es' ? 'Preguntas Frecuentes para Pacientes' : 'Patient Frequently Asked Questions')}
             {activeTab === 'recursos' && (lang === 'es' ? 'Recursos de Apoyo y Material Educativo' : 'Support Resources & Educational Materials')}
             {activeTab === 'haz-tu-pregunta' && (lang === 'es' ? 'Haz tu Pregunta a la Red' : 'Ask Your Question to the Network')}
@@ -287,14 +287,14 @@ function PacientesContent() {
 
         {/* 1. PESTAÑA: PREGUNTAS FRECUENTES (Formato de corrido, sin buscador, sin cards ni categorías) */}
         {activeTab === 'faqs' && (
-          <div className="space-y-10 animate-fadeIn max-w-4xl mx-auto py-2">
+          <div className="space-y-8 animate-fadeIn max-w-4xl mx-auto py-2">
             
             {/* Encabezado limpio */}
-            <div className="border-b border-gray-200 pb-4">
-              <h2 className="text-2xl md:text-3xl font-black text-[#003B49]">
+            <div className="border-b border-slate-200 pb-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                 {lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions'}
               </h2>
-              <p className="text-gray-600 text-[15px] mt-1">
+              <p className="text-slate-600 text-sm mt-1">
                 {lang === 'es' 
                   ? 'Respuestas claras y fundamentadas a las dudas más comunes sobre la vida con HTLV.'
                   : 'Clear and evidence-based answers to the most common questions regarding HTLV.'}
@@ -302,31 +302,31 @@ function PacientesContent() {
             </div>
 
             {/* Listado de Preguntas Colapsables con Disclaimer Resumido */}
-            <div className="space-y-4 divide-y divide-gray-200">
+            <div className="space-y-4 divide-y divide-slate-200">
               {patientFaqs.map((faq, idx) => {
                 const isOpen = !!openFaqs[faq.id];
                 return (
                   <div key={faq.id} className={idx === 0 ? "pt-0" : "pt-4"}>
                     <button
                       onClick={() => toggleFaq(faq.id)}
-                      className="w-full text-left flex items-start justify-between gap-4 py-2 hover:text-[#087E8B] transition-colors cursor-pointer group"
+                      className="w-full text-left flex items-start justify-between gap-4 py-2 hover:text-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] rounded-md transition-colors cursor-pointer group"
                       aria-expanded={isOpen}
                     >
-                      <h3 className="text-[19px] md:text-[21px] font-bold text-[#003B49] group-hover:text-[#087E8B] leading-snug">
+                      <h3 className="text-base sm:text-lg font-bold text-[#003B49] group-hover:text-[#087E8B] leading-snug">
                         {faq.q}
                       </h3>
-                      <span className="material-symbols-outlined text-gray-500 group-hover:text-[#087E8B] text-2xl shrink-0 transition-transform duration-200 mt-0.5">
+                      <span className="material-symbols-outlined text-slate-400 group-hover:text-[#087E8B] text-2xl shrink-0 transition-transform duration-200 mt-0.5">
                         {isOpen ? 'expand_less' : 'expand_more'}
                       </span>
                     </button>
 
                     {isOpen && (
                       <div className="pt-2 pb-4 space-y-3 animate-fadeIn">
-                        <p className="text-[16px] text-gray-700 leading-relaxed font-normal">
+                        <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
                           {faq.a}
                         </p>
-                        <div className="pt-2.5 border-t border-gray-100 flex items-start gap-2 text-[13px] text-gray-500 italic">
-                          <span className="material-symbols-outlined text-[16px] text-[#087E8B] shrink-0 mt-0.5">info</span>
+                        <div className="pt-2.5 border-t border-slate-100 flex items-start gap-2 text-xs text-slate-500 italic">
+                          <span className="material-symbols-outlined text-base text-[#087E8B] shrink-0 mt-0.5">info</span>
                           <span>
                             {lang === 'es'
                               ? 'Aviso informativo: Este contenido es exclusivamente educativo y divulgativo; no constituye diagnóstico clínico ni sustituye la atención médica profesional.'
@@ -341,9 +341,9 @@ function PacientesContent() {
             </div>
 
             {/* Aviso Médico Disclaimer Sintetizado */}
-            <div className="mt-12 p-6 bg-gray-50 border-l-4 border-[#087E8B] rounded-r-2xl text-[14px] text-gray-600 leading-relaxed space-y-2">
-              <div className="flex items-center gap-2 text-[#003B49] font-bold text-[15px]">
-                <span className="material-symbols-outlined text-[20px] text-[#087E8B]">info</span>
+            <div className="mt-8 p-6 bg-slate-50 border-l-4 border-[#087E8B] rounded-r-xl text-sm text-slate-600 leading-relaxed space-y-2">
+              <div className="flex items-center gap-2 text-[#003B49] font-bold text-sm">
+                <span className="material-symbols-outlined text-lg text-[#087E8B]">info</span>
                 <span>{lang === 'es' ? 'Aviso Médico Importante' : 'Important Medical Disclaimer'}</span>
               </div>
               <p>
@@ -362,25 +362,25 @@ function PacientesContent() {
             
             {/* SECCIÓN 1: VIDEOTECA EDUCATIVA (YOUTUBE) */}
             <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-3 flex items-center justify-between">
+              <div className="border-b border-slate-200 pb-3 flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-black text-[#003B49]">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                     {lang === 'es' ? 'Videoteca Educativa' : 'Educational Video Library'}
                   </h2>
-                  <p className="text-gray-600 text-[14.5px] mt-0.5">
+                  <p className="text-slate-600 text-sm mt-0.5">
                     {lang === 'es' 
                       ? 'Videos informativos preparados por especialistas de la Red para pacientes y sus familias.'
                       : 'Informational talks prepared by Network specialists for patients and families.'}
                   </p>
                 </div>
-                <span className="text-xs font-bold px-3 py-1 bg-red-100 text-red-700 rounded-lg">
+                <span className="text-xs font-semibold px-2.5 py-1 bg-red-50 text-red-700 border border-red-200 rounded-md">
                   YouTube
                 </span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs">
-                  <div className="relative aspect-video w-full bg-gray-900">
+                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                  <div className="relative aspect-video w-full bg-slate-900">
                     <iframe
                       className="w-full h-full"
                       src="https://www.youtube-nocookie.com/embed/5O9Yw8Z0eoc"
@@ -389,14 +389,14 @@ function PacientesContent() {
                       allowFullScreen
                     ></iframe>
                   </div>
-                  <div className="p-5 space-y-2">
-                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#087E8B]">
+                  <div className="p-6 space-y-2">
+                    <span className="text-xs font-bold tracking-wider uppercase text-[#087E8B]">
                       {lang === 'es' ? 'Fundamentos Médicos' : 'Medical Fundamentals'}
                     </span>
-                    <h3 className="text-[17px] font-bold text-[#003B49] leading-snug">
+                    <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
                       {lang === 'es' ? '¿Qué es el HTLV-1 y qué esperar tras el diagnóstico?' : 'What is HTLV-1 and what to expect after diagnosis?'}
                     </h3>
-                    <p className="text-[14px] text-gray-600 leading-relaxed">
+                    <p className="text-sm text-slate-600 leading-relaxed">
                       {lang === 'es' 
                         ? 'Explicación clara sobre el curso benigno en más del 90% de personas, vías de no transmisión y vida cotidiana.'
                         : 'Clear overview of the benign course in >90% of individuals, non-transmission facts, and daily living.'}
@@ -404,8 +404,8 @@ function PacientesContent() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs">
-                  <div className="relative aspect-video w-full bg-gray-900">
+                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                  <div className="relative aspect-video w-full bg-slate-900">
                     <iframe
                       className="w-full h-full"
                       src="https://www.youtube-nocookie.com/embed/fJ9rUzIMcZQ"
@@ -414,14 +414,14 @@ function PacientesContent() {
                       allowFullScreen
                     ></iframe>
                   </div>
-                  <div className="p-5 space-y-2">
-                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#A10D3A]">
+                  <div className="p-6 space-y-2">
+                    <span className="text-xs font-bold tracking-wider uppercase text-[#A10D3A]">
                       {lang === 'es' ? 'Salud Materno-Infantil' : 'Maternal-Child Health'}
                     </span>
-                    <h3 className="text-[17px] font-bold text-[#003B49] leading-snug">
+                    <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
                       {lang === 'es' ? 'Maternidad Segura y Prevención de Transmisión Vertical' : 'Safe Motherhood & Prevention of Vertical Transmission'}
                     </h3>
-                    <p className="text-[14px] text-gray-600 leading-relaxed">
+                    <p className="text-sm text-slate-600 leading-relaxed">
                       {lang === 'es' 
                         ? 'Pautas clínicas sobre tamizaje prenatal, parto seguro y el rol de las fórmulas sucedáneas.'
                         : 'Clinical guidelines on prenatal screening, safe delivery, and the protective role of infant formulas.'}
@@ -433,28 +433,28 @@ function PacientesContent() {
 
             {/* SECCIÓN 2: CALCULADORA ORIENTATIVA DE RIESGOS */}
             <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-3">
-                <h2 className="text-2xl font-black text-[#003B49]">
+              <div className="border-b border-slate-200 pb-3">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                   {lang === 'es' ? 'Calculadora Orientativa de Riesgos y Evaluación' : 'Orientative Risk Assessment Calculator'}
                 </h2>
-                <p className="text-gray-600 text-[14.5px] mt-0.5">
+                <p className="text-slate-600 text-sm mt-0.5">
                   {lang === 'es' 
                     ? 'Herramienta informativa interactiva para orientar tus próximos pasos ante dudas o pruebas reactivas.'
                     : 'Interactive informational tool to guide next steps regarding test results or concerns.'}
                 </p>
               </div>
 
-              <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-xs space-y-6">
+              <div className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6">
                 <form onSubmit={calculateRisk} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                      <label className="block text-[13.5px] font-bold text-[#003B49] mb-2">
+                      <label className="block text-sm font-semibold text-[#003B49] mb-2">
                         {lang === 'es' ? '1. Situación o motivo de consulta' : '1. Situation or reason for inquiry'}
                       </label>
                       <select
                         value={riskData.situacion}
                         onChange={(e) => setRiskData({ ...riskData, situacion: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-[14px] text-gray-800 focus:outline-none focus:border-[#087E8B]"
+                        className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent transition"
                       >
                         <option value="banco-sangre">
                           {lang === 'es' ? 'Tamizaje reactivo en banco de sangre' : 'Reactive blood bank screening'}
@@ -472,13 +472,13 @@ function PacientesContent() {
                     </div>
 
                     <div>
-                      <label className="block text-[13.5px] font-bold text-[#003B49] mb-2">
+                      <label className="block text-sm font-semibold text-[#003B49] mb-2">
                         {lang === 'es' ? '2. ¿Presentas síntomas motores o urinarios?' : '2. Any motor or urinary symptoms?'}
                       </label>
                       <select
                         value={riskData.sintomas}
                         onChange={(e) => setRiskData({ ...riskData, sintomas: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-[14px] text-gray-800 focus:outline-none focus:border-[#087E8B]"
+                        className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent transition"
                       >
                         <option value="ninguno">
                           {lang === 'es' ? 'Ninguno (sin molestias)' : 'None (asymptomatic)'}
@@ -493,13 +493,13 @@ function PacientesContent() {
                     </div>
 
                     <div>
-                      <label className="block text-[13.5px] font-bold text-[#003B49] mb-2">
+                      <label className="block text-sm font-semibold text-[#003B49] mb-2">
                         {lang === 'es' ? '3. ¿Tienes prueba confirmatoria (WB o PCR)?' : '3. Confirmatory test (WB or PCR)?'}
                       </label>
                       <select
                         value={riskData.confirmacion}
                         onChange={(e) => setRiskData({ ...riskData, confirmacion: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-[14px] text-gray-800 focus:outline-none focus:border-[#087E8B]"
+                        className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent transition"
                       >
                         <option value="no">
                           {lang === 'es' ? 'No (solo ELISA inicial o en espera)' : 'No (initial ELISA only or waiting)'}
@@ -514,29 +514,29 @@ function PacientesContent() {
                   <div className="flex justify-end pt-2">
                     <button
                       type="submit"
-                      className="bg-[#003B49] hover:bg-[#087E8B] text-white px-7 py-2.5 rounded-xl font-bold text-[14px] transition-colors cursor-pointer flex items-center gap-2"
+                      className="bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition-colors cursor-pointer flex items-center gap-2"
                     >
-                      <span className="material-symbols-outlined text-[18px]">calculate</span>
+                      <span className="material-symbols-outlined text-lg">calculate</span>
                       <span>{lang === 'es' ? 'Evaluar Orientación' : 'Evaluate Guidance'}</span>
                     </button>
                   </div>
                 </form>
 
                 {riskResult && (
-                  <div className="pt-4 border-t border-gray-200 space-y-3 animate-fadeIn">
+                  <div className="pt-4 border-t border-slate-200 space-y-3 animate-fadeIn">
                     <div className="flex items-center gap-3">
-                      <span className="text-[12px] font-bold uppercase tracking-wider text-gray-500">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                         {lang === 'es' ? 'Resultado orientativo:' : 'Orientative Result:'}
                       </span>
-                      <span className={`px-3 py-1 text-[12.5px] font-black rounded-lg ${riskResult.badgeColor}`}>
+                      <span className={`px-2.5 py-1 text-xs font-bold rounded-md ${riskResult.badgeColor}`}>
                         {riskResult.nivel}
                       </span>
                     </div>
-                    <p className="text-[15px] text-gray-700 leading-relaxed font-normal bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal bg-slate-50 p-4 rounded-lg border border-slate-200">
                       {riskResult.recomendacion}
                     </p>
-                    <div className="flex items-start gap-2 text-[12.5px] text-gray-500 italic">
-                      <span className="material-symbols-outlined text-[15px] text-[#087E8B] shrink-0 mt-0.5">info</span>
+                    <div className="flex items-start gap-2 text-xs text-slate-500 italic">
+                      <span className="material-symbols-outlined text-sm text-[#087E8B] shrink-0 mt-0.5">info</span>
                       <span>
                         {lang === 'es'
                           ? 'Aviso: Esta calculadora es una guía informativa y no sustituye la evaluación clínica individualizada ni emite juicios diagnósticos.'
@@ -550,11 +550,11 @@ function PacientesContent() {
 
             {/* SECCIÓN 3: FORMULARIOS DE APOYO */}
             <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-3">
-                <h2 className="text-2xl font-black text-[#003B49]">
+              <div className="border-b border-slate-200 pb-3">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                   {lang === 'es' ? 'Formularios y Fichas de Apoyo' : 'Support Forms & Checklists'}
                 </h2>
-                <p className="text-gray-600 text-[14.5px] mt-0.5">
+                <p className="text-slate-600 text-sm mt-0.5">
                   {lang === 'es' 
                     ? 'Documentos en formato descargable para facilitar el seguimiento médico y la solicitud de orientación.'
                     : 'Downloadable documents to support medical tracking and consultation requests.'}
@@ -582,23 +582,23 @@ function PacientesContent() {
                     action: lang === 'es' ? "Descargar Pautas" : "Download Guide"
                   }
                 ].map((item, i) => (
-                  <div key={i} className="bg-white p-5 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-4">
+                  <div key={i} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
                     <div className="space-y-2">
-                      <span className="text-[11px] font-bold px-2 py-0.5 bg-gray-100 text-gray-700 rounded-md">
+                      <span className="text-xs font-semibold px-2 py-0.5 bg-slate-100 text-slate-700 rounded-md">
                         {item.tag}
                       </span>
-                      <h4 className="text-[16px] font-bold text-[#003B49]">
+                      <h4 className="text-base font-bold text-[#003B49]">
                         {item.title}
                       </h4>
-                      <p className="text-[13.5px] text-gray-600 leading-relaxed">
+                      <p className="text-sm text-slate-600 leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
                     <button
                       onClick={() => alert(`Descargando: ${item.title}`)}
-                      className="w-full bg-[#003B49] hover:bg-[#087E8B] text-white py-2 px-4 rounded-xl text-[13px] font-bold transition-colors cursor-pointer flex items-center justify-center gap-2"
+                      className="w-full bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white py-2 px-4 rounded-lg text-sm font-semibold transition-colors cursor-pointer flex items-center justify-center gap-2"
                     >
-                      <span className="material-symbols-outlined text-[16px]">download</span>
+                      <span className="material-symbols-outlined text-base">download</span>
                       <span>{item.action}</span>
                     </button>
                   </div>
@@ -608,11 +608,11 @@ function PacientesContent() {
 
             {/* SECCIÓN 4: FOLLETOS Y GUÍAS DIGITALES (CON IMÁGENES) */}
             <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-3">
-                <h2 className="text-2xl font-black text-[#003B49]">
+              <div className="border-b border-slate-200 pb-3">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                   {lang === 'es' ? 'Folletos y Guías Informativas' : 'Brochures & Educational Guides'}
                 </h2>
-                <p className="text-gray-600 text-[14.5px] mt-0.5">
+                <p className="text-slate-600 text-sm mt-0.5">
                   {lang === 'es' 
                     ? 'Materiales educativos elaborados por el Instituto de Medicina Tropical Alexander von Humboldt.'
                     : 'Educational materials prepared by the Alexander von Humboldt Institute of Tropical Medicine.'}
@@ -637,30 +637,30 @@ function PacientesContent() {
                     desc: lang === 'es' ? "Ejercicios terapéuticos para controlar la rigidez motora y preservar la autonomía física." : "Therapeutic exercises to manage motor stiffness and preserve physical autonomy.",
                   }
                 ].map((brochure, i) => (
-                  <div key={i} className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs flex flex-col justify-between">
+                  <div key={i} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
                     <div>
-                      <div className="h-44 w-full overflow-hidden bg-gray-100">
+                      <div className="h-44 w-full overflow-hidden bg-slate-100">
                         <img
                           src={brochure.img}
                           alt={brochure.title}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="p-5 space-y-2">
-                        <h4 className="text-[17px] font-bold text-[#003B49] leading-snug">
+                      <div className="p-6 space-y-2">
+                        <h4 className="text-base font-bold text-[#003B49] leading-snug">
                           {brochure.title}
                         </h4>
-                        <p className="text-[13.5px] text-gray-600 leading-relaxed">
+                        <p className="text-sm text-slate-600 leading-relaxed">
                           {brochure.desc}
                         </p>
                       </div>
                     </div>
-                    <div className="p-5 pt-0">
+                    <div className="p-6 pt-0">
                       <button
                         onClick={() => alert(`Visualizando folleto: ${brochure.title}`)}
-                        className="w-full bg-[#E5A400] hover:bg-[#cca300] text-[#003B49] py-2 px-4 rounded-xl text-[13.5px] font-black transition-colors cursor-pointer flex items-center justify-center gap-2"
+                        className="w-full bg-[#E5A400] hover:bg-[#cca300] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003B49] text-[#003B49] py-2 px-4 rounded-lg text-sm font-bold transition-colors cursor-pointer flex items-center justify-center gap-2"
                       >
-                        <span className="material-symbols-outlined text-[18px]">menu_book</span>
+                        <span className="material-symbols-outlined text-lg">menu_book</span>
                         <span>{lang === 'es' ? 'Leer Folleto Digital' : 'Read Digital Brochure'}</span>
                       </button>
                     </div>
@@ -669,13 +669,13 @@ function PacientesContent() {
               </div>
             </div>
 
-            <div className="p-5 bg-white border border-gray-200 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 text-[14px]">
-              <span className="text-gray-600 font-medium">
+            <div className="p-6 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm shadow-sm">
+              <span className="text-slate-600 font-medium">
                 {lang === 'es' ? 'Todos los materiales son de libre acceso y distribución para pacientes y comunidad.' : 'All materials are freely accessible for community distribution.'}
               </span>
               <button
                 onClick={() => switchTab('haz-tu-pregunta')}
-                className="bg-[#003B49] text-white px-6 py-2 rounded-xl font-bold hover:bg-[#087E8B] transition-colors cursor-pointer text-[13.5px]"
+                className="bg-[#003B49] text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] transition-colors cursor-pointer text-sm shrink-0"
               >
                 {lang === 'es' ? '¿Tienes dudas? Haz tu pregunta' : 'Have questions? Ask the Network'}
               </button>
@@ -686,24 +686,24 @@ function PacientesContent() {
 
         {/* 3. PESTAÑA: HAZ TU PREGUNTA */}
         {activeTab === 'haz-tu-pregunta' && (
-          <div className="animate-fadeIn">
-            <div className="bg-white p-8 md:p-10 rounded-3xl border-2 border-[#003B49]/15 shadow-md">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="animate-fadeIn max-w-5xl mx-auto py-2">
+            <div className="bg-white p-6 sm:p-8 lg:p-10 rounded-xl border border-slate-200 shadow-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
-                {/* Columna Izquierda: Información de Confidencialidad (Sin badge de CANAL CONFIDENCIAL) */}
+                {/* Columna Izquierda: Información de Confidencialidad */}
                 <div className="lg:col-span-5 space-y-4">
-                  <h3 className="text-[26px] font-black text-[#003B49] leading-tight">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#003B49] leading-tight">
                     {lang === 'es' ? 'Envía tu consulta médica o personal' : 'Submit your medical or personal inquiry'}
                   </h3>
-                  <p className="text-[16px] text-[#443333] leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                     {lang === 'es'
                       ? 'Tus dudas son recibidas directamente por el equipo médico del IMTAvH - UPCH y consejeros de la Red. No publicamos tus datos y te responderemos por correo.'
                       : 'Your queries are delivered directly to the IMTAvH - UPCH clinical counseling team. We never publish personal details.'}
                   </p>
 
-                  <div className="p-4 bg-gray-50 border border-gray-200 rounded-2xl space-y-2 text-[13.5px] text-gray-600">
-                    <div className="flex items-center gap-2 font-bold text-[#087E8B]">
-                      <span className="material-symbols-outlined text-[18px]">verified_user</span>
+                  <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-2 text-xs text-slate-600">
+                    <div className="flex items-center gap-2 font-bold text-[#087E8B] text-sm">
+                      <span className="material-symbols-outlined text-lg">verified_user</span>
                       <span>{lang === 'es' ? 'Garantía Ética & Privacidad' : 'Privacy & Ethics Assurance'}</span>
                     </div>
                     <p>{lang === 'es' ? 'Cumplimiento estricto de la Ley N° 29733 de Protección de Datos Personales.' : 'Strict compliance with Data Protection standards.'}</p>
@@ -711,14 +711,14 @@ function PacientesContent() {
                 </div>
 
                 {/* Columna Derecha: Formulario Horizontal */}
-                <div className="lg:col-span-7 bg-[#f8f9fb] p-6 md:p-8 rounded-3xl border border-gray-200">
+                <div className="lg:col-span-7 bg-slate-50 p-6 sm:p-8 rounded-xl border border-slate-200">
                   {submitted ? (
                     <div className="py-8 text-center space-y-3 animate-fadeIn">
                       <span className="material-symbols-outlined text-5xl text-[#087E8B]">check_circle</span>
-                      <h4 className="text-[22px] font-black text-[#003B49]">
+                      <h4 className="text-xl font-bold text-[#003B49]">
                         {lang === 'es' ? '¡Tu pregunta fue enviada!' : 'Your question was sent!'}
                       </h4>
-                      <p className="text-[15px] text-gray-600 max-w-md mx-auto">
+                      <p className="text-sm text-slate-600 max-w-md mx-auto">
                         {lang === 'es' 
                           ? `Te responderemos al correo (${formData.email}) de manera privada.` 
                           : `We will reply to your email (${formData.email}) privately.`}
@@ -728,7 +728,7 @@ function PacientesContent() {
                           setSubmitted(false);
                           setFormData({ nombre: '', email: '', pais: '', tema: 'diagnostico', pregunta: '' });
                         }}
-                        className="mt-3 bg-[#003B49] text-white px-6 py-2.5 rounded-xl font-bold text-[14px] cursor-pointer"
+                        className="mt-3 bg-[#003B49] text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] cursor-pointer"
                       >
                         {lang === 'es' ? 'Enviar otra consulta' : 'Send another inquiry'}
                       </button>
@@ -737,7 +737,7 @@ function PacientesContent() {
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-[13.5px] font-bold text-[#003B49] mb-1">
+                          <label className="block text-sm font-semibold text-[#003B49] mb-1">
                             {lang === 'es' ? 'Nombre o Pseudónimo' : 'Name or Nickname'}
                           </label>
                           <input
@@ -745,12 +745,12 @@ function PacientesContent() {
                             placeholder={lang === 'es' ? "Opcional" : "Optional"}
                             value={formData.nombre}
                             onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                            className="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-white text-[14.5px] focus:outline-none focus:border-[#087E8B]"
+                            className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent transition"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-[13.5px] font-bold text-[#003B49] mb-1">
+                          <label className="block text-sm font-semibold text-[#003B49] mb-1">
                             {lang === 'es' ? 'Correo Electrónico *' : 'Email Address *'}
                           </label>
                           <input
@@ -759,13 +759,13 @@ function PacientesContent() {
                             placeholder="tucorreo@ejemplo.com"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-white text-[14.5px] focus:outline-none focus:border-[#087E8B]"
+                            className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent transition"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-[13.5px] font-bold text-[#003B49] mb-1">
+                        <label className="block text-sm font-semibold text-[#003B49] mb-1">
                           {lang === 'es' ? 'Tu pregunta o consulta *' : 'Your question *'}
                         </label>
                         <textarea
@@ -774,18 +774,18 @@ function PacientesContent() {
                           placeholder={lang === 'es' ? "Escribe aquí tus dudas con tranquilidad..." : "Write your questions here..."}
                           value={formData.pregunta}
                           onChange={(e) => setFormData({ ...formData, pregunta: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-white text-[14.5px] focus:outline-none focus:border-[#087E8B] resize-none"
+                          className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent resize-none transition"
                         ></textarea>
                       </div>
 
                       <div className="flex items-center justify-between pt-1">
-                        <span className="text-[12px] text-gray-500 font-semibold">
+                        <span className="text-xs text-slate-500 font-medium">
                           * {lang === 'es' ? 'Respuesta privada garantizada' : 'Private response guaranteed'}
                         </span>
                         <button
                           type="submit"
                           disabled={loading}
-                          className="bg-[#A10D3A] hover:bg-[#850a2f] text-white px-7 py-3 rounded-xl font-black text-[14.5px] transition-all shadow-md cursor-pointer disabled:opacity-50"
+                          className="bg-[#A10D3A] hover:bg-[#850a2f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition-all shadow-sm cursor-pointer disabled:opacity-50"
                         >
                           {loading ? '...' : (lang === 'es' ? 'Enviar pregunta' : 'Submit question')}
                         </button>

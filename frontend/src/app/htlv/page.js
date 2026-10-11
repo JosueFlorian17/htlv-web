@@ -170,24 +170,24 @@ function HTLVContent() {
 
 
   return (
-    <main className="w-full bg-[#f8f9fb] min-h-[calc(100vh-80px)] py-8 md:py-12 text-[#191c1e] flex flex-col justify-between">
-      <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12">
+    <main className="w-full bg-slate-50 min-h-[calc(100vh-80px)] py-8 md:py-12 text-slate-900 flex flex-col justify-between">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Cabecera con Selector de Pestañas (¿Qué es el HTLV? | Preguntas frecuentes) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 mb-8 border-b-2 border-[#003B49]/15">
+        {/* Cabecera de Página */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 mb-8 border-b border-slate-200">
           <div>
-            <span className="text-[12px] font-black uppercase tracking-widest text-[#087E8B] block mb-1">
-              {lang === 'es' ? 'Información Biomédica' : 'Biomedical Information'}
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#087E8B] block mb-1">
+              {lang === 'es' ? 'Portal Informativo Oficial' : 'Official Educational Hub'}
             </span>
-            <h1 className="text-[32px] sm:text-[42px] font-black text-[#003B49] tracking-tight leading-none">
-              HTLV
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
+              {activeTab === 'que-es' ? (lang === 'es' ? '¿Qué es el HTLV?' : 'What is HTLV?') : (lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions')}
             </h1>
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrint}
-              className="bg-[#A10D3A] hover:bg-[#850a2f] text-white px-5 py-2.5 rounded-xl text-[14px] font-bold transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
+              className="bg-[#003B49] hover:bg-[#002B36] text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 cursor-pointer shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#087E8B]"
             >
               <span className="material-symbols-outlined text-[18px]">print</span>
               <span>{lang === 'es' ? 'Imprimir PDF' : 'Print PDF'}</span>
@@ -195,13 +195,13 @@ function HTLVContent() {
           </div>
         </div>
 
-        {/* 1. PESTAÑA: ¿QUÉ ES EL HTLV? (De un vistazo horizontal interactivo) */}
+        {/* 1. PESTAÑA: ¿QUÉ ES EL HTLV? */}
         {activeTab === 'que-es' && (
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Botones de subtemas horizontales a la izquierda */}
-              <div className="lg:col-span-4 bg-white p-4 rounded-3xl border-2 border-gray-200 shadow-xs space-y-2">
+              {/* Botones de subtemas a la izquierda */}
+              <div className="lg:col-span-4 bg-white p-3 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
                 {[
                   { id: 'definicion', label: lang === 'es' ? 'Definición & Virología' : 'Definition & Virology', icon: 'science' },
                   { id: 'tipos', label: lang === 'es' ? 'HTLV-1 vs. HTLV-2' : 'HTLV-1 vs. HTLV-2', icon: 'biotech' },
@@ -211,38 +211,38 @@ function HTLVContent() {
                   <button
                     key={item.id}
                     onClick={() => setActiveTopic(item.id)}
-                    className={`w-full p-4 rounded-2xl text-left font-bold text-[15px] flex items-center justify-between transition-all cursor-pointer ${
+                    className={`w-full p-3.5 rounded-lg text-left font-semibold text-sm flex items-center justify-between transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#087E8B] ${
                       activeTopic === item.id
                         ? 'bg-[#087E8B] text-white shadow-sm'
-                        : 'text-[#003B49] hover:bg-gray-100'
+                        : 'text-[#003B49] hover:bg-slate-100'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="material-symbols-outlined text-xl">{item.icon}</span>
+                    <div className="flex items-center gap-2.5">
+                      <span className="material-symbols-outlined text-lg">{item.icon}</span>
                       <span>{item.label}</span>
                     </div>
-                    <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+                    <span className="material-symbols-outlined text-base">chevron_right</span>
                   </button>
                 ))}
               </div>
 
               {/* Contenido derecho de un vistazo */}
-              <div className="lg:col-span-8 bg-white p-8 md:p-10 rounded-3xl border-2 border-gray-200 shadow-xs min-h-[420px] flex flex-col justify-between">
+              <div className="lg:col-span-8 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm min-h-[380px] flex flex-col justify-between">
                 
                 {activeTopic === 'definicion' && (
                   <div className="space-y-4 animate-fadeIn">
-                    <span className="px-3 py-1 bg-[#003B49]/10 text-[#003B49] text-[12px] font-black uppercase rounded-md inline-block">
+                    <span className="px-2.5 py-0.5 bg-[#003B49]/10 text-[#003B49] text-xs font-semibold uppercase rounded-md inline-block">
                       Biología Viral
                     </span>
-                    <h3 className="text-[26px] font-black text-[#003B49]">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                       {lang === 'es' ? 'Naturaleza Retroviral del HTLV' : 'Retroviral Nature of HTLV'}
                     </h3>
-                    <p className="text-[17px] text-[#443333] leading-relaxed">
+                    <p className="text-base text-slate-700 leading-relaxed">
                       {lang === 'es'
                         ? 'El Virus Linfotrópico de Células T Humanas (HTLV) fue el primer retrovirus humano descubierto (1980). Afecta predominantemente a linfocitos T, integrando su código genético en el ADN cromosómico del huésped en forma de provirus.'
                         : 'Human T-cell Lymphotropic Virus (HTLV) was the first human retrovirus discovered (1980). It preferentially targets T-cells, integrating its genetic code into host chromosomal DNA as a provirus.'}
                     </p>
-                    <div className="p-5 bg-gray-50 border border-gray-200 rounded-2xl text-[15.5px] text-gray-700">
+                    <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700">
                       <strong>{lang === 'es' ? 'Mecanismo Clave:' : 'Key Mechanism:'}</strong> {lang === 'es' ? 'Persiste de por vida dentro del organismo, manteniendo estabilidad genómica clonal sin degradar bruscamente las defensas inmunitarias.' : 'Persists for life inside host cells with high clonal genetic stability.'}
                     </div>
                   </div>
@@ -250,24 +250,24 @@ function HTLVContent() {
 
                 {activeTopic === 'tipos' && (
                   <div className="space-y-4 animate-fadeIn">
-                    <span className="px-3 py-1 bg-[#087E8B]/10 text-[#087E8B] text-[12px] font-black uppercase rounded-md inline-block">
+                    <span className="px-2.5 py-0.5 bg-[#087E8B]/10 text-[#087E8B] text-xs font-semibold uppercase rounded-md inline-block">
                       Clasificación
                     </span>
-                    <h3 className="text-[26px] font-black text-[#003B49]">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                       {lang === 'es' ? 'Diferencias entre HTLV-1 y HTLV-2' : 'Differences between HTLV-1 & HTLV-2'}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                      <div className="p-5 bg-[#003B49]/5 border border-[#003B49]/20 rounded-2xl space-y-2">
-                        <h4 className="font-bold text-[18px] text-[#003B49]">HTLV-1</h4>
-                        <p className="text-[14.5px] text-[#554444]">
+                      <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-2">
+                        <h4 className="font-bold text-base text-[#003B49]">HTLV-1</h4>
+                        <p className="text-sm text-slate-600">
                           {lang === 'es'
                             ? 'Asociado principalmente a Paraparesia Espástica Tropical (HAM/TSP) y Leucemia/Linfoma de Células T del Adulto (ATL).'
                             : 'Associated primarily with Tropical Spastic Paraparesis (HAM/TSP) and Adult T-cell Leukemia/Lymphoma (ATL).'}
                         </p>
                       </div>
-                      <div className="p-5 bg-[#087E8B]/5 border border-[#087E8B]/20 rounded-2xl space-y-2">
-                        <h4 className="font-bold text-[18px] text-[#087E8B]">HTLV-2</h4>
-                        <p className="text-[14.5px] text-[#554444]">
+                      <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-2">
+                        <h4 className="font-bold text-base text-[#087E8B]">HTLV-2</h4>
+                        <p className="text-sm text-slate-600">
                           {lang === 'es'
                             ? 'Curso clínico predominantemente benigno. Rara vez produce manifestaciones neurológicas y no causa ATL.'
                             : 'Predominantly benign clinical course. Rarely causes neurological symptoms; not causally linked to ATL.'}
@@ -279,22 +279,22 @@ function HTLVContent() {
 
                 {activeTopic === 'espectro' && (
                   <div className="space-y-4 animate-fadeIn">
-                    <span className="px-3 py-1 bg-[#E5A400] text-[#003B49] text-[12px] font-black uppercase rounded-md inline-block">
+                    <span className="px-2.5 py-0.5 bg-[#E5A400] text-[#002538] text-xs font-semibold uppercase rounded-md inline-block">
                       Evolución
                     </span>
-                    <h3 className="text-[26px] font-black text-[#003B49]">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                       {lang === 'es' ? 'La Regla del 90/10' : 'The 90/10 Rule'}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
-                      <div className="p-6 bg-[#003B49] text-white rounded-2xl text-center space-y-2">
-                        <span className="text-5xl font-black text-[#E5A400]">~90%</span>
-                        <h4 className="font-bold text-[18px]">{lang === 'es' ? 'Portadores Asintomáticos' : 'Asymptomatic Carriers'}</h4>
-                        <p className="text-[14px] text-white/80">{lang === 'es' ? 'Viven vidas plenas sin desarrollar enfermedad jamás.' : 'Live healthy lives without ever developing disease.'}</p>
+                      <div className="p-5 bg-[#003B49] text-white rounded-xl text-center space-y-2">
+                        <span className="text-4xl font-bold text-[#E5A400]">~90%</span>
+                        <h4 className="font-bold text-base">{lang === 'es' ? 'Portadores Asintomáticos' : 'Asymptomatic Carriers'}</h4>
+                        <p className="text-xs text-white/80">{lang === 'es' ? 'Viven vidas plenas sin desarrollar enfermedad jamás.' : 'Live healthy lives without ever developing disease.'}</p>
                       </div>
-                      <div className="p-6 bg-gray-100 rounded-2xl text-center space-y-2 text-[#003B49]">
-                        <span className="text-5xl font-black text-[#A10D3A]">5-10%</span>
-                        <h4 className="font-bold text-[18px]">{lang === 'es' ? 'Riesgo a Largo Plazo' : 'Long-Term Risk'}</h4>
-                        <p className="text-[14px] text-gray-600">{lang === 'es' ? 'HAM/TSP o ATL prevenibles y tratables con seguimiento médico.' : 'HAM/TSP or ATL manageable with clinical care.'}</p>
+                      <div className="p-5 bg-slate-100 rounded-xl text-center space-y-2 text-[#003B49]">
+                        <span className="text-4xl font-bold text-[#A10D3A]">5-10%</span>
+                        <h4 className="font-bold text-base">{lang === 'es' ? 'Riesgo a Largo Plazo' : 'Long-Term Risk'}</h4>
+                        <p className="text-xs text-slate-600">{lang === 'es' ? 'HAM/TSP o ATL prevenibles y tratables con seguimiento médico.' : 'HAM/TSP or ATL manageable with clinical care.'}</p>
                       </div>
                     </div>
                   </div>
@@ -302,29 +302,28 @@ function HTLVContent() {
 
                 {activeTopic === 'transmision' && (
                   <div className="space-y-4 animate-fadeIn">
-                    <span className="px-3 py-1 bg-[#087E8B]/10 text-[#087E8B] text-[12px] font-black uppercase rounded-md inline-block">
+                    <span className="px-2.5 py-0.5 bg-[#087E8B]/10 text-[#087E8B] text-xs font-semibold uppercase rounded-md inline-block">
                       Vías de Transmisión
                     </span>
-                    <h3 className="text-[26px] font-black text-[#003B49]">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
                       {lang === 'es' ? '¿Cómo se Transmite?' : 'How is it Transmitted?'}
                     </h3>
-                    <div className="space-y-3 pt-1 text-[15px] text-[#443333]">
-                      <div className="p-3.5 bg-gray-50 border border-gray-200 rounded-2xl flex items-center gap-3">
-                        <span className="material-symbols-outlined text-[#087E8B] text-2xl">child_care</span>
+                    <div className="space-y-3 pt-1 text-sm text-slate-700">
+                      <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center gap-3">
+                        <span className="material-symbols-outlined text-[#087E8B] text-xl">child_care</span>
                         <p><strong>{lang === 'es' ? 'Lactancia Prolongada:' : 'Prolonged Breastfeeding:'}</strong> {lang === 'es' ? 'Principal vía vertical (>6 meses).' : 'Primary vertical route (>6 months).'}</p>
                       </div>
-                      <div className="p-3.5 bg-gray-50 border border-gray-200 rounded-2xl flex items-center gap-3">
-                        <span className="material-symbols-outlined text-[#A10D3A] text-2xl">favorite_border</span>
+                      <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center gap-3">
+                        <span className="material-symbols-outlined text-[#A10D3A] text-xl">favorite_border</span>
                         <p><strong>{lang === 'es' ? 'Vía Sexual sin Barrera:' : 'Unprotected Sexual Contact:'}</strong> {lang === 'es' ? 'Se previene con preservativo.' : 'Prevented via consistent condom use.'}</p>
                       </div>
-                      <div className="p-3.5 bg-gray-50 border border-gray-200 rounded-2xl flex items-center gap-3">
-                        <span className="material-symbols-outlined text-[#003B49] text-2xl">bloodtype</span>
+                      <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center gap-3">
+                        <span className="material-symbols-outlined text-[#003B49] text-xl">bloodtype</span>
                         <p><strong>{lang === 'es' ? 'Vía Sanguínea Celular:' : 'Cellular Blood Route:'}</strong> {lang === 'es' ? 'Controlada por tamizaje en bancos de sangre.' : 'Controlled via blood bank screening.'}</p>
                       </div>
                     </div>
                   </div>
                 )}
-
 
               </div>
 
@@ -332,16 +331,16 @@ function HTLVContent() {
           </div>
         )}
 
-        {/* 2. PESTAÑA: PREGUNTAS FRECUENTES (Formato de corrido, sin buscador, sin cards ni categorías) */}
+        {/* 2. PESTAÑA: PREGUNTAS FRECUENTES */}
         {activeTab === 'faqs' && (
-          <div className="space-y-10 animate-fadeIn max-w-4xl mx-auto py-2">
+          <div className="space-y-8 animate-fadeIn max-w-4xl mx-auto py-2">
             
             {/* Encabezado limpio */}
-            <div className="border-b border-gray-200 pb-4">
-              <h2 className="text-2xl md:text-3xl font-black text-[#003B49]">
+            <div className="border-b border-slate-200 pb-4">
+              <h2 className="text-2xl font-bold text-[#003B49]">
                 {lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions'}
               </h2>
-              <p className="text-gray-600 text-[15px] mt-1">
+              <p className="text-slate-600 text-sm mt-1">
                 {lang === 'es' 
                   ? 'Respuestas fundamentales basadas en evidencia científica sobre el HTLV.'
                   : 'Key evidence-based answers about HTLV.'}
@@ -349,31 +348,31 @@ function HTLVContent() {
             </div>
 
             {/* Listado de Preguntas Colapsables con Disclaimer Resumido */}
-            <div className="space-y-4 divide-y divide-gray-200">
+            <div className="space-y-3 divide-y divide-slate-200">
               {faqs.map((f, idx) => {
                 const isOpen = !!openFaqs[f.id];
                 return (
-                  <div key={f.id} className={idx === 0 ? "pt-0" : "pt-4"}>
+                  <div key={f.id} className={idx === 0 ? "pt-0" : "pt-3"}>
                     <button
                       onClick={() => toggleFaq(f.id)}
-                      className="w-full text-left flex items-start justify-between gap-4 py-2 hover:text-[#087E8B] transition-colors cursor-pointer group"
+                      className="w-full text-left flex items-start justify-between gap-4 py-2 hover:text-[#087E8B] transition-colors cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#087E8B]"
                       aria-expanded={isOpen}
                     >
-                      <h3 className="text-[19px] md:text-[21px] font-bold text-[#003B49] group-hover:text-[#087E8B] leading-snug">
+                      <h3 className="text-base sm:text-lg font-bold text-[#003B49] group-hover:text-[#087E8B] leading-snug">
                         {f.q}
                       </h3>
-                      <span className="material-symbols-outlined text-gray-500 group-hover:text-[#087E8B] text-2xl shrink-0 transition-transform duration-200 mt-0.5">
+                      <span className="material-symbols-outlined text-slate-400 group-hover:text-[#087E8B] text-xl shrink-0 transition-transform duration-150 mt-0.5">
                         {isOpen ? 'expand_less' : 'expand_more'}
                       </span>
                     </button>
 
                     {isOpen && (
-                      <div className="pt-2 pb-4 space-y-3 animate-fadeIn">
-                        <p className="text-[16px] text-gray-700 leading-relaxed font-normal">
+                      <div className="pt-2 pb-3 space-y-3 animate-fadeIn">
+                        <p className="text-sm text-slate-700 leading-relaxed font-normal">
                           {f.a}
                         </p>
-                        <div className="pt-2.5 border-t border-gray-100 flex items-start gap-2 text-[13px] text-gray-500 italic">
-                          <span className="material-symbols-outlined text-[16px] text-[#087E8B] shrink-0 mt-0.5">info</span>
+                        <div className="pt-2 border-t border-slate-100 flex items-start gap-2 text-xs text-slate-500 italic">
+                          <span className="material-symbols-outlined text-[15px] text-[#087E8B] shrink-0 mt-0.5">info</span>
                           <span>
                             {lang === 'es'
                               ? 'Aviso informativo: Este contenido es exclusivamente educativo y divulgativo; no constituye diagnóstico clínico ni sustituye la atención médica profesional.'
@@ -388,9 +387,9 @@ function HTLVContent() {
             </div>
 
             {/* Aviso Médico Disclaimer Sintetizado */}
-            <div className="mt-12 p-6 bg-gray-50 border-l-4 border-[#087E8B] rounded-r-2xl text-[14px] text-gray-600 leading-relaxed space-y-2">
-              <div className="flex items-center gap-2 text-[#003B49] font-bold text-[15px]">
-                <span className="material-symbols-outlined text-[20px] text-[#087E8B]">info</span>
+            <div className="mt-8 p-5 bg-slate-50 border-l-4 border-[#087E8B] rounded-r-xl text-xs sm:text-sm text-slate-600 leading-relaxed space-y-1.5">
+              <div className="flex items-center gap-2 text-[#003B49] font-bold text-sm">
+                <span className="material-symbols-outlined text-lg text-[#087E8B]">info</span>
                 <span>{lang === 'es' ? 'Aviso Médico Importante' : 'Important Medical Disclaimer'}</span>
               </div>
               <p>

@@ -141,21 +141,21 @@ export default function Header() {
                                     {hasItems ? (
                                         <button
                                             type="button"
-                                            className={`px-3 py-2 rounded-xl text-[16px] font-bold transition-all flex items-center gap-1 cursor-default ${
+                                            className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                                 active 
                                                     ? 'text-[#E5A400] bg-white/10' 
                                                     : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
                                             }`}
                                         >
                                             <span>{menu.title}</span>
-                                            <span className="material-symbols-outlined text-[17px] transition-transform group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
+                                            <span className="material-symbols-outlined text-[16px] transition-transform duration-150 group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
                                                 expand_more
                                             </span>
                                         </button>
                                     ) : (
                                         <Link
                                             href={menu.href}
-                                            className={`px-3 py-2 rounded-xl text-[16px] font-bold transition-all flex items-center gap-1 ${
+                                            className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                                 active 
                                                     ? 'text-[#E5A400] bg-white/10' 
                                                     : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
@@ -168,16 +168,16 @@ export default function Header() {
                                     {/* Desplegable al hacer Hover (Solo los elementos internos son clickables) */}
                                     {hasItems && (
                                         <div className="absolute top-[85%] left-0 pt-2 hidden group-hover:block z-50">
-                                            <div className="bg-[#001D2C] rounded-2xl shadow-2xl border border-white/15 py-3 min-w-[280px] animate-fadeIn backdrop-blur-md">
-                                                <div className="px-4 pb-2 border-b border-white/10 text-[12px] font-black uppercase tracking-wider text-[#1E9CD7]">
+                                            <div className="bg-[#001D2C] rounded-xl shadow-xl border border-white/10 py-2 min-w-[280px] animate-fadeIn">
+                                                <div className="px-4 py-1.5 border-b border-white/10 text-xs font-semibold uppercase tracking-wider text-[#1E9CD7]">
                                                     {menu.title}
                                                 </div>
-                                                <div className="pt-1">
+                                                <div className="py-1">
                                                     {menu.items.map((subItem, sIdx) => (
                                                         <Link
                                                             key={sIdx}
                                                             href={subItem.href}
-                                                            className="block px-4 py-2.5 text-[15px] font-bold text-white/85 hover:bg-white/10 hover:text-[#E5A400] transition-colors"
+                                                            className="block px-4 py-2 text-sm font-medium text-white/85 hover:bg-white/10 hover:text-[#E5A400] transition-colors focus-visible:outline-none focus-visible:bg-white/10"
                                                         >
                                                             {subItem.label}
                                                         </Link>
@@ -193,20 +193,22 @@ export default function Header() {
 
                     {/* Selector de Idiomas (Solo ES y EN) */}
                     <div className="flex items-center gap-3">
-                        <div className="flex items-center border border-white/20 rounded-full p-1 bg-white/5 shadow-xs">
+                        <div className="flex items-center border border-white/20 rounded-full p-0.5 bg-white/5">
                             <button 
                                 onClick={() => setLang('es')}
-                                className={`px-3 py-1 rounded-full text-[13.5px] font-black cursor-pointer transition-all ${
+                                className={`px-2.5 py-1 rounded-full text-xs font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                     lang === 'es' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
                                 }`}
+                                aria-label="Español"
                             >
                                 ES
                             </button>
                             <button 
                                 onClick={() => setLang('en')}
-                                className={`px-3 py-1 rounded-full text-[13.5px] font-black cursor-pointer transition-all ${
+                                className={`px-2.5 py-1 rounded-full text-xs font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                     lang === 'en' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
                                 }`}
+                                aria-label="English"
                             >
                                 EN
                             </button>
@@ -215,10 +217,10 @@ export default function Header() {
                         {/* Botón Móvil Hamburguesa */}
                         <button 
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="xl:hidden p-2 rounded-xl text-white hover:bg-white/10 transition-colors cursor-pointer"
+                            className="xl:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400]"
                             aria-label="Menú"
                         >
-                            <span className="material-symbols-outlined text-3xl">
+                            <span className="material-symbols-outlined text-2xl">
                                 {isMobileMenuOpen ? 'close' : 'menu'}
                             </span>
                         </button>
@@ -235,14 +237,14 @@ export default function Header() {
                         {menuStructure.map((menu, idx) => (
                             <div key={idx} className="space-y-1">
                                 {menu.items ? (
-                                    <div className="font-black text-[17px] text-white py-1 border-b border-white/10 flex items-center justify-between">
+                                    <div className="font-bold text-base text-white py-1.5 border-b border-white/10 flex items-center justify-between">
                                         <span>{menu.title}</span>
                                         <span className="material-symbols-outlined text-sm text-[#E5A400]">expand_more</span>
                                     </div>
                                 ) : (
                                     <Link
                                         href={menu.href}
-                                        className="block font-black text-[17px] text-white hover:text-[#E5A400] py-1 border-b border-white/10"
+                                        className="block font-bold text-base text-white hover:text-[#E5A400] py-1.5 border-b border-white/10"
                                     >
                                         {menu.title}
                                     </Link>
@@ -250,13 +252,13 @@ export default function Header() {
                                 {menu.items && (
                                     <div className="pl-3 space-y-1 pt-1">
                                         {menu.items.map((sub, sIdx) => (
-                                            <Link
-                                                key={sIdx}
-                                                href={sub.href}
-                                                className="block text-[14px] font-bold text-white/80 hover:text-[#E5A400] py-1"
-                                            >
-                                                • {sub.label}
-                                            </Link>
+                                             <Link
+                                                 key={sIdx}
+                                                 href={sub.href}
+                                                 className="block text-sm font-medium text-white/80 hover:text-[#E5A400] py-1"
+                                             >
+                                                 • {sub.label}
+                                             </Link>
                                         ))}
                                     </div>
                                 )}
