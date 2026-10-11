@@ -13,11 +13,6 @@ function PacientesContent() {
 
   // Pestañas acordadas: 1. preguntas frecuentes, 2. recursos, 3. haz tu pregunta
   const [activeTab, setActiveTab] = useState(tabFromUrl || 'faqs');
-  const [openFaq, setOpenFaq] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('todas');
-  const [viewMode, setViewMode] = useState('split'); // 'split' o 'accordion'
-  const [expandedFaqs, setExpandedFaqs] = useState({ 0: true });
 
   useEffect(() => {
     if (tabFromUrl && ['faqs', 'recursos', 'haz-tu-pregunta'].includes(tabFromUrl)) {
@@ -28,13 +23,6 @@ function PacientesContent() {
   const switchTab = (tabId) => {
     setActiveTab(tabId);
     router.push(`/pacientes?tab=${tabId}`, { scroll: false });
-  };
-
-  const toggleAccordion = (idx) => {
-    setExpandedFaqs(prev => ({
-      ...prev,
-      [idx]: !prev[idx]
-    }));
   };
 
   // Formulario Haz tu pregunta
@@ -229,31 +217,6 @@ function PacientesContent() {
     }
   ], [lang]);
 
-  // Filtrado de preguntas por búsqueda y categoría
-  const filteredFaqs = useMemo(() => {
-    return patientFaqs.filter(faq => {
-      const matchesCategory = selectedCategory === 'todas' || faq.category === selectedCategory;
-      const query = searchQuery.toLowerCase().trim();
-      const matchesQuery = !query || 
-        faq.q.toLowerCase().includes(query) || 
-        faq.a.toLowerCase().includes(query) ||
-        faq.categoryLabel.toLowerCase().includes(query);
-      return matchesCategory && matchesQuery;
-    });
-  }, [patientFaqs, selectedCategory, searchQuery]);
-
-  // Si el índice seleccionado queda fuera del rango filtrado, ajustarlo
-  const currentFaq = filteredFaqs[openFaq] || filteredFaqs[0] || patientFaqs[0];
-
-  const categories = [
-    { id: 'todas', label: lang === 'es' ? `Todas (${patientFaqs.length})` : `All (${patientFaqs.length})` },
-    { id: 'general', label: lang === 'es' ? 'Conceptos Clave' : 'Key Concepts' },
-    { id: 'transmision', label: lang === 'es' ? 'Transmisión' : 'Transmission' },
-    { id: 'familia', label: lang === 'es' ? 'Familia & Maternidad' : 'Family & Maternity' },
-    { id: 'salud', label: lang === 'es' ? 'Salud & Controles' : 'Health & Checkups' },
-    { id: 'tratamiento', label: lang === 'es' ? 'Tratamiento' : 'Treatment' },
-    { id: 'diagnostico', label: lang === 'es' ? 'Diagnóstico' : 'Diagnosis' }
-  ];
 
   const resourcesList = [
     {
@@ -317,269 +280,48 @@ function PacientesContent() {
           </div>
         </div>
 
-        {/* 1. PESTAÑA: PREGUNTAS FRECUENTES (Con scroll fluido, buscador y 14 preguntas exhaustivas) */}
+        {/* 1. PESTAÑA: PREGUNTAS FRECUENTES (Formato de corrido, sin buscador, sin cards ni categorías) */}
         {activeTab === 'faqs' && (
-          <div className="space-y-6 animate-fadeIn">
+          <div className="space-y-10 animate-fadeIn max-w-4xl mx-auto py-2">
             
-            {/* Barra de Filtros: Buscador + Categorías + Selector de Modo */}
-            <div className="bg-white p-5 rounded-3xl border border-gray-200 shadow-xs space-y-4">
-              <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-                
-                {/* Campo de Búsqueda */}
-                <div className="relative w-full md:w-96">
-                  <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xl">
-                    search
-                  </span>
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => {
-                      setSearchQuery(e.target.value);
-                      setOpenFaq(0);
-                    }}
-                    placeholder={lang === 'es' ? "Buscar: lactancia, síntomas, VIH, cura..." : "Search: nursing, symptoms, HIV, cure..."}
-                    className="w-full pl-11 pr-4 py-2.5 rounded-2xl bg-gray-50 border border-gray-300 text-[14px] text-[#003B49] placeholder-gray-400 focus:outline-none focus:border-[#087E8B] focus:bg-white transition-all"
-                  />
-                  {searchQuery && (
-                    <button
-                      onClick={() => setSearchQuery('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-sm font-bold"
-                    >
-                      ✕
-                    </button>
-                  )}
-                </div>
-
-                {/* Alternador de Modo de Visualización (Lateral vs Acordeón Corrido) */}
-                <div className="flex items-center gap-2 text-xs font-bold self-end md:self-center">
-                  <span className="text-gray-500 mr-1">{lang === 'es' ? 'Modo:' : 'View:'}</span>
-                  <button
-                    onClick={() => setViewMode('split')}
-                    className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 ${
-                      viewMode === 'split' 
-                        ? 'bg-[#003B49] text-white shadow-xs' 
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-[16px]">vertical_split</span>
-                    <span>{lang === 'es' ? 'Detalle interactivo' : 'Interactive Split'}</span>
-                  </button>
-                  <button
-                    onClick={() => setViewMode('accordion')}
-                    className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 ${
-                      viewMode === 'accordion' 
-                        ? 'bg-[#003B49] text-white shadow-xs' 
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-[16px]">view_agenda</span>
-                    <span>{lang === 'es' ? 'Lectura corrida' : 'Continuous Feed'}</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Píldoras de Categorías */}
-              <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-gray-100">
-                {categories.map((cat) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => {
-                      setSelectedCategory(cat.id);
-                      setOpenFaq(0);
-                    }}
-                    className={`px-3.5 py-1.5 rounded-xl text-[13px] font-bold transition-all cursor-pointer ${
-                      selectedCategory === cat.id
-                        ? 'bg-[#087E8B] text-white shadow-xs'
-                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                    }`}
-                  >
-                    {cat.label}
-                  </button>
-                ))}
-              </div>
+            {/* Encabezado limpio */}
+            <div className="border-b border-gray-200 pb-4">
+              <h2 className="text-2xl md:text-3xl font-black text-[#003B49]">
+                {lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions'}
+              </h2>
+              <p className="text-gray-600 text-[15px] mt-1">
+                {lang === 'es' 
+                  ? 'Respuestas claras y fundamentadas a las dudas más comunes sobre la vida con HTLV.'
+                  : 'Clear and evidence-based answers to the most common questions regarding HTLV.'}
+              </p>
             </div>
 
-            {/* MODO 1: DETALLE INTERACTIVO (Columna izquierda scrolleable + respuesta grande derecha) */}
-            {viewMode === 'split' && (
-              <div className="bg-white p-6 md:p-8 rounded-3xl border border-gray-200 shadow-xs">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  
-                  {/* Columna Izquierda: Lista Scrolleable de Preguntas */}
-                  <div className="lg:col-span-5 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[12px] font-black uppercase tracking-wider text-[#A10D3A]">
-                        {lang === 'es' ? `Preguntas Disponibles (${filteredFaqs.length})` : `Available Questions (${filteredFaqs.length})`}
-                      </span>
-                      <span className="text-[11px] text-gray-500 font-semibold">
-                        {lang === 'es' ? '↓ Desplaza para ver más' : '↓ Scroll for more'}
-                      </span>
-                    </div>
-
-                    {/* Contenedor scrolleable fluido */}
-                    <div className="max-h-[580px] overflow-y-auto pr-2 space-y-2.5 custom-scroll">
-                      {filteredFaqs.length === 0 ? (
-                        <div className="p-8 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-300">
-                          <p className="text-gray-500 text-sm font-bold">
-                            {lang === 'es' ? 'No se encontraron preguntas con esa búsqueda.' : 'No questions found matching your search.'}
-                          </p>
-                          <button
-                            onClick={() => { setSearchQuery(''); setSelectedCategory('todas'); }}
-                            className="mt-2 text-[#087E8B] text-xs font-black underline cursor-pointer"
-                          >
-                            {lang === 'es' ? 'Ver todas las preguntas' : 'View all questions'}
-                          </button>
-                        </div>
-                      ) : (
-                        filteredFaqs.map((faq, idx) => {
-                          const isSelected = (currentFaq?.id === faq.id);
-                          return (
-                            <button
-                              key={faq.id}
-                              onClick={() => setOpenFaq(idx)}
-                              className={`w-full p-4 rounded-2xl text-left font-bold text-[14.5px] transition-all cursor-pointer flex items-center justify-between gap-3 text-balance ${
-                                isSelected
-                                  ? 'bg-[#087E8B] text-white shadow-md'
-                                  : 'bg-gray-50 border border-gray-200 text-[#003B49] hover:bg-gray-100 hover:border-gray-300'
-                              }`}
-                            >
-                              <div className="space-y-1">
-                                <span className={`text-[10.5px] uppercase font-black tracking-wider px-2 py-0.5 rounded-md inline-block ${
-                                  isSelected ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-600'
-                                }`}>
-                                  {faq.categoryLabel}
-                                </span>
-                                <p className="leading-snug">{faq.q}</p>
-                              </div>
-                              <span className="material-symbols-outlined text-[18px] shrink-0">
-                                {isSelected ? 'arrow_forward' : 'chevron_right'}
-                              </span>
-                            </button>
-                          );
-                        })
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Columna Derecha: Tarjeta de Respuesta Completa y Consejos Médicos */}
-                  {currentFaq && (
-                    <div className="lg:col-span-7 bg-[#f8f9fb] p-7 md:p-9 rounded-3xl border-2 border-[#003B49]/15 space-y-6 min-h-[460px] flex flex-col justify-between shadow-xs">
-                      <div className="space-y-4">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="px-3 py-1 bg-[#E5A400] text-[#003B49] text-[12px] font-black uppercase tracking-wider rounded-md inline-block">
-                            {currentFaq.categoryLabel}
-                          </span>
-                          <span className="text-gray-400 text-xs font-bold">
-                            {lang === 'es' ? 'Consenso Clínico Oficial RIII-HTLV' : 'Official RIII-HTLV Consensus'}
-                          </span>
-                        </div>
-
-                        <h3 className="text-[23px] md:text-[25px] font-black text-[#003B49] leading-snug">
-                          {currentFaq.q}
-                        </h3>
-
-                        <p className="text-[16.5px] text-[#332222] leading-relaxed pt-1">
-                          {currentFaq.a}
-                        </p>
-
-                        {/* Caja destacada con dato de tranquilidad */}
-                        <div className="p-4 bg-white border border-[#087E8B]/30 rounded-2xl flex items-start gap-3 shadow-xs">
-                          <span className="material-symbols-outlined text-2xl text-[#087E8B] shrink-0 mt-0.5">
-                            health_and_safety
-                          </span>
-                          <div>
-                            <span className="text-[12px] font-extrabold uppercase text-[#087E8B] block">
-                              {lang === 'es' ? 'Mensaje Clave para tu Tranquilidad:' : 'Key Takeaway for Reassurance:'}
-                            </span>
-                            <p className="text-[14px] text-gray-700 font-medium">
-                              {currentFaq.highlight}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Pie de la respuesta con enlace a preguntar */}
-                      <div className="pt-4 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[14px]">
-                        <span className="text-gray-500 font-medium text-xs">
-                          {lang === 'es' ? 'Evidencia revisada por infectólogos y neurólogos del IMTAvH' : 'Reviewed by IMTAvH infectologists & neurologists'}
-                        </span>
-                        <button
-                          onClick={() => switchTab('haz-tu-pregunta')}
-                          className="text-[#A10D3A] font-black hover:underline flex items-center gap-1 cursor-pointer self-start sm:self-auto text-[13.5px]"
-                        >
-                          <span>{lang === 'es' ? '¿Deseas orientación personal? Pregunta aquí' : 'Need personalized guidance? Ask here'}</span>
-                          <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                        </button>
-                      </div>
-                    </div>
-                  )}
-
-                </div>
-              </div>
-            )}
-
-            {/* MODO 2: ACORDEÓN CORRIDO (Para scrollear libremente a través de todas las preguntas de corrido) */}
-            {viewMode === 'accordion' && (
-              <div className="bg-white p-6 md:p-8 rounded-3xl border border-gray-200 shadow-xs space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-                  <h3 className="text-[20px] font-black text-[#003B49]">
-                    {lang === 'es' ? `Lectura Completa de Preguntas y Respuestas (${filteredFaqs.length})` : `Full Question & Answer Feed (${filteredFaqs.length})`}
+            {/* Listado de Preguntas de Corrido (sin cards individuales, sin conceptos clave repetitivos) */}
+            <div className="space-y-8 divide-y divide-gray-200">
+              {patientFaqs.map((faq, idx) => (
+                <article key={faq.id} className={idx === 0 ? "space-y-2.5" : "pt-8 space-y-2.5"}>
+                  <h3 className="text-[19px] md:text-[21px] font-bold text-[#003B49] leading-snug">
+                    {faq.q}
                   </h3>
-                  <button
-                    onClick={() => {
-                      const allOpen = Object.keys(expandedFaqs).length === filteredFaqs.length;
-                      if (allOpen) {
-                        setExpandedFaqs({});
-                      } else {
-                        const newExpanded = {};
-                        filteredFaqs.forEach((_, i) => { newExpanded[i] = true; });
-                        setExpandedFaqs(newExpanded);
-                      }
-                    }}
-                    className="text-[#087E8B] text-xs font-black hover:underline cursor-pointer"
-                  >
-                    {Object.keys(expandedFaqs).length === filteredFaqs.length
-                      ? (lang === 'es' ? 'Colapsar todas' : 'Collapse all')
-                      : (lang === 'es' ? 'Expandir todas' : 'Expand all')}
-                  </button>
-                </div>
+                  <p className="text-[16px] text-gray-700 leading-relaxed font-normal">
+                    {faq.a}
+                  </p>
+                </article>
+              ))}
+            </div>
 
-                <div className="space-y-3">
-                  {filteredFaqs.map((faq, idx) => {
-                    const isOpen = !!expandedFaqs[idx];
-                    return (
-                      <div
-                        key={faq.id}
-                        className="border-2 border-gray-200 rounded-2xl overflow-hidden transition-all bg-gray-50/70"
-                      >
-                        <button
-                          onClick={() => toggleAccordion(idx)}
-                          className="w-full p-5 text-left font-bold text-[16px] text-[#003B49] hover:text-[#087E8B] flex items-center justify-between gap-4 cursor-pointer"
-                        >
-                          <div className="space-y-1">
-                            <span className="text-[11px] uppercase font-black tracking-wider text-[#A10D3A] block">
-                              {faq.categoryLabel}
-                            </span>
-                            <span className="text-[16px]">{faq.q}</span>
-                          </div>
-                          <span className="material-symbols-outlined text-2xl text-[#087E8B] shrink-0">
-                            {isOpen ? 'expand_less' : 'expand_more'}
-                          </span>
-                        </button>
-
-                        {isOpen && (
-                          <div className="p-5 pt-0 text-[15.5px] text-[#332222] leading-relaxed border-t border-gray-200 bg-white space-y-3">
-                            <p className="pt-3">{faq.a}</p>
-                            <div className="p-3 bg-amber-50/60 border border-amber-200 rounded-xl text-[13.5px] text-amber-900 font-medium">
-                              <strong>{lang === 'es' ? 'Punto Clave:' : 'Key Note:'}</strong> {faq.highlight}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+            {/* Aviso Médico Disclaimer Sintetizado */}
+            <div className="mt-12 p-6 bg-gray-50 border-l-4 border-[#087E8B] rounded-r-2xl text-[14px] text-gray-600 leading-relaxed space-y-2">
+              <div className="flex items-center gap-2 text-[#003B49] font-bold text-[15px]">
+                <span className="material-symbols-outlined text-[20px] text-[#087E8B]">info</span>
+                <span>{lang === 'es' ? 'Aviso Médico Importante' : 'Important Medical Disclaimer'}</span>
               </div>
-            )}
+              <p>
+                {lang === 'es'
+                  ? 'La información contenida en este sitio web se presenta únicamente con fines informativos y educativos. No constituye un diagnóstico ni tratamiento profesional. Siempre busque el consejo de su médico u otro proveedor de salud calificado ante cualquier duda sobre una condición médica. Nunca ignore el consejo médico profesional ni demore su búsqueda debido a algo que haya leído en este sitio.'
+                  : 'The information contained on this website is presented solely for educational and informational purposes and does not constitute professional medical diagnosis or treatment. Always seek the advice of your physician or qualified health provider regarding any medical condition. Never ignore professional medical advice or delay seeking it because of something you have read on this site.'}
+              </p>
+            </div>
 
           </div>
         )}

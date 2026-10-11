@@ -233,9 +233,13 @@ export default function FAQsPage() {
           </section>
 
           {/* Pie de página con Deslinde Legal y Normativo */}
-          <footer className="mt-12 pt-6 border-t border-[#e5e7eb] text-[12px] text-[#6b7280] leading-relaxed">
+          <footer className="mt-12 p-6 bg-gray-50 border-l-4 border-[#087E8B] rounded-r-2xl text-[13.5px] text-gray-600 leading-relaxed space-y-2">
+            <div className="flex items-center gap-2 text-[#003B49] font-bold text-[14.5px]">
+              <span className="material-symbols-outlined text-[20px] text-[#087E8B]">info</span>
+              <span>Aviso Médico Importante</span>
+            </div>
             <p>
-              <strong>Deslinde Médico:</strong> Esta guía de preguntas frecuentes es de carácter divulgativo y científico. No reemplaza el criterio ni la atención médica especializada. Elaborado con el respaldo científico de investigadores del Instituto de Medicina Tropical Alexander von Humboldt (UPCH) y la Red Internacional RIII-HTLV. Conforme a la Ley N° 29733 de Protección de Datos Personales.
+              La información contenida en este sitio web se presenta únicamente con fines informativos y educativos. No constituye un diagnóstico ni tratamiento profesional. Siempre busque el consejo de su médico u otro proveedor de salud calificado ante cualquier duda sobre una condición médica. Nunca ignore el consejo médico profesional ni demore su búsqueda debido a algo que haya leído en este sitio.
             </p>
           </footer>
 
