@@ -73,21 +73,21 @@ export default function Footer() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             
-            {/* TARJETA CONTACT US CELESTE (Sobresale hacia la franja blanca con bordes redondeados) */}
+            {/* TARJETA CONTACT US CELESTE (Forma exacta a Imagen 2: esquina sup-der curvada, esquinas rectas en el resto) */}
             <div className="lg:col-span-4 relative z-20 mt-2 lg:-mt-24">
-              <div className="bg-[#1E9CD7] text-white p-7 rounded-tl-2xl rounded-tr-[54px] rounded-b-3xl shadow-2xl space-y-4">
+              <div className="bg-[#1E9CD7] text-white p-7 rounded-tl-none rounded-tr-[58px] rounded-bl-none rounded-br-none shadow-2xl space-y-4">
                 
                 {/* Ícono de sobre blanco idéntico a IRVA */}
-                <div className="w-12 h-9 bg-white rounded-lg flex items-center justify-center text-[#1E9CD7] shadow-sm">
-                  <span className="material-symbols-outlined text-[26px]">mail</span>
+                <div className="w-14 h-10 bg-white rounded-md flex items-center justify-center text-[#1E9CD7] shadow-sm">
+                  <span className="material-symbols-outlined text-[28px]">mail</span>
                 </div>
 
-                <h3 className="text-[24px] font-black tracking-tight text-white">
+                <h3 className="text-[25px] font-black tracking-tight text-white">
                   {lang === 'es' ? 'Contáctanos' : 'Contact Us'}
                 </h3>
 
                 {sent ? (
-                  <div className="p-6 bg-white/20 rounded-xl text-center space-y-2 animate-fadeIn">
+                  <div className="p-6 bg-white/20 text-center space-y-2 animate-fadeIn">
                     <span className="material-symbols-outlined text-4xl text-white">check_circle</span>
                     <p className="font-bold text-[15px]">
                       {lang === 'es' ? 'Mensaje enviado a la secretaría.' : 'Message sent to the secretariat.'}
@@ -100,7 +100,7 @@ export default function Footer() {
                       placeholder={lang === 'es' ? "Nombre" : "Name"}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-md bg-[#EDEDED] text-[#191c1e] text-[14px] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/80"
+                      className="w-full px-4 py-3 rounded-none bg-[#EAEAEA] text-[#191c1e] text-[14px] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/80"
                     />
                     <input
                       type="email"
@@ -108,7 +108,7 @@ export default function Footer() {
                       placeholder={lang === 'es' ? "Correo Electrónico" : "Email Address"}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-md bg-[#EDEDED] text-[#191c1e] text-[14px] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/80"
+                      className="w-full px-4 py-3 rounded-none bg-[#EAEAEA] text-[#191c1e] text-[14px] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/80"
                     />
                     <textarea
                       required
@@ -116,12 +116,12 @@ export default function Footer() {
                       placeholder={lang === 'es' ? "Mensaje" : "Message"}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-md bg-[#EDEDED] text-[#191c1e] text-[14px] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/80 resize-none"
+                      className="w-full px-4 py-3 rounded-none bg-[#EAEAEA] text-[#191c1e] text-[14px] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/80 resize-none"
                     ></textarea>
                     <div className="flex justify-end pt-1">
                       <button
                         type="submit"
-                        className="bg-[#002244] hover:bg-[#001730] text-white px-6 py-2.5 rounded-md text-[14px] font-bold transition-all shadow-md cursor-pointer"
+                        className="bg-[#0B3456] hover:bg-[#07253D] text-white px-7 py-2.5 rounded-none text-[14px] font-bold transition-colors shadow-md cursor-pointer"
                       >
                         {lang === 'es' ? 'Enviar Mensaje' : 'Send Message'}
                       </button>

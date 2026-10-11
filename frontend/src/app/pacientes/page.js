@@ -25,6 +25,58 @@ function PacientesContent() {
     router.push(`/pacientes?tab=${tabId}`, { scroll: false });
   };
 
+  // FAQs colapsables
+  const [openFaqs, setOpenFaqs] = useState({ 1: true });
+  const toggleFaq = (id) => {
+    setOpenFaqs((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
+  // Calculadora orientativa de riesgos
+  const [riskData, setRiskData] = useState({
+    situacion: 'banco-sangre',
+    sintomas: 'ninguno',
+    confirmacion: 'no'
+  });
+  const [riskResult, setRiskResult] = useState(null);
+
+  const calculateRisk = (e) => {
+    e.preventDefault();
+    let recomendacion = '';
+    let nivel = '';
+    let badgeColor = '';
+
+    if (riskData.confirmacion === 'no') {
+      nivel = lang === 'es' ? 'Requiere Confirmación Serológica' : 'Confirmatory Test Required';
+      badgeColor = 'bg-[#E5A400] text-[#003B49]';
+      recomendacion = lang === 'es'
+        ? 'Un resultado inicial de tamizaje (ELISA) reactivo NO es un diagnóstico definitivo. Debe realizarse obligatoriamente un Western Blot o PCR proviral en un laboratorio de referencia para confirmar o descartar la infección y descartar falsos positivos.'
+        : 'An initial reactive screening test (ELISA) is NOT a definitive diagnosis. Confirmatory Western Blot or proviral PCR is mandatory in a reference lab to verify the status.';
+    } else if (riskData.sintomas === 'moderados') {
+      nivel = lang === 'es' ? 'Sugerencia de Evaluación Neurológica' : 'Neurological Assessment Recommended';
+      badgeColor = 'bg-[#A10D3A] text-white';
+      recomendacion = lang === 'es'
+        ? 'La presencia de rigidez en piernas o dificultad al caminar debe ser evaluada por un médico neurólogo para descartar afectación de la médula espinal (HAM/TSP) e iniciar de manera temprana fisioterapia orientada.'
+        : 'The presence of leg stiffness or gait impairment should be evaluated promptly by a neurologist to assess possible HAM/TSP and initiate targeted physical therapy.';
+    } else if (riskData.situacion === 'embarazo') {
+      nivel = lang === 'es' ? 'Protocolo de Maternidad y Prevención Vertical' : 'Safe Motherhood & Prevention Protocol';
+      badgeColor = 'bg-[#087E8B] text-white';
+      recomendacion = lang === 'es'
+        ? 'En caso de embarazo con HTLV confirmado, la recomendación médica internacional es evitar la lactancia materna y optar por fórmulas de inicio para recién nacidos, lo que reduce el riesgo de transmisión prácticamente a cero.'
+        : 'In confirmed maternal HTLV, standard international guidance recommends formula feeding to reduce infant transmission risk to near zero.';
+    } else {
+      nivel = lang === 'es' ? 'Portador Asintomático (Seguimiento Rutinario)' : 'Asymptomatic Carrier (Routine Follow-up)';
+      badgeColor = 'bg-[#003B49] text-white';
+      recomendacion = lang === 'es'
+        ? 'Más del 90% de las personas portadoras permanecen completamente asintomáticas de por vida. Solo se requiere un chequeo de control anual con hemograma y examen neurológico básico para mantener la tranquilidad.'
+        : 'Over 90% of carriers remain entirely asymptomatic lifelong. Only an annual routine review with blood counts and a motor evaluation is recommended.';
+    }
+
+    setRiskResult({ nivel, recomendacion, badgeColor });
+  };
+
   // Formulario Haz tu pregunta
   const [formData, setFormData] = useState({
     nombre: '',
@@ -217,31 +269,6 @@ function PacientesContent() {
     }
   ], [lang]);
 
-
-  const resourcesList = [
-    {
-      title: lang === 'es' ? "Guía de Primeros Pasos tras el Diagnóstico" : "First Steps Guide After Diagnosis",
-      category: lang === 'es' ? "Folleto Digital" : "Digital Brochure",
-      desc: lang === 'es' ? "Pautas claras sobre qué esperar, recomendaciones iniciales y consejos para hablar con la familia." : "Clear steps on what to expect, lifestyle recommendations, and family communication.",
-      actionText: lang === 'es' ? "Descargar Guía (PDF)" : "Download Guide (PDF)",
-      color: "bg-[#003B49]"
-    },
-    {
-      title: lang === 'es' ? "Maternidad Segura y HTLV" : "Safe Motherhood & HTLV",
-      category: lang === 'es' ? "Infografía Clínica" : "Clinical Infographic",
-      desc: lang === 'es' ? "Recomendaciones de tamizaje prenatal y opciones de alimentación para recién nacidos sin riesgo." : "Antenatal screening guidelines and safe feeding protocols for newborns.",
-      actionText: lang === 'es' ? "Ver Infografía" : "View Infographic",
-      color: "bg-[#087E8B]"
-    },
-    {
-      title: lang === 'es' ? "Red de Centros de Apoyo y Atención" : "Support Centers Directory",
-      category: lang === 'es' ? "Directorio" : "Directory",
-      desc: lang === 'es' ? "Centros de salud, hospitales y servicios de infectología con experiencia en HTLV en Perú y el mundo." : "Hospitals and clinical centers with specialized HTLV units in Peru and globally.",
-      actionText: lang === 'es' ? "Consultar Sedes" : "Explore Centers",
-      color: "bg-[#A10D3A]"
-    }
-  ];
-
   return (
     <main className="w-full bg-[#f8f9fb] min-h-[calc(100vh-80px)] py-8 md:py-12 text-[#191c1e] flex flex-col justify-between">
       <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12">
@@ -274,18 +301,43 @@ function PacientesContent() {
               </p>
             </div>
 
-            {/* Listado de Preguntas de Corrido (sin cards individuales, sin conceptos clave repetitivos) */}
-            <div className="space-y-8 divide-y divide-gray-200">
-              {patientFaqs.map((faq, idx) => (
-                <article key={faq.id} className={idx === 0 ? "space-y-2.5" : "pt-8 space-y-2.5"}>
-                  <h3 className="text-[19px] md:text-[21px] font-bold text-[#003B49] leading-snug">
-                    {faq.q}
-                  </h3>
-                  <p className="text-[16px] text-gray-700 leading-relaxed font-normal">
-                    {faq.a}
-                  </p>
-                </article>
-              ))}
+            {/* Listado de Preguntas Colapsables con Disclaimer Resumido */}
+            <div className="space-y-4 divide-y divide-gray-200">
+              {patientFaqs.map((faq, idx) => {
+                const isOpen = !!openFaqs[faq.id];
+                return (
+                  <div key={faq.id} className={idx === 0 ? "pt-0" : "pt-4"}>
+                    <button
+                      onClick={() => toggleFaq(faq.id)}
+                      className="w-full text-left flex items-start justify-between gap-4 py-2 hover:text-[#087E8B] transition-colors cursor-pointer group"
+                      aria-expanded={isOpen}
+                    >
+                      <h3 className="text-[19px] md:text-[21px] font-bold text-[#003B49] group-hover:text-[#087E8B] leading-snug">
+                        {faq.q}
+                      </h3>
+                      <span className="material-symbols-outlined text-gray-500 group-hover:text-[#087E8B] text-2xl shrink-0 transition-transform duration-200 mt-0.5">
+                        {isOpen ? 'expand_less' : 'expand_more'}
+                      </span>
+                    </button>
+
+                    {isOpen && (
+                      <div className="pt-2 pb-4 space-y-3 animate-fadeIn">
+                        <p className="text-[16px] text-gray-700 leading-relaxed font-normal">
+                          {faq.a}
+                        </p>
+                        <div className="pt-2.5 border-t border-gray-100 flex items-start gap-2 text-[13px] text-gray-500 italic">
+                          <span className="material-symbols-outlined text-[16px] text-[#087E8B] shrink-0 mt-0.5">info</span>
+                          <span>
+                            {lang === 'es'
+                              ? 'Aviso informativo: Este contenido es exclusivamente educativo y divulgativo; no constituye diagnóstico clínico ni sustituye la atención médica profesional.'
+                              : 'Informational note: This content is for educational purposes only; it does not constitute clinical diagnosis or replace professional medical care.'}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Aviso Médico Disclaimer Sintetizado */}
@@ -304,65 +356,342 @@ function PacientesContent() {
           </div>
         )}
 
-        {/* 2. PESTAÑA: RECURSOS (Tarjetas en 3 columnas de un vistazo) */}
+        {/* 2. PESTAÑA: RECURSOS DE APOYO */}
         {activeTab === 'recursos' && (
-          <div className="space-y-6 animate-fadeIn">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {resourcesList.map((res, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white p-7 rounded-3xl border-2 border-gray-200 shadow-xs hover:border-[#087E8B] transition-all flex flex-col justify-between space-y-6"
-                >
-                  <div className="space-y-3">
-                    <span className="px-3 py-1 bg-[#003B49]/10 text-[#003B49] text-[12px] font-black uppercase tracking-wider rounded-md inline-block">
-                      {res.category}
+          <div className="space-y-12 animate-fadeIn max-w-5xl mx-auto py-2">
+            
+            {/* SECCIÓN 1: VIDEOTECA EDUCATIVA (YOUTUBE) */}
+            <div className="space-y-6">
+              <div className="border-b border-gray-200 pb-3 flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-black text-[#003B49]">
+                    {lang === 'es' ? 'Videoteca Educativa' : 'Educational Video Library'}
+                  </h2>
+                  <p className="text-gray-600 text-[14.5px] mt-0.5">
+                    {lang === 'es' 
+                      ? 'Videos informativos preparados por especialistas de la Red para pacientes y sus familias.'
+                      : 'Informational talks prepared by Network specialists for patients and families.'}
+                  </p>
+                </div>
+                <span className="text-xs font-bold px-3 py-1 bg-red-100 text-red-700 rounded-lg">
+                  YouTube
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs">
+                  <div className="relative aspect-video w-full bg-gray-900">
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube-nocookie.com/embed/5O9Yw8Z0eoc"
+                      title={lang === 'es' ? "Comprendiendo el HTLV-1" : "Understanding HTLV-1"}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <div className="p-5 space-y-2">
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#087E8B]">
+                      {lang === 'es' ? 'Fundamentos Médicos' : 'Medical Fundamentals'}
                     </span>
-                    <h3 className="text-[21px] font-black text-[#003B49] leading-snug">
-                      {res.title}
+                    <h3 className="text-[17px] font-bold text-[#003B49] leading-snug">
+                      {lang === 'es' ? '¿Qué es el HTLV-1 y qué esperar tras el diagnóstico?' : 'What is HTLV-1 and what to expect after diagnosis?'}
                     </h3>
-                    <p className="text-[15.5px] text-[#443333] leading-relaxed">
-                      {res.desc}
+                    <p className="text-[14px] text-gray-600 leading-relaxed">
+                      {lang === 'es' 
+                        ? 'Explicación clara sobre el curso benigno en más del 90% de personas, vías de no transmisión y vida cotidiana.'
+                        : 'Clear overview of the benign course in >90% of individuals, non-transmission facts, and daily living.'}
                     </p>
                   </div>
+                </div>
 
-                  <div>
-                    <button
-                      onClick={() => alert(`Accediendo a: ${res.title}`)}
-                      className={`w-full ${res.color} text-white font-black py-3 px-5 rounded-2xl text-[14.5px] hover:opacity-95 transition-all shadow-md cursor-pointer flex items-center justify-center gap-2`}
-                    >
-                      <span className="material-symbols-outlined text-[18px]">download</span>
-                      <span>{res.actionText}</span>
-                    </button>
+                <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs">
+                  <div className="relative aspect-video w-full bg-gray-900">
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube-nocookie.com/embed/fJ9rUzIMcZQ"
+                      title={lang === 'es' ? "Maternidad y Prevención Vertical" : "Maternity and Vertical Prevention"}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <div className="p-5 space-y-2">
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#A10D3A]">
+                      {lang === 'es' ? 'Salud Materno-Infantil' : 'Maternal-Child Health'}
+                    </span>
+                    <h3 className="text-[17px] font-bold text-[#003B49] leading-snug">
+                      {lang === 'es' ? 'Maternidad Segura y Prevención de Transmisión Vertical' : 'Safe Motherhood & Prevention of Vertical Transmission'}
+                    </h3>
+                    <p className="text-[14px] text-gray-600 leading-relaxed">
+                      {lang === 'es' 
+                        ? 'Pautas clínicas sobre tamizaje prenatal, parto seguro y el rol de las fórmulas sucedáneas.'
+                        : 'Clinical guidelines on prenatal screening, safe delivery, and the protective role of infant formulas.'}
+                    </p>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
 
-            <div className="p-5 bg-white border border-gray-200 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4 text-[14px]">
+            {/* SECCIÓN 2: CALCULADORA ORIENTATIVA DE RIESGOS */}
+            <div className="space-y-6">
+              <div className="border-b border-gray-200 pb-3">
+                <h2 className="text-2xl font-black text-[#003B49]">
+                  {lang === 'es' ? 'Calculadora Orientativa de Riesgos y Evaluación' : 'Orientative Risk Assessment Calculator'}
+                </h2>
+                <p className="text-gray-600 text-[14.5px] mt-0.5">
+                  {lang === 'es' 
+                    ? 'Herramienta informativa interactiva para orientar tus próximos pasos ante dudas o pruebas reactivas.'
+                    : 'Interactive informational tool to guide next steps regarding test results or concerns.'}
+                </p>
+              </div>
+
+              <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-xs space-y-6">
+                <form onSubmit={calculateRisk} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <label className="block text-[13.5px] font-bold text-[#003B49] mb-2">
+                        {lang === 'es' ? '1. Situación o motivo de consulta' : '1. Situation or reason for inquiry'}
+                      </label>
+                      <select
+                        value={riskData.situacion}
+                        onChange={(e) => setRiskData({ ...riskData, situacion: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-[14px] text-gray-800 focus:outline-none focus:border-[#087E8B]"
+                      >
+                        <option value="banco-sangre">
+                          {lang === 'es' ? 'Tamizaje reactivo en banco de sangre' : 'Reactive blood bank screening'}
+                        </option>
+                        <option value="embarazo">
+                          {lang === 'es' ? 'Embarazo o consulta de maternidad' : 'Pregnancy or maternity consultation'}
+                        </option>
+                        <option value="familiar">
+                          {lang === 'es' ? 'Familiar cercano con HTLV' : 'Close family member with HTLV'}
+                        </option>
+                        <option value="sintomas">
+                          {lang === 'es' ? 'Consulta por síntomas generales' : 'General symptoms consultation'}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[13.5px] font-bold text-[#003B49] mb-2">
+                        {lang === 'es' ? '2. ¿Presentas síntomas motores o urinarios?' : '2. Any motor or urinary symptoms?'}
+                      </label>
+                      <select
+                        value={riskData.sintomas}
+                        onChange={(e) => setRiskData({ ...riskData, sintomas: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-[14px] text-gray-800 focus:outline-none focus:border-[#087E8B]"
+                      >
+                        <option value="ninguno">
+                          {lang === 'es' ? 'Ninguno (sin molestias)' : 'None (asymptomatic)'}
+                        </option>
+                        <option value="leves">
+                          {lang === 'es' ? 'Leves (cansancio ocasional)' : 'Mild (occasional tiredness)'}
+                        </option>
+                        <option value="moderados">
+                          {lang === 'es' ? 'Sí (rigidez en piernas o urgencia urinaria)' : 'Yes (leg stiffness or urinary urgency)'}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[13.5px] font-bold text-[#003B49] mb-2">
+                        {lang === 'es' ? '3. ¿Tienes prueba confirmatoria (WB o PCR)?' : '3. Confirmatory test (WB or PCR)?'}
+                      </label>
+                      <select
+                        value={riskData.confirmacion}
+                        onChange={(e) => setRiskData({ ...riskData, confirmacion: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 bg-white text-[14px] text-gray-800 focus:outline-none focus:border-[#087E8B]"
+                      >
+                        <option value="no">
+                          {lang === 'es' ? 'No (solo ELISA inicial o en espera)' : 'No (initial ELISA only or waiting)'}
+                        </option>
+                        <option value="si">
+                          {lang === 'es' ? 'Sí (confirmada por Western Blot o PCR)' : 'Yes (confirmed by Western Blot or PCR)'}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end pt-2">
+                    <button
+                      type="submit"
+                      className="bg-[#003B49] hover:bg-[#087E8B] text-white px-7 py-2.5 rounded-xl font-bold text-[14px] transition-colors cursor-pointer flex items-center gap-2"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">calculate</span>
+                      <span>{lang === 'es' ? 'Evaluar Orientación' : 'Evaluate Guidance'}</span>
+                    </button>
+                  </div>
+                </form>
+
+                {riskResult && (
+                  <div className="pt-4 border-t border-gray-200 space-y-3 animate-fadeIn">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[12px] font-bold uppercase tracking-wider text-gray-500">
+                        {lang === 'es' ? 'Resultado orientativo:' : 'Orientative Result:'}
+                      </span>
+                      <span className={`px-3 py-1 text-[12.5px] font-black rounded-lg ${riskResult.badgeColor}`}>
+                        {riskResult.nivel}
+                      </span>
+                    </div>
+                    <p className="text-[15px] text-gray-700 leading-relaxed font-normal bg-gray-50 p-4 rounded-xl border border-gray-200">
+                      {riskResult.recomendacion}
+                    </p>
+                    <div className="flex items-start gap-2 text-[12.5px] text-gray-500 italic">
+                      <span className="material-symbols-outlined text-[15px] text-[#087E8B] shrink-0 mt-0.5">info</span>
+                      <span>
+                        {lang === 'es'
+                          ? 'Aviso: Esta calculadora es una guía informativa y no sustituye la evaluación clínica individualizada ni emite juicios diagnósticos.'
+                          : 'Disclaimer: This calculator is an informational guide and does not replace individualized clinical evaluation or diagnostic testing.'}
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* SECCIÓN 3: FORMULARIOS DE APOYO */}
+            <div className="space-y-6">
+              <div className="border-b border-gray-200 pb-3">
+                <h2 className="text-2xl font-black text-[#003B49]">
+                  {lang === 'es' ? 'Formularios y Fichas de Apoyo' : 'Support Forms & Checklists'}
+                </h2>
+                <p className="text-gray-600 text-[14.5px] mt-0.5">
+                  {lang === 'es' 
+                    ? 'Documentos en formato descargable para facilitar el seguimiento médico y la solicitud de orientación.'
+                    : 'Downloadable documents to support medical tracking and consultation requests.'}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: lang === 'es' ? "Ficha de Registro y Acompañamiento" : "Patient Registration & Support Sheet",
+                    tag: "PDF - 240 KB",
+                    desc: lang === 'es' ? "Formato para solicitar consejería y acompañamiento voluntario de la Red." : "Format to request counseling and voluntary support from the Network.",
+                    action: lang === 'es' ? "Descargar Ficha" : "Download Form"
+                  },
+                  {
+                    title: lang === 'es' ? "Lista de Chequeo para Consulta Anual" : "Annual Checkup Checklist",
+                    tag: "PDF - 180 KB",
+                    desc: lang === 'es' ? "Preguntas y exámenes clave para llevar a la consulta con tu médico de cabecera." : "Key questions and routine exams to bring to your primary care visit.",
+                    action: lang === 'es' ? "Descargar Checklist" : "Download Checklist"
+                  },
+                  {
+                    title: lang === 'es' ? "Consentimiento y Tamizaje Familiar" : "Family Screening Guidelines",
+                    tag: "PDF - 210 KB",
+                    desc: lang === 'es' ? "Pautas claras para asesorar a parejas o familiares que desean realizarse el test." : "Clear guidelines for counseling partners or family members seeking testing.",
+                    action: lang === 'es' ? "Descargar Pautas" : "Download Guide"
+                  }
+                ].map((item, i) => (
+                  <div key={i} className="bg-white p-5 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-4">
+                    <div className="space-y-2">
+                      <span className="text-[11px] font-bold px-2 py-0.5 bg-gray-100 text-gray-700 rounded-md">
+                        {item.tag}
+                      </span>
+                      <h4 className="text-[16px] font-bold text-[#003B49]">
+                        {item.title}
+                      </h4>
+                      <p className="text-[13.5px] text-gray-600 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => alert(`Descargando: ${item.title}`)}
+                      className="w-full bg-[#003B49] hover:bg-[#087E8B] text-white py-2 px-4 rounded-xl text-[13px] font-bold transition-colors cursor-pointer flex items-center justify-center gap-2"
+                    >
+                      <span className="material-symbols-outlined text-[16px]">download</span>
+                      <span>{item.action}</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* SECCIÓN 4: FOLLETOS Y GUÍAS DIGITALES (CON IMÁGENES) */}
+            <div className="space-y-6">
+              <div className="border-b border-gray-200 pb-3">
+                <h2 className="text-2xl font-black text-[#003B49]">
+                  {lang === 'es' ? 'Folletos y Guías Informativas' : 'Brochures & Educational Guides'}
+                </h2>
+                <p className="text-gray-600 text-[14.5px] mt-0.5">
+                  {lang === 'es' 
+                    ? 'Materiales educativos elaborados por el Instituto de Medicina Tropical Alexander von Humboldt.'
+                    : 'Educational materials prepared by the Alexander von Humboldt Institute of Tropical Medicine.'}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: lang === 'es' ? "Guía de Primeros Pasos tras el Diagnóstico" : "First Steps Guide After Diagnosis",
+                    img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80",
+                    desc: lang === 'es' ? "Qué hacer tras recibir un resultado reactivo, mitos frecuentes y recomendaciones de tranquilidad." : "What to do after a reactive result, debunking myths, and calm guidance.",
+                  },
+                  {
+                    title: lang === 'es' ? "Maternidad Segura y Cuidados del Bebé" : "Safe Motherhood & Infant Care",
+                    img: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600&q=80",
+                    desc: lang === 'es' ? "Prevención de la transmisión por leche materna y pautas de nutrición con fórmulas infantiles." : "Preventing nursing transmission and nutrition guidance with infant formulas.",
+                  },
+                  {
+                    title: lang === 'es' ? "Rehabilitación y Movilidad en HAM/TSP" : "Physical Therapy & Mobility in HAM/TSP",
+                    img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80",
+                    desc: lang === 'es' ? "Ejercicios terapéuticos para controlar la rigidez motora y preservar la autonomía física." : "Therapeutic exercises to manage motor stiffness and preserve physical autonomy.",
+                  }
+                ].map((brochure, i) => (
+                  <div key={i} className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs flex flex-col justify-between">
+                    <div>
+                      <div className="h-44 w-full overflow-hidden bg-gray-100">
+                        <img
+                          src={brochure.img}
+                          alt={brochure.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-5 space-y-2">
+                        <h4 className="text-[17px] font-bold text-[#003B49] leading-snug">
+                          {brochure.title}
+                        </h4>
+                        <p className="text-[13.5px] text-gray-600 leading-relaxed">
+                          {brochure.desc}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="p-5 pt-0">
+                      <button
+                        onClick={() => alert(`Visualizando folleto: ${brochure.title}`)}
+                        className="w-full bg-[#E5A400] hover:bg-[#cca300] text-[#003B49] py-2 px-4 rounded-xl text-[13.5px] font-black transition-colors cursor-pointer flex items-center justify-center gap-2"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">menu_book</span>
+                        <span>{lang === 'es' ? 'Leer Folleto Digital' : 'Read Digital Brochure'}</span>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-5 bg-white border border-gray-200 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 text-[14px]">
               <span className="text-gray-600 font-medium">
-                {lang === 'es' ? 'Todos los materiales son de libre descarga y uso comunitario sin costo.' : 'All materials are freely accessible for community use.'}
+                {lang === 'es' ? 'Todos los materiales son de libre acceso y distribución para pacientes y comunidad.' : 'All materials are freely accessible for community distribution.'}
               </span>
               <button
                 onClick={() => switchTab('haz-tu-pregunta')}
-                className="bg-[#E5A400] text-[#003B49] px-6 py-2.5 rounded-xl font-black hover:bg-[#cca300] transition-colors cursor-pointer"
+                className="bg-[#003B49] text-white px-6 py-2 rounded-xl font-bold hover:bg-[#087E8B] transition-colors cursor-pointer text-[13.5px]"
               >
-                {lang === 'es' ? 'Solicitar material específico' : 'Request specific material'}
+                {lang === 'es' ? '¿Tienes dudas? Haz tu pregunta' : 'Have questions? Ask the Network'}
               </button>
             </div>
+
           </div>
         )}
 
-        {/* 3. PESTAÑA: HAZ TU PREGUNTA (Canal de consulta médica privada y confidencial) */}
+        {/* 3. PESTAÑA: HAZ TU PREGUNTA */}
         {activeTab === 'haz-tu-pregunta' && (
           <div className="animate-fadeIn">
             <div className="bg-white p-8 md:p-10 rounded-3xl border-2 border-[#003B49]/15 shadow-md">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 
-                {/* Columna Izquierda: Información de Confidencialidad */}
+                {/* Columna Izquierda: Información de Confidencialidad (Sin badge de CANAL CONFIDENCIAL) */}
                 <div className="lg:col-span-5 space-y-4">
-                  <span className="px-3 py-1 bg-[#A10D3A] text-white text-[12px] font-black uppercase tracking-wider rounded-md inline-block">
-                    {lang === 'es' ? 'Canal Confidencial' : 'Confidential Channel'}
-                  </span>
                   <h3 className="text-[26px] font-black text-[#003B49] leading-tight">
                     {lang === 'es' ? 'Envía tu consulta médica o personal' : 'Submit your medical or personal inquiry'}
                   </h3>

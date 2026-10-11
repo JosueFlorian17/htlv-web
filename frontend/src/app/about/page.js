@@ -277,26 +277,15 @@ function AboutContent() {
         {activeTab === 'estructura' && (
           <div className="space-y-6 animate-fadeIn max-w-5xl mx-auto">
             
-            {/* Cabecera Informativa */}
-            <div className="bg-white p-6 rounded-3xl border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[#087E8B] text-3xl">account_tree</span>
-                <div>
-                  <h3 className="text-[20px] font-black text-[#003B49]">
-                    {lang === 'es' ? 'Estructura y Gobernanza de la Red' : 'Network Structure & Governance'}
-                  </h3>
-                  <p className="text-[14px] text-gray-600">
-                    {lang === 'es' ? 'Haga clic en cualquiera de las áreas para consultar los detalles:' : 'Click on any area to view details:'}
-                  </p>
-                </div>
-              </div>
-              <span className="text-[12px] font-bold uppercase tracking-wider px-3 py-1 bg-gray-100 text-[#003B49] rounded-lg">
-                {lang === 'es' ? 'Interactivo' : 'Interactive'}
-              </span>
+            {/* Título limpio sin card ni segmento de interactivo */}
+            <div>
+              <h3 className="text-[26px] font-black text-[#003B49]">
+                {lang === 'es' ? 'Estructura y Gobernanza de la Red' : 'Network Structure & Governance'}
+              </h3>
             </div>
 
-            {/* Canvas Claro del Organigrama (Sin fondo negro ni efectos hover) */}
-            <div className="bg-[#F8F9FA] text-[#002538] p-6 md:p-12 rounded-2xl border border-gray-200 shadow-xs relative overflow-x-auto">
+            {/* Diagrama directo sin borde ni nada exterior */}
+            <div className="w-full relative overflow-x-auto py-4">
               <div className="min-w-[700px] flex flex-col items-center">
                 
                 {/* NIVEL 1: Comité Directivo */}

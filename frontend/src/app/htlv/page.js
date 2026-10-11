@@ -13,6 +13,14 @@ function HTLVContent() {
 
   const [activeTab, setActiveTab] = useState(tabFromUrl || 'que-es');
   const [activeTopic, setActiveTopic] = useState('definicion');
+  const [openFaqs, setOpenFaqs] = useState({ 1: true });
+
+  const toggleFaq = (id) => {
+    setOpenFaqs((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   useEffect(() => {
     if (tabFromUrl && ['que-es', 'faqs'].includes(tabFromUrl)) {
@@ -340,18 +348,43 @@ function HTLVContent() {
               </p>
             </div>
 
-            {/* Listado de Preguntas de Corrido */}
-            <div className="space-y-8 divide-y divide-gray-200">
-              {faqs.map((f, idx) => (
-                <article key={f.id} className={idx === 0 ? "space-y-2.5" : "pt-8 space-y-2.5"}>
-                  <h3 className="text-[19px] md:text-[21px] font-bold text-[#003B49] leading-snug">
-                    {f.q}
-                  </h3>
-                  <p className="text-[16px] text-gray-700 leading-relaxed font-normal">
-                    {f.a}
-                  </p>
-                </article>
-              ))}
+            {/* Listado de Preguntas Colapsables con Disclaimer Resumido */}
+            <div className="space-y-4 divide-y divide-gray-200">
+              {faqs.map((f, idx) => {
+                const isOpen = !!openFaqs[f.id];
+                return (
+                  <div key={f.id} className={idx === 0 ? "pt-0" : "pt-4"}>
+                    <button
+                      onClick={() => toggleFaq(f.id)}
+                      className="w-full text-left flex items-start justify-between gap-4 py-2 hover:text-[#087E8B] transition-colors cursor-pointer group"
+                      aria-expanded={isOpen}
+                    >
+                      <h3 className="text-[19px] md:text-[21px] font-bold text-[#003B49] group-hover:text-[#087E8B] leading-snug">
+                        {f.q}
+                      </h3>
+                      <span className="material-symbols-outlined text-gray-500 group-hover:text-[#087E8B] text-2xl shrink-0 transition-transform duration-200 mt-0.5">
+                        {isOpen ? 'expand_less' : 'expand_more'}
+                      </span>
+                    </button>
+
+                    {isOpen && (
+                      <div className="pt-2 pb-4 space-y-3 animate-fadeIn">
+                        <p className="text-[16px] text-gray-700 leading-relaxed font-normal">
+                          {f.a}
+                        </p>
+                        <div className="pt-2.5 border-t border-gray-100 flex items-start gap-2 text-[13px] text-gray-500 italic">
+                          <span className="material-symbols-outlined text-[16px] text-[#087E8B] shrink-0 mt-0.5">info</span>
+                          <span>
+                            {lang === 'es'
+                              ? 'Aviso informativo: Este contenido es exclusivamente educativo y divulgativo; no constituye diagnóstico clínico ni sustituye la atención médica profesional.'
+                              : 'Informational note: This content is for educational purposes only; it does not constitute clinical diagnosis or replace professional medical care.'}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Aviso Médico Disclaimer Sintetizado */}
