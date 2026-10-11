@@ -55,14 +55,18 @@ export default function Home() {
             <div className="lg:col-span-5">
               <div className="bg-[#f8f9fb] text-[#003B49] p-8 md:p-10 rounded-3xl shadow-2xl border-2 border-white/30 space-y-6">
                 
-                <div className="space-y-3">
-                  <span className="px-3 py-1 bg-[#A10D3A] text-white text-[12px] font-black uppercase tracking-wider rounded-md inline-block">
-                    RIII-HTLV
-                  </span>
-                  <h1 className="text-[26px] sm:text-[32px] font-black leading-snug text-[#003B49]">
+                <div className="space-y-4">
+                  <div>
+                    <img 
+                      src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
+                      alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
+                      className="h-12 sm:h-14 w-auto object-contain"
+                    />
+                  </div>
+                  <h1 className="text-[25px] sm:text-[30px] font-black leading-snug text-[#003B49]">
                     {lang === 'es'
-                      ? 'RIII-HTLV: Generando Evidencia de Calidad para la Transformación de la Salud en Poblaciones Afectadas'
-                      : 'RIII-HTLV: Generating Quality Evidence for Health Transformation in HTLV-Affected Populations'}
+                      ? 'Generando Evidencia de Calidad para la Transformación de la Salud en Poblaciones Afectadas'
+                      : 'Generating Quality Evidence for Health Transformation in HTLV-Affected Populations'}
                   </h1>
                 </div>
 

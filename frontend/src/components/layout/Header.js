@@ -108,18 +108,14 @@ export default function Header() {
         }`}>
             <div className="max-w-[1400px] mx-auto w-full h-full flex justify-between items-center px-4 md:px-8">
                 
-                {/* Logo Principal (Clickable para ir a Inicio) */}
-                <Link href="/" className="flex items-center gap-3 group" title="Ir al Inicio">
-                    <div className="w-11 h-11 rounded-2xl bg-[#087E8B] text-white flex items-center justify-center font-black text-2xl shadow-sm group-hover:bg-[#1E9CD7] transition-all">
-                        R
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-[23px] md:text-[25px] font-black text-white tracking-tight leading-none group-hover:text-[#E5A400] transition-colors">
-                            RIII-HTLV
-                        </span>
-                        <span className="text-[10.5px] font-extrabold text-[#1E9CD7] tracking-wider uppercase mt-1">
-                            {lang === 'es' ? 'Red Internacional HTLV' : 'International HTLV Network'}
-                        </span>
+                {/* Logo Principal Oficial (Dinámico por idioma: ES / EN) */}
+                <Link href="/" className="flex items-center gap-3 group" title={lang === 'es' ? "Ir al Inicio" : "Go to Home"}>
+                    <div className="bg-white px-3 py-1.5 rounded-xl shadow-xs flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <img 
+                            src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
+                            alt={lang === 'es' ? "Logo Oficial Red HTLV" : "Official HTLV Network Logo"}
+                            className="h-9 md:h-10 w-auto object-contain"
+                        />
                     </div>
                 </Link>
 

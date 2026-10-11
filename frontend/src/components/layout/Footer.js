@@ -238,10 +238,15 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Logotipo Central estilo IRVA */}
-          <div className="flex items-center gap-2 text-white font-black text-[19px] tracking-tight">
-            <span className="material-symbols-outlined text-2xl text-[#1E9CD7]">public</span>
-            <span>RIII-HTLV</span>
+          {/* Logotipo Central estilo IRVA (Dinámico por idioma) */}
+          <div className="flex items-center">
+            <Link href="/" className="bg-white/95 px-3 py-1 rounded-lg shadow-xs hover:bg-white transition-all flex items-center">
+              <img
+                src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
+                alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
+                className="h-7 w-auto object-contain"
+              />
+            </Link>
           </div>
 
           {/* Redes Sociales y Botón Circular Flotante */}

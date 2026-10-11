@@ -235,19 +235,31 @@ function AboutContent() {
         {activeTab === 'quienes-somos' && (
           <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
             <div className="bg-white p-8 md:p-10 rounded-3xl border-2 border-gray-200 shadow-xs space-y-6">
-              <div>
-                <span className="px-3 py-1 bg-[#A10D3A] text-white text-[12px] font-black uppercase rounded-md inline-block mb-2">
-                  RIII-HTLV
-                </span>
-                <h2 className="text-[28px] font-black text-[#003B49]">
-                  {lang === 'es' ? 'Quiénes Somos' : 'Who We Are'}
-                </h2>
-                <p className="text-[17px] text-[#443333] leading-relaxed mt-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-100">
+                <div>
+                  <span className="px-3 py-1 bg-[#A10D3A] text-white text-[12px] font-black uppercase rounded-md inline-block mb-2">
+                    RIII-HTLV
+                  </span>
+                  <h2 className="text-[28px] font-black text-[#003B49]">
+                    {lang === 'es' ? 'Quiénes Somos' : 'Who We Are'}
+                  </h2>
+                </div>
+                <div className="bg-gray-50 p-2.5 rounded-2xl border border-gray-200 shadow-2xs self-start sm:self-auto">
+                  <img 
+                    src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
+                    alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
+                    className="h-10 sm:h-12 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <p className="text-[17px] text-[#443333] leading-relaxed">
                   {lang === 'es'
                     ? 'La Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV) es una alianza científica y académica internacional coordinada por el Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) de la Universidad Peruana Cayetano Heredia (UPCH).'
                     : 'The International Research and Innovation Network on HTLV (RIII-HTLV) is an international scientific alliance coordinated by the Alexander von Humboldt Tropical Medicine Institute (IMTAvH) at Universidad Peruana Cayetano Heredia (UPCH).'}
                 </p>
-                <p className="text-[17px] text-[#443333] leading-relaxed mt-2">
+                <p className="text-[17px] text-[#443333] leading-relaxed">
                   {lang === 'es'
                     ? 'Nuestra meta es articular a centros situados en focos endémicos con laboratorios de referencia en Europa, América Latina y Asia para acelerar el diagnóstico oportuno, los protocolos terapéuticos y la erradicación progresiva de las patologías asociadas al HTLV-1 y HTLV-2.'
                     : 'Our goal is to connect centers located in endemic areas with reference laboratories in Europe, Latin America, and Asia to accelerate early diagnosis, therapeutics, and progressive eradication of HTLV-1 and HTLV-2.'}
@@ -273,7 +285,7 @@ function AboutContent() {
                   <p className="text-[15px] text-[#332222] leading-relaxed">
                     {lang === 'es'
                       ? 'Consolidarse como la plataforma científica de referencia mundial en retrovirología humana, integrando a pacientes, médicos y organismos multilaterales.'
-                      : 'Become the world’s benchmark scientific platform in human retrovirology, integrating patients, clinicians, and multilateral agencies.'}
+                      : 'Become the world’s benchmark scientific platform in human retrovirology, integrando a pacientes, clínicos y agencias multilaterales.'}
                   </p>
                 </div>
               </div>
@@ -436,7 +448,7 @@ function AboutContent() {
                           </h6>
                         </div>
                         <span className="text-[12px] text-gray-400 mt-2 block font-medium">
-                          {node.subtitle.replace(/.*- /, '')}
+                          {node.subtitle.split(' - ')[1] || node.subtitle}
                         </span>
                       </div>
                     ))}
