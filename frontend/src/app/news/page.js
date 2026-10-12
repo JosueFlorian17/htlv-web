@@ -10,7 +10,7 @@ export default function NewsPage() {
     {
       day: '12',
       month: 'NOV',
-      year: '2024',
+      year: '2026',
       title: 'Taller de Métodos de Tipificación Molecular',
       desc: 'Capacitación práctica presencial y virtual sobre protocolos avanzados de tipificación de subtipos de HTLV-1.',
       time: '10:00 - 16:00 GMT',
@@ -20,7 +20,7 @@ export default function NewsPage() {
     {
       day: '18',
       month: 'NOV',
-      year: '2024',
+      year: '2026',
       title: 'Simposio Internacional: HTLV y Co-infecciones',
       desc: 'Exploración de la dinámica clínica entre HTLV-1, VIH y tuberculosis en regiones altamente endémicas.',
       time: '14:00 - 18:00 GMT',
@@ -30,7 +30,7 @@ export default function NewsPage() {
     {
       day: '02',
       month: 'DIC',
-      year: '2024',
+      year: '2026',
       title: 'Foro Anual de Consorcios de Investigación',
       desc: 'Reunión de gobernanza y presentación de informes de progreso de las 8 líneas de investigación.',
       time: '09:00 - 17:00 local',
@@ -90,7 +90,7 @@ export default function NewsPage() {
                   </div>
                   <div className="p-8 flex flex-col flex-grow justify-between">
                     <div>
-                      <span className="text-primary font-bold text-label-sm mb-2 block">24 de Octubre, 2024</span>
+                      <span className="text-primary font-bold text-label-sm mb-2 block">24 de Octubre, 2026</span>
                       <h3 className="font-headline-lg text-headline-lg mb-4 group-hover:text-primary transition-colors text-[#191c1e]">Avance en Protocolos de Diagnóstico Molecular de HTLV-1</h3>
                       <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">El Consorcio Internacional ha publicado un conjunto revisado de directrices para la detección molecular de HTLV-1, priorizando la accesibilidad para entornos de bajos recursos y una mayor sensibilidad en la detección en etapas tempranas.</p>
                     </div>
@@ -106,7 +106,7 @@ export default function NewsPage() {
               <div className="md:col-span-4 flex flex-col gap-gutter">
                 <div className="bg-white p-8 rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-all flex flex-col justify-between h-1/2">
                   <div>
-                    <span className="text-primary font-bold text-label-sm mb-2 block">21 de Octubre, 2024</span>
+                    <span className="text-primary font-bold text-label-sm mb-2 block">21 de Octubre, 2026</span>
                     <h4 className="font-headline-md text-headline-md mb-2 text-[#191c1e]">Nuevo Centro Regional en el Sudeste Asiático</h4>
                     <p className="text-on-surface-variant text-label-md leading-relaxed">Ampliando la presencia de la red para mejorar la vigilancia epidemiológica en la cuenca del Pacífico.</p>
                   </div>
@@ -117,7 +117,7 @@ export default function NewsPage() {
                 </div>
                 <div className="bg-white p-8 rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-all flex flex-col justify-between h-1/2">
                   <div>
-                    <span className="text-primary font-bold text-label-sm mb-2 block">15 de Octubre, 2024</span>
+                    <span className="text-primary font-bold text-label-sm mb-2 block">18 de Octubre, 2026</span>
                     <h4 className="font-headline-md text-headline-md mb-2 text-[#191c1e]">Ganadores de Becas de Publicación Anual</h4>
                     <p className="text-on-surface-variant text-label-md leading-relaxed">Celebrando los logros de cinco investigadores principiantes del consorcio global.</p>
                   </div>
@@ -136,7 +136,7 @@ export default function NewsPage() {
                   </div>
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
-                      <span className="text-on-surface-variant font-label-sm opacity-70 block mb-2">12 de Octubre, 2024</span>
+                      <span className="text-on-surface-variant font-label-sm opacity-70 block mb-2">15 de Octubre, 2026</span>
                       <h4 className="font-headline-md text-headline-md text-[#191c1e] mb-2 leading-tight">Acuerdo de Intercambio de Datos Interinstitucionales</h4>
                       <p className="text-on-surface-variant text-label-md leading-relaxed">Protocolos de repositorio unificados establecidos para 12 centros de investigación principales.</p>
                     </div>
@@ -150,7 +150,7 @@ export default function NewsPage() {
                   </div>
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
-                      <span className="text-on-surface-variant font-label-sm opacity-70 block mb-2">08 de Octubre, 2024</span>
+                      <span className="text-on-surface-variant font-label-sm opacity-70 block mb-2">14 de Octubre, 2026</span>
                       <h4 className="font-headline-md text-headline-md text-[#191c1e] mb-2 leading-tight">Resumen del Día Mundial del HTLV-1</h4>
                       <p className="text-on-surface-variant text-label-md leading-relaxed">Resumen de las actividades globales de concientización e informes de impacto en salud pública.</p>
                     </div>
@@ -164,7 +164,7 @@ export default function NewsPage() {
                   </div>
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
-                      <span className="text-on-surface-variant font-label-sm opacity-70 block mb-2">01 de Octubre, 2024</span>
+                      <span className="text-on-surface-variant font-label-sm opacity-70 block mb-2">12 de Octubre, 2026</span>
                       <h4 className="font-headline-md text-headline-md text-[#191c1e] mb-2 leading-tight">Expansión del Repositorio Digital</h4>
                       <p className="text-on-surface-variant text-label-md leading-relaxed">Más de 500 nuevos resúmenes clínicos añadidos al portal de búsqueda de miembros.</p>
                     </div>
@@ -181,7 +181,7 @@ export default function NewsPage() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
               <div>
                 <h2 className="font-headline-lg text-headline-lg text-primary">Calendario Académico</h2>
-                <p className="text-on-surface-variant font-body-md">Reuniones científicas y talleres técnicos para el cuarto trimestre de 2024.</p>
+                <p className="text-on-surface-variant font-body-md">Reuniones científicas y talleres técnicos para el cuarto trimestre de 2026.</p>
               </div>
               <div className="flex gap-2">
                 <button className="bg-white border border-outline px-4 py-2 rounded-lg font-label-md flex items-center gap-2 hover:bg-surface-container-low transition-all cursor-pointer">

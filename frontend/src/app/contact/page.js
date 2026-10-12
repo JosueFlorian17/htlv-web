@@ -10,23 +10,11 @@ export default function ContactPage() {
     firstName: '',
     lastName: '',
     email: '',
-    organization: '',
-    inquiryType: 'Investigación Científica',
     message: '',
     termsAccepted: false
   });
 
   const [submitted, setSubmitted] = useState(false);
-
-  const memberInstitutions = [
-    { name: 'Universidad Peruana Cayetano Heredia (UPCH)', url: 'https://www.cayetano.edu.pe', country: 'Perú' },
-    { name: 'Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH)', url: 'https://medicina.cayetano.edu.pe/imtavh/', country: 'Perú' },
-    { name: 'Imperial College London', url: 'https://www.imperial.ac.uk', country: 'Reino Unido' },
-    { name: 'Institut Pasteur', url: 'https://www.pasteur.fr', country: 'Francia' },
-    { name: 'Fundação Oswaldo Cruz (Fiocruz)', url: 'https://portal.fiocruz.br', country: 'Brasil' },
-    { name: 'Instituto de Salud Carlos III (ISCIII)', url: 'https://www.isciii.es', country: 'España' },
-    { name: 'St. Marianna University School of Medicine', url: 'https://www.marianna-u.ac.jp', country: 'Japón' }
-  ];
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -110,7 +98,7 @@ export default function ContactPage() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Nombre *' : 'First Name *'}</label>
+                    <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Nombre' : 'First Name'}</label>
                     <input 
                       name="firstName" 
                       value={formData.firstName} 
@@ -122,7 +110,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Apellidos *' : 'Last Name *'}</label>
+                    <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Apellidos' : 'Last Name'}</label>
                     <input 
                       name="lastName" 
                       value={formData.lastName} 
@@ -136,7 +124,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Correo Electrónico Institucional *' : 'Institutional Email *'}</label>
+                  <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Correo Electrónico' : 'Email'}</label>
                   <input 
                     name="email" 
                     value={formData.email} 
@@ -144,40 +132,12 @@ export default function ContactPage() {
                     className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent text-sm text-slate-900 transition" 
                     type="email" 
                     required 
-                    placeholder="nombre@institucion.edu"
+                    placeholder="nombre@ejemplo.com"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Institución / Centro de Investigación' : 'Institution / Research Center'}</label>
-                  <input 
-                    name="organization" 
-                    value={formData.organization} 
-                    onChange={handleChange}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent text-sm text-slate-900 transition" 
-                    type="text" 
-                    placeholder="Ej. Universidad / Instituto"
-                  />
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Motivo de la Comunicación' : 'Inquiry Reason'}</label>
-                  <select 
-                    name="inquiryType" 
-                    value={formData.inquiryType} 
-                    onChange={handleChange}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent text-sm text-slate-900 transition cursor-pointer"
-                  >
-                    <option value="Investigación Científica">{lang === 'es' ? 'Propuesta de Investigación o Proyecto' : 'Research Proposal or Project'}</option>
-                    <option value="Acreditación">{lang === 'es' ? 'Solicitud de Carta de Acreditación de la Red' : 'Network Endorsement Letter Request'}</option>
-                    <option value="Capacitación">{lang === 'es' ? 'Consultas sobre Cursos o Webinars' : 'Courses or Webinars Information'}</option>
-                    <option value="Adhesión">{lang === 'es' ? 'Incorporación de Nueva Institución Aliada' : 'New Member Node Affiliation'}</option>
-                    <option value="Otro">{lang === 'es' ? 'Otro Asunto Institucional' : 'Other Institutional Subject'}</option>
-                  </select>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Mensaje *' : 'Message *'}</label>
+                  <label className="text-sm font-semibold text-[#003B49]">{lang === 'es' ? 'Mensaje' : 'Message'}</label>
                   <textarea 
                     name="message" 
                     value={formData.message} 
@@ -185,7 +145,7 @@ export default function ContactPage() {
                     rows="4" 
                     className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent text-sm text-slate-900 resize-none transition" 
                     required
-                    placeholder={lang === 'es' ? "Describa su consulta o propuesta institucional..." : "Describe your request or institutional inquiry..."}
+                    placeholder={lang === 'es' ? "Describa su consulta o mensaje..." : "Describe your request or message..."}
                   ></textarea>
                 </div>
 
@@ -218,15 +178,15 @@ export default function ContactPage() {
           </div>
 
           {/* Columna Derecha: Información Integrada en Lista Limpia */}
-          <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-slate-200 lg:pl-10 space-y-8 pt-8 lg:pt-0">
+          <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-slate-200 lg:pl-10 space-y-6 pt-8 lg:pt-0">
             
             {/* Sede Central en formato de lista institucional */}
             <div className="space-y-4">
               <h3 className="text-lg font-bold text-[#003B49]">
-                {lang === 'es' ? 'Sede Central de Coordinación' : 'Coordination Center'}
+                {lang === 'es' ? 'Recuerda que puedes encontrarnos en' : 'You can find us at'}
               </h3>
               
-              <div className="space-y-3 text-sm text-slate-700">
+              <div className="space-y-4 text-sm text-slate-700">
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-[#087E8B] text-xl mt-0.5">location_on</span>
                   <div>
@@ -244,43 +204,6 @@ export default function ContactPage() {
                     </a>
                   </div>
                 </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-[#087E8B] text-xl mt-0.5">language</span>
-                  <div>
-                    <strong className="block text-[#003B49]">Sitio Web IMTAvH</strong>
-                    <a 
-                      href="https://medicina.cayetano.edu.pe/imtavh/" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="text-[#087E8B] hover:underline font-medium"
-                    >
-                      medicina.cayetano.edu.pe/imtavh/
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Directorio de Nodos en lista limpia */}
-            <div className="space-y-3 pt-6 border-t border-slate-200">
-              <h3 className="text-lg font-bold text-[#003B49]">
-                {lang === 'es' ? 'Directorio de Nodos Miembros' : 'Member Nodes Directory'}
-              </h3>
-              
-              <div className="divide-y divide-slate-100 text-sm">
-                {memberInstitutions.map((inst, i) => (
-                  <a
-                    key={i}
-                    href={inst.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="py-2.5 flex items-center justify-between text-slate-700 hover:text-[#087E8B] font-medium transition-colors group"
-                  >
-                    <span>{inst.name}</span>
-                    <span className="material-symbols-outlined text-base text-slate-400 group-hover:text-[#087E8B]">open_in_new</span>
-                  </a>
-                ))}
               </div>
             </div>
 

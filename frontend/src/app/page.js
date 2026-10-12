@@ -65,16 +65,10 @@ export default function Home() {
                   </div>
                   <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-[#003B49]">
                     {lang === 'es'
-                      ? 'Generando Evidencia de Calidad para la Transformación de la Salud en Poblaciones Afectadas'
-                      : 'Generating Quality Evidence for Health Transformation in HTLV-Affected Populations'}
+                      ? 'Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV)'
+                      : 'International Research and Innovation Network on HTLV (RIII-HTLV)'}
                   </h1>
                 </div>
-
-                <p className="text-base text-slate-700 leading-relaxed">
-                  {lang === 'es'
-                    ? 'Alianza internacional de centros de excelencia liderada por el Instituto de Medicina Tropical Alexander von Humboldt (UPCH) para el diagnóstico temprano, la investigación clínica y el cuidado integral.'
-                    : 'International alliance of excellence led by Alexander von Humboldt Tropical Medicine Institute (UPCH) for early diagnosis, clinical research, and patient care.'}
-                </p>
 
                 <div>
                   <Link
@@ -104,7 +98,7 @@ export default function Home() {
               <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-black">
                 <iframe
                   className="w-full h-full"
-                  src="https://www.youtube-nocookie.com/embed/n3GzS_WnQ0I?rel=0"
+                  src="https://www.youtube-nocookie.com/embed/1NqgEEReKhs?rel=0"
                   title="Video RIII-HTLV"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

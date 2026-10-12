@@ -43,8 +43,8 @@ export default function ResourcesPage() {
       category: 'Clínica & Diagnóstico',
       desc: 'Abordaje integral del compromiso neurológico, mielopatía asociada a HTLV (HAM/TSP), criterios diagnósticos confirmatorios y seguimiento de pacientes.',
       isYoutube: true,
-      youtubeId: 'Cf215t0X86U',
-      thumbnail: 'https://img.youtube.com/vi/Cf215t0X86U/hqdefault.jpg',
+      youtubeId: '1NqgEEReKhs',
+      thumbnail: 'https://img.youtube.com/vi/1NqgEEReKhs/hqdefault.jpg',
       checkpoints: [
         {
           timePercent: 50,

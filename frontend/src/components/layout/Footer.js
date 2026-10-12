@@ -192,6 +192,12 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
+                    <Link href="/about?tab=objetivos" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
+                      <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
+                      <span>{lang === 'es' ? 'Objetivos' : 'Objectives'}</span>
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/about?tab=estructura" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
                       <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
                       <span>{lang === 'es' ? 'Estructura & Gobierno' : 'Our Team'}</span>

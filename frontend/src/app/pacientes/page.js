@@ -307,11 +307,11 @@ function PacientesContent() {
               })}
             </div>
 
-            {/* Aviso Médico Disclaimer Sintetizado */}
+            {/* Aviso Importante Disclaimer Sintetizado */}
             <div className="mt-8 p-6 bg-slate-50 border-l-4 border-[#087E8B] rounded-r-xl text-sm text-slate-600 leading-relaxed space-y-2">
               <div className="flex items-center gap-2 text-[#003B49] font-bold text-sm">
                 <span className="material-symbols-outlined text-lg text-[#087E8B]">info</span>
-                <span>{lang === 'es' ? 'Aviso Médico Importante' : 'Important Medical Disclaimer'}</span>
+                <span>{lang === 'es' ? 'Aviso importante' : 'Important Notice'}</span>
               </div>
               <p>
                 {lang === 'es'
@@ -327,131 +327,7 @@ function PacientesContent() {
         {activeTab === 'recursos' && (
           <div className="space-y-12 animate-fadeIn max-w-5xl mx-auto py-2">
             
-            {/* SECCIÓN 1: VIDEOTECA EDUCATIVA */}
-            <div className="space-y-6">
-              <div className="border-b border-slate-200 pb-3">
-                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                  {lang === 'es' ? 'Videoteca Educativa' : 'Educational Video Library'}
-                </h2>
-                <p className="text-slate-600 text-sm mt-0.5">
-                  {lang === 'es' 
-                    ? 'Videos informativos preparados por especialistas de la Red para pacientes y sus familias.'
-                    : 'Informational talks prepared by Network specialists for patients and families.'}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-                  <div className="relative aspect-video w-full bg-slate-900">
-                    <iframe
-                      className="w-full h-full"
-                      src="https://www.youtube-nocookie.com/embed/5O9Yw8Z0eoc"
-                      title={lang === 'es' ? "Comprendiendo el HTLV-1" : "Understanding HTLV-1"}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                  <div className="p-6 space-y-2">
-                    <p className="text-xs font-semibold text-[#087E8B]">
-                      {lang === 'es' ? 'Fundamentos Médicos' : 'Medical Fundamentals'}
-                    </p>
-                    <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
-                      {lang === 'es' ? '¿Qué es el HTLV-1 y qué esperar tras el diagnóstico?' : 'What is HTLV-1 and what to expect after diagnosis?'}
-                    </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      {lang === 'es' 
-                        ? 'Explicación clara sobre el curso benigno en más del 90% de personas, vías de no transmisión y vida cotidiana.'
-                        : 'Clear overview of the benign course in >90% of individuals, non-transmission facts, and daily living.'}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-                  <div className="relative aspect-video w-full bg-slate-900">
-                    <iframe
-                      className="w-full h-full"
-                      src="https://www.youtube-nocookie.com/embed/fJ9rUzIMcZQ"
-                      title={lang === 'es' ? "Maternidad y Prevención Vertical" : "Maternity and Vertical Prevention"}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                  <div className="p-6 space-y-2">
-                    <p className="text-xs font-semibold text-[#A10D3A]">
-                      {lang === 'es' ? 'Salud Materno-Infantil' : 'Maternal-Child Health'}
-                    </p>
-                    <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
-                      {lang === 'es' ? 'Maternidad Segura y Prevención de Transmisión Vertical' : 'Safe Motherhood & Prevention of Vertical Transmission'}
-                    </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      {lang === 'es' 
-                        ? 'Pautas clínicas sobre tamizaje prenatal, parto seguro y el rol de las fórmulas sucedáneas.'
-                        : 'Clinical guidelines on prenatal screening, safe delivery, and the protective role of infant formulas.'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* SECCIÓN 2: FORMULARIOS Y FICHAS DE APOYO (Sin chips, descarga directa) */}
-            <div className="space-y-6">
-              <div className="border-b border-slate-200 pb-3">
-                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                  {lang === 'es' ? 'Formularios y Fichas de Apoyo' : 'Support Forms & Checklists'}
-                </h2>
-                <p className="text-slate-600 text-sm mt-0.5">
-                  {lang === 'es' 
-                    ? 'Documentos en formato descargable para facilitar el seguimiento médico y la solicitud de orientación.'
-                    : 'Downloadable documents to support medical tracking and consultation requests.'}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                  {
-                    title: lang === 'es' ? "Ficha de Registro y Acompañamiento" : "Patient Registration & Support Sheet",
-                    tag: "PDF • 240 KB",
-                    desc: lang === 'es' ? "Formato para solicitar consejería y acompañamiento voluntario de la Red." : "Format to request counseling and voluntary support from the Network.",
-                    action: lang === 'es' ? "Descargar Ficha" : "Download Form"
-                  },
-                  {
-                    title: lang === 'es' ? "Lista de Chequeo para Consulta Anual" : "Annual Checkup Checklist",
-                    tag: "PDF • 180 KB",
-                    desc: lang === 'es' ? "Preguntas y exámenes clave para llevar a la consulta con tu médico de cabecera." : "Key questions and routine exams to bring to your primary care visit.",
-                    action: lang === 'es' ? "Descargar Checklist" : "Download Checklist"
-                  },
-                  {
-                    title: lang === 'es' ? "Consentimiento y Tamizaje Familiar" : "Family Screening Guidelines",
-                    tag: "PDF • 210 KB",
-                    desc: lang === 'es' ? "Pautas claras para asesorar a parejas o familiares que desean realizarse el test." : "Clear guidelines for counseling partners or family members seeking testing.",
-                    action: lang === 'es' ? "Descargar Pautas" : "Download Guide"
-                  }
-                ].map((item, i) => (
-                  <div key={i} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
-                    <div className="space-y-2">
-                      <p className="text-xs font-medium text-slate-500">
-                        {item.tag}
-                      </p>
-                      <h4 className="text-base font-bold text-[#003B49]">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm text-slate-600 leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => handleDownloadDoc(item.title)}
-                      className="w-full bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white py-2 px-4 rounded-lg text-sm font-semibold transition-colors cursor-pointer flex items-center justify-center gap-2"
-                    >
-                      <span className="material-symbols-outlined text-base">download</span>
-                      <span>{item.action}</span>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* SECCIÓN 3: FOLLETOS Y GUÍAS DIGITALES (Con modal lightbox superpuesto) */}
+            {/* SECCIÓN 1: FOLLETOS Y GUÍAS DIGITALES (Con modal lightbox superpuesto) */}
             <div className="space-y-6">
               <div className="border-b border-slate-200 pb-3">
                 <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
@@ -509,6 +385,130 @@ function PacientesContent() {
                         <span>{lang === 'es' ? 'Leer Folleto Digital' : 'Read Digital Brochure'}</span>
                       </button>
                     </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* SECCIÓN 2: VIDEOTECA EDUCATIVA */}
+            <div className="space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
+                  {lang === 'es' ? 'Videoteca Educativa' : 'Educational Video Library'}
+                </h2>
+                <p className="text-slate-600 text-sm mt-0.5">
+                  {lang === 'es' 
+                    ? 'Videos informativos preparados por especialistas de la Red para pacientes y sus familias.'
+                    : 'Informational talks prepared by Network specialists for patients and families.'}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                  <div className="relative aspect-video w-full bg-slate-900">
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube-nocookie.com/embed/1NqgEEReKhs"
+                      title={lang === 'es' ? "Comprendiendo el HTLV-1" : "Understanding HTLV-1"}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <div className="p-6 space-y-2">
+                    <p className="text-xs font-semibold text-[#087E8B]">
+                      {lang === 'es' ? 'Fundamentos Médicos' : 'Medical Fundamentals'}
+                    </p>
+                    <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
+                      {lang === 'es' ? '¿Qué es el HTLV-1 y qué esperar tras el diagnóstico?' : 'What is HTLV-1 and what to expect after diagnosis?'}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {lang === 'es' 
+                        ? 'Explicación clara sobre el curso benigno en más del 90% de personas, vías de no transmisión y vida cotidiana.'
+                        : 'Clear overview of the benign course in >90% of individuals, non-transmission facts, and daily living.'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                  <div className="relative aspect-video w-full bg-slate-900">
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube-nocookie.com/embed/rpmI1nhMOak"
+                      title={lang === 'es' ? "Maternidad y Prevención Vertical" : "Maternity and Vertical Prevention"}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <div className="p-6 space-y-2">
+                    <p className="text-xs font-semibold text-[#A10D3A]">
+                      {lang === 'es' ? 'Salud Materno-Infantil' : 'Maternal-Child Health'}
+                    </p>
+                    <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
+                      {lang === 'es' ? 'Maternidad Segura y Prevención de Transmisión Vertical' : 'Safe Motherhood & Prevention of Vertical Transmission'}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {lang === 'es' 
+                        ? 'Pautas clínicas sobre tamizaje prenatal, parto seguro y el rol de las fórmulas sucedáneas.'
+                        : 'Clinical guidelines on prenatal screening, safe delivery, and the protective role of infant formulas.'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* SECCIÓN 3: FORMULARIOS Y FICHAS DE APOYO (Sin chips, descarga directa) */}
+            <div className="space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
+                  {lang === 'es' ? 'Formularios y Fichas de Apoyo' : 'Support Forms & Checklists'}
+                </h2>
+                <p className="text-slate-600 text-sm mt-0.5">
+                  {lang === 'es' 
+                    ? 'Documentos en formato descargable para facilitar el seguimiento médico y la solicitud de orientación.'
+                    : 'Downloadable documents to support medical tracking and consultation requests.'}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: lang === 'es' ? "Ficha de Registro y Acompañamiento" : "Patient Registration & Support Sheet",
+                    tag: "PDF • 240 KB",
+                    desc: lang === 'es' ? "Formato para solicitar consejería y acompañamiento voluntario de la Red." : "Format to request counseling and voluntary support from the Network.",
+                    action: lang === 'es' ? "Descargar Ficha" : "Download Form"
+                  },
+                  {
+                    title: lang === 'es' ? "Lista de Chequeo para Consulta Anual" : "Annual Checkup Checklist",
+                    tag: "PDF • 180 KB",
+                    desc: lang === 'es' ? "Preguntas y exámenes clave para llevar a la consulta con tu médico de cabecera." : "Key questions and routine exams to bring to your primary care visit.",
+                    action: lang === 'es' ? "Descargar Checklist" : "Download Checklist"
+                  },
+                  {
+                    title: lang === 'es' ? "Consentimiento y Tamizaje Familiar" : "Family Screening Guidelines",
+                    tag: "PDF • 210 KB",
+                    desc: lang === 'es' ? "Pautas claras para asesorar a parejas o familiares que desean realizarse el test." : "Clear guidelines for counseling partners or family members seeking testing.",
+                    action: lang === 'es' ? "Descargar Pautas" : "Download Guide"
+                  }
+                ].map((item, i) => (
+                  <div key={i} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
+                    <div className="space-y-2">
+                      <p className="text-xs font-medium text-slate-500">
+                        {item.tag}
+                      </p>
+                      <h4 className="text-base font-bold text-[#003B49]">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-slate-600 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleDownloadDoc(item.title)}
+                      className="w-full bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white py-2 px-4 rounded-lg text-sm font-semibold transition-colors cursor-pointer flex items-center justify-center gap-2"
+                    >
+                      <span className="material-symbols-outlined text-base">download</span>
+                      <span>{item.action}</span>
+                    </button>
                   </div>
                 ))}
               </div>

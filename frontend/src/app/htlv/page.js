@@ -371,11 +371,11 @@ function HTLVContent() {
               })}
             </div>
 
-            {/* Aviso Médico Disclaimer Sintetizado */}
+            {/* Aviso Importante Disclaimer Sintetizado */}
             <div className="mt-8 p-5 bg-slate-50 border-l-4 border-[#087E8B] rounded-r-xl text-xs sm:text-sm text-slate-600 leading-relaxed space-y-1.5">
               <div className="flex items-center gap-2 text-[#003B49] font-bold text-sm">
                 <span className="material-symbols-outlined text-lg text-[#087E8B]">info</span>
-                <span>{lang === 'es' ? 'Aviso Médico Importante' : 'Important Medical Disclaimer'}</span>
+                <span>{lang === 'es' ? 'Aviso importante' : 'Important Notice'}</span>
               </div>
               <p>
                 {lang === 'es'

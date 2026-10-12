@@ -260,3 +260,15 @@ p {
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background-color: #003B49;
 }
+
+/* Animación continua para carrusel de instituciones */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 56s linear infinite;
+}

@@ -14,7 +14,7 @@ export default function OpportunitiesPage() {
       title: 'Políticas de Salud Pública y Epidemiología',
       institution: 'Fiocruz Research Institute • Río de Janeiro',
       desc: 'Prácticas de verano centradas en programas de vigilancia epidemiológica para HTLV en América del Sur. Ideal para estudiantes de maestría.',
-      deadline: 'Límite: 01 Nov 2024',
+      deadline: 'Límite: 01 Nov 2026',
       image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCc44HLGZvwY2LRLESBpWRczwHz791PuYHG7pBad6cHHiVR0ZmKDy-LLY61Hv-MRAYJBkaDLb9ZvqXzPHtPe-PrhqSHgg_82Lh6RcRqMrcPyw47vg_qBTX01h1_ycVRJeQZuTY8X-NtOCpn1DwWPNSo6SNH-yFnPp7DKmD0FAJGbOTVbQTlGqrrNTI8qKZ1q9l39g-qZgXZq3sSJFzQokfykarrLEReTbPjMdKEpheyYJgOeCPIO8sTz-k6yYuTsfCTNqlGmkeZGHM',
       tagClass: 'bg-secondary-container text-on-secondary-container'
     },
@@ -25,7 +25,7 @@ export default function OpportunitiesPage() {
       title: 'Inmunopatología de las Infecciones por HTLV',
       institution: 'Kumamoto University • Aula Virtual',
       desc: 'Un programa intensivo especializado de 4 semanas que cubre la inmunología celular y la patología de HAM/TSP y ATL.',
-      deadline: 'Límite: 20 Sep 2024',
+      deadline: 'Límite: 25 Nov 2026',
       image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuATvtuw2LeutLshetXr-JdNoQJLKbpua5wR-ItXIRp2PJP0aJ2nrEmLFUdEkhnmADosvjF__YtuaGPx_f9cK32q17Rj4zqtn73k2In6Q0ZBcBQjeR7fNqyGXwy2MnAMbVD9fJUGbl6jftThm1YDi66iJnK5QaR9CJsVsa1qrWVMwX--z3mYBsnlu2JVHt4s0gngtKfUxw5d48I7TU6-XpdmUk5cpncMgJ2YZzckje7rBYbK609fyjN6_IT9frQdQ-d7bS5_TdREsp0',
       tagClass: 'bg-surface-container-highest text-on-surface-variant'
     },
@@ -36,7 +36,7 @@ export default function OpportunitiesPage() {
       title: 'Premio a la Excelencia para Jóvenes Investigadores',
       institution: 'The HTLV Society • Global',
       desc: 'Financiamiento completo para viajes y registro en el próximo Congreso Internacional sobre HTLV para científicos en las primeras etapas de su carrera.',
-      deadline: 'Límite: 15 Nov 2024',
+      deadline: 'Límite: 15 Dic 2026',
       image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiZBDGr6xcUCxikip9zQRyXHyPBdzjH51J2fjdIyDnU8axFDdNdaLyGTPHo64KdTLxNf78ZBCH_ymzWrz3C7Ef9Nsek46b_E280UtSFZGSOFilr44TTEZKqlUxgkgBy3PqH2xdFTamPp72X9KsOthd1omUgf4vBXNcVTEQtWZqXX4K9c5rjhs2hxo-dZZZ4s48iFSG9gJCMf8DYP1aRQseoBTt8nHWx9yYLMSlPlNPSkajvldbattECBHE2pvCRMx2Qm_-OaiQhm4',
       tagClass: 'bg-tertiary-container text-on-tertiary-container'
     }
@@ -98,9 +98,9 @@ export default function OpportunitiesPage() {
                   <div>
                     <div className="flex justify-between items-start mb-4">
                       <span className="px-3 py-1 bg-primary-container text-white text-label-sm font-label-sm uppercase rounded font-bold">Fondo de Investigación</span>
-                      <span className="text-primary font-bold font-label-sm text-label-sm">Límite: 30 Dic 2024</span>
+                      <span className="text-primary font-bold font-label-sm text-label-sm">Límite: 30 Dic 2026</span>
                     </div>
-                    <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2 text-[#191c1e]">Beca de Innovación Global 2025</h3>
+                    <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2 text-[#191c1e]">Beca de Innovación Global 2027</h3>
                     <p className="font-label-md text-label-md text-on-surface-variant mb-4">Red Internacional de HTLV (RIII-HTLV)</p>
                     <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">Financiamiento de hasta $150,000 para proyectos de investigación intercontinentales destinados a mejorar el acceso al diagnóstico de HTLV-1 en entornos de bajos recursos. La colaboración entre al menos dos países miembros de la red es obligatoria.</p>
                   </div>
