@@ -123,10 +123,10 @@ export default function Header() {
                 </Link>
 
                 {/* Contenedor de Navegación e Idioma a la derecha */}
-                <div className="flex items-center justify-end gap-3 sm:gap-6 px-4 md:px-8 flex-1">
+                <div className="flex items-center justify-end gap-2 sm:gap-4 lg:gap-5 px-2 sm:px-4 md:px-6 flex-1 min-w-0">
                     
-                    {/* Menú de Escritorio con Desplegables en Hover */}
-                    <nav className="hidden xl:flex items-center gap-1">
+                    {/* Menú de Escritorio con Desplegables en Hover (visible en 2xl para evitar colapsos o saltos de línea en laptops) */}
+                    <nav className="hidden 2xl:flex items-center gap-1 shrink-0">
                         {menuStructure.map((menu, idx) => {
                             const active = isActive(menu.basePath);
                             const hasItems = menu.items && menu.items.length > 0;
@@ -142,27 +142,27 @@ export default function Header() {
                                     {hasItems ? (
                                         <button
                                             type="button"
-                                            className={`px-3 py-2 rounded-lg text-[17px] font-semibold transition-colors flex items-center gap-1 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
+                                            className={`px-2.5 2xl:px-3 py-2 rounded-lg text-[15px] 2xl:text-[17px] font-semibold transition-colors flex items-center gap-1 cursor-default whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                                 active 
                                                     ? 'text-[#E5A400] bg-white/10' 
                                                     : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
                                             }`}
                                         >
-                                            <span>{menu.title}</span>
-                                            <span className="material-symbols-outlined text-[18px] transition-transform duration-150 group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
+                                            <span className="whitespace-nowrap">{menu.title}</span>
+                                            <span className="material-symbols-outlined text-[17px] transition-transform duration-150 group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
                                                 expand_more
                                             </span>
                                         </button>
                                     ) : (
                                         <Link
                                             href={menu.href}
-                                            className={`px-3 py-2 rounded-lg text-[17px] font-semibold transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
+                                            className={`px-2.5 2xl:px-3 py-2 rounded-lg text-[15px] 2xl:text-[17px] font-semibold transition-colors flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                                 active 
                                                     ? 'text-[#E5A400] bg-white/10' 
                                                     : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
                                             }`}
                                         >
-                                            <span>{menu.title}</span>
+                                            <span className="whitespace-nowrap">{menu.title}</span>
                                         </Link>
                                     )}
 
@@ -193,11 +193,11 @@ export default function Header() {
                     </nav>
 
                     {/* Selector de Idiomas (Solo ES y EN) */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                         <div className="flex items-center border border-white/20 rounded-full p-0.5 bg-white/5">
                             <button 
                                 onClick={() => setLang('es')}
-                                className={`px-3 py-1 rounded-full text-[14px] font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
+                                className={`px-2.5 sm:px-3 py-1 rounded-full text-[13px] sm:text-[14px] font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                     lang === 'es' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
                                 }`}
                                 aria-label="Español"
@@ -206,7 +206,7 @@ export default function Header() {
                             </button>
                             <button 
                                 onClick={() => setLang('en')}
-                                className={`px-3 py-1 rounded-full text-[14px] font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
+                                className={`px-2.5 sm:px-3 py-1 rounded-full text-[13px] sm:text-[14px] font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                     lang === 'en' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
                                 }`}
                                 aria-label="English"
@@ -215,10 +215,10 @@ export default function Header() {
                             </button>
                         </div>
 
-                        {/* Botón Móvil Hamburguesa */}
+                        {/* Botón Móvil Hamburguesa (visible cuando no está en pantalla extra grande) */}
                         <button 
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="xl:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400]"
+                            className="2xl:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400]"
                             aria-label="Menú"
                         >
                             <span className="material-symbols-outlined text-2xl">
@@ -231,9 +231,9 @@ export default function Header() {
 
             </div>
 
-            {/* Menú Desplegable Móvil */}
+            {/* Menú Desplegable Móvil y Laptops compactas */}
             {isMobileMenuOpen && (
-                <div className="xl:hidden fixed inset-x-0 top-20 bg-[#002538] border-b border-white/15 shadow-2xl py-6 px-6 z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
+                <div className="2xl:hidden fixed inset-x-0 top-24 sm:top-28 md:top-32 bg-[#002538] border-b border-white/15 shadow-2xl py-6 px-6 z-50 max-h-[calc(100vh-100px)] overflow-y-auto">
                     <nav className="space-y-4">
                         {menuStructure.map((menu, idx) => (
                             <div key={idx} className="space-y-1">
