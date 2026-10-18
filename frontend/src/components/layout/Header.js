@@ -109,16 +109,16 @@ export default function Header() {
         }`}>
             <div className="w-full h-full flex items-center justify-between">
                 
-                {/* Logo Principal Oficial (Bloque de fondo blanco limpio y tamaño prominente) */}
+                {/* Logo Principal Oficial (Bloque de fondo blanco con mínimo padding para aprovechar todo el espacio) */}
                 <Link 
                     href="/" 
-                    className="h-full bg-white px-4 sm:px-6 md:px-8 flex items-center justify-center shrink-0 border-r border-[#CBD5E1] shadow-xs hover:bg-slate-50 transition-colors py-1.5" 
+                    className="h-full bg-white px-1 sm:px-1.5 flex items-center justify-center shrink-0 border-r border-[#CBD5E1] shadow-xs hover:bg-slate-50 transition-colors py-0.5" 
                     title={lang === 'es' ? "Ir al Inicio" : "Go to Home"}
                 >
                     <img 
                         src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
                         alt={lang === 'es' ? "Logo Oficial Red HTLV" : "Official HTLV Network Logo"}
-                        className="h-[86px] sm:h-[102px] md:h-[116px] w-auto object-contain max-w-[360px] sm:max-w-[480px] md:max-w-[540px]"
+                        className="h-[92%] w-auto object-contain max-w-[340px] sm:max-w-[420px] md:max-w-[480px]"
                     />
                 </Link>
 
