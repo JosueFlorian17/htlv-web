@@ -142,21 +142,21 @@ export default function Header() {
                                     {hasItems ? (
                                         <button
                                             type="button"
-                                            className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
+                                            className={`px-3 py-2 rounded-lg text-[17px] font-semibold transition-colors flex items-center gap-1 cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                                 active 
                                                     ? 'text-[#E5A400] bg-white/10' 
                                                     : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
                                             }`}
                                         >
                                             <span>{menu.title}</span>
-                                            <span className="material-symbols-outlined text-[16px] transition-transform duration-150 group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
+                                            <span className="material-symbols-outlined text-[18px] transition-transform duration-150 group-hover:rotate-180 text-white/50 group-hover:text-[#E5A400]">
                                                 expand_more
                                             </span>
                                         </button>
                                     ) : (
                                         <Link
                                             href={menu.href}
-                                            className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
+                                            className={`px-3 py-2 rounded-lg text-[17px] font-semibold transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                                 active 
                                                     ? 'text-[#E5A400] bg-white/10' 
                                                     : 'text-white/90 hover:text-[#E5A400] hover:bg-white/5'
@@ -178,7 +178,7 @@ export default function Header() {
                                                         <Link
                                                             key={sIdx}
                                                             href={subItem.href}
-                                                            className="block px-4 py-2 text-sm font-medium text-white/85 hover:bg-white/10 hover:text-[#E5A400] transition-colors focus-visible:outline-none focus-visible:bg-white/10"
+                                                            className="block px-4 py-2 text-[15px] font-medium text-white/85 hover:bg-white/10 hover:text-[#E5A400] transition-colors focus-visible:outline-none focus-visible:bg-white/10"
                                                         >
                                                             {subItem.label}
                                                         </Link>
@@ -197,7 +197,7 @@ export default function Header() {
                         <div className="flex items-center border border-white/20 rounded-full p-0.5 bg-white/5">
                             <button 
                                 onClick={() => setLang('es')}
-                                className={`px-2.5 py-1 rounded-full text-xs font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
+                                className={`px-3 py-1 rounded-full text-[14px] font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                     lang === 'es' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
                                 }`}
                                 aria-label="Español"
@@ -206,7 +206,7 @@ export default function Header() {
                             </button>
                             <button 
                                 onClick={() => setLang('en')}
-                                className={`px-2.5 py-1 rounded-full text-xs font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
+                                className={`px-3 py-1 rounded-full text-[14px] font-bold cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] ${
                                     lang === 'en' ? 'bg-[#E5A400] text-[#002538]' : 'text-white/70 hover:text-white'
                                 }`}
                                 aria-label="English"
