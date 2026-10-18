@@ -7,6 +7,10 @@ export default function InstitutionsCarousel() {
 
   const logos = [
     {
+      src: "/logos/cayetano_heredia_logo.png",
+      alt: "Universidad Peruana Cayetano Heredia"
+    },
+    {
       src: "/logos/imperial_college_logo.png",
       alt: "Imperial College London"
     },

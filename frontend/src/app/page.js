@@ -9,81 +9,45 @@ export default function Home() {
   return (
     <main className="w-full bg-white text-slate-900">
       
-      {/* 1. SECCIÓN SUPERIOR HERO */}
-      <section className="w-full bg-[#003B49] py-12 md:py-16 px-4 sm:px-6 lg:px-8 text-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      {/* 1. SECCIÓN SUPERIOR HERO CON FOTO DE FONDO */}
+      <section className="w-full relative min-h-[480px] md:min-h-[540px] flex items-center py-14 md:py-20 px-4 sm:px-6 lg:px-8 text-white overflow-hidden">
+        {/* Imagen de fondo */}
+        <img 
+          src="/hero-bg.jpg" 
+          alt="Red Internacional de Investigación e Innovación en HTLV"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        {/* Capa de contraste con degradado sutil para legibilidad impecable (orientado hacia la derecha donde está el texto) */}
+        <div className="absolute inset-0 bg-gradient-to-l from-[#001D2C]/95 via-[#002538]/85 to-[#003B49]/40"></div>
+
+        <div className="max-w-7xl w-full mx-auto relative z-10 flex justify-end">
+          <div className="max-w-3xl space-y-6 flex flex-col items-end text-right">
             
-            {/* Composición Fotográfica */}
-            <div className="lg:col-span-7 flex justify-center items-center">
-              <div className="relative w-full max-w-xl aspect-16/10 sm:aspect-16/9 flex items-center justify-center">
-                
-                {/* Elementos geométricos sutiles de fondo */}
-                <div className="absolute left-4 top-6 w-32 h-32 bg-[#E5A400]/70 -skew-x-12 rounded-2xl transform -rotate-6"></div>
-                <div className="absolute left-28 bottom-4 w-32 h-32 bg-[#087E8B]/70 -skew-x-12 rounded-2xl transform rotate-12"></div>
-                
-                {/* Rejilla de fotos de actividades de salud y clínicas */}
-                <div className="relative z-10 grid grid-cols-3 gap-3 w-full h-full p-2">
-                  <div className="rounded-xl overflow-hidden shadow-lg border border-white/20">
-                    <img 
-                      src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80" 
-                      alt="Centro de salud y atención comunitaria"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="rounded-xl overflow-hidden shadow-lg border border-white/20">
-                    <img 
-                      src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" 
-                      alt="Atención médica y cuidado de pacientes"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="rounded-xl overflow-hidden shadow-lg border border-white/20">
-                    <img 
-                      src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" 
-                      alt="Laboratorio de investigación molecular"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
+            {/* Logo directamente sin recuadro (aumentado +20%) */}
+            <img 
+              src="/logos/hero_logo.png"
+              alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
+              className="h-24 sm:h-28 md:h-36 w-auto object-contain drop-shadow-md"
+            />
 
-              </div>
-            </div>
+            {/* Titular en blanco (la fuente y negrita son administradas globalmente) */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl leading-tight text-white drop-shadow-md">
+              {lang === 'es'
+                ? 'Red Internacional de Investigación e Innovación en HTLV'
+                : 'International Research and Innovation Network on HTLV'}
+            </h1>
 
-            {/* Tarjeta de Titular con Botón Mostaza */}
-            <div className="lg:col-span-5">
-              <div className="bg-slate-50 text-[#003B49] p-6 sm:p-8 rounded-2xl shadow-lg border border-white/40 space-y-6">
-                
-                <div className="space-y-4">
-                  <div>
-                    <img 
-                      src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
-                      alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
-                      className="h-12 sm:h-14 w-auto object-contain"
-                    />
-                  </div>
-                  <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-[#003B49]">
-                    {lang === 'es'
-                      ? 'Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV)'
-                      : 'International Research and Innovation Network on HTLV (RIII-HTLV)'}
-                  </h1>
-                </div>
-
-                <div>
-                  <Link
-                    href="/about?tab=quienes-somos"
-                    className="inline-flex items-center justify-center bg-[#E5A400] hover:bg-[#CCA300] text-[#002538] font-semibold px-6 py-3 rounded-lg text-sm transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] focus-visible:ring-offset-2"
-                  >
-                    {lang === 'es' ? 'Conoce más' : 'Learn more'}
-                  </Link>
-                </div>
-
-              </div>
+            {/* Botón Mostaza */}
+            <div className="pt-2">
+              <Link
+                href="/about?tab=quienes-somos"
+                className="inline-flex items-center justify-center bg-[#E5A400] hover:bg-[#CCA300] text-[#002538] font-bold px-7 py-3.5 rounded-lg text-sm sm:text-base transition-colors shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] focus-visible:ring-offset-2"
+              >
+                {lang === 'es' ? 'Conoce más' : 'Learn more'}
+              </Link>
             </div>
 
           </div>
-
         </div>
       </section>
 
@@ -99,14 +63,14 @@ export default function Home() {
                 <iframe
                   className="w-full h-full"
                   src="https://www.youtube-nocookie.com/embed/1NqgEEReKhs?rel=0"
-                  title="Video RIII-HTLV"
+                  title="Quiénes Somos"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
               </div>
               <div className="text-center">
-                <h3 className="font-bold text-base text-[#003B49]">
-                  {lang === 'es' ? 'Video Institucional y Objetivos de la Red RIII-HTLV' : 'RIII-HTLV Institutional Video & Objectives'}
+                <h3 className="font-bold text-lg text-[#003B49]">
+                  {lang === 'es' ? 'Quiénes somos' : 'About us'}
                 </h3>
                 <p className="text-xs text-[#087E8B] font-semibold mt-1">
                   UPCH • Imperial College • Pasteur • Fiocruz • ISCIII • St. Marianna

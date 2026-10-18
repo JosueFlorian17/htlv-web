@@ -456,64 +456,6 @@ function PacientesContent() {
               </div>
             </div>
 
-            {/* SECCIÓN 3: FORMULARIOS Y FICHAS DE APOYO (Sin chips, descarga directa) */}
-            <div className="space-y-6">
-              <div className="border-b border-slate-200 pb-3">
-                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                  {lang === 'es' ? 'Formularios y Fichas de Apoyo' : 'Support Forms & Checklists'}
-                </h2>
-                <p className="text-slate-600 text-sm mt-0.5">
-                  {lang === 'es' 
-                    ? 'Documentos en formato descargable para facilitar el seguimiento médico y la solicitud de orientación.'
-                    : 'Downloadable documents to support medical tracking and consultation requests.'}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                  {
-                    title: lang === 'es' ? "Ficha de Registro y Acompañamiento" : "Patient Registration & Support Sheet",
-                    tag: "PDF • 240 KB",
-                    desc: lang === 'es' ? "Formato para solicitar consejería y acompañamiento voluntario de la Red." : "Format to request counseling and voluntary support from the Network.",
-                    action: lang === 'es' ? "Descargar Ficha" : "Download Form"
-                  },
-                  {
-                    title: lang === 'es' ? "Lista de Chequeo para Consulta Anual" : "Annual Checkup Checklist",
-                    tag: "PDF • 180 KB",
-                    desc: lang === 'es' ? "Preguntas y exámenes clave para llevar a la consulta con tu médico de cabecera." : "Key questions and routine exams to bring to your primary care visit.",
-                    action: lang === 'es' ? "Descargar Checklist" : "Download Checklist"
-                  },
-                  {
-                    title: lang === 'es' ? "Consentimiento y Tamizaje Familiar" : "Family Screening Guidelines",
-                    tag: "PDF • 210 KB",
-                    desc: lang === 'es' ? "Pautas claras para asesorar a parejas o familiares que desean realizarse el test." : "Clear guidelines for counseling partners or family members seeking testing.",
-                    action: lang === 'es' ? "Descargar Pautas" : "Download Guide"
-                  }
-                ].map((item, i) => (
-                  <div key={i} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
-                    <div className="space-y-2">
-                      <p className="text-xs font-medium text-slate-500">
-                        {item.tag}
-                      </p>
-                      <h4 className="text-base font-bold text-[#003B49]">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm text-slate-600 leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => handleDownloadDoc(item.title)}
-                      className="w-full bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white py-2 px-4 rounded-lg text-sm font-semibold transition-colors cursor-pointer flex items-center justify-center gap-2"
-                    >
-                      <span className="material-symbols-outlined text-base">download</span>
-                      <span>{item.action}</span>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <div className="p-6 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm shadow-sm">
               <span className="text-slate-600 font-medium">
                 {lang === 'es' ? 'Todos los materiales son de libre acceso y distribución para pacientes y comunidad.' : 'All materials are freely accessible for community distribution.'}
