@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Syne:wght@500;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@400;600;700;800&family=Sora:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-[#f8fafc] text-slate-900 flex flex-col min-h-screen pt-20">
+      <body className="bg-[#f8fafc] text-slate-900 flex flex-col min-h-screen pt-20 sm:pt-24">
         <LanguageProvider>
           <FontProvider>
             <Header />

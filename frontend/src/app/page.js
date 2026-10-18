@@ -10,7 +10,7 @@ export default function Home() {
     <main className="w-full bg-white text-slate-900">
       
       {/* 1. SECCIÓN SUPERIOR HERO CON FOTO DE FONDO */}
-      <section className="w-full relative min-h-[480px] md:min-h-[540px] flex items-center py-14 md:py-20 px-4 sm:px-6 lg:px-8 text-white overflow-hidden">
+      <section className="w-full relative min-h-[480px] md:min-h-[540px] flex items-center py-14 md:py-20 px-6 sm:px-10 md:px-14 lg:px-20 xl:px-24 text-white overflow-hidden">
         {/* Imagen de fondo */}
         <img 
           src="/hero-bg.jpg" 
@@ -21,17 +21,17 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-l from-[#001D2C]/95 via-[#002538]/85 to-[#003B49]/40"></div>
 
         <div className="max-w-7xl w-full mx-auto relative z-10 flex justify-end">
-          <div className="max-w-3xl space-y-6 flex flex-col items-end text-right">
+          <div className="max-w-xl lg:max-w-2xl space-y-5 sm:space-y-6 flex flex-col items-end text-right">
             
-            {/* Logo directamente sin recuadro (aumentado +20%) */}
+            {/* Logo dinámico por idioma (Español / Inglés) sin recuadro */}
             <img 
-              src="/logos/hero_logo.png"
+              src={lang === 'es' ? "/logos/hero_logo_es.png" : "/logos/hero_logo_en.png"}
               alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
-              className="h-24 sm:h-28 md:h-36 w-auto object-contain drop-shadow-md"
+              className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain drop-shadow-md"
             />
 
             {/* Titular en blanco (la fuente y negrita son administradas globalmente) */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl leading-tight text-white drop-shadow-md">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight font-extrabold text-white drop-shadow-md">
               {lang === 'es'
                 ? 'Red Internacional de Investigación e Innovación en HTLV'
                 : 'International Research and Innovation Network on HTLV'}

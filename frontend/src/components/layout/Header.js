@@ -102,23 +102,23 @@ export default function Header() {
     ];
 
     return (
-        <header className={`fixed top-0 left-0 right-0 h-20 w-full z-50 transition-all duration-200 ${
+        <header className={`fixed top-0 left-0 right-0 h-20 sm:h-24 w-full z-50 transition-all duration-200 ${
             isScrolled 
                 ? 'bg-[#001D2C] shadow-xl border-b border-white/10' 
                 : 'bg-[#002538] border-b border-white/10'
         }`}>
             <div className="w-full h-full flex items-center justify-between">
                 
-                {/* Logo Principal Oficial (Fondo contrastante no blanco ni negro oscuro, pegado a la izquierda) */}
+                {/* Logo Principal Oficial (Bloque de fondo blanco limpio y tamaño aumentado) */}
                 <Link 
                     href="/" 
-                    className="h-full bg-[#E5EDF2] px-2 sm:px-3 flex items-center justify-center shrink-0 border-r border-[#CBD5E1] shadow-xs hover:bg-[#DCE6ED] transition-colors py-0.5" 
+                    className="h-full bg-white px-3 sm:px-5 flex items-center justify-center shrink-0 border-r border-[#CBD5E1] shadow-xs hover:bg-slate-50 transition-colors py-1" 
                     title={lang === 'es' ? "Ir al Inicio" : "Go to Home"}
                 >
                     <img 
                         src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
                         alt={lang === 'es' ? "Logo Oficial Red HTLV" : "Official HTLV Network Logo"}
-                        className="h-[78px] sm:h-[82px] w-auto object-contain max-w-[320px] sm:max-w-[420px]"
+                        className="h-[74px] sm:h-[88px] w-auto object-contain max-w-[340px] sm:max-w-[460px]"
                     />
                 </Link>
 
