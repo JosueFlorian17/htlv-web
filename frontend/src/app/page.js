@@ -63,18 +63,15 @@ export default function Home() {
                 <iframe
                   className="w-full h-full"
                   src="https://www.youtube-nocookie.com/embed/1NqgEEReKhs?rel=0"
-                  title="Quiénes Somos"
+                  title={lang === 'es' ? "¿Quiénes somos?" : "Who are we?"}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
               </div>
-              <div className="text-center">
-                <h3 className="font-bold text-lg text-[#003B49]">
-                  {lang === 'es' ? 'Quiénes somos' : 'About us'}
+              <div className="text-center pt-1">
+                <h3 className="font-extrabold text-xl sm:text-2xl text-[#003B49] tracking-tight">
+                  {lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?'}
                 </h3>
-                <p className="text-xs text-[#087E8B] font-semibold mt-1">
-                  UPCH • Imperial College • Pasteur • Fiocruz • ISCIII • St. Marianna
-                </p>
               </div>
             </div>
 
@@ -82,8 +79,8 @@ export default function Home() {
             <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
               
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#003B49] leading-tight">
-                  {lang === 'es' ? '¿Qué es la Red RIII-HTLV?' : 'What is the RIII-HTLV Network?'}
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49] leading-tight">
+                  {lang === 'es' ? '¿Qué es la red HTLV?' : 'What is the HTLV network?'}
                 </h2>
                 <p className="text-base text-slate-700 leading-relaxed mt-2">
                   {lang === 'es'
