@@ -26,10 +26,10 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full relative mt-16 font-sans">
+    <footer className="w-full relative mt-0 font-sans">
       
       {/* 1. FRANJA SUPERIOR BLANCA (Exacta a IRVA: fondo blanco con Contact y Our Location a la derecha) */}
-      <div className="w-full bg-white border-t border-b border-slate-200 py-4 sm:py-5">
+      <div className="w-full bg-white border-t border-b border-slate-200 py-3 sm:py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-end items-start md:items-center gap-6 md:gap-12">
           
           {/* Bloque Contact */}
@@ -134,15 +134,15 @@ export default function Footer() {
             {/* 3 COLUMNAS DE ENLACES */}
             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm pt-4 lg:pt-2">
               
-              {/* Columna 1: About RIII-HTLV */}
+              {/* Columna 1: About Red HTLV */}
               <div className="space-y-3">
                 <h4 className="text-base font-bold text-white tracking-tight">
-                  {lang === 'es' ? 'Acerca de RIII-HTLV' : 'About RIII-HTLV'}
+                  {lang === 'es' ? 'Acerca de la Red HTLV' : 'About the HTLV Network'}
                 </h4>
                 <p className="text-white/80 leading-relaxed text-xs">
                   {lang === 'es'
-                    ? 'La misión de la Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV) es fomentar la investigación retrovirológica de excelencia en HTLV-1 y HTLV-2, facilitando el diálogo entre grupos científicos y transfiriendo evidencia de calidad para la salud comunitaria.'
-                    : 'The mission of the International Research and Innovation Network on HTLV (RIII-HTLV) is to foster retrovirology research excellence on HTLV-1 and HTLV-2, promoting collaborative scientific dialogue and transferring evidence to public health.'}
+                    ? 'La misión de la Red Internacional de Investigación e Innovación en HTLV es fomentar la investigación retrovirológica de excelencia en HTLV-1 y HTLV-2, facilitando el diálogo entre grupos científicos y transfiriendo evidencia de calidad para la salud comunitaria.'
+                    : 'The mission of the International Research and Innovation Network on HTLV is to foster retrovirology research excellence on HTLV-1 and HTLV-2, promoting collaborative scientific dialogue and transferring evidence to public health.'}
                 </p>
               </div>
 
@@ -179,10 +179,10 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Columna 3: RIII-HTLV Institucional */}
+              {/* Columna 3: Red HTLV Institucional */}
               <div className="space-y-3">
                 <h4 className="text-base font-bold text-white tracking-tight">
-                  RIII-HTLV
+                  {lang === 'es' ? 'Red HTLV' : 'HTLV Network'}
                 </h4>
                 <ul className="space-y-2.5 font-medium text-sm">
                   <li>

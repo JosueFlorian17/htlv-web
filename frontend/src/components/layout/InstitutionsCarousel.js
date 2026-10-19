@@ -36,8 +36,8 @@ export default function InstitutionsCarousel() {
   const displayLogos = [...logos, ...logos, ...logos, ...logos];
 
   return (
-    <section className="w-full bg-slate-50 border-t border-slate-200/80 py-8 sm:py-10 overflow-hidden pointer-events-none select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center">
+    <section className="w-full bg-slate-50 border-t border-slate-200/80 pt-6 pb-2 sm:pt-8 sm:pb-3 overflow-hidden pointer-events-none select-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-3 sm:mb-4 text-center">
         <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold uppercase tracking-wide text-[#003B49]">
           {lang === 'es' 
             ? 'Miembros de la Red Internacional de Innovación e Investigación en HTLV' 
