@@ -82,45 +82,45 @@ export default function Home() {
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49] leading-tight">
                   {lang === 'es' ? '¿Qué es la red HTLV?' : 'What is the HTLV network?'}
                 </h2>
-                <p className="text-base text-slate-700 leading-relaxed mt-2">
+                <p className="text-base text-slate-700 leading-relaxed mt-3">
                   {lang === 'es'
-                    ? 'La Red Internacional de Investigación e Innovación en HTLV articula a los principales centros de referencia en América Latina, Europa y Asia para transformar la respuesta médica y social ante el HTLV-1 y HTLV-2.'
-                    : 'The International Research and Innovation Network on HTLV coordinates leading reference centers across Latin America, Europe, and Asia to transform the clinical and social response to HTLV-1 and HTLV-2.'}
+                    ? 'La Red Internacional de Investigación e Innovación en HTLV articula instituciones académicas y equipos de investigación de Perú, Japón, Reino Unido y Estados Unidos para fortalecer la investigación científica y la innovación en HTLV. A través de la colaboración internacional y el fortalecimiento de capacidades nacionales, busca generar evidencia que contribuya a mejorar la prevención, el diagnóstico y la atención integral de las personas afectadas.'
+                    : 'The International Research and Innovation Network on HTLV coordinates academic institutions and research teams from Peru, Japan, the United Kingdom, and the United States to strengthen scientific research and innovation in HTLV. Through international collaboration and national capacity building, it seeks to generate evidence that improves prevention, diagnosis, and comprehensive care for affected individuals.'}
                 </p>
               </div>
 
               {/* Bullets */}
-              <div className="space-y-3 text-sm text-slate-700">
+              <div className="space-y-3.5 text-sm text-slate-700">
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-[#A10D3A] text-xl shrink-0 mt-0.5">
-                    biotech
+                    hub
                   </span>
                   <p className="leading-relaxed">
                     {lang === 'es' 
-                      ? 'Investiga sobre la virología molecular, epidemiología y patogénesis del virus.' 
-                      : 'Researches molecular virology, epidemiology, and viral pathogenesis.'}
+                      ? 'Articula a la Universidad Peruana Cayetano Heredia (UPCH), la Universidad Nacional de Ucayali (UNU) y la Universidad Nacional de San Antonio Abad del Cusco (UNSAAC) con instituciones científicas de Japón, Reino Unido y Estados Unidos para fortalecer la colaboración y descentralizar la investigación en HTLV.' 
+                      : 'Coordinates Universidad Peruana Cayetano Heredia (UPCH), Universidad Nacional de Ucayali (UNU), and Universidad Nacional de San Antonio Abad del Cusco (UNSAAC) with scientific institutions in Japan, the United Kingdom, and the United States to strengthen collaboration and decentralize HTLV research.'}
                   </p>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-[#087E8B] text-xl shrink-0 mt-0.5">
-                    hub
+                    biotech
                   </span>
                   <p className="leading-relaxed">
                     {lang === 'es'
-                      ? 'Promueve sinergias clínicas multicéntricas en Paraparesia Espástica Tropical (HAM/TSP) y Leucemia/Linfoma (ATL).'
-                      : 'Promotes multicenter clinical synergies in HAM/TSP and Adult T-cell Leukemia (ATL).'}
+                      ? 'Identifica brechas y prioriza estudios sobre epidemiología, diagnóstico, enfermedades asociadas al HTLV, tratamiento y atención integral.'
+                      : 'Identifies gaps and prioritizes studies on epidemiology, diagnosis, HTLV-associated diseases, treatment, and comprehensive care.'}
                   </p>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-[#E5A400] text-xl shrink-0 mt-0.5">
-                    verified
+                    school
                   </span>
                   <p className="leading-relaxed">
                     {lang === 'es'
-                      ? 'Estandariza protocolos de diagnóstico oportuno, carga proviral y prevención de la transmisión vertical.'
-                      : 'Standardizes early diagnosis protocols, proviral load assays, and vertical transmission prevention.'}
+                      ? 'Fortalece las capacidades científicas de los equipos de la Red mediante pasantías nacionales e internacionales, cursos especializados y mentoría a investigadores en etapas iniciales de su carrera y tesistas.'
+                      : 'Strengthens the scientific capacities of Network teams through national and international internships, specialized courses, and mentorship for early-career researchers and thesis students.'}
                   </p>
                 </div>
 
@@ -130,8 +130,8 @@ export default function Home() {
                   </span>
                   <p className="leading-relaxed">
                     {lang === 'es'
-                      ? 'Fortalece las capacidades regionales y orienta con evidencia científica a los tomadores de decisiones.'
-                      : 'Empowers regional health systems and guides policymakers with robust scientific evidence.'}
+                      ? 'Promueve la difusión del conocimiento y la colaboración con autoridades sanitarias y comunidades para contribuir a una respuesta frente al HTLV basada en evidencia científica.'
+                      : 'Promotes knowledge dissemination and collaboration with health authorities and communities to foster an evidence-based response to HTLV.'}
                   </p>
                 </div>
               </div>

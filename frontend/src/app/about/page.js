@@ -187,173 +187,60 @@ function AboutContent() {
     }
   ];
 
-  // 3 Objetivos estratégicos adaptados fielmente a las referencias QuEST LAC (Imágenes 1, 2 y 3)
-  const objectivesData = [
+  // 5 Objetivos específicos de la Red RIII-HTLV
+  const specificObjectives = [
     {
       id: 1,
-      num: '01',
-      title: lang === 'es'
-        ? 'Consolidarse como la Red Internacional de Referencia en HTLV (RIII-HTLV)'
-        : 'Consolidate as the International Benchmark Network on HTLV (RIII-HTLV)',
-      shortTitle: lang === 'es'
-        ? 'Red Internacional de Referencia'
-        : 'International Reference Network',
-      summary: lang === 'es'
-        ? 'Articular una alianza científica global sólida que coordine centros de investigación, comités de políticas sanitarias y comunidades de práctica clínica.'
-        : 'Establish a solid global scientific alliance coordinating research hubs, health policy committees, and clinical practice communities.',
-      color: '#087E8B',
-      pillars: [
-        {
-          title: lang === 'es' ? 'Establecimiento de Centros Core de Coordinación' : 'Establishment of Core Coordinating Centers',
-          icon: 'hub',
-          badge: lang === 'es' ? 'Coordinación Central' : 'Central Coordination',
-          description: lang === 'es'
-            ? 'Articulación permanente entre el Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH - UPCH) en Lima y el Imperial College London en el Reino Unido como centros rectores de coordinación científica, administración y biobanco de referencia.'
-            : 'Permanent collaboration between the Alexander von Humboldt Institute (IMTAvH - UPCH) in Lima and Imperial College London as core hubs for scientific coordination, administration, and reference biobanking.',
-          linkText: lang === 'es' ? 'Ver Centros Miembros' : 'View Member Centers',
-          actionTab: 'miembros'
-        },
-        {
-          title: lang === 'es' ? 'Grupo Estratégico de Políticas Regionales (GEPR)' : 'Strategic Regional Policy Group (GEPR)',
-          icon: 'policy',
-          badge: lang === 'es' ? 'Políticas Públicas' : 'Public Policy',
-          description: lang === 'es'
-            ? 'Articulación activa de la evidencia científica con las políticas sanitarias en América Latina y el Caribe, promoviendo el tamizaje universal en bancos de sangre, el despistaje materno y la prevención efectiva de la transmisión vertical.'
-            : 'Active translation of scientific evidence into health policies across Latin America, advocating for universal blood screening, maternal antenatal testing, and stopping mother-to-child transmission.',
-          linkText: lang === 'es' ? 'Ver Estructura GEPR' : 'View GEPR Structure',
-          actionTab: 'estructura'
-        },
-        {
-          title: lang === 'es' ? 'Establecimiento de un Comité Asesor Técnico (CAT)' : 'Establishment of a Technical Advisory Committee (CAT)',
-          icon: 'tune',
-          badge: lang === 'es' ? 'Asesoría Científica' : 'Scientific Advisory',
-          description: lang === 'es'
-            ? 'Órgano consultivo colegiado de virólogos, infectólogos y epidemiólogos de prestigio internacional para orientar las líneas prioritarias de investigación y el fortalecimiento continuo de capacidades diagnósticas.'
-            : 'Consultative board of international virologists, infectious disease specialists, and epidemiologists guiding priority research lines and diagnostic capacity building.',
-          linkText: lang === 'es' ? 'Ver Comité CAT' : 'View CAT Committee',
-          actionTab: 'estructura'
-        },
-        {
-          title: lang === 'es' ? 'Identificación y Articulación de una Comunidad de Interesados' : 'Identification & Engagement of a Stakeholder Community',
-          icon: 'groups',
-          badge: lang === 'es' ? 'Comunidad & Pacientes' : 'Community & Patients',
-          description: lang === 'es'
-            ? 'Integración activa de investigadores clínicos, personal de salud, organizaciones de personas que viven con HTLV-1/2, autoridades sanitarias y organismos multilaterales en un ecosistema de intercambio continuo.'
-            : 'Active engagement of researchers, healthcare workers, patient organizations, public health authorities, and international agencies into a vibrant collaborative ecosystem.',
-          linkText: lang === 'es' ? 'Recursos Comunitarios' : 'Community Resources',
-          actionTab: null,
-          externalLink: '/pacientes?tab=faqs'
-        }
-      ]
+      num: 1,
+      title: lang === 'es' ? 'Formalización y gobernanza' : 'Formalization & governance',
+      description: lang === 'es'
+        ? 'Institucionalizar la red mediante convenios, comité directivo, coordinaciones regionales e internacionales y documentos de gestión que aseguren gobernanza, ética multicéntrica y seguimiento.'
+        : 'Institutionalize the network through agreements, steering committee, regional and international coordination, and management documents ensuring governance, multicenter ethics, and monitoring.',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80',
+      actionBtn: null
     },
     {
       id: 2,
-      num: '02',
-      title: lang === 'es'
-        ? 'Promover el Desarrollo de Capacidades de Investigación y Diagnóstico en Sistemas de Salud'
-        : 'Promote Research and Diagnostic Capacity Building Across Health Systems',
-      shortTitle: lang === 'es'
-        ? 'Capacidades y Diagnóstico'
-        : 'Capacities & Diagnostics',
-      summary: lang === 'es'
-        ? 'Estandarizar metodologías de laboratorio, capacitar al personal sanitario y fortalecer la vigilancia epidemiológica en áreas endémicas y redes hospitalarias.'
-        : 'Standardize laboratory assays, train healthcare personnel, and strengthen epidemiological surveillance across endemic regions and hospital networks.',
-      color: '#1A4B82',
-      pillars: [
-        {
-          title: lang === 'es' ? 'Estandarización de Metodologías Diagnósticas y Carga Proviral' : 'Standardization of Diagnostic Assays & Proviral Load',
-          icon: 'biotech',
-          badge: lang === 'es' ? 'Diagnóstico Preciso' : 'Accurate Diagnostics',
-          description: lang === 'es'
-            ? 'Armonización de paneles de referencia y protocolos moleculares de PCR en tiempo real para cuantificación de carga proviral (PVL) y pruebas serológicas confirmatorias con control de calidad inter-laboratorios.'
-            : 'Harmonization of reference panels and real-time qPCR protocols for proviral load (PVL) quantification and confirmatory serology with cross-laboratory quality assurance.',
-          linkText: lang === 'es' ? 'Ver Recursos Diagnósticos' : 'View Diagnostic Resources',
-          actionTab: null,
-          externalLink: '/profesionales?tab=recursos'
-        },
-        {
-          title: lang === 'es' ? 'Capacitación y Formación Continua de Profesionales' : 'Continuous Education & Professional Training',
-          icon: 'school',
-          badge: lang === 'es' ? 'Educación Médica' : 'Medical Education',
-          description: lang === 'es'
-            ? 'Programas formativos especializados, seminarios web internacionales y cursos cortos acreditados para médicos, neurólogos, hematólogos, enfermeros y tecnólogos en el manejo integral del paciente con HTLV.'
-            : 'Specialized training curricula, international webinars, and accredited short courses for clinicians, neurologists, hematologists, and laboratory technologists in comprehensive HTLV patient management.',
-          linkText: lang === 'es' ? 'Ver Cursos & Webinars' : 'View Courses & Webinars',
-          actionTab: null,
-          externalLink: '/profesionales?tab=cursos'
-        },
-        {
-          title: lang === 'es' ? 'Fortalecimiento de la Vigilancia Epidemiológica Regional' : 'Strengthening Regional Epidemiological Surveillance',
-          icon: 'travel_explore',
-          badge: lang === 'es' ? 'Vigilancia Activa' : 'Active Surveillance',
-          description: lang === 'es'
-            ? 'Apoyo técnico y metodológico a sistemas de salud pública para la detección activa en áreas de alta endemicidad, comunidades originarias y poblaciones vulnerables donde el virus suele ser desatendido.'
-            : 'Methodological support for public health systems to enable active case-finding in high-prevalence areas, indigenous communities, and neglected populations.',
-          linkText: lang === 'es' ? 'Ver Información Epidemiológica' : 'View Epidemiology',
-          actionTab: null,
-          externalLink: '/htlv?tab=que-es'
-        },
-        {
-          title: lang === 'es' ? 'Transferencia Tecnológica y Protocolos Abiertos' : 'Technology Transfer & Open Protocol Repositories',
-          icon: 'menu_book',
-          badge: lang === 'es' ? 'Acceso Abierto' : 'Open Access',
-          description: lang === 'es'
-            ? 'Disponibilización abierta de protocolos operativos estandarizados (POEs), guías de manejo clínico y fichas técnicas de libre acceso para elevar la calidad asistencial en centros descentralizados.'
-            : 'Open-access distribution of standard operating procedures, clinical guidelines, and technical fact sheets to elevate the standard of care in decentralized clinical centers.',
-          linkText: lang === 'es' ? 'Consultar Guías' : 'Consult Guidelines',
-          actionTab: null,
-          externalLink: '/profesionales?tab=recursos'
-        }
-      ]
+      num: 2,
+      title: lang === 'es' ? 'Implementación operativa y armonización científica' : 'Operational implementation & scientific harmonization',
+      description: lang === 'es'
+        ? 'Establecer equipos por líneas de investigación, procedimientos de coordinación, estándares metodológicos y gobernanza de datos para investigación multicéntrica.'
+        : 'Establish research line teams, coordination procedures, methodological standards, and data governance for multicenter research.',
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
+      actionBtn: {
+        text: lang === 'es' ? 'Conoce las líneas de investigación' : 'Discover research lines',
+        href: '/proyectos?tab=investigacion'
+      }
     },
     {
       id: 3,
-      num: '03',
-      title: lang === 'es'
-        ? 'Realizar Investigación Pertinente para la Región y Compartir Evidencia con Tomadores de Decisión'
-        : 'Conduct Regionally Relevant Research & Share Evidence with Policymakers',
-      shortTitle: lang === 'es'
-        ? 'Investigación Pertinente y Políticas'
-        : 'Relevant Research & Policy',
-      summary: lang === 'es'
-        ? 'Desarrollar proyectos traslacionales, monitorear cohortes clínicas a largo plazo y traducir los hallazgos científicos en políticas de salud pública efectivas.'
-        : 'Develop translational projects, track longitudinal clinical cohorts, and translate scientific findings into actionable public health policies.',
-      color: '#003B49',
-      pillars: [
-        {
-          title: lang === 'es' ? 'Desarrollo de una Cartera de Proyectos Colaborativos' : 'Development of a Collaborative Research Portfolio',
-          icon: 'science',
-          badge: lang === 'es' ? 'Ensayos Multicéntricos' : 'Multicenter Trials',
-          description: lang === 'es'
-            ? 'Diseño y ejecución de estudios colaborativos sobre patogenia viral, biomarcadores moleculares de progresión a Paraparesia Espástica Tropical (HAM/TSP) y Leucemia/Linfoma (ATL), así como ensayos con nuevas terapias.'
-            : 'Design and execution of collaborative studies on viral pathogenesis, molecular biomarkers of progression to HAM/TSP and ATL, and clinical trials evaluating novel targeted therapies.',
-          linkText: lang === 'es' ? 'Ver Proyectos Activos' : 'View Active Projects',
-          actionTab: null,
-          externalLink: '/proyectos?tab=investigacion'
-        },
-        {
-          title: lang === 'es' ? 'Seguimiento y Análisis de Cohortes Clínicas y Epidemiológicas' : 'Longitudinal Clinical & Epidemiological Cohort Analysis',
-          icon: 'analytics',
-          badge: lang === 'es' ? 'Cohortes Clínicas' : 'Clinical Cohorts',
-          description: lang === 'es'
-            ? 'Consolidación de registros multicéntricos estandarizados y cohortes de seguimiento clínico a largo plazo para evaluar determinantes de salud, coinfecciones tropicales y calidad de vida de las personas que viven con HTLV.'
-            : 'Consolidation of standardized multicenter clinical registries and long-term follow-up cohorts to evaluate progression predictors, tropical coinfections, and health-related quality of life.',
-          linkText: lang === 'es' ? 'Ver Resultados & Avances' : 'View Results & Progress',
-          actionTab: null,
-          externalLink: '/proyectos?tab=avances'
-        },
-        {
-          title: lang === 'es' ? 'Vínculos con Decisores y Políticas Basadas en Evidencia' : 'Engagement with Decision-Makers & Evidence-Based Policy',
-          icon: 'account_tree',
-          badge: lang === 'es' ? 'Incidencia Sanitaria' : 'Health Advocacy',
-          description: lang === 'es'
-            ? 'Articulación directa con ministerios de salud, legisladores y agencias sanitarias internacionales (OPS/OMS) para formular políticas públicas respaldadas en evidencia científica: tamizaje universal, guías de práctica clínica y financiamiento para el control del virus.'
-            : 'Direct engagement with health ministries, lawmakers, and international agencies (PAHO/WHO) to advance evidence-based policies: universal screening, clinical guidelines, and funding for viral eradication.',
-          linkText: lang === 'es' ? 'Contactar con la Red' : 'Contact the Network',
-          actionTab: null,
-          externalLink: '/contact'
-        }
-      ]
+      num: 3,
+      title: lang === 'es' ? 'Agenda estratégica y planificación quinquenal' : 'Strategic agenda & 5-year planning',
+      description: lang === 'es'
+        ? 'Elaborar un Plan de Trabajo Conjunto a 5 años que priorice líneas de investigación, defina actividades iniciales y establezca salvaguardas ambientales y sociales mediante el Plan de Gestión Ambiental y Social (PGAS).'
+        : 'Develop a 5-year Joint Work Plan prioritizing research lines, defining initial activities, and establishing environmental and social safeguards through the Environmental and Social Management Plan (PGAS).',
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80',
+      actionBtn: null
+    },
+    {
+      id: 4,
+      num: 4,
+      title: lang === 'es' ? 'Producción científica y desarrollo tecnológico inicial' : 'Scientific production & early technological development',
+      description: lang === 'es'
+        ? 'Generar entregables del primer año: cartera priorizada de proyectos, revisión sistemática de alcance sometida a revista indizada y plataforma web para difusión científica y recursos técnicos de la red.'
+        : 'Deliver first-year milestones: prioritized project portfolio, scoping review submitted to an indexed journal, and a web platform for scientific dissemination and technical network resources.',
+      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80',
+      actionBtn: null
+    },
+    {
+      id: 5,
+      num: 5,
+      title: lang === 'es' ? 'Fortalecimiento de capacidades y sostenibilidad' : 'Capacity building & sustainability',
+      description: lang === 'es'
+        ? 'Impulsar formación, pasantías y productos replicables, presentar propuestas a fondos competitivos y desarrollar actividades de transferencia del conocimiento y difusión comunitaria sobre el HTLV.'
+        : 'Promote training, internships, and replicable products, submit proposals to competitive grant calls, and conduct knowledge transfer and community outreach activities on HTLV.',
+      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80',
+      actionBtn: null
     }
   ];
 
@@ -373,25 +260,29 @@ function AboutContent() {
         {/* Cabecera limpia sin selector de pestañas dentro de página */}
         <div className="pb-6 mb-8 border-b border-slate-200">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
-            {activeTab === 'quienes-somos' && (lang === 'es' ? 'Quiénes Somos' : 'Who We Are')}
+            {activeTab === 'quienes-somos' && (lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?')}
             {activeTab === 'objetivos' && (lang === 'es' ? 'Objetivos' : 'Objectives')}
             {activeTab === 'estructura' && (lang === 'es' ? 'Estructura y Gobernanza' : 'Structure & Governance')}
-            {activeTab === 'miembros' && (lang === 'es' ? 'Instituciones Miembros' : 'Member Institutions')}
+            {activeTab === 'miembros' && (lang === 'es' ? 'Instituciones Miembros & Integrantes' : 'Member Institutions & Team')}
             {activeTab === 'financiamiento' && (lang === 'es' ? 'Financiamiento' : 'Funding')}
           </h1>
         </div>
 
-        {/* 1. QUIÉNES SOMOS Y OBJETIVOS */}
+        {/* 1. QUIÉNES SOMOS */}
         {activeTab === 'quienes-somos' && (
-          <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
-            <div className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                    {lang === 'es' ? 'Quiénes Somos' : 'Who We Are'}
+          <div className="space-y-8 animate-fadeIn max-w-4xl mx-auto">
+            <div className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-8">
+              
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-slate-100">
+                <div className="space-y-2">
+                  <span className="text-xs font-bold tracking-widest text-[#087E8B] uppercase">
+                    {lang === 'es' ? 'Plataforma Internacional' : 'International Platform'}
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49]">
+                    {lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?'}
                   </h2>
                 </div>
-                <div className="self-start sm:self-auto">
+                <div className="self-start sm:self-auto shrink-0">
                   <img 
                     src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
                     alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
@@ -400,41 +291,76 @@ function AboutContent() {
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <p className="text-base text-slate-700 leading-relaxed">
-                  {lang === 'es'
-                    ? 'La Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV) es una alianza científica y académica internacional coordinada por el Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) de la Universidad Peruana Cayetano Heredia (UPCH).'
-                    : 'The International Research and Innovation Network on HTLV (RIII-HTLV) is an international scientific alliance coordinated by the Alexander von Humboldt Tropical Medicine Institute (IMTAvH) at Universidad Peruana Cayetano Heredia (UPCH).'}
-                </p>
-                <p className="text-base text-slate-700 leading-relaxed">
-                  {lang === 'es'
-                    ? 'Nuestra meta es articular a centros situados en focos endémicos con laboratorios de referencia en Europa, América Latina y Asia para acelerar el diagnóstico oportuno, los protocolos terapéuticos y la erradicación progresiva de las patologías asociadas al HTLV-1 y HTLV-2.'
-                    : 'Our goal is to connect centers located in endemic areas with reference laboratories in Europe, Latin America, and Asia to accelerate early diagnosis, therapeutics, and progressive eradication of HTLV-1 and HTLV-2.'}
-                </p>
-              </div>
+              {/* Texto principal descriptivo */}
+              <p className="text-base sm:text-lg text-slate-800 leading-relaxed font-medium">
+                {lang === 'es'
+                  ? 'Es una plataforma internacional de colaboración que conecta instituciones académicas y de investigación de Lima, Ucayali y Cusco con socios de Japón, Reino Unido y Estados Unidos para fortalecer la investigación y la innovación frente al HTLV.'
+                  : 'It is an international collaborative platform connecting academic and research institutions from Lima, Ucayali, and Cusco with partners in Japan, the United Kingdom, and the United States to advance HTLV research and innovation.'}
+              </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
-                <div className="space-y-2 text-center">
-                  <h3 className="font-bold text-base sm:text-lg text-[#087E8B] tracking-wide">
-                    – {lang === 'es' ? 'Misión Institucional' : 'Institutional Mission'} –
-                  </h3>
-                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                    {lang === 'es'
-                      ? 'Generar evidencia clínica rigurosa, estandarizar metodologías diagnósticas de carga proviral y guiar políticas de salud pública preventivas en la región.'
-                      : 'Generate rigorous clinical evidence, standardize proviral load diagnostic assays, and guide preventive public health policies.'}
-                  </p>
+              {/* Lista de 5 Puntos */}
+              <div className="space-y-4 pt-2">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#003B49]">
+                  {lang === 'es' ? 'Nuestras Líneas de Acción Prioritarias' : 'Our Priority Action Lines'}
+                </h3>
+
+                <div className="space-y-3.5">
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
+                    <span className="w-8 h-8 rounded-lg bg-[#003B49] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                      1
+                    </span>
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Impulsa la investigación y la innovación para identificar brechas y generar evidencia sobre la prevención, el diagnóstico, el tratamiento y la atención integral del HTLV.'
+                        : 'Drives research and innovation to identify gaps and generate evidence on HTLV prevention, diagnosis, treatment, and comprehensive care.'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
+                    <span className="w-8 h-8 rounded-lg bg-[#087E8B] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                      2
+                    </span>
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Promueve la colaboración científica entre instituciones nacionales e internacionales para desarrollar una agenda conjunta de investigación.'
+                        : 'Promotes scientific collaboration among national and international institutions to develop a shared research agenda.'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
+                    <span className="w-8 h-8 rounded-lg bg-[#E5A400] text-[#002538] flex items-center justify-center font-bold text-sm shrink-0">
+                      3
+                    </span>
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Fortalece las capacidades de investigación mediante actividades de formación, pasantías, mentorías y módulos de capacitación.'
+                        : 'Strengthens research capacities through training activities, internships, mentorship programs, and instructional modules.'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
+                    <span className="w-8 h-8 rounded-lg bg-[#A10D3A] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                      4
+                    </span>
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Facilita la transferencia de conocimiento hacia los servicios de salud, los tomadores de decisiones y las comunidades, promoviendo el uso de evidencia en las respuestas frente al HTLV.'
+                        : 'Facilitates knowledge translation toward healthcare providers, policymakers, and communities, encouraging evidence-informed HTLV responses.'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
+                    <span className="w-8 h-8 rounded-lg bg-[#002538] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                      5
+                    </span>
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Contribuye a posicionar el HTLV como una prioridad en las agendas de salud pública del Perú y del mundo, promoviendo la articulación entre la investigación, las políticas públicas y la atención de las pacientes.'
+                        : 'Contributes to positioning HTLV as a global and national public health priority, bridging research, public policy, and patient care.'}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="space-y-2 text-center">
-                  <h3 className="font-bold text-base sm:text-lg text-[#E5A400] tracking-wide">
-                    – {lang === 'es' ? 'Visión Global' : 'Global Vision'} –
-                  </h3>
-                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                    {lang === 'es'
-                      ? 'Consolidarse como la plataforma científica de referencia mundial en retrovirología humana, integrando a pacientes, médicos y organismos multilaterales.'
-                      : 'Become the world benchmark scientific platform in human retrovirology, integrating patients, clinicians, and multilateral agencies.'}
-                  </p>
-                </div>
               </div>
 
             </div>
@@ -788,56 +714,74 @@ function AboutContent() {
           </div>
         )}
 
-        {/* 3. INSTITUCIONES MIEMBROS & INTEGRANTES */}
+        {/* 3. INSTITUCIONES MIEMBROS & INTEGRANTES (Diseño estilo Harvard / QuEST LAC con nuestros colores) */}
         {activeTab === 'miembros' && (
-          <div className="space-y-8 animate-fadeIn max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-              {teamNodes.map((node, nodeIdx) => (
-                <div 
-                  key={nodeIdx}
-                  className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between"
-                >
-                  <div className="border-b border-slate-100 pb-4 flex items-center justify-between">
-                    <div>
-                      <span className="text-xs font-semibold uppercase tracking-wider text-[#A10D3A] block">
-                        {node.nodeName}
-                      </span>
-                      <h3 className="text-lg font-bold text-[#003B49] mt-0.5">
-                        {node.institution}
-                      </h3>
-                    </div>
-                    <div className="w-10 h-10 rounded-lg bg-[#003B49] text-white flex items-center justify-center font-bold text-lg">
-                      R
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    {node.members.map((member, mIdx) => (
-                      <div 
-                        key={mIdx}
-                        className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-[#087E8B] transition-colors flex flex-col justify-center space-y-1 group"
-                      >
-                        <h4 className="text-sm font-bold text-[#003B49] group-hover:text-[#A10D3A] transition-colors">
-                          {member.name}
-                        </h4>
-                        <p className="text-xs font-semibold text-[#A10D3A]">
-                          {member.role}
-                        </p>
-                        <p className="text-xs text-slate-500">
-                          {member.title}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="pt-3 border-t border-slate-100 text-center">
-                    <span className="text-xs font-medium text-slate-500">
-                      {lang === 'es' ? 'Afiliación formal a la Red RIII-HTLV' : 'Formal RIII-HTLV Network affiliation'}
+          <div className="space-y-12 animate-fadeIn max-w-6xl mx-auto">
+            {teamNodes.map((node, nodeIdx) => (
+              <div key={nodeIdx} className="space-y-6">
+                
+                {/* Encabezado de la Institución / Nodo */}
+                <div className="border-b-2 border-[#003B49]/20 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                  <div>
+                    <span className="text-xs font-extrabold uppercase tracking-widest text-[#087E8B] block">
+                      {node.nodeName}
                     </span>
+                    <h3 className="text-xl sm:text-2xl font-black text-[#003B49] mt-0.5">
+                      {node.institution}
+                    </h3>
                   </div>
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#003B49]/10 text-[#003B49] self-start sm:self-auto">
+                    {node.members.length} {lang === 'es' ? 'Investigadores' : 'Researchers'}
+                  </span>
                 </div>
-              ))}
-            </div>
+
+                {/* Grid de Miembros con línea divisoria lateral naranja/mostaza y badges (Estilo foto de referencia) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {node.members.map((member, mIdx) => (
+                    <div
+                      key={mIdx}
+                      className="relative pl-4 border-l-2 border-[#E5A400] flex flex-col justify-between space-y-4 py-1 group bg-white/50 p-2 rounded-r-lg hover:bg-white hover:shadow-sm transition-all"
+                    >
+                      <div className="space-y-3">
+                        {/* Foto cuadrada nítida */}
+                        <div className="w-full aspect-square rounded-sm overflow-hidden bg-slate-100 shadow-xs border border-slate-200/80">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+
+                        {/* Nombre del Investigador */}
+                        <div>
+                          <h4 className="text-base font-bold text-slate-900 group-hover:text-[#003B49] transition-colors leading-tight">
+                            {member.name}
+                          </h4>
+                          
+                          {/* Rol institucional */}
+                          <p className="text-xs font-semibold text-[#003B49] mt-1 leading-snug">
+                            {member.role}
+                          </p>
+
+                          {/* Cargo y Departamento */}
+                          <p className="text-xs text-slate-500 mt-0.5 leading-snug">
+                            {member.title}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Badge ovalado / pastilla con borde mostaza (idéntico al estilo de la referencia) */}
+                      <div className="pt-1">
+                        <span className="inline-block text-[11px] font-semibold text-[#002538] px-3 py-0.5 rounded-full border border-[#E5A400] bg-[#E5A400]/10">
+                          {node.institution.includes('UPCH') ? (lang === 'es' ? 'Investigador Principal' : 'Principal Investigator') : (lang === 'es' ? 'Investigador Internacional' : 'International Faculty')}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+            ))}
           </div>
         )}
 

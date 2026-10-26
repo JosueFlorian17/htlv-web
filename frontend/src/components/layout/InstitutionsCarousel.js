@@ -11,10 +11,6 @@ export default function InstitutionsCarousel() {
       alt: "Universidad Peruana Cayetano Heredia"
     },
     {
-      src: "/logos/imperial_college_logo.png",
-      alt: "Imperial College London"
-    },
-    {
       src: "/logos/unsaac_logo.png",
       alt: "Universidad Nacional de San Antonio Abad del Cusco"
     },
@@ -27,6 +23,10 @@ export default function InstitutionsCarousel() {
       alt: "University of Washington"
     },
     {
+      src: "/logos/imperial_college_logo.png",
+      alt: "Imperial College London"
+    },
+    {
       src: "/logos/st_marianna_logo.png",
       alt: "St. Marianna University School of Medicine"
     }
@@ -36,7 +36,7 @@ export default function InstitutionsCarousel() {
   const displayLogos = [...logos, ...logos, ...logos, ...logos];
 
   return (
-    <section className="w-full bg-slate-50 border-t border-slate-200/80 pt-6 pb-2 sm:pt-8 sm:pb-3 overflow-hidden pointer-events-none select-none">
+    <section className="w-full bg-slate-50 border-t border-slate-200/80 pt-6 pb-6 sm:pt-8 sm:pb-8 mb-4 sm:mb-6 overflow-hidden pointer-events-none select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-3 sm:mb-4 text-center">
         <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold uppercase tracking-wide text-[#003B49]">
           {lang === 'es' 

@@ -41,7 +41,7 @@ export default function Header() {
             href: '/about?tab=quienes-somos',
             basePath: '/about',
             items: [
-                { label: lang === 'es' ? 'Quiénes somos' : 'About us', href: '/about?tab=quienes-somos' },
+                { label: lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?', href: '/about?tab=quienes-somos' },
                 { label: lang === 'es' ? 'Objetivos' : 'Objectives', href: '/about?tab=objetivos' },
                 { label: lang === 'es' ? 'Estructura y gobernanza' : 'Structure & governance', href: '/about?tab=estructura' },
                 { label: lang === 'es' ? 'Instituciones miembros' : 'Member institutions', href: '/about?tab=miembros' },
