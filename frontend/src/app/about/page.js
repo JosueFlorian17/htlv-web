@@ -342,7 +342,7 @@ function AboutContent() {
 
                 <div className="space-y-3.5">
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
-                    <span className="w-8 h-8 rounded-lg bg-[#003B49] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                    <span className="text-xl sm:text-2xl font-black text-black shrink-0 w-6 text-center leading-none mt-0.5">
                       1
                     </span>
                     <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
@@ -353,7 +353,7 @@ function AboutContent() {
                   </div>
 
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
-                    <span className="w-8 h-8 rounded-lg bg-[#087E8B] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                    <span className="text-xl sm:text-2xl font-black text-black shrink-0 w-6 text-center leading-none mt-0.5">
                       2
                     </span>
                     <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
@@ -364,7 +364,7 @@ function AboutContent() {
                   </div>
 
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
-                    <span className="w-8 h-8 rounded-lg bg-[#E5A400] text-[#002538] flex items-center justify-center font-bold text-sm shrink-0">
+                    <span className="text-xl sm:text-2xl font-black text-black shrink-0 w-6 text-center leading-none mt-0.5">
                       3
                     </span>
                     <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
@@ -375,7 +375,7 @@ function AboutContent() {
                   </div>
 
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
-                    <span className="w-8 h-8 rounded-lg bg-[#A10D3A] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                    <span className="text-xl sm:text-2xl font-black text-black shrink-0 w-6 text-center leading-none mt-0.5">
                       4
                     </span>
                     <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
@@ -386,7 +386,7 @@ function AboutContent() {
                   </div>
 
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
-                    <span className="w-8 h-8 rounded-lg bg-[#002538] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                    <span className="text-xl sm:text-2xl font-black text-black shrink-0 w-6 text-center leading-none mt-0.5">
                       5
                     </span>
                     <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
@@ -611,19 +611,19 @@ function AboutContent() {
 
             {/* Organigrama interactivo fiel a la imagen de jerarquía con nuestros colores */}
             <div className="w-full overflow-x-auto py-6">
-              <div className="min-w-[860px] max-w-5xl mx-auto flex flex-col items-center">
+              <div className="min-w-[900px] max-w-5xl mx-auto flex flex-col items-center">
                 
-                {/* NIVEL SUPERIOR: Comité Directivo y Gestora del proyecto conectada lateralmente */}
-                <div className="relative w-full max-w-[820px] flex items-center justify-center">
+                {/* NIVEL 1: COMITÉ DIRECTIVO + TRONCO CON RAMA A GESTORA DEL PROYECTO */}
+                <div className="flex flex-col items-center">
                   
-                  {/* Comité Directivo (Caja Principal) */}
+                  {/* Caja Comité Directivo */}
                   <div
                     onClick={() => setSelectedNode({
                       title: lang === 'es' ? 'Comité Directivo' : 'Steering Committee',
                       leader: 'Líder Técnica: Patricia J. García',
                       description: 'El Comité Directivo orienta el desarrollo estratégico de la Red HTLV y contribuye a su gobernanza, articulación institucional y seguimiento de las actividades previstas en el plan de trabajo.'
                     })}
-                    className="w-[420px] bg-[#66122C] hover:bg-[#520e23] text-white p-5 rounded-none shadow-md cursor-pointer transition-all transform hover:-translate-y-0.5 text-center"
+                    className="w-[440px] bg-[#66122C] hover:bg-[#520e23] text-white p-5 shadow-md cursor-pointer transition-all transform hover:-translate-y-0.5 text-center select-none"
                   >
                     <h4 className="text-xl font-bold tracking-tight text-white">
                       {lang === 'es' ? 'Comité Directivo' : 'Steering Committee'}
@@ -633,67 +633,75 @@ function AboutContent() {
                     </p>
                   </div>
 
-                  {/* Rama conector hacia Gestora del proyecto */}
-                  {/* Línea horizontal desde la bajada central hacia la derecha */}
-                  <div className="absolute right-[40px] top-[50%] -translate-y-1/2 flex items-center">
-                    <div className="w-12 h-0.5 bg-[#66122C]"></div>
-                    {/* Gestora del proyecto */}
-                    <div
-                      onClick={() => setSelectedNode({
-                        title: lang === 'es' ? 'Gestora del proyecto' : 'Project Manager',
-                        leader: 'Lic. Claudia Morales',
-                        description: 'La Gestora del proyecto está a cargo de la coordinación administrativa del proyecto ante PROCIENCIA-CONCYTEC, así como del seguimiento de los procedimientos administrativos y de la documentación requerida para el cumplimiento de los compromisos y entregables establecidos.'
-                      })}
-                      className="w-[230px] bg-[#FFF2DE] hover:bg-[#fee7c7] border-2 border-[#E5A400] text-slate-900 p-3.5 rounded-none shadow-xs cursor-pointer transition-all text-center"
-                    >
-                      <h5 className="text-sm font-bold text-slate-900 leading-tight">
-                        {lang === 'es' ? 'Gestora del proyecto' : 'Project Manager'}
-                      </h5>
-                      <p className="text-xs text-slate-700 font-semibold mt-1">
-                        Lic. Claudia Morales
-                      </p>
+                  {/* Bajada central de Comité Directivo con derivación a Gestora */}
+                  <div className="relative w-[500px] h-16 flex justify-center">
+                    {/* Línea vertical central */}
+                    <div className="w-0.5 h-full bg-[#66122C]"></div>
+
+                    {/* Derivación horizontal a la derecha hacia Gestora */}
+                    <div className="absolute left-1/2 top-1/2 -translate-y-1/2 flex items-center">
+                      <div className="w-14 h-0.5 bg-[#66122C]"></div>
+                      
+                      {/* Caja Gestora del Proyecto */}
+                      <div
+                        onClick={() => setSelectedNode({
+                          title: lang === 'es' ? 'Gestora del proyecto' : 'Project Manager',
+                          leader: 'Lic. Claudia Morales',
+                          description: 'La Gestora del proyecto está a cargo de la coordinación administrativa del proyecto ante PROCIENCIA-CONCYTEC, así como del seguimiento de los procedimientos administrativos y de la documentación requerida para el cumplimiento de los compromisos y entregables establecidos.'
+                        })}
+                        className="w-[240px] bg-[#FFF2DE] hover:bg-[#fee7c7] border-2 border-[#E5A400] text-slate-900 p-3 shadow-xs cursor-pointer transition-all text-center select-none"
+                      >
+                        <h5 className="text-sm font-bold text-slate-900 leading-tight">
+                          {lang === 'es' ? 'Gestora del proyecto' : 'Project Manager'}
+                        </h5>
+                        <p className="text-xs text-slate-700 font-semibold mt-1">
+                          Lic. Claudia Morales
+                        </p>
+                      </div>
                     </div>
                   </div>
 
                 </div>
 
-                {/* Línea vertical central que baja del Comité Directivo hacia las instituciones */}
-                <div className="w-0.5 h-10 bg-[#66122C]"></div>
-
-                {/* Línea horizontal bifurcadora hacia Instituciones Nacionales e Internacionales */}
-                <div className="w-full max-w-[800px] relative">
+                {/* LÍNEA HORIZONTAL BIFURCADORA PRINCIPAL (Conecta Nacionales e Internacionales) */}
+                <div className="w-[50%] max-w-[500px] relative">
                   <div className="h-0.5 bg-[#66122C] w-full"></div>
-                  {/* Bajada izquierda a Instituciones Nacionales */}
-                  <div className="absolute left-[25%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#66122C]"></div>
-                  {/* Bajada derecha a Instituciones Internacionales */}
-                  <div className="absolute left-[75%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#66122C]"></div>
+                  {/* Bajada izquierda a bloque nacional */}
+                  <div className="absolute left-0 top-0 w-0.5 h-7 bg-[#66122C]"></div>
+                  {/* Bajada derecha a bloque internacional */}
+                  <div className="absolute right-0 top-0 w-0.5 h-7 bg-[#66122C]"></div>
                 </div>
 
-                {/* NIVEL 2: Contenedores de Instituciones Nacionales e Internacionales */}
-                <div className="grid grid-cols-2 gap-6 w-full max-w-[940px] pt-6">
+                {/* NIVEL 2: CONTENEDORES DE INSTITUCIONES NACIONALES E INTERNACIONALES */}
+                <div className="grid grid-cols-2 gap-8 w-full max-w-[960px] pt-7">
                   
                   {/* BLOQUE IZQUIERDO: Instituciones Nacionales */}
-                  <div className="bg-[#FAF0F3] border border-[#66122C]/20 p-5 rounded-none space-y-4">
-                    <div className="text-center pb-1 border-b border-[#66122C]/15">
+                  <div className="bg-[#FAF0F3] border border-[#66122C]/20 p-5 space-y-4">
+                    <div className="text-center pb-2 border-b border-[#66122C]/15">
                       <h4 className="text-base font-bold text-[#66122C] tracking-wide">
                         {lang === 'es' ? 'Instituciones nacionales' : 'National Institutions'}
                       </h4>
                     </div>
 
-                    {/* Línea horizontal interna para conectar las 3 tarjetas */}
-                    <div className="w-full relative px-6">
-                      <div className="h-0.5 bg-[#66122C]/40 w-full"></div>
+                    {/* Línea horizontal interna conectando las 3 tarjetas con bajadas hacia cada una */}
+                    <div className="w-full relative h-4">
+                      {/* Línea horizontal continua sobre las 3 tarjetas */}
+                      <div className="absolute left-[16.66%] right-[16.66%] top-0 h-0.5 bg-[#66122C]"></div>
+                      {/* 3 bajadas a las columnas */}
+                      <div className="absolute left-[16.66%] -translate-x-1/2 top-0 w-0.5 h-4 bg-[#66122C]"></div>
+                      <div className="absolute left-[50%] -translate-x-1/2 top-0 w-0.5 h-4 bg-[#66122C]"></div>
+                      <div className="absolute right-[16.66%] translate-x-1/2 top-0 w-0.5 h-4 bg-[#66122C]"></div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3 pt-1">
+                    <div className="grid grid-cols-3 gap-3">
                       {/* Universidad Peruana Cayetano Heredia */}
                       <a
                         href="https://cayetano.edu.pe/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
                       >
-                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                        <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/cayetano_heredia_logo.png" alt="Universidad Peruana Cayetano Heredia" className="max-h-full max-w-full object-contain" />
                         </div>
                         <div className="my-auto py-1">
@@ -701,7 +709,7 @@ function AboutContent() {
                             Universidad Peruana Cayetano Heredia
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-[#FAF0F3] px-2 py-0.5 w-full block mt-1">
                           Lima
                         </span>
                       </a>
@@ -711,9 +719,9 @@ function AboutContent() {
                         href="https://www.unsaac.edu.pe/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
                       >
-                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                        <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/unsaac_logo.png" alt="Universidad Nacional de San Antonio Abad del Cusco" className="max-h-full max-w-full object-contain" />
                         </div>
                         <div className="my-auto py-1">
@@ -721,7 +729,7 @@ function AboutContent() {
                             Universidad Nacional de San Antonio Abad del Cusco
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-[#FAF0F3] px-2 py-0.5 w-full block mt-1">
                           Cusco
                         </span>
                       </a>
@@ -731,9 +739,9 @@ function AboutContent() {
                         href="https://www.unu.edu.pe/portal/index.php"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
                       >
-                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                        <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/unu_logo.png" alt="Universidad Nacional de Ucayali" className="max-h-full max-w-full object-contain" />
                         </div>
                         <div className="my-auto py-1">
@@ -741,7 +749,7 @@ function AboutContent() {
                             Universidad Nacional de Ucayali
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-[#FAF0F3] px-2 py-0.5 w-full block mt-1">
                           Ucayali
                         </span>
                       </a>
@@ -749,27 +757,32 @@ function AboutContent() {
                   </div>
 
                   {/* BLOQUE DERECHO: Instituciones Internacionales */}
-                  <div className="bg-[#EBF3FB] border border-[#1A4B82]/20 p-5 rounded-none space-y-4">
-                    <div className="text-center pb-1 border-b border-[#1A4B82]/15">
+                  <div className="bg-[#EBF3FB] border border-[#1A4B82]/20 p-5 space-y-4">
+                    <div className="text-center pb-2 border-b border-[#1A4B82]/15">
                       <h4 className="text-base font-bold text-[#1A4B82] tracking-wide">
                         {lang === 'es' ? 'Instituciones internacionales' : 'International Institutions'}
                       </h4>
                     </div>
 
-                    {/* Línea horizontal interna para conectar las 3 tarjetas */}
-                    <div className="w-full relative px-6">
-                      <div className="h-0.5 bg-[#1A4B82]/40 w-full"></div>
+                    {/* Línea horizontal interna conectando las 3 tarjetas con bajadas hacia cada una */}
+                    <div className="w-full relative h-4">
+                      {/* Línea horizontal continua sobre las 3 tarjetas */}
+                      <div className="absolute left-[16.66%] right-[16.66%] top-0 h-0.5 bg-[#1A4B82]"></div>
+                      {/* 3 bajadas a las columnas */}
+                      <div className="absolute left-[16.66%] -translate-x-1/2 top-0 w-0.5 h-4 bg-[#1A4B82]"></div>
+                      <div className="absolute left-[50%] -translate-x-1/2 top-0 w-0.5 h-4 bg-[#1A4B82]"></div>
+                      <div className="absolute right-[16.66%] translate-x-1/2 top-0 w-0.5 h-4 bg-[#1A4B82]"></div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3 pt-1">
+                    <div className="grid grid-cols-3 gap-3">
                       {/* University of Washington */}
                       <a
                         href="https://www.washington.edu/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
                       >
-                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                        <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/uw_logo.png" alt="University of Washington" className="max-h-full max-w-full object-contain" />
                         </div>
                         <div className="my-auto py-1">
@@ -777,7 +790,7 @@ function AboutContent() {
                             University of Washington
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-[#EBF3FB] px-2 py-0.5 w-full block mt-1">
                           {lang === 'es' ? 'Estados Unidos' : 'United States'}
                         </span>
                       </a>
@@ -787,9 +800,9 @@ function AboutContent() {
                         href="https://www.imperial.ac.uk/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
                       >
-                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                        <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/imperial_college_logo.png" alt="Imperial College London" className="max-h-full max-w-full object-contain" />
                         </div>
                         <div className="my-auto py-1">
@@ -797,7 +810,7 @@ function AboutContent() {
                             Imperial College London
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-[#EBF3FB] px-2 py-0.5 w-full block mt-1">
                           {lang === 'es' ? 'Reino Unido' : 'United Kingdom'}
                         </span>
                       </a>
@@ -807,9 +820,9 @@ function AboutContent() {
                         href="https://www.marianna-u.ac.jp/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
                       >
-                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                        <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/st_marianna_logo.png" alt="St. Marianna University School of Medicine" className="max-h-full max-w-full object-contain" />
                         </div>
                         <div className="my-auto py-1">
@@ -817,7 +830,7 @@ function AboutContent() {
                             St. Marianna University School of Medicine
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-[#EBF3FB] px-2 py-0.5 w-full block mt-1">
                           {lang === 'es' ? 'Japón' : 'Japan'}
                         </span>
                       </a>
@@ -980,8 +993,8 @@ function AboutContent() {
                   </p>
                 </div>
 
-                {/* Logos de CONCYTEC - PROCIENCIA en lugar de los 2 recuadros previos */}
-                <div className="py-3 px-6 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center">
+                {/* Logos de CONCYTEC - PROCIENCIA limpio sin recuadro gris */}
+                <div className="py-2 flex items-center justify-start">
                   <img 
                     src="/logos/concytec_prociencia.png" 
                     alt="CONCYTEC - PROCIENCIA" 
