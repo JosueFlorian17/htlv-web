@@ -19,6 +19,16 @@ function AboutContent() {
   );
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedObjective, setSelectedObjective] = useState(null);
+  // Secciones colapsables de instituciones miembros (acordeon independiente)
+  // Por defecto, Cayetano Heredia ('upch') inicia abierta y las demas cerradas
+  const [openInstitutions, setOpenInstitutions] = useState({ upch: true });
+
+  const toggleInstitution = (id) => {
+    setOpenInstitutions((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   useEffect(() => {
     if (tabFromUrl && validTabs.includes(tabFromUrl)) {
@@ -123,101 +133,225 @@ function AboutContent() {
     }
   };
 
-  // Integrantes / Miembros de Instituciones Miembros
-  const teamNodes = [
+  // Integrantes / Miembros por Institucion (secciones colapsables)
+  const memberInstitutions = [
     {
-      institution: 'Universidad Peruana Cayetano Heredia',
-      nodeName: lang === 'es' ? 'Nodo Coordinador - Perú 🇵🇪' : 'Coordinating Node - Peru 🇵🇪',
+      id: 'upch',
+      name: 'Universidad Peruana Cayetano Heredia (UPCH)',
+      shortName: 'UPCH',
+      flag: '🇵🇪',
+      country: lang === 'es' ? 'Perú' : 'Peru',
+      logo: '/logos/cayetano_heredia_logo.png',
       members: [
         {
           name: 'Dra. Patricia J. García',
-          role: lang === 'es' ? 'Líder Técnica & Directora' : 'Technical Lead & Director',
-          title: lang === 'es' ? 'Profesora Principal UPCH • Salud Pública & Epidemiología' : 'Professor UPCH • Public Health & Epidemiology',
+          role: lang === 'es' ? 'Líder técnica' : 'Technical Lead',
+          text: lang === 'es'
+            ? 'Profesora principal de la Facultad de Salud Pública y Administración de la UPCH y Profesora Adjunta de la Universidad de Washington'
+            : 'Principal Professor at the School of Public Health and Administration (UPCH) and Affiliate Professor at the University of Washington',
           image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
         },
         {
           name: 'Dr. Eduardo Gotuzzo',
-          role: lang === 'es' ? 'Investigador Principal' : 'Principal Investigator',
-          title: lang === 'es' ? 'Profesor Emérito UPCH • Infectólogo Clínico IMTAvH' : 'Emeritus Professor UPCH • Clinical Infectologist',
+          role: lang === 'es' ? 'Co-investigador' : 'Co-investigator',
+          text: lang === 'es'
+            ? 'Profesor emérito de la UPCH y especialista en medicina interna y enfermedades infecciosas y tropicales'
+            : 'Emeritus Professor at UPCH and specialist in internal medicine and infectious and tropical diseases',
           image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80'
         },
         {
-          name: 'Lic. Claudia Morales',
-          role: lang === 'es' ? 'Gestora del Proyecto' : 'Project Manager',
-          title: lang === 'es' ? 'Coordinación y Gestión Administrativa de la Red' : 'Network Coordination & Administrative Management',
-          image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
-        },
-        {
-          name: 'Dr. Daniel Cóndor',
-          role: lang === 'es' ? 'Investigador' : 'Researcher',
-          title: lang === 'es' ? 'Investigador Asociado • Retrovirología e Inmunología' : 'Associate Researcher • Retrovirology & Immunology',
+          name: 'Mg. Daniel Cóndor',
+          role: lang === 'es' ? 'Co-investigador' : 'Co-investigator',
+          text: lang === 'es'
+            ? 'Coordinador de la Unidad de Informática Biomédica en Salud Global y docente investigador de la UPCH'
+            : 'Coordinator of the Biomedical Informatics in Global Health Unit and research faculty at UPCH',
           image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
         },
         {
           name: 'Dr. Isaac Alva',
-          role: lang === 'es' ? 'Investigador' : 'Researcher',
-          title: lang === 'es' ? 'Investigador Clínico • Infectología y Ensayos Clínicos' : 'Clinical Researcher • Infectious Diseases & Clinical Trials',
+          role: lang === 'es' ? 'Co-investigador' : 'Co-investigator',
+          text: lang === 'es'
+            ? 'Médico salubrista, docente investigador de la UPCH e investigador de la Unidad de HTLV-1 del Instituto de Medicina Tropical Alexander von Humboldt'
+            : 'Public health physician, research faculty at UPCH, and researcher at the HTLV-1 Unit of the Instituto de Medicina Tropical Alexander von Humboldt',
           image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80'
         },
         {
           name: 'Dra. Gabriela Garrido',
-          role: lang === 'es' ? 'Investigadora' : 'Researcher',
-          title: lang === 'es' ? 'Investigadora Biomédica • Diagnóstico Molecular' : 'Biomedical Researcher • Molecular Diagnostics',
+          role: lang === 'es' ? 'Co-investigadora' : 'Co-investigator',
+          text: lang === 'es'
+            ? 'Médica e investigadora clínica de la Unidad de HTLV-1 del Instituto de Medicina Tropical Alexander von Humboldt'
+            : 'Physician and clinical researcher at the HTLV-1 Unit of the Instituto de Medicina Tropical Alexander von Humboldt',
           image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80'
         },
         {
-          name: 'Dr. César Cárcamo',
-          role: lang === 'es' ? 'Investigador Principal' : 'Principal Investigator',
-          title: lang === 'es' ? 'Profesor Principal UPCH • Epidemiología y Bioestadística' : 'Professor UPCH • Epidemiology & Biostatistics',
-          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
+          name: 'Lic. Claudia Morales Morazzani',
+          role: lang === 'es' ? 'Gestora del proyecto' : 'Project Manager',
+          text: lang === 'es'
+            ? 'Administradora de la Unidad de Epidemiología, ETS y VIH de la UPCH'
+            : 'Administrator of the Epidemiology, STD and HIV Unit at UPCH',
+          image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
         },
         {
-          name: 'Maria J. Ruiz Ramirez',
-          role: lang === 'es' ? 'Investigadora' : 'Researcher',
-          title: lang === 'es' ? 'Investigadora de Campo • Salud Comunitaria y Seguimiento' : 'Field Researcher • Community Health & Patient Follow-up',
+          name: 'María J. Ruiz Ramírez',
+          role: lang === 'es' ? 'Miembro' : 'Member',
+          text: lang === 'es'
+            ? 'Asistente de Investigación de la Unidad de Epidemiología, ETS y VIH de la UPCH'
+            : 'Research Assistant at the Epidemiology, STD and HIV Unit at UPCH',
           image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80'
         },
         {
-          name: 'Giovanni López',
-          role: lang === 'es' ? 'Investigador' : 'Researcher',
-          title: lang === 'es' ? 'Investigador en Salud Digital y Gestión de Datos' : 'Researcher in Digital Health & Data Management',
+          name: 'Dr. César Cárcamo',
+          role: lang === 'es' ? 'Miembro' : 'Member',
+          text: lang === 'es'
+            ? 'Docente de la Facultad de Salud Pública y Administración y coordinador del Doctorado en Ciencias en Investigación Epidemiológica de la UPCH'
+            : 'Faculty member at the School of Public Health and Administration and coordinator of the PhD in Epidemiological Research at UPCH',
+          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Mg. Giovanni López',
+          role: lang === 'es' ? 'Miembro' : 'Member',
+          text: lang === 'es'
+            ? 'Jefe de la Unidad de Virología, investigador de la Unidad de HTLV-1 y coordinador de Tropicales LAB del Instituto de Medicina Tropical Alexander von Humboldt'
+            : 'Head of the Virology Unit, researcher at the HTLV-1 Unit, and coordinator of Tropicales LAB at the Instituto de Medicina Tropical Alexander von Humboldt',
           image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'
         },
         {
-          name: 'Jessica Cuenca',
-          role: lang === 'es' ? 'Investigadora' : 'Researcher',
-          title: lang === 'es' ? 'Coordinación de Operaciones Clínicas y Enlace de Red' : 'Clinical Operations Coordination & Network Liaison',
+          name: 'Blga. Jessica Cuenca',
+          role: lang === 'es' ? 'Miembro' : 'Member',
+          text: lang === 'es'
+            ? 'Bióloga e investigadora del Instituto de Medicina Tropical Alexander von Humboldt'
+            : 'Biologist and researcher at the Instituto de Medicina Tropical Alexander von Humboldt',
           image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Lic. Dyana Guardia',
+          role: lang === 'es' ? 'Miembro' : 'Member',
+          text: lang === 'es'
+            ? 'Enfermera de la Unidad de Investigación en HTLV-1 del Instituto de Medicina Tropical Alexander von Humboldt'
+            : 'Nurse at the HTLV-1 Research Unit of the Instituto de Medicina Tropical Alexander von Humboldt',
+          image: 'https://images.unsplash.com/photo-1594824813593-9c8828b6d859?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Lic. Aydee Trebejo',
+          role: lang === 'es' ? 'Miembro' : 'Member',
+          text: lang === 'es'
+            ? 'Técnica en Enfermería, con interés en investigación en salud'
+            : 'Nursing technician with an active interest in health research',
+          image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Josselyn Ataurima',
+          role: lang === 'es' ? 'Miembro' : 'Member',
+          text: lang === 'es'
+            ? 'Estudiante de Enfermería de la UPCH'
+            : 'Nursing Student at UPCH',
+          image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Yamila Vasquez',
+          role: lang === 'es' ? 'Miembro' : 'Member',
+          text: lang === 'es'
+            ? 'Estudiante de Enfermería de la UPCH'
+            : 'Nursing Student at UPCH',
+          image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Joaquin Espinoza',
+          role: lang === 'es' ? 'Miembro' : 'Member',
+          text: lang === 'es'
+            ? 'Estudiante de Enfermería de la UPCH'
+            : 'Nursing Student at UPCH',
+          image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80'
         }
       ]
     },
     {
-      institution: 'Imperial College London & Red Internacional',
-      nodeName: 'Nodo Internacional & Reino Unido 🇬🇧',
+      id: 'unsaac',
+      name: 'Universidad Nacional de San Antonio Abad del Cusco (UNSAAC)',
+      shortName: 'UNSAAC',
+      flag: '🇵🇪',
+      country: lang === 'es' ? 'Perú' : 'Peru',
+      logo: '/logos/unsaac_logo.png',
       members: [
         {
-          name: 'Prof. Graham P. Taylor',
-          role: lang === 'es' ? 'Vicepresidente Red HTLV' : 'Vice President',
-          title: lang === 'es' ? 'Director National Centre for Human Retrovirology' : 'Head National Centre for Human Retrovirology',
-          image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
-        },
+          name: 'Dra. Fátima Concha',
+          role: lang === 'es' ? 'Co-investigadora' : 'Co-investigator',
+          text: lang === 'es'
+            ? 'Médica especialista en Enfermedades Infecciosas y Tropicales, investigadora y docente auxiliar de la Escuela Profesional de Medicina Humana de la UNSAAC'
+            : 'Specialist in Infectious and Tropical Diseases, researcher and auxiliary professor at the School of Medicine of UNSAAC',
+          image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80'
+        }
+      ]
+    },
+    {
+      id: 'unu',
+      name: 'Universidad Nacional de Ucayali (UNU)',
+      shortName: 'UNU',
+      flag: '🇵🇪',
+      country: lang === 'es' ? 'Perú' : 'Peru',
+      logo: '/logos/unu_logo.png',
+      members: [
         {
-          name: 'Dra. Aileen Rowan',
-          role: lang === 'es' ? 'Biología Celular & Carga Proviral' : 'Cellular Biology & Proviral Load',
-          title: 'Imperial College London',
+          name: 'Dra. Teresa Elespuro',
+          role: lang === 'es' ? 'Co-investigadora' : 'Co-investigator',
+          text: lang === 'es'
+            ? 'Docente principal  e Investigadora de la Escuela Profesional de Enfermería de la UNU'
+            : 'Principal Professor and Researcher at the School of Nursing of UNU',
           image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
-        },
+        }
+      ]
+    },
+    {
+      id: 'uw',
+      name: 'University of Washington',
+      shortName: 'UW',
+      flag: '🇺🇸',
+      country: lang === 'es' ? 'Estados Unidos' : 'United States',
+      logo: '/logos/UW_LogoPNG.png',
+      members: [
         {
-          name: 'Prof. Antoine Gessain',
-          role: lang === 'es' ? 'Oncogénesis Viral & ATL' : 'Viral Oncogenesis & ATL',
-          title: 'Institut Pasteur (Francia)',
-          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
-        },
+          name: 'Dr. Joe Zunt',
+          role: lang === 'es' ? 'Co-investigador' : 'Co-investigator',
+          text: lang === 'es'
+            ? 'Profesor de Neurología y Salud Global, y profesor adjunto de Epidemiología y Medicina (Alergia y Enfermedades Infecciosas) en la University of Washington.'
+            : 'Professor of Neurology and Global Health, and Adjunct Professor of Epidemiology and Medicine (Allergy and Infectious Diseases) at the University of Washington.',
+          image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80'
+        }
+      ]
+    },
+    {
+      id: 'imperial',
+      name: 'Imperial College London',
+      shortName: 'Imperial College',
+      flag: '🇬🇧',
+      country: lang === 'es' ? 'Reino Unido' : 'United Kingdom',
+      logo: '/logos/Imperial_College_London_PNG.png',
+      members: [
         {
-          name: 'Dra. María Fernanda Ríos',
-          role: lang === 'es' ? 'Vigilancia Epidemiológica' : 'Epidemiological Surveillance',
-          title: 'Fiocruz / ISCIII',
+          name: 'Dra. Carolina Rosadas',
+          role: lang === 'es' ? 'Co-investigadora' : 'Co-investigator',
+          text: lang === 'es'
+            ? 'Investigadora del Departamento de Enfermedades Infecciosas de la Facultad de Medicina de Imperial College London y consultora principal en HTLV de la Organización Mundial de la Salud (OMS)'
+            : 'Researcher in the Department of Infectious Disease at Imperial College London and lead consultant on HTLV for the World Health Organization (WHO)',
           image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
+        }
+      ]
+    },
+    {
+      id: 'stmarianna',
+      name: 'St. Marianna University School of Medicine',
+      shortName: 'St. Marianna',
+      flag: '🇯🇵',
+      country: lang === 'es' ? 'Japón' : 'Japan',
+      logo: '/logos/st_marianna_logo.png',
+      members: [
+        {
+          name: 'Dr. Yoshihisa Yamano',
+          role: lang === 'es' ? 'Co-investigador' : 'Co-investigator',
+          text: lang === 'es'
+            ? 'Profesor y jefe del Departamento de Neurología de St. Marianna University School of Medicine, Japón'
+            : 'Professor and Chair of the Department of Rare Diseases Research and Neurology at St. Marianna University School of Medicine, Japan',
+          image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
         }
       ]
     }
@@ -866,78 +1000,120 @@ function AboutContent() {
           </div>
         )}
 
-        {/* 3. INSTITUCIONES MIEMBROS & INTEGRANTES (Diseño estilo Harvard / QuEST LAC con nuestros colores) */}
+        {/* 3. INSTITUCIONES MIEMBROS & INTEGRANTES (Secciones por institucion colapsables) */}
         {activeTab === 'miembros' && (
-          <div className="space-y-12 animate-fadeIn max-w-6xl mx-auto">
-            {teamNodes.map((node, nodeIdx) => (
-              <div key={nodeIdx} className="space-y-6">
-                
-                {/* Encabezado de la Institución / Nodo */}
-                <div className="border-b-2 border-[#003B49]/20 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-                  <div>
-                    <span className="text-xs font-extrabold uppercase tracking-widest text-[#087E8B] block">
-                      {node.nodeName}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-black text-[#003B49] mt-0.5">
-                      {node.institution}
-                    </h3>
-                  </div>
-                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#003B49]/10 text-[#003B49] self-start sm:self-auto">
-                    {node.members.length} {lang === 'es' ? 'Investigadores' : 'Researchers'}
-                  </span>
-                </div>
-
-                {/* Grid de Miembros con línea divisoria lateral naranja/mostaza y badges (Estilo foto de referencia) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {node.members.map((member, mIdx) => (
-                    <div
-                      key={mIdx}
-                      className="relative pl-4 border-l-2 border-[#E5A400] flex flex-col justify-between space-y-4 py-1 group bg-white/50 p-2 rounded-r-lg hover:bg-white hover:shadow-sm transition-all"
-                    >
-                      <div className="space-y-3">
-                        {/* Foto cuadrada nítida */}
-                        <div className="w-full aspect-square rounded-sm overflow-hidden bg-slate-100 shadow-xs border border-slate-200/80">
+          <div className="space-y-6 animate-fadeIn max-w-6xl mx-auto">
+            {memberInstitutions.map((inst) => {
+              const isOpen = !!openInstitutions[inst.id];
+              return (
+                <div
+                  key={inst.id}
+                  className="bg-white rounded-xl border border-slate-200/90 shadow-sm overflow-hidden transition-all duration-200 hover:border-slate-300"
+                >
+                  {/* Encabezado clicable tipo acordeon */}
+                  <button
+                    type="button"
+                    onClick={() => toggleInstitution(inst.id)}
+                    aria-expanded={isOpen}
+                    className="w-full text-left px-5 sm:px-7 py-4 sm:py-5 flex items-center justify-between gap-4 bg-white hover:bg-slate-50/80 transition-colors cursor-pointer select-none"
+                  >
+                    <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                      {/* Logo pequeno o bandera */}
+                      {inst.logo ? (
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-slate-50 border border-slate-200/70 p-1 flex items-center justify-center shrink-0">
                           <img
-                            src={member.image}
-                            alt={member.name}
-                            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                            src={inst.logo}
+                            alt={inst.shortName}
+                            className="max-h-full max-w-full object-contain"
                           />
                         </div>
+                      ) : (
+                        <span className="text-2xl sm:text-3xl shrink-0">{inst.flag}</span>
+                      )}
 
-                        {/* Nombre del Investigador */}
-                        <div>
-                          <h4 className="text-base font-bold text-slate-900 group-hover:text-[#003B49] transition-colors leading-tight">
-                            {member.name}
-                          </h4>
-                          
-                          {/* Rol institucional */}
-                          <p className="text-xs font-semibold text-[#003B49] mt-1 leading-snug">
-                            {member.role}
-                          </p>
-
-                          {/* Cargo y Departamento */}
-                          <p className="text-xs text-slate-500 mt-0.5 leading-snug">
-                            {member.title}
-                          </p>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-xs sm:text-sm font-semibold text-slate-500">
+                            {inst.country} {inst.flag}
+                          </span>
                         </div>
-                      </div>
-
-                      {/* Badge ovalado / pastilla con borde mostaza (idéntico al estilo de la referencia) */}
-                      <div className="pt-1">
-                        <span className="inline-block text-[11px] font-semibold text-black px-3 py-0.5 rounded-full border border-[#E5A400] bg-transparent">
-                          {node.institution.includes('UPCH') ? (lang === 'es' ? 'Investigador Principal' : 'Principal Investigator') : (lang === 'es' ? 'Investigador Internacional' : 'International Faculty')}
-                        </span>
+                        <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug break-words">
+                          {inst.name}
+                        </h3>
                       </div>
                     </div>
-                  ))}
-                </div>
 
-              </div>
-            ))}
+                    <div className="flex items-center gap-3 shrink-0">
+                      <span className="hidden sm:inline-block text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+                        {inst.members.length} {inst.members.length === 1 ? (lang === 'es' ? 'miembro' : 'member') : (lang === 'es' ? 'miembros' : 'members')}
+                      </span>
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 text-slate-700 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180 bg-[#003B49]/10 text-[#003B49]' : ''
+                        }`}
+                        aria-hidden="true"
+                      >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Contenido desplegable con la lista de miembros */}
+                  {isOpen && (
+                    <div className="border-t border-slate-100 px-5 sm:px-7 py-6 bg-slate-50/50">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                        {inst.members.map((member, mIdx) => (
+                          <div
+                            key={mIdx}
+                            className="relative pl-4 border-l-2 border-[#E5A400] flex flex-col justify-between space-y-4 py-1 group bg-white p-3 rounded-r-lg shadow-xs hover:shadow-sm hover:border-[#003B49] transition-all"
+                          >
+                            <div className="space-y-3">
+                              {/* Foto de perfil */}
+                              <div className="w-full aspect-square rounded-sm overflow-hidden bg-slate-100 border border-slate-200/80">
+                                <img
+                                  src={member.image}
+                                  alt={member.name}
+                                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                                />
+                              </div>
+
+                              {/* Nombre, Subtitulo (Rol) y Texto descriptivo */}
+                              <div>
+                                <h4 className="text-base font-bold text-slate-900 group-hover:text-[#003B49] transition-colors leading-tight">
+                                  {member.name}
+                                </h4>
+
+                                {/* Subtitulo */}
+                                <p className="text-xs font-semibold text-[#003B49] mt-1 leading-snug">
+                                  {member.role}
+                                </p>
+
+                                {/* Texto */}
+                                <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                                  {member.text}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Badge tipo pill con subtitulo */}
+                            <div className="pt-1">
+                              <span className="inline-block text-[11px] font-semibold text-slate-800 px-2.5 py-0.5 rounded-full border border-[#E5A400] bg-transparent">
+                                {member.role}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
 
-        {/* 4. ALIADOS ESTRATÉGICOS (Sin chips ni subtítulos) */}
         {/* 4. FINANCIAMIENTO */}
         {activeTab === 'financiamiento' && (
           <div className="space-y-6 animate-fadeIn max-w-6xl mx-auto">
