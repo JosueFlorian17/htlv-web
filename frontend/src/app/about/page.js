@@ -312,7 +312,7 @@ function AboutContent() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-slate-100">
                 <div className="space-y-2">
                   <span className="text-xs font-bold tracking-widest text-[#087E8B] uppercase">
-                    {lang === 'es' ? 'Plataforma Internacional' : 'International Platform'}
+                    {lang === 'es' ? 'Plataforma de colaboración internacional' : 'International Collaborative Platform'}
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49]">
                     {lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?'}
@@ -336,10 +336,6 @@ function AboutContent() {
 
               {/* Lista de 5 Puntos */}
               <div className="space-y-4 pt-2">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#003B49]">
-                  {lang === 'es' ? 'Nuestras Líneas de Acción Prioritarias' : 'Our Priority Action Lines'}
-                </h3>
-
                 <div className="space-y-3.5">
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#087E8B] transition-colors">
                     <span className="text-xl sm:text-2xl font-black text-black shrink-0 w-6 text-center leading-none mt-0.5">
