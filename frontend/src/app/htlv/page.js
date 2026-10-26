@@ -16,6 +16,7 @@ function HTLVContent() {
   const [activeTopic, setActiveTopic] = useState('definicion');
   const [openFaqs, setOpenFaqs] = useState({ 1: true });
   const [searchQuery, setSearchQuery] = useState('');
+  const [showFaqDisclaimer, setShowFaqDisclaimer] = useState(false);
 
   const toggleFaq = (id) => {
     setOpenFaqs((prev) => ({
@@ -201,6 +202,15 @@ function HTLVContent() {
         {/* 1. PESTAÑA: ¿QUÉ ES EL HTLV? */}
         {activeTab === 'que-es' && (
           <div className="space-y-6 animate-fadeIn">
+            {/* Disclaimer Work In Progress (Fondo rojo pastel, texto negro, bordes rectos sin bordes decorativos) */}
+            <div className="p-4 bg-[#FDE8E8] text-black rounded-none">
+              <p className="text-xs sm:text-sm font-medium tracking-wide">
+                <span className="font-bold uppercase mr-1.5">[Work in progress]</span>
+                {lang === 'es'
+                  ? 'Esta sección se encuentra actualmente en desarrollo y revisión por el equipo técnico.'
+                  : 'This section is currently under development and technical review.'}
+              </p>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
               {/* Botones de subtemas a la izquierda */}
@@ -475,17 +485,39 @@ function HTLVContent() {
               }))}
             </div>
 
-            {/* Aviso Importante Disclaimer Sintetizado */}
-            <div className="mt-8 p-5 bg-slate-50 border-l-4 border-[#087E8B] rounded-r-xl text-xs sm:text-sm text-slate-600 leading-relaxed space-y-1.5">
-              <div className="flex items-center gap-2 text-[#003B49] font-bold text-sm">
-                <span className="material-symbols-outlined text-lg text-[#087E8B]">info</span>
-                <span>{lang === 'es' ? 'Aviso importante' : 'Important Notice'}</span>
-              </div>
-              <p>
-                {lang === 'es'
-                  ? 'La información contenida en este sitio web se presenta únicamente con fines informativos y educativos. No constituye un diagnóstico ni tratamiento profesional. Siempre busque el consejo de su médico u otro proveedor de salud calificado ante cualquier duda sobre una condición médica. Nunca ignore el consejo médico profesional ni demore su búsqueda debido a algo que haya leído en este sitio.'
-                  : 'The information contained on this website is presented solely for educational and informational purposes and does not constitute professional medical diagnosis or treatment. Always seek the advice of your physician or qualified health provider regarding any medical condition. Never ignore professional medical advice or delay seeking it because of something you have read on this site.'}
-              </p>
+            {/* Botón Ver más y Disclaimer al fondo */}
+            <div className="mt-8 pt-4 border-t border-slate-200">
+              {!showFaqDisclaimer ? (
+                <div className="text-center">
+                  <button
+                    type="button"
+                    onClick={() => setShowFaqDisclaimer(true)}
+                    className="text-xs sm:text-sm font-semibold text-slate-700 hover:text-black underline cursor-pointer py-2 px-3"
+                  >
+                    {lang === 'es' ? '(Ver más)' : '(See more)'}
+                  </button>
+                </div>
+              ) : (
+                <div className="p-4 bg-[#FDE8E8] text-black rounded-none space-y-2 animate-fadeIn">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs sm:text-sm font-bold uppercase tracking-wide">
+                      {lang === 'es' ? 'Aviso importante' : 'Important Notice'}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setShowFaqDisclaimer(false)}
+                      className="text-xs text-black/70 hover:text-black font-semibold underline cursor-pointer"
+                    >
+                      {lang === 'es' ? '(Ocultar)' : '(Hide)'}
+                    </button>
+                  </div>
+                  <p className="text-xs sm:text-sm leading-relaxed font-normal">
+                    {lang === 'es'
+                      ? 'La información contenida en este sitio web se presenta únicamente con fines informativos y educativos. No constituye un diagnóstico ni tratamiento profesional. Siempre busque el consejo de su médico u otro proveedor de salud calificado ante cualquier duda sobre una condición médica. Nunca ignore el consejo médico profesional ni demore su búsqueda debido a algo que haya leído en este sitio.'
+                      : 'The information contained on this website is presented solely for educational and informational purposes and does not constitute professional medical diagnosis or treatment. Always seek the advice of your physician or qualified health provider regarding any medical condition. Never ignore professional medical advice or delay seeking it because of something you have read on this site.'}
+                  </p>
+                </div>
+              )}
             </div>
 
           </div>

@@ -53,7 +53,7 @@ export default function Header() {
             href: '/htlv?tab=que-es',
             basePath: '/htlv',
             items: [
-                { label: lang === 'es' ? '¿Qué es el HTLV?' : 'What is HTLV?', href: '/htlv?tab=que-es' },
+                { label: lang === 'es' ? '¿Qué es el HTLV? (Work in progress)' : 'What is HTLV? (Work in progress)', href: '/htlv?tab=que-es' },
                 { label: lang === 'es' ? 'Preguntas frecuentes' : 'Frequently Asked Questions', href: '/htlv?tab=faqs' }
             ]
         },
