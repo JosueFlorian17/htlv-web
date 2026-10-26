@@ -170,6 +170,10 @@ function HTLVContent() {
     }
   ], [lang]);
 
+  // Filtrado semántico inteligente con soporte de sinónimos
+  const filteredFaqs = useMemo(() => {
+    return filterFaqsSemantically(faqs, searchQuery);
+  }, [faqs, searchQuery]);
 
   return (
     <main className="w-full bg-slate-50 min-h-[calc(100vh-80px)] py-8 md:py-12 text-slate-900 flex flex-col justify-between">

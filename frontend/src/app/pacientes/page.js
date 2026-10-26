@@ -241,6 +241,11 @@ function PacientesContent() {
     }
   ], [lang]);
 
+  // Filtrado semántico inteligente con soporte de sinónimos para pacientes
+  const filteredPatientFaqs = useMemo(() => {
+    return filterFaqsSemantically(patientFaqs, faqSearchQuery);
+  }, [patientFaqs, faqSearchQuery]);
+
   return (
     <main className="w-full bg-[#f8fafc] min-h-[calc(100vh-80px)] py-8 sm:py-12 text-slate-900 flex flex-col justify-between">
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
