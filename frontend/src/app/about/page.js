@@ -123,35 +123,71 @@ function AboutContent() {
     }
   };
 
-  // Integrantes / Miembros (Imagen 4)
+  // Integrantes / Miembros de Instituciones Miembros
   const teamNodes = [
     {
-      institution: 'Universidad Peruana Cayetano Heredia (IMTAvH - UPCH)',
-      nodeName: 'Nodo Coordinador - Perú 🇵🇪',
+      institution: 'Universidad Peruana Cayetano Heredia',
+      nodeName: lang === 'es' ? 'Nodo Coordinador - Perú 🇵🇪' : 'Coordinating Node - Peru 🇵🇪',
       members: [
         {
+          name: 'Dra. Patricia J. García',
+          role: lang === 'es' ? 'Líder Técnica & Directora' : 'Technical Lead & Director',
+          title: lang === 'es' ? 'Profesora Principal UPCH • Salud Pública & Epidemiología' : 'Professor UPCH • Public Health & Epidemiology',
+          image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
+        },
+        {
           name: 'Dr. Eduardo Gotuzzo',
-          role: lang === 'es' ? 'Presidente Honorario RIII-HTLV' : 'Honorary President',
-          title: lang === 'es' ? 'Profesor Emérito UPCH • Infectólogo Clínico' : 'Emeritus Professor UPCH • Clinical Infectologist',
+          role: lang === 'es' ? 'Investigador Principal' : 'Principal Investigator',
+          title: lang === 'es' ? 'Profesor Emérito UPCH • Infectólogo Clínico IMTAvH' : 'Emeritus Professor UPCH • Clinical Infectologist',
           image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80'
         },
         {
-          name: 'Dra. Elsa González',
-          role: lang === 'es' ? 'Coordinadora Científica' : 'Scientific Coordinator',
-          title: lang === 'es' ? 'Investigadora Principal IMTAvH • Virología' : 'Principal Investigator IMTAvH • Virology',
-          image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80'
+          name: 'Lic. Claudia Morales',
+          role: lang === 'es' ? 'Gestora del Proyecto' : 'Project Manager',
+          title: lang === 'es' ? 'Coordinación y Gestión Administrativa de la Red' : 'Network Coordination & Administrative Management',
+          image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
         },
         {
-          name: 'Dr. Yoshi Ishikawa',
-          role: lang === 'es' ? 'Investigador Clínico' : 'Clinical Researcher',
-          title: lang === 'es' ? 'Especialista en Diagnóstico & FAQs' : 'Diagnostics & Clinical Follow-up',
+          name: 'Dr. Daniel Cóndor',
+          role: lang === 'es' ? 'Investigador' : 'Researcher',
+          title: lang === 'es' ? 'Investigador Asociado • Retrovirología e Inmunología' : 'Associate Researcher • Retrovirology & Immunology',
+          image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Dr. Isaac Alva',
+          role: lang === 'es' ? 'Investigador' : 'Researcher',
+          title: lang === 'es' ? 'Investigador Clínico • Infectología y Ensayos Clínicos' : 'Clinical Researcher • Infectious Diseases & Clinical Trials',
           image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80'
         },
         {
-          name: 'Dr. Renzo Calderón',
-          role: lang === 'es' ? 'Epidemiología & Ensayos' : 'Epidemiology & Trials',
-          title: lang === 'es' ? 'Investigador Adjunto IMTAvH' : 'Associate Investigator IMTAvH',
-          image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+          name: 'Dra. Gabriela Garrido',
+          role: lang === 'es' ? 'Investigadora' : 'Researcher',
+          title: lang === 'es' ? 'Investigadora Biomédica • Diagnóstico Molecular' : 'Biomedical Researcher • Molecular Diagnostics',
+          image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Dr. César Cárcamo',
+          role: lang === 'es' ? 'Investigador Principal' : 'Principal Investigator',
+          title: lang === 'es' ? 'Profesor Principal UPCH • Epidemiología y Bioestadística' : 'Professor UPCH • Epidemiology & Biostatistics',
+          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Maria J. Ruiz Ramirez',
+          role: lang === 'es' ? 'Investigadora' : 'Researcher',
+          title: lang === 'es' ? 'Investigadora de Campo • Salud Comunitaria y Seguimiento' : 'Field Researcher • Community Health & Patient Follow-up',
+          image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Giovanni López',
+          role: lang === 'es' ? 'Investigador' : 'Researcher',
+          title: lang === 'es' ? 'Investigador en Salud Digital y Gestión de Datos' : 'Researcher in Digital Health & Data Management',
+          image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'
+        },
+        {
+          name: 'Jessica Cuenca',
+          role: lang === 'es' ? 'Investigadora' : 'Researcher',
+          title: lang === 'es' ? 'Coordinación de Operaciones Clínicas y Enlace de Red' : 'Clinical Operations Coordination & Network Liaison',
+          image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'
         }
       ]
     },
@@ -562,179 +598,277 @@ function AboutContent() {
 
         {/* 3. ESTRUCTURA Y GOBERNANZA */}
         {activeTab === 'estructura' && (
-          <div className="space-y-6 animate-fadeIn max-w-5xl mx-auto">
+          <div className="space-y-8 animate-fadeIn max-w-6xl mx-auto">
             
-            {/* Título limpio sin card ni segmento de interactivo */}
-            <div>
-              <h3 className="text-2xl font-bold text-[#003B49]">
+            <div className="text-center max-w-3xl mx-auto space-y-2">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#003B49]">
                 {lang === 'es' ? 'Estructura y Gobernanza de la Red' : 'Network Structure & Governance'}
               </h3>
+              <p className="text-xs sm:text-sm text-slate-500">
+                {lang === 'es' ? 'Haz clic en los órganos de gestión para ver sus funciones o en las instituciones para visitar sus portales' : 'Click management bodies to view roles or institutions to visit their portals'}
+              </p>
             </div>
 
-            {/* Diagrama directo sin borde ni nada exterior */}
-            <div className="w-full relative overflow-x-auto py-4">
-              <div className="min-w-[760px] flex flex-col items-center">
+            {/* Organigrama interactivo fiel a la imagen de jerarquía con nuestros colores */}
+            <div className="w-full overflow-x-auto py-6">
+              <div className="min-w-[860px] max-w-5xl mx-auto flex flex-col items-center">
                 
-                {/* NIVEL 1: Comité Directivo */}
-                <div 
-                  onClick={() => setSelectedNode(structureNodes.directivo)}
-                  className="w-full max-w-[560px] bg-[#1A4B82] p-5 sm:p-6 rounded-2xl text-center cursor-pointer shadow-sm text-white transition-opacity hover:opacity-95"
-                >
-                  <h4 className="text-lg sm:text-xl font-bold tracking-tight text-white">
-                    {structureNodes.directivo.title}
-                  </h4>
-                  <p className="text-sm font-bold text-white/95 mt-1.5">
-                    {lang === 'es' ? 'Directores' : 'Directors'}
-                  </p>
-                  <p className="text-sm text-white/90 font-medium mt-0.5">
-                    Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor
-                  </p>
-                </div>
+                {/* NIVEL SUPERIOR: Comité Directivo y Gestora del proyecto conectada lateralmente */}
+                <div className="relative w-full max-w-[820px] flex items-center justify-center">
+                  
+                  {/* Comité Directivo (Caja Principal) */}
+                  <div
+                    onClick={() => setSelectedNode({
+                      title: lang === 'es' ? 'Comité Directivo' : 'Steering Committee',
+                      leader: 'Líder Técnica: Patricia J. García',
+                      description: 'El Comité Directivo orienta el desarrollo estratégico de la Red HTLV y contribuye a su gobernanza, articulación institucional y seguimiento de las actividades previstas en el plan de trabajo.'
+                    })}
+                    className="w-[420px] bg-[#66122C] hover:bg-[#520e23] text-white p-5 rounded-none shadow-md cursor-pointer transition-all transform hover:-translate-y-0.5 text-center"
+                  >
+                    <h4 className="text-xl font-bold tracking-tight text-white">
+                      {lang === 'es' ? 'Comité Directivo' : 'Steering Committee'}
+                    </h4>
+                    <p className="text-sm font-medium text-amber-200 mt-1">
+                      {lang === 'es' ? 'Líder Técnica: Patricia J. García' : 'Technical Lead: Patricia J. García'}
+                    </p>
+                  </div>
 
-                {/* CONECTOR ENTRE NIVEL 1 Y NIVEL 2 */}
-                <div className="w-0.5 h-6 bg-[#54738C]"></div>
-
-                {/* BARRA HORIZONTAL QUE CONECTA CAT Y GEPR */}
-                <div className="w-full max-w-[700px] relative">
-                  <div className="h-0.5 bg-[#54738C] w-full"></div>
-                  {/* Bajada izquierda a CAT */}
-                  <div className="absolute left-[25%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
-                  {/* Bajada derecha a GEPR */}
-                  <div className="absolute left-[75%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
-                </div>
-
-                {/* NIVEL 2: Comités Asesores (CAT y GEPR) con línea vertical central */}
-                <div className="relative w-full max-w-[700px]">
-                  {/* Línea vertical continua que cruza por el centro conectando directo con Centros Core */}
-                  <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-[#54738C]"></div>
-
-                  <div className="grid grid-cols-2 gap-8 w-full pt-6 relative z-10">
-                    {/* CAT */}
-                    <div 
-                      onClick={() => setSelectedNode(structureNodes.cat)}
-                      className="bg-[#ED7D31] p-4.5 rounded-xl text-center cursor-pointer shadow-sm transition-opacity hover:opacity-95 text-white flex flex-col justify-center min-h-[92px]"
+                  {/* Rama conector hacia Gestora del proyecto */}
+                  {/* Línea horizontal desde la bajada central hacia la derecha */}
+                  <div className="absolute right-[40px] top-[50%] -translate-y-1/2 flex items-center">
+                    <div className="w-12 h-0.5 bg-[#66122C]"></div>
+                    {/* Gestora del proyecto */}
+                    <div
+                      onClick={() => setSelectedNode({
+                        title: lang === 'es' ? 'Gestora del proyecto' : 'Project Manager',
+                        leader: 'Lic. Claudia Morales',
+                        description: 'La Gestora del proyecto está a cargo de la coordinación administrativa del proyecto ante PROCIENCIA-CONCYTEC, así como del seguimiento de los procedimientos administrativos y de la documentación requerida para el cumplimiento de los compromisos y entregables establecidos.'
+                      })}
+                      className="w-[230px] bg-[#FFF2DE] hover:bg-[#fee7c7] border-2 border-[#E5A400] text-slate-900 p-3.5 rounded-none shadow-xs cursor-pointer transition-all text-center"
                     >
-                      <h5 className="text-base font-bold text-white leading-snug">
-                        {structureNodes.cat.title}
+                      <h5 className="text-sm font-bold text-slate-900 leading-tight">
+                        {lang === 'es' ? 'Gestora del proyecto' : 'Project Manager'}
                       </h5>
-                      <p className="text-xs text-white/95 mt-1 font-medium">
-                        {structureNodes.cat.subtitle}
-                      </p>
-                    </div>
-
-                    {/* GEPR */}
-                    <div 
-                      onClick={() => setSelectedNode(structureNodes.gepr)}
-                      className="bg-[#ED7D31] p-4.5 rounded-xl text-center cursor-pointer shadow-sm transition-opacity hover:opacity-95 text-white flex flex-col justify-center min-h-[92px]"
-                    >
-                      <h5 className="text-base font-bold text-white leading-snug">
-                        {structureNodes.gepr.title}
-                      </h5>
-                      <p className="text-xs text-white/95 mt-1 font-medium">
-                        {structureNodes.gepr.subtitle}
+                      <p className="text-xs text-slate-700 font-semibold mt-1">
+                        Lic. Claudia Morales
                       </p>
                     </div>
                   </div>
+
                 </div>
 
-                {/* CONECTOR VERTICAL DIRECTO A CENTROS CORE */}
-                <div className="w-0.5 h-8 bg-[#54738C]"></div>
+                {/* Línea vertical central que baja del Comité Directivo hacia las instituciones */}
+                <div className="w-0.5 h-10 bg-[#66122C]"></div>
 
-                {/* NIVEL 3: Centros Core de Coordinación */}
-                <div 
-                  onClick={() => setSelectedNode(structureNodes.core)}
-                  className="w-full max-w-[640px] bg-[#2E75B6] p-5 sm:p-6 rounded-2xl text-center cursor-pointer shadow-sm text-white transition-opacity hover:opacity-95"
-                >
-                  <div className="flex items-center justify-between px-3 mb-2">
-                    <span className="text-2xl drop-shadow-xs">🇵🇪</span>
-                    <span className="text-2xl drop-shadow-xs">🇬🇧</span>
-                  </div>
-                  <h4 className="text-lg sm:text-xl font-bold text-white tracking-wide">
-                    {lang === 'es' ? 'Centros Core' : 'Core Centers'}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-white/95 font-medium mt-1.5 leading-snug">
-                    Instituto de Medicina Tropical Alexander von Humboldt (UPCH) – Perú
-                  </p>
-                  <p className="text-xs sm:text-sm text-white/95 font-medium leading-snug">
-                    National Centre for Human Retrovirology, Imperial College London – Reino Unido
-                  </p>
+                {/* Línea horizontal bifurcadora hacia Instituciones Nacionales e Internacionales */}
+                <div className="w-full max-w-[800px] relative">
+                  <div className="h-0.5 bg-[#66122C] w-full"></div>
+                  {/* Bajada izquierda a Instituciones Nacionales */}
+                  <div className="absolute left-[25%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#66122C]"></div>
+                  {/* Bajada derecha a Instituciones Internacionales */}
+                  <div className="absolute left-[75%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#66122C]"></div>
                 </div>
 
-                {/* CONECTOR HACIA CENTROS AFILIADOS */}
-                <div className="w-0.5 h-8 bg-[#54738C]"></div>
+                {/* NIVEL 2: Contenedores de Instituciones Nacionales e Internacionales */}
+                <div className="grid grid-cols-2 gap-6 w-full max-w-[940px] pt-6">
+                  
+                  {/* BLOQUE IZQUIERDO: Instituciones Nacionales */}
+                  <div className="bg-[#FAF0F3] border border-[#66122C]/20 p-5 rounded-none space-y-4">
+                    <div className="text-center pb-1 border-b border-[#66122C]/15">
+                      <h4 className="text-base font-bold text-[#66122C] tracking-wide">
+                        {lang === 'es' ? 'Instituciones nacionales' : 'National Institutions'}
+                      </h4>
+                    </div>
 
-                {/* BARRA HORIZONTAL CONECTANDO LOS 4 CENTROS AFILIADOS */}
-                <div className="w-full max-w-[940px] relative">
-                  <div className="h-0.5 bg-[#54738C] w-full"></div>
-                  {/* 4 bajadas verticales alineadas exactamente al centro de cada tarjeta */}
-                  <div className="absolute left-[12.5%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
-                  <div className="absolute left-[37.5%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
-                  <div className="absolute left-[62.5%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
-                  <div className="absolute left-[87.5%] -translate-x-1/2 top-0 w-0.5 h-6 bg-[#54738C]"></div>
-                </div>
+                    {/* Línea horizontal interna para conectar las 3 tarjetas */}
+                    <div className="w-full relative px-6">
+                      <div className="h-0.5 bg-[#66122C]/40 w-full"></div>
+                    </div>
 
-                {/* NIVEL 4: Centros Afiliados (4 columnas) */}
-                <div className="w-full max-w-[940px] pt-6">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
-                    {[
-                      structureNodes.pasteur,
-                      structureNodes.fiocruz,
-                      structureNodes.isciii,
-                      structureNodes.stmarianna
-                    ].map((node, i) => (
-                      <div 
-                        key={i}
-                        onClick={() => setSelectedNode(node)}
-                        className="bg-[#DCE4EC] hover:bg-[#D3DEE8] p-4 sm:p-5 rounded-2xl text-center cursor-pointer transition-colors flex flex-col justify-between min-h-[160px] shadow-2xs"
+                    <div className="grid grid-cols-3 gap-3 pt-1">
+                      {/* Universidad Peruana Cayetano Heredia */}
+                      <a
+                        href="https://cayetano.edu.pe/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
                       >
-                        <div className="flex items-center justify-start w-full mb-1">
-                          <span className="text-2xl leading-none">{node.flag}</span>
+                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                          <img src="/logos/cayetano_heredia_logo.png" alt="Universidad Peruana Cayetano Heredia" className="max-h-full max-w-full object-contain" />
                         </div>
                         <div className="my-auto py-1">
-                          <span className="text-xs sm:text-[13px] font-bold text-[#1A4B82] uppercase tracking-wide block">
-                            {lang === 'es' ? 'Centro Afiliado' : 'Affiliated Center'}
-                          </span>
-                          <h6 className="font-semibold text-xs text-slate-700 mt-1 leading-snug">
-                            {node.title}
+                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#66122C] transition-colors">
+                            Universidad Peruana Cayetano Heredia
                           </h6>
                         </div>
-                        <span className="text-xs sm:text-sm font-bold italic text-[#1A4B82] mt-2 block">
-                          {node.country}
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                          Lima
                         </span>
-                      </div>
-                    ))}
+                      </a>
+
+                      {/* Universidad Nacional de San Antonio Abad del Cusco */}
+                      <a
+                        href="https://www.unsaac.edu.pe/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                      >
+                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                          <img src="/logos/unsaac_logo.png" alt="Universidad Nacional de San Antonio Abad del Cusco" className="max-h-full max-w-full object-contain" />
+                        </div>
+                        <div className="my-auto py-1">
+                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#66122C] transition-colors">
+                            Universidad Nacional de San Antonio Abad del Cusco
+                          </h6>
+                        </div>
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                          Cusco
+                        </span>
+                      </a>
+
+                      {/* Universidad Nacional de Ucayali */}
+                      <a
+                        href="https://www.unu.edu.pe/portal/index.php"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                      >
+                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                          <img src="/logos/unu_logo.png" alt="Universidad Nacional de Ucayali" className="max-h-full max-w-full object-contain" />
+                        </div>
+                        <div className="my-auto py-1">
+                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#66122C] transition-colors">
+                            Universidad Nacional de Ucayali
+                          </h6>
+                        </div>
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                          Ucayali
+                        </span>
+                      </a>
+                    </div>
                   </div>
+
+                  {/* BLOQUE DERECHO: Instituciones Internacionales */}
+                  <div className="bg-[#EBF3FB] border border-[#1A4B82]/20 p-5 rounded-none space-y-4">
+                    <div className="text-center pb-1 border-b border-[#1A4B82]/15">
+                      <h4 className="text-base font-bold text-[#1A4B82] tracking-wide">
+                        {lang === 'es' ? 'Instituciones internacionales' : 'International Institutions'}
+                      </h4>
+                    </div>
+
+                    {/* Línea horizontal interna para conectar las 3 tarjetas */}
+                    <div className="w-full relative px-6">
+                      <div className="h-0.5 bg-[#1A4B82]/40 w-full"></div>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-3 pt-1">
+                      {/* University of Washington */}
+                      <a
+                        href="https://www.washington.edu/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                      >
+                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                          <img src="/logos/uw_logo.png" alt="University of Washington" className="max-h-full max-w-full object-contain" />
+                        </div>
+                        <div className="my-auto py-1">
+                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#1A4B82] transition-colors">
+                            University of Washington
+                          </h6>
+                        </div>
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                          {lang === 'es' ? 'Estados Unidos' : 'United States'}
+                        </span>
+                      </a>
+
+                      {/* Imperial College London */}
+                      <a
+                        href="https://www.imperial.ac.uk/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                      >
+                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                          <img src="/logos/imperial_college_logo.png" alt="Imperial College London" className="max-h-full max-w-full object-contain" />
+                        </div>
+                        <div className="my-auto py-1">
+                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#1A4B82] transition-colors">
+                            Imperial College London
+                          </h6>
+                        </div>
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                          {lang === 'es' ? 'Reino Unido' : 'United Kingdom'}
+                        </span>
+                      </a>
+
+                      {/* St. Marianna University School of Medicine */}
+                      <a
+                        href="https://www.marianna-u.ac.jp/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white p-3 rounded-none border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[175px] group"
+                      >
+                        <div className="w-12 h-12 flex items-center justify-center p-1">
+                          <img src="/logos/st_marianna_logo.png" alt="St. Marianna University School of Medicine" className="max-h-full max-w-full object-contain" />
+                        </div>
+                        <div className="my-auto py-1">
+                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#1A4B82] transition-colors">
+                            St. Marianna University School of Medicine
+                          </h6>
+                        </div>
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 w-full block mt-1">
+                          {lang === 'es' ? 'Japón' : 'Japan'}
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+
                 </div>
 
               </div>
             </div>
 
-            {/* MODAL INSTITUCIONAL SOBRIO */}
+            {/* MODAL POP-UP PARA COMITÉ DIRECTIVO Y GESTORA (Sin bordes redondeados, estilo sobrio acorde al diseño) */}
             {selectedNode && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-fadeIn">
-                <div className="bg-white text-slate-900 w-full max-w-md rounded-xl p-6 border border-slate-200 shadow-xl relative text-center space-y-4">
-                  
-                  {/* Título */}
-                  <h4 className="text-base font-bold text-[#003B49] leading-snug">
-                    {selectedNode.title}:
-                  </h4>
+              <div 
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-xs animate-fadeIn"
+                onClick={() => setSelectedNode(null)}
+              >
+                <div 
+                  className="bg-white text-slate-900 w-full max-w-md rounded-none p-6 sm:p-8 border border-slate-300 shadow-2xl relative text-left space-y-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-start justify-between gap-4 border-b border-slate-200 pb-3">
+                    <div>
+                      <h4 className="text-lg font-bold text-[#003B49] leading-snug">
+                        {selectedNode.title}
+                      </h4>
+                      {selectedNode.leader && (
+                        <p className="text-xs font-bold text-[#E5A400] mt-0.5">
+                          {selectedNode.leader}
+                        </p>
+                      )}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedNode(null)}
+                      className="text-slate-400 hover:text-slate-700 p-1 rounded-none hover:bg-slate-100 transition-colors font-bold text-lg leading-none cursor-pointer shrink-0"
+                      aria-label="Cerrar modal"
+                    >
+                      ✕
+                    </button>
+                  </div>
 
-                  {/* Descripción clara y sobria */}
-                  <p className="text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+                  <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-none border border-slate-200">
                     {selectedNode.description}
                   </p>
 
-                  {/* Botones */}
-                  <div className="pt-2 flex flex-col items-center gap-2">
+                  <div className="pt-2 flex justify-end">
                     <button
-                      onClick={() => handleModalAction(selectedNode)}
-                      className="w-44 bg-[#E5A400] hover:bg-[#CCA300] text-[#002538] font-semibold py-2 px-4 rounded-lg text-sm transition-colors cursor-pointer shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400]"
-                    >
-                      {selectedNode.linkText || (lang === 'es' ? 'Ver más' : 'See more')}
-                    </button>
-                    <button
+                      type="button"
                       onClick={() => setSelectedNode(null)}
-                      className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium py-1.5 px-4 rounded-lg transition-colors cursor-pointer focus-visible:outline-none"
+                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-950 font-bold px-6 py-2 rounded-none text-xs transition-colors cursor-pointer shadow-xs"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
