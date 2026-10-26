@@ -149,7 +149,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Profesora principal de la Facultad de Salud Pública y Administración de la UPCH y Profesora Adjunta de la Universidad de Washington'
             : 'Principal Professor at the School of Public Health and Administration (UPCH) and Affiliate Professor at the University of Washington',
-          image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
+          image: '/team/patricia_garcia.jpg'
         },
         {
           name: 'Dr. Eduardo Gotuzzo',
@@ -157,7 +157,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Profesor emérito de la UPCH y especialista en medicina interna y enfermedades infecciosas y tropicales'
             : 'Emeritus Professor at UPCH and specialist in internal medicine and infectious and tropical diseases',
-          image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80'
+          image: '/team/eduardo_gotuzzo.jpeg'
         },
         {
           name: 'Mg. Daniel Cóndor',
@@ -165,7 +165,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Coordinador de la Unidad de Informática Biomédica en Salud Global y docente investigador de la UPCH'
             : 'Coordinator of the Biomedical Informatics in Global Health Unit and research faculty at UPCH',
-          image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+          image: '/team/daniel_condor.jpeg'
         },
         {
           name: 'Dr. Isaac Alva',
@@ -173,7 +173,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Médico salubrista, docente investigador de la UPCH e investigador de la Unidad de HTLV-1 del Instituto de Medicina Tropical Alexander von Humboldt'
             : 'Public health physician, research faculty at UPCH, and researcher at the HTLV-1 Unit of the Instituto de Medicina Tropical Alexander von Humboldt',
-          image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80'
+          image: '/team/isaac_alva.jpg'
         },
         {
           name: 'Dra. Gabriela Garrido',
@@ -181,7 +181,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Médica e investigadora clínica de la Unidad de HTLV-1 del Instituto de Medicina Tropical Alexander von Humboldt'
             : 'Physician and clinical researcher at the HTLV-1 Unit of the Instituto de Medicina Tropical Alexander von Humboldt',
-          image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80'
+          image: '/team/gabriela_garrido.png'
         },
         {
           name: 'Lic. Claudia Morales Morazzani',
@@ -189,7 +189,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Administradora de la Unidad de Epidemiología, ETS y VIH de la UPCH'
             : 'Administrator of the Epidemiology, STD and HIV Unit at UPCH',
-          image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
+          image: '/team/claudia_morales.jpeg'
         },
         {
           name: 'María J. Ruiz Ramírez',
@@ -197,7 +197,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Asistente de Investigación de la Unidad de Epidemiología, ETS y VIH de la UPCH'
             : 'Research Assistant at the Epidemiology, STD and HIV Unit at UPCH',
-          image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80'
+          image: '/team/maria_ruiz_ramirez.jpeg'
         },
         {
           name: 'Dr. César Cárcamo',
@@ -205,7 +205,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Docente de la Facultad de Salud Pública y Administración y coordinador del Doctorado en Ciencias en Investigación Epidemiológica de la UPCH'
             : 'Faculty member at the School of Public Health and Administration and coordinator of the PhD in Epidemiological Research at UPCH',
-          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
+          image: '/team/cesar_carcamo.jpeg'
         },
         {
           name: 'Mg. Giovanni López',
@@ -213,7 +213,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Jefe de la Unidad de Virología, investigador de la Unidad de HTLV-1 y coordinador de Tropicales LAB del Instituto de Medicina Tropical Alexander von Humboldt'
             : 'Head of the Virology Unit, researcher at the HTLV-1 Unit, and coordinator of Tropicales LAB at the Instituto de Medicina Tropical Alexander von Humboldt',
-          image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'
+          image: '/team/giovanni_lopez.jpeg'
         },
         {
           name: 'Blga. Jessica Cuenca',
@@ -221,7 +221,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Bióloga e investigadora del Instituto de Medicina Tropical Alexander von Humboldt'
             : 'Biologist and researcher at the Instituto de Medicina Tropical Alexander von Humboldt',
-          image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'
+          image: '/team/jessica_cuenca.png'
         },
         {
           name: 'Lic. Dyana Guardia',
@@ -229,7 +229,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Enfermera de la Unidad de Investigación en HTLV-1 del Instituto de Medicina Tropical Alexander von Humboldt'
             : 'Nurse at the HTLV-1 Research Unit of the Instituto de Medicina Tropical Alexander von Humboldt',
-          image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80'
+          image: '/team/dyana_guardia.png'
         },
         {
           name: 'Lic. Aydee Trebejo',
@@ -237,7 +237,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Técnica en Enfermería, con interés en investigación en salud'
             : 'Nursing technician with an active interest in health research',
-          image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=400&q=80'
+          image: '/team/aydee_trebejo.jpeg'
         },
         {
           name: 'Josselyn Ataurima',
@@ -245,7 +245,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Estudiante de Enfermería de la UPCH'
             : 'Nursing Student at UPCH',
-          image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80'
+          image: '/team/josselyn_ataurima.png'
         },
         {
           name: 'Yamila Vasquez',
@@ -253,7 +253,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Estudiante de Enfermería de la UPCH'
             : 'Nursing Student at UPCH',
-          image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80'
+          image: '/team/yamila_vasquez.png'
         },
         {
           name: 'Joaquin Espinoza',
@@ -261,7 +261,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Estudiante de Enfermería de la UPCH'
             : 'Nursing Student at UPCH',
-          image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80'
+          image: '/team/joaquin_espinoza.png'
         }
       ]
     },
@@ -279,7 +279,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Médica especialista en Enfermedades Infecciosas y Tropicales, investigadora y docente auxiliar de la Escuela Profesional de Medicina Humana de la UNSAAC'
             : 'Specialist in Infectious and Tropical Diseases, researcher and auxiliary professor at the School of Medicine of UNSAAC',
-          image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80'
+          image: '/team/fatima_concha.jpeg'
         }
       ]
     },
@@ -297,7 +297,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Docente principal  e Investigadora de la Escuela Profesional de Enfermería de la UNU'
             : 'Principal Professor and Researcher at the School of Nursing of UNU',
-          image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80'
+          image: '/team/teresa_elespuro.jpeg'
         }
       ]
     },
@@ -315,7 +315,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Profesor de Neurología y Salud Global, y profesor adjunto de Epidemiología y Medicina (Alergia y Enfermedades Infecciosas) en la University of Washington.'
             : 'Professor of Neurology and Global Health, and Adjunct Professor of Epidemiology and Medicine (Allergy and Infectious Diseases) at the University of Washington.',
-          image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80'
+          image: '/team/joe_zunt.jpeg'
         }
       ]
     },
@@ -333,7 +333,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Investigadora del Departamento de Enfermedades Infecciosas de la Facultad de Medicina de Imperial College London y consultora principal en HTLV de la Organización Mundial de la Salud (OMS)'
             : 'Researcher in the Department of Infectious Disease at Imperial College London and lead consultant on HTLV for the World Health Organization (WHO)',
-          image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
+          image: '/team/carolina_rosadas.jpeg'
         }
       ]
     },
@@ -351,13 +351,12 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Profesor y jefe del Departamento de Neurología de St. Marianna University School of Medicine, Japón'
             : 'Professor and Chair of the Department of Rare Diseases Research and Neurology at St. Marianna University School of Medicine, Japan',
-          image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+          image: '/team/yoshihisa_yamano.jpg'
         }
       ]
     }
   ];
 
-  // 5 Objetivos específicos de la Red HTLV
   const specificObjectives = [
     {
       id: 1,
