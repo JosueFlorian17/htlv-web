@@ -35,11 +35,6 @@ function HTLVContent() {
     router.push(`/htlv?tab=${tabId}`, { scroll: false });
   };
 
-  // Filtrado semántico inteligente con soporte de sinónimos
-  const filteredFaqs = useMemo(() => {
-    return filterFaqsSemantically(faqs, searchQuery);
-  }, [faqs, searchQuery]);
-
   const handlePrint = () => {
     if (typeof window !== 'undefined') {
       window.print();

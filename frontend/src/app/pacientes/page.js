@@ -36,11 +36,6 @@ function PacientesContent() {
     }));
   };
 
-  // Filtrado semántico inteligente con soporte de sinónimos para pacientes
-  const filteredPatientFaqs = useMemo(() => {
-    return filterFaqsSemantically(patientFaqs, faqSearchQuery);
-  }, [patientFaqs, faqSearchQuery]);
-
   // Modal para visualización de folletos superpuesto a la pantalla
   const [selectedBrochure, setSelectedBrochure] = useState(null);
 
