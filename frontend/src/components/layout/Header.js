@@ -72,7 +72,7 @@ export default function Header() {
             href: '/profesionales?tab=recursos',
             basePath: '/profesionales',
             items: [
-                { label: lang === 'es' ? 'Recursos clínicos' : 'Clinical resources', href: '/profesionales?tab=recursos' },
+                { label: lang === 'es' ? 'Guías clínicas internacionales' : 'International clinical guidelines', href: '/profesionales?tab=recursos' },
                 { label: lang === 'es' ? 'Webinars' : 'Webinars', href: '/profesionales?tab=webinars' },
                 { label: lang === 'es' ? 'Cursos cortos' : 'Short courses', href: '/profesionales?tab=cursos' }
             ]

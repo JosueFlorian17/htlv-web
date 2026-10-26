@@ -139,7 +139,7 @@ function AboutContent() {
           name: 'Dra. Elsa González',
           role: lang === 'es' ? 'Coordinadora Científica' : 'Scientific Coordinator',
           title: lang === 'es' ? 'Investigadora Principal IMTAvH • Virología' : 'Principal Investigator IMTAvH • Virology',
-          image: 'https://images.unsplash.com/photo-1594824813580-c081e7d8d697?auto=format&fit=crop&w=400&q=80'
+          image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80'
         },
         {
           name: 'Dr. Yoshi Ishikawa',
@@ -403,86 +403,119 @@ function AboutContent() {
                 </p>
               </div>
 
-              {/* Rombos interactivos */}
-              <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 pt-4">
-                {specificObjectives.map((obj) => (
-                  <div
-                    key={obj.id}
-                    onClick={() => setSelectedObjective(obj)}
-                    className="group cursor-pointer flex flex-col items-center text-center transition-all transform hover:-translate-y-1.5 duration-300"
-                    style={{ width: '185px' }}
-                  >
-                    {/* Rombo con clipPath */}
-                    <div 
-                      className="w-36 h-36 sm:w-40 sm:h-40 relative flex items-center justify-center p-6 shadow-md group-hover:shadow-xl transition-all duration-300"
-                      style={{
-                        clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
-                        background: '#003B49'
-                      }}
+              {/* Disposición dinámica de hexágonos: Fila 1 (3) y Fila 2 (2) */}
+              <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 pt-4">
+                
+                {/* Fila 1: Objetivos 1, 2 y 3 */}
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                  {specificObjectives.slice(0, 3).map((obj) => (
+                    <div
+                      key={obj.id}
+                      onClick={() => setSelectedObjective(obj)}
+                      className="group cursor-pointer flex flex-col items-center text-center transition-all transform hover:-translate-y-2 duration-300 w-44 sm:w-52"
                     >
-                      {/* Imagen de fondo sutil */}
-                      <img 
-                        src={obj.image} 
-                        alt={obj.title}
-                        className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition-opacity duration-300 group-hover:scale-110" 
-                      />
-                      <div className="absolute inset-0 bg-[#003B49]/70 group-hover:bg-[#087E8B]/60 transition-colors"></div>
-                      
-                      {/* Número grande en el centro */}
-                      <div className="relative z-10 flex flex-col items-center justify-center">
-                        <span className="w-9 h-9 rounded-full bg-[#E5A400] text-slate-950 font-black text-sm flex items-center justify-center shadow-md mb-1">
-                          {obj.num}
-                        </span>
-                        <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider">
-                          {lang === 'es' ? 'Objetivo' : 'Objective'}
-                        </span>
+                      {/* Hexágono de 6 lados con imagen y texto de fondo */}
+                      <div 
+                        className="w-40 h-44 sm:w-48 sm:h-52 relative flex items-center justify-center p-5 shadow-lg group-hover:shadow-2xl transition-all duration-300 bg-[#003B49]"
+                        style={{
+                          clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
+                        }}
+                      >
+                        {/* Imagen de fondo */}
+                        <img 
+                          src={obj.image} 
+                          alt={obj.title}
+                          className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-35 transition-opacity duration-300 group-hover:scale-110" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-[#003B49]/80 via-[#003B49]/60 to-[#087E8B]/80 group-hover:from-[#087E8B]/80 group-hover:to-[#003B49]/80 transition-colors"></div>
+                        
+                        {/* Contenido dentro del hexágono: Número grande y título del objetivo */}
+                        <div className="relative z-10 flex flex-col items-center justify-center px-3 space-y-2">
+                          <span className="text-3xl sm:text-4xl font-black text-[#E5A400] drop-shadow-sm font-sans">
+                            {obj.num}
+                          </span>
+                          <h4 className="text-xs sm:text-[13px] font-bold text-white leading-snug line-clamp-3">
+                            {obj.title}
+                          </h4>
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E5A400] text-slate-950 group-hover:bg-white transition-colors">
+                            {lang === 'es' ? 'Ver más' : 'See more'}
+                          </span>
+                        </div>
                       </div>
                     </div>
+                  ))}
+                </div>
 
-                    {/* Título debajo del rombo */}
-                    <div className="mt-3 px-1">
-                      <h4 className="text-xs sm:text-sm font-bold text-[#003B49] group-hover:text-[#087E8B] transition-colors leading-snug">
-                        {obj.title}
-                      </h4>
-                      <span className="inline-block mt-1 text-[11px] font-semibold text-[#087E8B] group-hover:underline">
-                        {lang === 'es' ? 'Ver detalle +' : 'View details +'}
-                      </span>
+                {/* Fila 2: Objetivos 4 y 5 */}
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 sm:-mt-2">
+                  {specificObjectives.slice(3, 5).map((obj) => (
+                    <div
+                      key={obj.id}
+                      onClick={() => setSelectedObjective(obj)}
+                      className="group cursor-pointer flex flex-col items-center text-center transition-all transform hover:-translate-y-2 duration-300 w-44 sm:w-52"
+                    >
+                      {/* Hexágono de 6 lados con imagen y texto de fondo */}
+                      <div 
+                        className="w-40 h-44 sm:w-48 sm:h-52 relative flex items-center justify-center p-5 shadow-lg group-hover:shadow-2xl transition-all duration-300 bg-[#003B49]"
+                        style={{
+                          clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
+                        }}
+                      >
+                        {/* Imagen de fondo */}
+                        <img 
+                          src={obj.image} 
+                          alt={obj.title}
+                          className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-35 transition-opacity duration-300 group-hover:scale-110" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-[#003B49]/80 via-[#003B49]/60 to-[#087E8B]/80 group-hover:from-[#087E8B]/80 group-hover:to-[#003B49]/80 transition-colors"></div>
+                        
+                        {/* Contenido dentro del hexágono: Número grande y título del objetivo */}
+                        <div className="relative z-10 flex flex-col items-center justify-center px-3 space-y-2">
+                          <span className="text-3xl sm:text-4xl font-black text-[#E5A400] drop-shadow-sm font-sans">
+                            {obj.num}
+                          </span>
+                          <h4 className="text-xs sm:text-[13px] font-bold text-white leading-snug line-clamp-3">
+                            {obj.title}
+                          </h4>
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E5A400] text-slate-950 group-hover:bg-white transition-colors">
+                            {lang === 'es' ? 'Ver más' : 'See more'}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
               </div>
             </div>
 
-            {/* Modal Pop-up con descripción a profundidad */}
+            {/* Modal Pop-up sin bordes redondeados, sin píldora de objetivo, sin píldora de descripción y botón cerrar recto */}
             {selectedObjective && (
               <div
-                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-xs animate-fadeIn"
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-xs animate-fadeIn"
                 onClick={() => setSelectedObjective(null)}
               >
                 <div
-                  className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5 border border-slate-100 relative animate-scaleUp"
+                  className="bg-white rounded-none max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5 border border-slate-300 relative animate-scaleUp"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="flex items-start justify-between gap-4 border-b border-slate-100 pb-3">
-                    <div className="space-y-1">
-                      <span className="text-xs font-black uppercase px-2.5 py-0.5 rounded bg-[#E5A400] text-slate-950 tracking-wider">
-                        {lang === 'es' ? `Objetivo Específico ${selectedObjective.num}` : `Specific Objective ${selectedObjective.num}`}
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug pt-1">
-                        {selectedObjective.title}
-                      </h3>
-                    </div>
+                  {/* Encabezado sin píldora de objetivo */}
+                  <div className="flex items-start justify-between gap-4 border-b border-slate-200 pb-3">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
+                      {selectedObjective.num}. {selectedObjective.title}
+                    </h3>
                     <button
                       type="button"
                       onClick={() => setSelectedObjective(null)}
-                      className="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition-colors font-bold text-lg leading-none cursor-pointer shrink-0"
+                      className="text-slate-400 hover:text-slate-700 p-1 rounded-none hover:bg-slate-100 transition-colors font-bold text-lg leading-none cursor-pointer shrink-0"
                       aria-label="Cerrar modal"
                     >
                       ✕
                     </button>
                   </div>
 
-                  <div className="relative rounded-xl overflow-hidden h-36 bg-slate-100 border border-slate-200">
+                  {/* Imagen del objetivo con bordes rectos */}
+                  <div className="relative rounded-none overflow-hidden h-36 bg-slate-100 border border-slate-200">
                     <img 
                       src={selectedObjective.image} 
                       alt={selectedObjective.title}
@@ -491,11 +524,9 @@ function AboutContent() {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
                   </div>
 
+                  {/* Texto de descripción directo, sin píldora de descripción y alcance */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-[#087E8B] uppercase tracking-wider">
-                      {lang === 'es' ? 'Descripción y Alcance :' : 'Description & Scope :'}
-                    </h4>
-                    <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200/70">
+                    <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-none border border-slate-200">
                       {selectedObjective.description}
                     </p>
                   </div>
@@ -505,18 +536,19 @@ function AboutContent() {
                       <Link
                         href={selectedObjective.actionBtn.href}
                         onClick={() => setSelectedObjective(null)}
-                        className="inline-flex items-center gap-2 py-2 px-4 rounded-lg text-xs font-bold bg-[#003B49] hover:bg-[#087E8B] text-white shadow-xs transition-colors"
+                        className="inline-flex items-center gap-2 py-2 px-4 rounded-none text-xs font-bold bg-[#003B49] hover:bg-[#087E8B] text-white shadow-xs transition-colors"
                       >
                         {selectedObjective.actionBtn.text} →
                       </Link>
                     </div>
                   )}
 
-                  <div className="pt-3 border-t border-slate-100 flex justify-end">
+                  {/* Botón Cerrar sin bordes redondeados */}
+                  <div className="pt-3 border-t border-slate-200 flex justify-end">
                     <button
                       type="button"
                       onClick={() => setSelectedObjective(null)}
-                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-950 font-bold px-6 py-2 rounded-lg text-xs transition-colors cursor-pointer shadow-xs"
+                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-950 font-bold px-6 py-2 rounded-none text-xs transition-colors cursor-pointer shadow-xs"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
@@ -789,36 +821,49 @@ function AboutContent() {
         {/* 4. ALIADOS ESTRATÉGICOS (Sin chips ni subtítulos) */}
         {/* 4. FINANCIAMIENTO */}
         {activeTab === 'financiamiento' && (
-          <div className="space-y-6 animate-fadeIn max-w-5xl mx-auto">
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-6 sm:p-10 space-y-8">
+          <div className="space-y-6 animate-fadeIn max-w-6xl mx-auto">
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch">
               
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49] tracking-tight mb-4">
-                  {lang === 'es' ? 'Financiamiento' : 'Funding'}
-                </h2>
-                <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
-                  {lang === 'es'
-                    ? 'La Red Internacional de Investigación e Innovación en HTLV cuenta con el financiamiento del Programa Nacional de Investigación Científica y Estudios Avanzados (PROCIENCIA), en el marco del concurso Redes de Ciencia, Tecnología e Innovación en Áreas Estratégicas.'
-                    : 'The International Research and Innovation Network in HTLV is funded by the National Program for Scientific Research and Advanced Studies (PROCIENCIA), under the Science, Technology, and Innovation Networks in Strategic Areas grant scheme.'}
-                </p>
-              </div>
-
-              {/* Logo / Imagen oficial CONCYTEC - PROCIENCIA */}
-              <div className="py-6 px-8 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-center">
+              {/* Imagen izquierda representativa */}
+              <div className="lg:col-span-5 relative min-h-[280px] lg:min-h-[420px] bg-slate-100">
                 <img 
-                  src="/logos/concytec_prociencia.png" 
-                  alt="CONCYTEC - PROCIENCIA" 
-                  className="h-20 sm:h-28 w-auto object-contain"
+                  src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" 
+                  alt="Cooperación y Salud Comunitaria" 
+                  className="w-full h-full object-cover"
                 />
               </div>
 
-              {/* Descargo / Disclaimer con Red HTLV */}
-              <div className="pt-4 border-t border-slate-100">
-                <p className="text-xs text-slate-500 leading-relaxed italic">
-                  {lang === 'es'
-                    ? 'El contenido es responsabilidad exclusiva de la Red HTLV y no necesariamente representa las opiniones oficiales de los financiadores.'
-                    : 'The content is the sole responsibility of the Red HTLV and does not necessarily represent the official views of the funding organizations.'}
-                </p>
+              {/* Contenido derecho de Financiamiento */}
+              <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between space-y-6">
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49] tracking-tight mb-4">
+                    {lang === 'es' ? 'Financiamiento' : 'Funding'}
+                  </h2>
+                  <p className="text-base text-slate-700 leading-relaxed">
+                    {lang === 'es'
+                      ? 'La Red Internacional de Investigación e Innovación en HTLV cuenta con el financiamiento del Programa Nacional de Investigación Científica y Estudios Avanzados (PROCIENCIA), en el marco del concurso Redes de Ciencia, Tecnología e Innovación en Áreas Estratégicas.'
+                      : 'The International Research and Innovation Network in HTLV is funded by the National Program for Scientific Research and Advanced Studies (PROCIENCIA), under the Science, Technology, and Innovation Networks in Strategic Areas grant scheme.'}
+                  </p>
+                </div>
+
+                {/* Logos de CONCYTEC - PROCIENCIA en lugar de los 2 recuadros previos */}
+                <div className="py-3 px-6 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center">
+                  <img 
+                    src="/logos/concytec_prociencia.png" 
+                    alt="CONCYTEC - PROCIENCIA" 
+                    className="h-16 sm:h-20 w-auto object-contain"
+                  />
+                </div>
+
+                {/* Descargo / Disclaimer de los Financiadores */}
+                <div className="pt-4 border-t border-slate-100">
+                  <p className="text-xs text-slate-500 leading-relaxed italic">
+                    {lang === 'es'
+                      ? 'El contenido es responsabilidad exclusiva de la Red HTLV y no necesariamente representa las opiniones oficiales de los financiadores.'
+                      : 'The content is the sole responsibility of the Red HTLV and does not necessarily represent the official views of the funding organizations.'}
+                  </p>
+                </div>
+
               </div>
 
             </div>

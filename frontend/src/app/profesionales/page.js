@@ -211,7 +211,7 @@ function ProfesionalesContent() {
         {/* Cabecera con Pestañas Horizontales */}
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
-            {activeTab === 'recursos' && (lang === 'es' ? 'Recursos Clínicos y Guías Diagnósticas' : 'Clinical Resources & Guidelines')}
+            {activeTab === 'recursos' && (lang === 'es' ? 'Guías Clínicas Internacionales y Diagnósticas' : 'International Clinical Guidelines & Diagnostics')}
             {activeTab === 'webinars' && (lang === 'es' ? 'Webinars y Conferencias Internacionales' : 'International Webinars & Conferences')}
             {activeTab === 'cursos' && (lang === 'es' ? 'Cursos Cortos y Capacitación Médica' : 'Short Courses & Medical Training')}
           </h1>

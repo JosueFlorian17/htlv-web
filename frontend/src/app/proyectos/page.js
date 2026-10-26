@@ -73,6 +73,36 @@ function ProyectosContent() {
     }
   ];
 
+  const ongoingTheses = [
+    {
+      title: lang === 'es' ? "Caracterización molecular de subtipos de HTLV-1 y carga proviral en pacientes con paraparesia espástica tropical en Perú" : "Molecular characterization of HTLV-1 subtypes and proviral load in TSP/HAM patients in Peru",
+      author: "Lic. Andrea Morales V.",
+      degree: lang === 'es' ? "Tesis de Maestría en Ciencias Biomédicas" : "MSc Thesis in Biomedical Sciences",
+      institution: "Universidad Peruana Cayetano Heredia (UPCH)",
+      advisors: "Dra. Elsa González / Dr. Eduardo Gotuzzo",
+      status: lang === 'es' ? "En ejecución (2025-2026)" : "In progress (2025-2026)",
+      summary: lang === 'es' ? "Evaluación de la variabilidad genética del gen tax y su correlación con los niveles de provirus en células mononucleares de sangre periférica." : "Evaluation of tax gene genetic variability and its correlation with proviral levels in PBMC samples."
+    },
+    {
+      title: lang === 'es' ? "Factores pronósticos de respuesta inmunológica y evolución clínica en coinfección HTLV-1 y tuberculosis pulmonar en la Amazonía peruana" : "Prognostic factors of immune response and clinical outcomes in HTLV-1 and pulmonary TB coinfection in the Peruvian Amazon",
+      author: "Méd. Carlos R. Sánchez",
+      degree: lang === 'es' ? "Tesis de Doctorado en Salud Pública" : "PhD Thesis in Public Health",
+      institution: "Universidad Nacional de Ucayali (UNU) / UPCH",
+      advisors: "Dr. Renzo Calderón",
+      status: lang === 'es' ? "Fase de recolección de datos" : "Data collection phase",
+      summary: lang === 'es' ? "Estudio observacional prospectivo multicéntrico orientado a modelar la supervivencia y tasas de recaída de tuberculosis en portadores del virus." : "Multicenter prospective cohort study modeling survival and tuberculosis recurrence rates in virus carriers."
+    },
+    {
+      title: lang === 'es' ? "Estandarización de un ensayo molecular multiplex para la discriminación rápida entre HTLV-1 y HTLV-2 en muestras clínicas" : "Standardization of a multiplex molecular assay for rapid differentiation between HTLV-1 and HTLV-2 in clinical specimens",
+      author: "Bach. Diego A. Mendoza",
+      degree: lang === 'es' ? "Tesis de Licenciatura en Biología" : "BSc Thesis in Biology",
+      institution: "Universidad Nacional de San Antonio Abad del Cusco (UNSAAC)",
+      advisors: "Equipo Laboratorio de Retrovirología",
+      status: lang === 'es' ? "Fase analítica y validación" : "Analytical phase and validation",
+      summary: lang === 'es' ? "Optimización de cebadores específicos para la región LTR con validación diagnóstica frente a secuenciación Sanger." : "Optimization of LTR region-specific primers with diagnostic validation against Sanger sequencing."
+    }
+  ];
+
   const thesisOpportunities = [
     {
       title: lang === 'es' ? "Pasantías de Investigación para Tesistas de Pregrado y Posgrado" : "Research Internships for Undergraduate & Graduate Students",
@@ -165,42 +195,120 @@ function ProyectosContent() {
           </div>
         )}
 
-        {/* 3. OPORTUNIDADES PARA TESISTAS (Con más separación del título, sin chips, y perfil todo en negrita) */}
+        {/* 3. TESIS Y OPORTUNIDADES PARA TESISTAS */}
         {activeTab === 'tesistas' && (
-          <div className="mt-8 space-y-8 animate-fadeIn">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {thesisOpportunities.map((opp, idx) => (
-                <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                      {opp.area}
-                    </p>
-                    <h3 className="text-xl font-bold text-[#003B49] leading-snug">
-                      {opp.title}
-                    </h3>
-                    <p className="text-xs font-semibold text-[#A10D3A]">
-                      {lang === 'es' ? 'Sede:' : 'Location:'} {opp.location}
-                    </p>
-                    <p className="text-sm font-bold text-slate-900 leading-snug">
-                      {lang === 'es' ? 'Perfil: ' : 'Profile: '}{opp.requirements}
-                    </p>
-                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                      {opp.desc}
-                    </p>
-                  </div>
+          <div className="mt-8 space-y-12 animate-fadeIn">
+            
+            {/* SECCIÓN: TESIS EN CURSO */}
+            <div className="space-y-6">
+              <div className="border-b-2 border-[#003B49]/15 pb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block">
+                  {lang === 'es' ? 'Formación de Talento Científico' : 'Scientific Talent Development'}
+                </span>
+                <h2 className="text-xl sm:text-2xl font-black text-[#003B49] mt-0.5">
+                  {lang === 'es' ? 'Tesis en Curso' : 'Theses in Progress'}
+                </h2>
+                <p className="text-sm text-slate-600 mt-1">
+                  {lang === 'es'
+                    ? 'Proyectos de investigación y desarrollo de grado de tesistas vinculados a los nodos de la Red HTLV.'
+                    : 'Degree research and development projects of students affiliated with HTLV Network nodes.'}
+                </p>
+              </div>
 
-                  <div className="pt-2">
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center gap-2 bg-[#087E8B] hover:bg-[#066772] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-5 rounded-lg text-sm transition-colors shadow-sm"
-                    >
-                      <span>{lang === 'es' ? 'Postular / Consultar Convocatoria' : 'Apply / Inquire Call'}</span>
-                      <span className="material-symbols-outlined text-base">arrow_forward</span>
-                    </Link>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {ongoingTheses.map((thesis, idx) => (
+                  <div key={idx} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-shadow">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#E5A400]/15 text-slate-900 border border-[#E5A400]/40">
+                          {thesis.status}
+                        </span>
+                        <span className="text-xs font-semibold text-[#087E8B]">
+                          {thesis.degree.split(' ')[2] || 'Tesis'}
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-base font-bold text-[#003B49] leading-snug">
+                        {thesis.title}
+                      </h3>
+
+                      <div className="pt-1 space-y-1 text-xs">
+                        <p className="font-bold text-slate-800">
+                          {thesis.author}
+                        </p>
+                        <p className="text-slate-500">
+                          {thesis.institution}
+                        </p>
+                        <p className="text-slate-600 italic">
+                          <span className="font-semibold">{lang === 'es' ? 'Asesoría:' : 'Advisors:'}</span> {thesis.advisors}
+                        </p>
+                      </div>
+
+                      <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                        {thesis.summary}
+                      </p>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100">
+                      <Link
+                        href="/contact"
+                        className="text-xs font-bold text-[#087E8B] hover:text-[#003B49] flex items-center gap-1 transition-colors"
+                      >
+                        <span>{lang === 'es' ? 'Consultar sobre esta tesis' : 'Inquire about thesis'}</span>
+                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
+            {/* SECCIÓN: OPORTUNIDADES Y CONVOCATORIAS */}
+            <div className="space-y-6 pt-4">
+              <div className="border-b-2 border-[#003B49]/15 pb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block">
+                  {lang === 'es' ? 'Movilidad y Convocatorias' : 'Mobility & Calls'}
+                </span>
+                <h2 className="text-xl sm:text-2xl font-black text-[#003B49] mt-0.5">
+                  {lang === 'es' ? 'Oportunidades para Tesistas e Investigadores' : 'Opportunities for Researchers'}
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {thesisOpportunities.map((opp, idx) => (
+                  <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
+                    <div className="space-y-3">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        {opp.area}
+                      </p>
+                      <h3 className="text-xl font-bold text-[#003B49] leading-snug">
+                        {opp.title}
+                      </h3>
+                      <p className="text-xs font-semibold text-[#A10D3A]">
+                        {lang === 'es' ? 'Sede:' : 'Location:'} {opp.location}
+                      </p>
+                      <p className="text-sm font-bold text-slate-900 leading-snug">
+                        {lang === 'es' ? 'Perfil: ' : 'Profile: '}{opp.requirements}
+                      </p>
+                      <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                        {opp.desc}
+                      </p>
+                    </div>
+
+                    <div className="pt-2">
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-2 bg-[#087E8B] hover:bg-[#066772] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-5 rounded-lg text-sm transition-colors shadow-sm"
+                      >
+                        <span>{lang === 'es' ? 'Postular / Consultar Convocatoria' : 'Apply / Inquire Call'}</span>
+                        <span className="material-symbols-outlined text-base">arrow_forward</span>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         )}
 
