@@ -213,7 +213,7 @@ function ProfesionalesContent() {
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'recursos' && (lang === 'es' ? 'Guías Clínicas Internacionales y Diagnósticas' : 'International Clinical Guidelines & Diagnostics')}
             {activeTab === 'webinars' && (lang === 'es' ? 'Webinars y Conferencias Internacionales' : 'International Webinars & Conferences')}
-            {activeTab === 'cursos' && (lang === 'es' ? 'Cursos Cortos y Capacitación Médica' : 'Short Courses & Medical Training')}
+            {activeTab === 'cursos' && (lang === 'es' ? 'Cursos y Capacitación Médica' : 'Courses & Medical Training')}
           </h1>
         </div>
 
@@ -504,7 +504,7 @@ function ProfesionalesContent() {
                 {lang === 'es' ? 'Capacitación Médica Continua' : 'Continuous Medical Training'}
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                {lang === 'es' ? 'Cursos Cortos y Talleres Especializados' : 'Short Courses & Specialized Workshops'}
+                {lang === 'es' ? 'Cursos y Talleres Especializados' : 'Courses & Specialized Workshops'}
               </h2>
               <p className="text-sm text-slate-600">
                 {lang === 'es'

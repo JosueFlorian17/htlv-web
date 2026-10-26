@@ -74,7 +74,7 @@ export default function Header() {
             items: [
                 { label: lang === 'es' ? 'Guías clínicas internacionales' : 'International clinical guidelines', href: '/profesionales?tab=recursos' },
                 { label: lang === 'es' ? 'Webinars' : 'Webinars', href: '/profesionales?tab=webinars' },
-                { label: lang === 'es' ? 'Cursos cortos' : 'Short courses', href: '/profesionales?tab=cursos' }
+                { label: lang === 'es' ? 'Cursos' : 'Courses', href: '/profesionales?tab=cursos' }
             ]
         },
         {
