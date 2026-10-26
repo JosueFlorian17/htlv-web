@@ -168,7 +168,7 @@ function HTLVContent() {
       id: 14,
       category: 'general',
       categoryLabel: lang === 'es' ? 'Salud Pública' : 'Public Health',
-      q: lang === 'es' ? "¿Qué rol cumple la Red RIII-HTLV frente al virus?" : "What role does the RIII-HTLV Network play regarding the virus?",
+      q: lang === 'es' ? "¿Qué rol cumple la Red HTLV frente al virus?" : "What role does the HTLV Network play regarding the virus?",
       a: lang === 'es'
         ? "Conecta a instituciones académicas, hospitales y grupos científicos para generar investigación colaborativa, capacitar al personal de salud, promover políticas de tamizaje y brindar información médica validada y humana a pacientes."
         : "It connects academic institutions, hospitals, and scientific groups to conduct collaborative research, train healthcare professionals, advance screening policies, and provide validated, compassionate information to patients."

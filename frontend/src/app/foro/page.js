@@ -58,7 +58,7 @@ export default function ForumPage() {
       tagColor: "bg-[#5b0617] text-white",
       title: "Protocolo de Convivencia: Mantener un Espacio Libre de Estigma",
       excerpt: "Lectura obligatoria para todos los miembros: respeto irrestricto a la privacidad, empatía y prohibición de promoción comercial o consejos médicos no verificados.",
-      author: "Comité de Moderación RIII-HTLV",
+      author: "Comité de Moderación Red HTLV",
       role: "Equipo UPCH",
       time: "Fijado",
       commentsCount: 6,
@@ -158,7 +158,7 @@ export default function ForumPage() {
                 </span>
               </div>
               <h1 className="font-display text-display mb-3 text-[#5b0617] leading-tight">
-                Foro Comunitario RIII-HTLV
+                Foro Comunitario Red HTLV
               </h1>
               <p className="font-body-lg text-body-lg text-[#564242] mb-6 leading-relaxed">
                 Un entorno seguro, respetuoso y protegido para que personas viviendo con HTLV, familiares e investigadores compartan vivencias y construyan fortaleza colectiva.
@@ -419,7 +419,7 @@ export default function ForumPage() {
               {/* Estadísticas de la Comunidad */}
               <div className="bg-white p-6 border border-[#dcc0c0] rounded-2xl shadow-xs">
                 <h4 className="font-bold text-[14px] text-[#191c1e] uppercase tracking-wider mb-4 border-b border-[#dcc0c0] pb-2">
-                  Red de Apoyo RIII-HTLV
+                  Red de Apoyo Red HTLV
                 </h4>
                 <div className="grid grid-cols-2 gap-3 text-center">
                   <div className="p-3 bg-[#f8f9fb] rounded-xl border border-[#dcc0c0]">
@@ -466,7 +466,7 @@ export default function ForumPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-[18px] text-[#5b0617]">Compartir tu Historia</h3>
-                    <p className="text-[11.5px] text-[#564242]">Espacio seguro moderado por la Red RIII-HTLV</p>
+                    <p className="text-[11.5px] text-[#564242]">Espacio seguro moderado por la Red HTLV</p>
                   </div>
                 </div>
                 <button 

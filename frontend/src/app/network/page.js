@@ -103,7 +103,7 @@ export default function NetworkPage() {
             </span>
           </div>
           <h1 className="font-display text-display text-[#5b0617] mb-4">
-            La Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV)
+            La Red Internacional de Investigación e Innovación en HTLV (Red HTLV)
           </h1>
           <p className="font-body-lg text-body-lg text-[#564242] leading-relaxed">
             Una alianza científica global que conecta a centros de investigación líderes de América Latina, Europa y Asia para estandarizar diagnósticos, acelerar descubrimientos terapéuticos y promover la salud pública.
@@ -118,7 +118,7 @@ export default function NetworkPage() {
                 Instituciones Miembro del Consorcio
               </h2>
               <p className="text-[14px] text-[#564242]">
-                Universidades e institutos de investigación que integran la red científica RIII-HTLV.
+                Universidades e institutos de investigación que integran la red científica Red HTLV.
               </p>
             </div>
           </div>

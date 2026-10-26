@@ -13,10 +13,10 @@ export default function ForumPostDetailPage({ params }) {
       title: "Protocolo de Convivencia: Mantener un Espacio Libre de Estigma",
       category: "Normas Oficiales",
       categoryColor: "bg-[#5b0617] text-white",
-      author: "Comité de Moderación RIII-HTLV",
+      author: "Comité de Moderación Red HTLV",
       role: "Equipo UPCH • Moderador Oficial",
       time: "Fijado",
-      content: `Bienvenidas y bienvenidos a la comunidad oficial de la Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV).
+      content: `Bienvenidas y bienvenidos a la comunidad oficial de la Red Internacional de Investigación e Innovación en HTLV (Red HTLV).
 
 Este espacio tiene como objetivo brindar acompañamiento, soporte entre pares e información basada en evidencia científica. Para preservar la seguridad emocional y privacidad de todos los participantes, solicitamos el cumplimiento estricto de las siguientes pautas:
 
@@ -167,7 +167,7 @@ Mi fisioterapeuta me recomendó ejercicios de bajo impacto como natación, bicic
     comments: [
       {
         id: 1,
-        user: "Moderador RIII-HTLV",
+        user: "Moderador Red HTLV",
         role: "Equipo UPCH",
         time: "Hace 1 hora",
         text: "Bienvenido a esta conversación. Recuerde consultar siempre a su médico tratante ante cualquier duda sintomática.",
@@ -193,7 +193,7 @@ Mi fisioterapeuta me recomendó ejercicios de bajo impacto como natación, bicic
     const newComment = {
       id: Date.now(),
       user: isAnonymousComment ? "Usuario Anónimo" : (commenterName.trim() || "Participante"),
-      role: "Comunidad RIII-HTLV",
+      role: "Comunidad Red HTLV",
       time: "Hace un momento",
       text: newCommentText.trim(),
       likes: 0

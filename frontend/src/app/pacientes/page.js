@@ -237,11 +237,11 @@ function PacientesContent() {
       category: 'general',
       categoryLabel: lang === 'es' ? 'Salud Pública Global' : 'Global Health',
       q: lang === 'es'
-        ? "¿Por qué la OMS y la Red RIII-HTLV trabajan en visibilizar el virus?"
-        : "Why are the WHO and RIII-HTLV working to increase visibility for the virus?",
+        ? "¿Por qué la OMS y la Red HTLV trabajan en visibilizar el virus?"
+        : "Why are the WHO and Red HTLV working to increase visibility for the virus?",
       a: lang === 'es'
-        ? "A pesar de infectar a millones de personas a nivel mundial, el HTLV ha sido considerado durante décadas una infección desatendida. La Organización Mundial de la Salud (OMS) emitió un llamado técnico global para promover el tamizaje en gestantes, la bioseguridad en bancos de sangre y el apoyo psicosocial a las personas afectadas. Redes como RIII-HTLV articulan a investigadores internacionales para avanzar en nuevos diagnósticos, terapias y políticas públicas de prevención."
-        : "Despite affecting millions worldwide, HTLV has historically been an overlooked health challenge. The World Health Organization (WHO) issued a global call to advance antenatal screening, blood safety, and psychosocial support. Networks like RIII-HTLV unite international researchers to drive diagnostics, therapeutic innovation, and evidence-based prevention policies.",
+        ? "A pesar de infectar a millones de personas a nivel mundial, el HTLV ha sido considerado durante décadas una infección desatendida. La Organización Mundial de la Salud (OMS) emitió un llamado técnico global para promover el tamizaje en gestantes, la bioseguridad en bancos de sangre y el apoyo psicosocial a las personas afectadas. Redes como Red HTLV articulan a investigadores internacionales para avanzar en nuevos diagnósticos, terapias y políticas públicas de prevención."
+        : "Despite affecting millions worldwide, HTLV has historically been an overlooked health challenge. The World Health Organization (WHO) issued a global call to advance antenatal screening, blood safety, and psychosocial support. Networks like Red HTLV unite international researchers to drive diagnostics, therapeutic innovation, and evidence-based prevention policies.",
       highlight: lang === 'es' ? "La Red promueve el acceso a información confiable y visibilidad médica global." : "The Network drives reliable patient information and global clinical recognition."
     }
   ], [lang]);

@@ -48,7 +48,7 @@ export default function NewsPage() {
             <div className="max-w-2xl">
               <span className="inline-block px-3 py-1 bg-primary/10 text-primary font-label-sm uppercase tracking-wider rounded-full mb-4">Impacto e Información</span>
               <h1 className="font-display text-display text-primary mb-4">Noticias</h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Manténgase al día con los últimos avances científicos, noticias institucionales y eventos académicos organizados por la comunidad de investigación RIII-HTLV.</p>
+              <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Manténgase al día con los últimos avances científicos, noticias institucionales y eventos académicos organizados por la comunidad de investigación Red HTLV.</p>
             </div>
             <div className="flex gap-4 border-b border-outline-variant pb-1">
               <button 

@@ -94,7 +94,7 @@ export default function PublicacionesPage() {
               {lang === 'es' ? 'Publicaciones' : 'Publications'}
             </h1>
             <p className="text-sm sm:text-base text-slate-600 mt-1">
-              {lang === 'es' ? 'Artículos indexados elaborados por miembros de la Red RIII-HTLV.' : 'Peer-reviewed articles authored by members of the RIII-HTLV Network.'}
+              {lang === 'es' ? 'Artículos indexados elaborados por miembros de la Red HTLV.' : 'Peer-reviewed articles authored by members of the HTLV Network.'}
             </p>
           </div>
 

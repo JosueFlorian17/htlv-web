@@ -8,10 +8,10 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `h
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'RIII-HTLV | Red Internacional de Investigación e Innovación en HTLV',
-    template: '%s | RIII-HTLV'
+    default: 'Red HTLV | Red Internacional de Investigación e Innovación en HTLV',
+    template: '%s | Red HTLV'
   },
-  description: 'Plataforma científica oficial de la Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV), con el liderazgo del Instituto de Medicina Tropical Alexander von Humboldt - UPCH (Perú). Guías clínicas, epidemiología, repositorio y consensos internacionales sobre HTLV-1 y HTLV-2.',
+  description: 'Plataforma científica oficial de la Red Internacional de Investigación e Innovación en HTLV (Red HTLV), con el liderazgo del Instituto de Medicina Tropical Alexander von Humboldt - UPCH (Perú). Guías clínicas, epidemiología, repositorio y consensos internacionales sobre HTLV-1 y HTLV-2.',
   keywords: [
     'HTLV',
     'HTLV-1',
@@ -26,7 +26,7 @@ export const metadata = {
     'IMTAvH',
     'Perú'
   ],
-  authors: [{ name: 'RIII-HTLV & UPCH' }],
+  authors: [{ name: 'Red HTLV & UPCH' }],
   creator: 'Red Internacional de Investigación e Innovación en HTLV',
   publisher: 'Universidad Peruana Cayetano Heredia (UPCH)',
   alternates: {
@@ -38,10 +38,10 @@ export const metadata = {
     }
   },
   openGraph: {
-    title: 'RIII-HTLV | Red Internacional de Investigación e Innovación en HTLV',
+    title: 'Red HTLV | Red Internacional de Investigación e Innovación en HTLV',
     description: 'Consenso científico, epidemiología y guías clínicas sobre el virus HTLV-1/2 lideradas por la Universidad Peruana Cayetano Heredia y centros internacionales.',
     url: siteUrl,
-    siteName: 'RIII-HTLV Digital Research Hub',
+    siteName: 'Red HTLV Digital Research Hub',
     locale: 'es_PE',
     type: 'website',
   },

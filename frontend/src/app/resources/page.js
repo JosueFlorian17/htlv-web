@@ -545,7 +545,7 @@ export default function ResourcesPage() {
               Recursos, Videos Interactivos & Herramientas
             </h1>
             <p className="text-[14px] md:text-[15.5px] text-[#564242] leading-relaxed">
-              Explora simuladores clínicos, videos educativos de referencia y conferencias en YouTube con evaluaciones integradas, modelos macromoleculares 3D manipulables y formularios respaldados por la Red RIII-HTLV y la UPCH.
+              Explora simuladores clínicos, videos educativos de referencia y conferencias en YouTube con evaluaciones integradas, modelos macromoleculares 3D manipulables y formularios respaldados por la Red HTLV y la UPCH.
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -1161,7 +1161,7 @@ export default function ResourcesPage() {
                   <span className="material-symbols-outlined text-green-600 text-[36px]">task_alt</span>
                   <h4 className="font-bold text-[14px] text-green-900">Registro Clínico Notificado con Éxito</h4>
                   <p className="text-[12px] text-green-800">
-                    Los datos anonimizados han sido validados para los reportes estadísticos de la red RIII-HTLV.
+                    Los datos anonimizados han sido validados para los reportes estadísticos de la Red HTLV.
                   </p>
                   <button
                     onClick={() => setFormSubmitted(false)}

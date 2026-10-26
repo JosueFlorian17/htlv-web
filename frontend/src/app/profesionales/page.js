@@ -36,7 +36,7 @@ function ProfesionalesContent() {
     },
     {
       title: lang === 'es' ? "Consenso Internacional en Paraparesia Espástica Tropical (HAM/TSP)" : "International Consensus on Tropical Spastic Paraparesis (HAM/TSP)",
-      institution: "Comité Científico RIII-HTLV & Consorcio Japón-UK",
+      institution: "Comité Científico Red HTLV & Consorcio Japón-UK",
       year: "2026",
       desc: lang === 'es'
         ? "Protocolo unificado para el monitoreo neurológico, escalas funcionales (EDSS modificado), biomarcadores en LCR y pulsos de corticoides."
@@ -45,7 +45,7 @@ function ProfesionalesContent() {
     },
     {
       title: lang === 'es' ? "Protocolo de Prevención de Transmisión Materno-Infantil" : "Mother-to-Child Transmission Prevention Protocol",
-      institution: "Red RIII-HTLV & Sociedades de Infectología",
+      institution: "Red HTLV & Sociedades de Infectología",
       year: "2027",
       desc: lang === 'es'
         ? "Estrategias de tamizaje prenatal en poblaciones de alta prevalencia, manejo del puerperio y pautas de alimentación alternativa para recién nacidos."
@@ -78,8 +78,8 @@ function ProfesionalesContent() {
         : "Global Retrovirology Update: Clinical & Diagnostic Challenges in HTLV-1 & HTLV-2",
       speaker: "Dr. Eduardo Gotuzzo",
       speakerRole: lang === 'es'
-        ? "Presidente Honorario RIII-HTLV • Profesor Emérito UPCH • Investigador Distinguido IMTAvH (Perú)"
-        : "Honorary President RIII-HTLV • Emeritus Professor UPCH • Distinguished Investigator IMTAvH (Peru)",
+        ? "Presidente Honorario Red HTLV • Profesor Emérito UPCH • Investigador Distinguido IMTAvH (Perú)"
+        : "Honorary President Red HTLV • Emeritus Professor UPCH • Distinguished Investigator IMTAvH (Peru)",
       speakerImage: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80",
       bannerImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80",
       dateFormatted: "28/10/26",
@@ -101,8 +101,8 @@ function ProfesionalesContent() {
         : "Clinical Management & Novel Biomarkers in Tropical Spastic Paraparesis (HAM/TSP)",
       speaker: "Prof. Graham P. Taylor",
       speakerRole: lang === 'es'
-        ? "Vicepresidente RIII-HTLV • Director National Centre for Human Retrovirology • Imperial College London (UK)"
-        : "Vice President RIII-HTLV • Head National Centre for Human Retrovirology • Imperial College London (UK)",
+        ? "Vicepresidente Red HTLV • Director National Centre for Human Retrovirology • Imperial College London (UK)"
+        : "Vice President Red HTLV • Head National Centre for Human Retrovirology • Imperial College London (UK)",
       speakerImage: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
       bannerImage: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1000&q=80",
       dateFormatted: "18/11/26",
@@ -124,8 +124,8 @@ function ProfesionalesContent() {
         : "Proviral PCR Standardization & Timely Diagnosis of Mother-to-Child Transmission",
       speaker: "Dra. Elsa González",
       speakerRole: lang === 'es'
-        ? "Coordinadora Científica RIII-HTLV • Jefa de Laboratorio de Retrovirología IMTAvH - UPCH (Perú)"
-        : "Scientific Coordinator RIII-HTLV • Head of Retrovirology Laboratory IMTAvH - UPCH (Peru)",
+        ? "Coordinadora Científica Red HTLV • Jefa de Laboratorio de Retrovirología IMTAvH - UPCH (Perú)"
+        : "Scientific Coordinator Red HTLV • Head of Retrovirology Laboratory IMTAvH - UPCH (Peru)",
       speakerImage: "https://images.unsplash.com/photo-1594824813580-c081e7d8d697?auto=format&fit=crop&w=400&q=80",
       bannerImage: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80",
       dateFormatted: "09/12/26",
@@ -155,12 +155,12 @@ function ProfesionalesContent() {
       image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1000&q=80",
       coordinator: {
         name: "Dra. Elsa González",
-        role: lang === 'es' ? "Coordinadora Científica RIII-HTLV • IMTAvH - UPCH" : "Scientific Coordinator RIII-HTLV • IMTAvH - UPCH",
+        role: lang === 'es' ? "Coordinadora Científica Red HTLV • IMTAvH - UPCH" : "Scientific Coordinator Red HTLV • IMTAvH - UPCH",
         image: "https://images.unsplash.com/photo-1594824813580-c081e7d8d697?auto=format&fit=crop&w=400&q=80"
       },
       intro: lang === 'es'
-        ? "La Red Internacional de Investigación e Innovación en HTLV (RIII-HTLV), con el objetivo de promover el desarrollo de capacidades en materia de investigación y diagnóstico clínico de la región en diferentes niveles, desarrollará su curso corto sobre Abordaje Clínico Integral del HTLV."
-        : "The International Research and Innovation Network on HTLV (RIII-HTLV), aimed at strengthening clinical and diagnostic capacity across the region, presents its short course on Comprehensive HTLV Management.",
+        ? "La Red Internacional de Investigación e Innovación en HTLV (Red HTLV), con el objetivo de promover el desarrollo de capacidades en materia de investigación y diagnóstico clínico de la región en diferentes niveles, desarrollará su curso corto sobre Abordaje Clínico Integral del HTLV."
+        : "The International Research and Innovation Network on HTLV (Red HTLV), aimed at strengthening clinical and diagnostic capacity across the region, presents its short course on Comprehensive HTLV Management.",
       description: lang === 'es'
         ? "Formación especializada en bases biológicas, protocolos de tamizaje serológico, confirmación diagnóstica y manejo interdisciplinario de patologías asociadas al HTLV-1 y HTLV-2."
         : "Specialized training in biological fundamentals, serological screening protocols, diagnostic confirmation, and interdisciplinary management of HTLV-1/2 associated diseases.",
@@ -168,7 +168,7 @@ function ProfesionalesContent() {
         lang === 'es' ? "100% Virtual y flexible." : "100% Online and flexible.",
         lang === 'es' ? "El presente curso brindará acceso a un aula virtual con 4 plenarias con especialistas y material complementario de lectura." : "Provides access to a virtual classroom with 4 master plenaries and comprehensive reading materials.",
         lang === 'es' ? "El participante podrá llevar la cursada al ritmo de su preferencia." : "Participants can complete modules at their own pace.",
-        lang === 'es' ? "El participante tomará un breve cuestionario virtual para conseguir la constancia de certificación a nombre de la Red RIII-HTLV." : "Participants will complete a short online assessment to earn an official certificate issued by RIII-HTLV.",
+        lang === 'es' ? "El participante tomará un breve cuestionario virtual para conseguir la constancia de certificación a nombre de la Red HTLV." : "Participants will complete a short online assessment to earn an official certificate issued by Red HTLV.",
         lang === 'es' ? "Entrega de constancias: Al culminar los módulos y aprobar la evaluación." : "Certificate issuance: Upon module completion and evaluation approval."
       ]
     },
@@ -185,12 +185,12 @@ function ProfesionalesContent() {
       image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80",
       coordinator: {
         name: "Prof. Graham P. Taylor",
-        role: lang === 'es' ? "Vicepresidente RIII-HTLV • Imperial College London" : "Vice President RIII-HTLV • Imperial College London",
+        role: lang === 'es' ? "Vicepresidente Red HTLV • Imperial College London" : "Vice President Red HTLV • Imperial College London",
         image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80"
       },
       intro: lang === 'es'
-        ? "La Red RIII-HTLV, con el objetivo de elevar los estándares de aseguramiento de calidad analítica en retrovirología humana, impartirá su taller especializado en estandarización de PCR en tiempo real para HTLV-1/2."
-        : "The RIII-HTLV Network, aiming to elevate analytical quality standards in human retrovirology, hosts its specialized hands-on workshop on real-time PCR standardization.",
+        ? "La Red HTLV, con el objetivo de elevar los estándares de aseguramiento de calidad analítica en retrovirología humana, impartirá su taller especializado en estandarización de PCR en tiempo real para HTLV-1/2."
+        : "The HTLV Network, aiming to elevate analytical quality standards in human retrovirology, hosts its specialized hands-on workshop on real-time PCR standardization.",
       description: lang === 'es'
         ? "Capacitación práctica en extracción de ácidos nucleicos, diseño y validación de partidores para qPCR proviral, cálculo de copias por célula y control de calidad analítica inter-laboratorios."
         : "Hands-on training in nucleic acid extraction, qPCR assay design and validation for proviral load, cell copy calculation, and analytical quality control.",
@@ -258,7 +258,7 @@ function ProfesionalesContent() {
                 {lang === 'es' ? 'Ciclo de Conferencias Científicas' : 'Scientific Conference Series'}
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                {lang === 'es' ? 'Webinars Internacionales RIII-HTLV' : 'RIII-HTLV International Webinars'}
+                {lang === 'es' ? 'Webinars Internacionales Red HTLV' : 'Red HTLV International Webinars'}
               </h2>
               <p className="text-sm text-slate-600">
                 {lang === 'es'
@@ -508,8 +508,8 @@ function ProfesionalesContent() {
               </h2>
               <p className="text-sm text-slate-600">
                 {lang === 'es'
-                  ? 'Programas formativos de alto nivel diseñados por la Red RIII-HTLV para fortalecer competencias diagnósticas y clínicas en sistemas de salud.'
-                  : 'High-level training curricula developed by RIII-HTLV to enhance diagnostic and clinical competencies across health systems.'}
+                  ? 'Programas formativos de alto nivel diseñados por la Red HTLV para fortalecer competencias diagnósticas y clínicas en sistemas de salud.'
+                  : 'High-level training curricula developed by Red HTLV to enhance diagnostic and clinical competencies across health systems.'}
               </p>
             </div>
 
@@ -538,7 +538,7 @@ function ProfesionalesContent() {
 
                       <div className="absolute bottom-3 left-3 right-3 text-white">
                         <span className="text-[10px] font-extrabold tracking-wider text-[#E5A400] uppercase block">
-                          CURSO CORTO RIII-HTLV
+                          CURSO CORTO Red HTLV
                         </span>
                         <h4 className="text-base font-bold text-white leading-tight drop-shadow-sm">
                           {course.shortTitle}
@@ -611,7 +611,7 @@ function ProfesionalesContent() {
                   <div className="flex items-start justify-between gap-4 pb-3 border-b border-slate-100">
                     <div>
                       <span className="text-[10px] font-bold text-[#087E8B] uppercase tracking-wider block">
-                        {lang === 'es' ? 'Curso Corto RIII-HTLV' : 'RIII-HTLV Short Course'}
+                        {lang === 'es' ? 'Curso Corto Red HTLV' : 'Red HTLV Short Course'}
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
                         {selectedCourse.shortTitle}

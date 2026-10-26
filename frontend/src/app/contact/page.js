@@ -46,8 +46,8 @@ export default function ContactPage() {
               </h1>
               <p className="text-sm text-slate-600 mt-1 max-w-2xl">
                 {lang === 'es'
-                  ? 'Canal oficial para colaboraciones científicas, acreditación de proyectos y vinculación institucional con la Red RIII-HTLV.'
-                  : 'Official channel for scientific collaborations, project endorsements, and institutional liaisons with the RIII-HTLV Network.'}
+                  ? 'Canal oficial para colaboraciones científicas, acreditación de proyectos y vinculación institucional con la Red HTLV.'
+                  : 'Official channel for scientific collaborations, project endorsements, and institutional liaisons with the HTLV Network.'}
               </p>
             </div>
 
@@ -84,8 +84,8 @@ export default function ContactPage() {
                 </h3>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
                   {lang === 'es'
-                    ? 'Gracias por comunicarse con la Red RIII-HTLV. La coordinación general en el IMTAvH - UPCH responderá a su correo a la brevedad.'
-                    : 'Thank you for contacting RIII-HTLV. The coordination secretariat at IMTAvH - UPCH will respond shortly.'}
+                    ? 'Gracias por comunicarse con la Red HTLV. La coordinación general en el IMTAvH - UPCH responderá a su correo a la brevedad.'
+                    : 'Thank you for contacting Red HTLV. The coordination secretariat at IMTAvH - UPCH will respond shortly.'}
                 </p>
                 <button 
                   onClick={() => setSubmitted(false)}

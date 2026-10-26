@@ -84,7 +84,7 @@ export default function FAQsPage() {
     {
       id: 13,
       q: "13. ¿Existen ensayos clínicos e investigaciones sobre el HTLV en curso?",
-      a: "Sí. En todo el mundo se desarrollan ensayos clínicos y estudios de cohortes para evaluar nuevos tratamientos, biomarcadores de progresión y estrategias preventivas para el HTLV-1 y HTLV-2. En el Perú, el Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) de la Universidad Peruana Cayetano Heredia (UPCH) lidera desde hace décadas una de las cohortes prospectivas más grandes y reconocidas del mundo, colaborando activamente con la Red Internacional RIII-HTLV y centros de investigación de Japón, Europa y América. La información sobre ensayos clínicos internacionales registrados puede consultarse en plataformas oficiales como ClinicalTrials.gov. (Johnston & Corey, 2016; Gotuzzo et al., 2023; Clark et al., 2016)."
+      a: "Sí. En todo el mundo se desarrollan ensayos clínicos y estudios de cohortes para evaluar nuevos tratamientos, biomarcadores de progresión y estrategias preventivas para el HTLV-1 y HTLV-2. En el Perú, el Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) de la Universidad Peruana Cayetano Heredia (UPCH) lidera desde hace décadas una de las cohortes prospectivas más grandes y reconocidas del mundo, colaborando activamente con la Red Internacional Red HTLV y centros de investigación de Japón, Europa y América. La información sobre ensayos clínicos internacionales registrados puede consultarse en plataformas oficiales como ClinicalTrials.gov. (Johnston & Corey, 2016; Gotuzzo et al., 2023; Clark et al., 2016)."
     }
   ];
 
@@ -163,7 +163,7 @@ export default function FAQsPage() {
             </div>
             <div>
               <span className="font-extrabold text-[#5b0617] text-[13pt] tracking-tight block leading-none">
-                RIII-HTLV
+                Red HTLV
               </span>
               <span className="text-[7.5pt] text-[#564242] uppercase tracking-wider font-semibold">
                 Red Internacional de Investigación en HTLV • UPCH
@@ -193,7 +193,7 @@ export default function FAQsPage() {
             </h1>
             
             <p className="web-only text-[15px] sm:text-[16px] text-[#4b5563] leading-relaxed mb-6">
-              Respuestas fundamentales basadas en evidencia biomédica y consenso clínico elaboradas por investigadores del <strong>Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) de la Universidad Peruana Cayetano Heredia (UPCH)</strong> y la <strong>Red Internacional RIII-HTLV</strong>.
+              Respuestas fundamentales basadas en evidencia biomédica y consenso clínico elaboradas por investigadores del <strong>Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH) de la Universidad Peruana Cayetano Heredia (UPCH)</strong> y la <strong>Red Internacional Red HTLV</strong>.
             </p>
 
             {/* Barra de Acciones: Botón Descargar PDF y Compartir */}

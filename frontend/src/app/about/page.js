@@ -35,7 +35,7 @@ function AboutContent() {
   const structureNodes = {
     directivo: {
       id: 'directivo',
-      title: lang === 'es' ? 'Comité directivo RIII-HTLV' : 'RIII-HTLV Steering Committee',
+      title: lang === 'es' ? 'Comité directivo Red HTLV' : 'Red HTLV Steering Committee',
       subtitle: lang === 'es' ? 'Directores: Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor' : 'Directors: Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor',
       description: lang === 'es'
         ? 'Máximo órgano de gobierno y dirección científica de la Red. Encargado de definir las líneas estratégicas, supervisar el cumplimiento del convenio marco y coordinar las actividades académicas internacionales entre los nodos fundadores.'
@@ -68,7 +68,7 @@ function AboutContent() {
       title: lang === 'es' ? 'Centros Core de Coordinación' : 'Core Coordinating Centers',
       subtitle: 'IMTAvH - UPCH (Perú) & Imperial College London (Reino Unido)',
       description: lang === 'es'
-        ? 'Centros fundadores de la Red RIII-HTLV. Albergan la secretaría ejecutiva, las cohortes clínicas históricas y los laboratorios de referencia en retrovirología humana.'
+        ? 'Centros fundadores de la Red HTLV. Albergan la secretaría ejecutiva, las cohortes clínicas históricas y los laboratorios de referencia en retrovirología humana.'
         : 'Founding centers hosting executive coordination, historical clinical cohorts, and reference retrovirology laboratories.',
       linkText: lang === 'es' ? 'Ver más' : 'See more',
       actionUrl: '/proyectos?tab=investigacion'
@@ -197,7 +197,7 @@ function AboutContent() {
       members: [
         {
           name: 'Prof. Graham P. Taylor',
-          role: lang === 'es' ? 'Vicepresidente RIII-HTLV' : 'Vice President',
+          role: lang === 'es' ? 'Vicepresidente Red HTLV' : 'Vice President',
           title: lang === 'es' ? 'Director National Centre for Human Retrovirology' : 'Head National Centre for Human Retrovirology',
           image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80'
         },
@@ -223,7 +223,7 @@ function AboutContent() {
     }
   ];
 
-  // 5 Objetivos específicos de la Red RIII-HTLV
+  // 5 Objetivos específicos de la Red HTLV
   const specificObjectives = [
     {
       id: 1,
@@ -410,7 +410,7 @@ function AboutContent() {
             {/* Título único */}
             <div className="text-center max-w-3xl mx-auto space-y-2">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49] tracking-tight">
-                {lang === 'es' ? 'Objetivos Estratégicos de la Red RIII-HTLV' : 'Strategic Objectives of the RIII-HTLV Network'}
+                {lang === 'es' ? 'Objetivos Estratégicos de la Red HTLV' : 'Strategic Objectives of the HTLV Network'}
               </h2>
             </div>
 

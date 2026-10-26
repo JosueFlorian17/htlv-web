@@ -54,7 +54,7 @@ export default function OpportunitiesPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
               <h1 className="font-display text-display text-primary mb-4">Convocatorias y Oportunidades</h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Explore financiamiento, becas, pasantías y cursos avanzados ofrecidos por los centros asociados a la red RIII-HTLV.</p>
+              <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Explore financiamiento, becas, pasantías y cursos avanzados ofrecidos por los centros asociados a la Red HTLV.</p>
             </div>
             <div className="flex flex-wrap gap-2 flex-shrink-0">
               <span className="bg-primary-fixed text-[#822530] px-3 py-1 rounded-full font-label-sm text-label-sm uppercase font-bold">Convocatorias Activas</span>
@@ -101,7 +101,7 @@ export default function OpportunitiesPage() {
                       <span className="text-primary font-bold font-label-sm text-label-sm">Límite: 30 Dic 2026</span>
                     </div>
                     <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2 text-[#191c1e]">Beca de Innovación Global 2027</h3>
-                    <p className="font-label-md text-label-md text-on-surface-variant mb-4">Red Internacional de HTLV (RIII-HTLV)</p>
+                    <p className="font-label-md text-label-md text-on-surface-variant mb-4">Red Internacional de HTLV (Red HTLV)</p>
                     <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">Financiamiento de hasta $150,000 para proyectos de investigación intercontinentales destinados a mejorar el acceso al diagnóstico de HTLV-1 en entornos de bajos recursos. La colaboración entre al menos dos países miembros de la red es obligatoria.</p>
                   </div>
                   <button className="w-full mt-6 py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex justify-center items-center gap-2 hover:opacity-90 transition-all cursor-pointer shadow-sm">
@@ -140,7 +140,7 @@ export default function OpportunitiesPage() {
         <section className="mt-section-gap p-12 bg-[#ffdada]/30 border border-[#dcc0c0] rounded-2xl flex flex-col md:flex-row items-center gap-8 text-[#191c1e] overflow-hidden relative">
           <div className="relative z-10 flex-grow">
             <h2 className="font-headline-lg text-headline-lg text-primary mb-4 font-bold">Asociación Institucional</h2>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-8 leading-relaxed">¿Tiene su institución alguna oportunidad para investigadores de HTLV? Conéctese con la Red RIII-HTLV para difundir sus vacantes a nivel mundial.</p>
+            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-8 leading-relaxed">¿Tiene su institución alguna oportunidad para investigadores de HTLV? Conéctese con la Red HTLV para difundir sus vacantes a nivel mundial.</p>
             <div className="flex flex-wrap gap-4">
               <button className="px-8 py-4 bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-all cursor-pointer shadow-md">Enviar una Oportunidad</button>
               <button className="px-8 py-4 border border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-all cursor-pointer">Contactar Alianzas</button>

@@ -20,7 +20,7 @@ export const translations = {
     nav_contact: "Contacto",
     
     // Home
-    home_title: "¿Qué es la Red RIII-HTLV?",
+    home_title: "¿Qué es la Red HTLV?",
     home_desc: "Es la Red Internacional de Investigación e Innovación en HTLV, una alianza científica global para el desarrollo de evidencia de calidad, diagnóstico oportuno y terapias para la transformación de la salud en poblaciones afectadas por HTLV-1 y HTLV-2.",
     home_bullet1: "Investiga sobre la virología molecular, epidemiología y patogénesis del HTLV.",
     home_bullet2: "Promueve sinergias clínicas multicéntricas en Paraparesia Espástica Tropical (HAM/TSP) y Leucemia/Linfoma (ATL).",
@@ -33,7 +33,7 @@ export const translations = {
     home_quick_access: "Acceso Rápido",
 
     // About
-    about_title: "Acerca de la Red RIII-HTLV",
+    about_title: "Acerca de la Red HTLV",
     about_subtitle: "Estructura organizativa, comités, investigadores y documentos institucionales.",
     about_tab_structure: "Estructura Organizativa",
     about_tab_members: "Integrantes del Equipo",
@@ -54,7 +54,7 @@ export const translations = {
 
     // Publications
     pub_title: "Publicaciones Científicas",
-    pub_subtitle: "Artículos indexados elaborados por investigadores de la Red RIII-HTLV.",
+    pub_subtitle: "Artículos indexados elaborados por investigadores de la Red HTLV.",
     pub_view_abstract: "Ver Resumen",
     pub_hide_abstract: "Cerrar",
     pub_search_placeholder: "Buscar por autor, título o año...",
@@ -74,7 +74,7 @@ export const translations = {
     nav_contact: "Contact",
 
     // Home
-    home_title: "What is the RIII-HTLV Network?",
+    home_title: "What is the HTLV Network?",
     home_desc: "It is the International Research and Innovation Network on HTLV, a global scientific alliance dedicated to generating quality evidence, early diagnosis, and therapeutic solutions for healthcare transformation in populations affected by HTLV-1 and HTLV-2.",
     home_bullet1: "Conducts cutting-edge research into HTLV molecular virology, epidemiology, and pathogenesis.",
     home_bullet2: "Promotes multicenter clinical synergies in Tropical Spastic Paraparesis (HAM/TSP) and Adult T-cell Leukemia (ATL).",
@@ -87,7 +87,7 @@ export const translations = {
     home_quick_access: "Quick Access",
 
     // About
-    about_title: "About RIII-HTLV Network",
+    about_title: "About HTLV Network",
     about_subtitle: "Organizational structure, committees, team members, and institutional agreements.",
     about_tab_structure: "Organizational Structure",
     about_tab_members: "Team & Investigators",
@@ -108,7 +108,7 @@ export const translations = {
 
     // Publications
     pub_title: "Scientific Publications",
-    pub_subtitle: "Peer-reviewed indexed papers authored by RIII-HTLV researchers.",
+    pub_subtitle: "Peer-reviewed indexed papers authored by Red HTLV researchers.",
     pub_view_abstract: "View Abstract",
     pub_hide_abstract: "Close",
     pub_search_placeholder: "Search by author, title, or year...",
