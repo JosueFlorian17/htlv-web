@@ -29,6 +29,7 @@ function PacientesContent() {
   // FAQs colapsables
   const [openFaqs, setOpenFaqs] = useState({ 1: true });
   const [faqSearchQuery, setFaqSearchQuery] = useState('');
+  const [showPatientFaqWip, setShowPatientFaqWip] = useState(false);
   const toggleFaq = (id) => {
     setOpenFaqs((prev) => ({
       ...prev,
@@ -423,6 +424,41 @@ function PacientesContent() {
                   ? 'La información contenida en este sitio web se presenta únicamente con fines informativos y educativos. No constituye un diagnóstico ni tratamiento profesional. Siempre busque el consejo de su médico u otro proveedor de salud calificado ante cualquier duda sobre una condición médica. Nunca ignore el consejo médico profesional ni demore su búsqueda debido a algo que haya leído en este sitio.'
                   : 'The information contained on this website is presented solely for educational and informational purposes and does not constitute professional medical diagnosis or treatment. Always seek the advice of your physician or qualified health provider regarding any medical condition. Never ignore professional medical advice or delay seeking it because of something you have read on this site.'}
               </p>
+            </div>
+
+            {/* Botón Ver más para Warning Work In Progress */}
+            <div className="mt-4 pt-2">
+              {!showPatientFaqWip ? (
+                <div className="text-center">
+                  <button
+                    type="button"
+                    onClick={() => setShowPatientFaqWip(true)}
+                    className="text-xs sm:text-sm font-semibold text-slate-700 hover:text-black underline cursor-pointer py-1.5 px-3"
+                  >
+                    {lang === 'es' ? '(Ver más)' : '(See more)'}
+                  </button>
+                </div>
+              ) : (
+                <div className="p-4 bg-[#FDE8E8] text-black rounded-none space-y-1.5 animate-fadeIn">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs sm:text-sm font-bold uppercase tracking-wide">
+                      [Work in progress]
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setShowPatientFaqWip(false)}
+                      className="text-xs text-black/70 hover:text-black font-semibold underline cursor-pointer"
+                    >
+                      {lang === 'es' ? '(Ocultar)' : '(Hide)'}
+                    </button>
+                  </div>
+                  <p className="text-xs sm:text-sm leading-relaxed font-normal">
+                    {lang === 'es'
+                      ? 'Esta sección de preguntas para pacientes se encuentra actualmente en desarrollo y revisión técnica por el equipo científico de la Red HTLV.'
+                      : 'This patient FAQ section is currently under development and technical review by the HTLV Network scientific team.'}
+                  </p>
+                </div>
+              )}
             </div>
 
           </div>

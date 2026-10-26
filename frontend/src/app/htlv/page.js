@@ -485,23 +485,36 @@ function HTLVContent() {
               }))}
             </div>
 
-            {/* Botón Ver más y Disclaimer al fondo */}
-            <div className="mt-8 pt-4 border-t border-slate-200">
+            {/* Aviso Importante Disclaimer Sintetizado */}
+            <div className="mt-8 p-5 bg-slate-50 border-l-4 border-[#087E8B] rounded-r-xl text-xs sm:text-sm text-slate-600 leading-relaxed space-y-1.5">
+              <div className="flex items-center gap-2 text-[#003B49] font-bold text-sm">
+                <span className="material-symbols-outlined text-lg text-[#087E8B]">info</span>
+                <span>{lang === 'es' ? 'Aviso importante' : 'Important Notice'}</span>
+              </div>
+              <p>
+                {lang === 'es'
+                  ? 'La información contenida en este sitio web se presenta únicamente con fines informativos y educativos. No constituye un diagnóstico ni tratamiento profesional. Siempre busque el consejo de su médico u otro proveedor de salud calificado ante cualquier duda sobre una condición médica. Nunca ignore el consejo médico profesional ni demore su búsqueda debido a algo que haya leído en este sitio.'
+                  : 'The information contained on this website is presented solely for educational and informational purposes and does not constitute professional medical diagnosis or treatment. Always seek the advice of your physician or qualified health provider regarding any medical condition. Never ignore professional medical advice or delay seeking it because of something you have read on this site.'}
+              </p>
+            </div>
+
+            {/* Botón Ver más para Warning Work In Progress */}
+            <div className="mt-4 pt-2">
               {!showFaqDisclaimer ? (
                 <div className="text-center">
                   <button
                     type="button"
                     onClick={() => setShowFaqDisclaimer(true)}
-                    className="text-xs sm:text-sm font-semibold text-slate-700 hover:text-black underline cursor-pointer py-2 px-3"
+                    className="text-xs sm:text-sm font-semibold text-slate-700 hover:text-black underline cursor-pointer py-1.5 px-3"
                   >
                     {lang === 'es' ? '(Ver más)' : '(See more)'}
                   </button>
                 </div>
               ) : (
-                <div className="p-4 bg-[#FDE8E8] text-black rounded-none space-y-2 animate-fadeIn">
+                <div className="p-4 bg-[#FDE8E8] text-black rounded-none space-y-1.5 animate-fadeIn">
                   <div className="flex items-center justify-between">
                     <p className="text-xs sm:text-sm font-bold uppercase tracking-wide">
-                      {lang === 'es' ? 'Aviso importante' : 'Important Notice'}
+                      [Work in progress]
                     </p>
                     <button
                       type="button"
@@ -513,8 +526,8 @@ function HTLVContent() {
                   </div>
                   <p className="text-xs sm:text-sm leading-relaxed font-normal">
                     {lang === 'es'
-                      ? 'La información contenida en este sitio web se presenta únicamente con fines informativos y educativos. No constituye un diagnóstico ni tratamiento profesional. Siempre busque el consejo de su médico u otro proveedor de salud calificado ante cualquier duda sobre una condición médica. Nunca ignore el consejo médico profesional ni demore su búsqueda debido a algo que haya leído en este sitio.'
-                      : 'The information contained on this website is presented solely for educational and informational purposes and does not constitute professional medical diagnosis or treatment. Always seek the advice of your physician or qualified health provider regarding any medical condition. Never ignore professional medical advice or delay seeking it because of something you have read on this site.'}
+                      ? 'Esta sección de preguntas frecuentes se encuentra actualmente en desarrollo, ampliación y revisión técnica por el equipo científico de la Red HTLV.'
+                      : 'This frequently asked questions section is currently under development, expansion, and technical review by the HTLV Network scientific team.'}
                   </p>
                 </div>
               )}
