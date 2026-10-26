@@ -562,7 +562,7 @@ function AboutContent() {
 
                   {/* Texto de descripción directo, sin píldora de descripción y alcance */}
                   <div className="space-y-2">
-                    <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-none border border-slate-200">
+                    <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200">
                       {selectedObjective.description}
                     </p>
                   </div>
@@ -584,7 +584,7 @@ function AboutContent() {
                     <button
                       type="button"
                       onClick={() => setSelectedObjective(null)}
-                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-950 font-bold px-6 py-2 rounded-none text-xs transition-colors cursor-pointer shadow-xs"
+                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-950 font-bold px-6 py-2 rounded-lg text-xs transition-colors cursor-pointer shadow-xs"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
@@ -623,7 +623,7 @@ function AboutContent() {
                       leader: 'Líder Técnica: Patricia J. García',
                       description: 'El Comité Directivo orienta el desarrollo estratégico de la Red HTLV y contribuye a su gobernanza, articulación institucional y seguimiento de las actividades previstas en el plan de trabajo.'
                     })}
-                    className="w-[440px] bg-[#66122C] hover:bg-[#520e23] text-white p-5 shadow-md cursor-pointer transition-all transform hover:-translate-y-0.5 text-center select-none"
+                    className="w-[440px] bg-[#66122C] hover:bg-[#520e23] text-white p-5 rounded-2xl shadow-md cursor-pointer transition-all transform hover:-translate-y-0.5 text-center select-none"
                   >
                     <h4 className="text-xl font-bold tracking-tight text-white">
                       {lang === 'es' ? 'Comité Directivo' : 'Steering Committee'}
@@ -649,7 +649,7 @@ function AboutContent() {
                           leader: 'Lic. Claudia Morales',
                           description: 'La Gestora del proyecto está a cargo de la coordinación administrativa del proyecto ante PROCIENCIA-CONCYTEC, así como del seguimiento de los procedimientos administrativos y de la documentación requerida para el cumplimiento de los compromisos y entregables establecidos.'
                         })}
-                        className="w-[245px] bg-[#FFF2DE] hover:bg-[#fee7c7] border-2 border-[#E5A400] text-slate-900 p-3.5 shadow-xs cursor-pointer transition-all text-center select-none"
+                        className="w-[245px] bg-[#FFF2DE] hover:bg-[#fee7c7] border-2 border-[#E5A400] text-slate-900 p-3.5 rounded-xl shadow-xs cursor-pointer transition-all text-center select-none"
                       >
                         <h5 className="text-sm font-bold text-slate-900 leading-tight">
                           {lang === 'es' ? 'Gestora del proyecto' : 'Project Manager'}
@@ -678,7 +678,7 @@ function AboutContent() {
                   {/* BLOQUE IZQUIERDO: Instituciones Nacionales */}
                   <div className="flex flex-col items-center space-y-4">
                     {/* Barra de título con fondo exclusivo para el encabezado */}
-                    <div className="w-full bg-[#FAF0F3] border border-[#66122C]/20 py-2.5 px-4 text-center shadow-2xs">
+                    <div className="w-full bg-[#FAF0F3] border border-[#66122C]/20 py-2.5 px-4 text-center rounded-xl shadow-2xs">
                       <h4 className="text-sm sm:text-base font-bold text-[#66122C] tracking-wide">
                         {lang === 'es' ? 'Instituciones nacionales' : 'National Institutions'}
                       </h4>
@@ -692,24 +692,24 @@ function AboutContent() {
                       <div className="absolute right-[16.66%] translate-x-1/2 top-0 w-0.5 h-4 bg-[#66122C]"></div>
                     </div>
 
-                    {/* Tarjetas independientes con fondo blanco */}
+                    {/* Tarjetas independientes con esquinas redondeadas, sin logos, con bandera en esquina y ciudad en cursiva */}
                     <div className="grid grid-cols-3 gap-3.5 w-full">
                       {/* Universidad Peruana Cayetano Heredia */}
                       <a
                         href="https://cayetano.edu.pe/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
+                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[155px] group"
                       >
-                        <div className="h-14 w-full flex items-center justify-center p-1">
-                          <img src="/logos/cayetano_heredia_logo.png" alt="Universidad Peruana Cayetano Heredia" className="max-h-full max-w-full object-contain" />
+                        <div className="flex justify-end w-full">
+                          <span className="text-xl leading-none" title="Perú">🇵🇪</span>
                         </div>
-                        <div className="my-auto py-1">
-                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#66122C] transition-colors">
+                        <div className="my-auto py-2">
+                          <h6 className="font-bold text-xs sm:text-[13px] text-[#003B49] leading-snug group-hover:text-[#66122C] transition-colors">
                             Universidad Peruana Cayetano Heredia
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-xs italic text-slate-500 font-medium block">
                           Lima
                         </span>
                       </a>
@@ -719,17 +719,17 @@ function AboutContent() {
                         href="https://www.unsaac.edu.pe/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
+                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[155px] group"
                       >
-                        <div className="h-14 w-full flex items-center justify-center p-1">
-                          <img src="/logos/unsaac_logo.png" alt="Universidad Nacional de San Antonio Abad del Cusco" className="max-h-full max-w-full object-contain" />
+                        <div className="flex justify-end w-full">
+                          <span className="text-xl leading-none" title="Perú">🇵🇪</span>
                         </div>
-                        <div className="my-auto py-1">
-                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#66122C] transition-colors">
+                        <div className="my-auto py-2">
+                          <h6 className="font-bold text-xs sm:text-[13px] text-[#003B49] leading-snug group-hover:text-[#66122C] transition-colors">
                             Universidad Nacional de San Antonio Abad del Cusco
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-xs italic text-slate-500 font-medium block">
                           Cusco
                         </span>
                       </a>
@@ -739,17 +739,17 @@ function AboutContent() {
                         href="https://www.unu.edu.pe/portal/index.php"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
+                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[155px] group"
                       >
-                        <div className="h-14 w-full flex items-center justify-center p-1">
-                          <img src="/logos/unu_logo.png" alt="Universidad Nacional de Ucayali" className="max-h-full max-w-full object-contain" />
+                        <div className="flex justify-end w-full">
+                          <span className="text-xl leading-none" title="Perú">🇵🇪</span>
                         </div>
-                        <div className="my-auto py-1">
-                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#66122C] transition-colors">
+                        <div className="my-auto py-2">
+                          <h6 className="font-bold text-xs sm:text-[13px] text-[#003B49] leading-snug group-hover:text-[#66122C] transition-colors">
                             Universidad Nacional de Ucayali
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-xs italic text-slate-500 font-medium block">
                           Ucayali
                         </span>
                       </a>
@@ -759,7 +759,7 @@ function AboutContent() {
                   {/* BLOQUE DERECHO: Instituciones Internacionales */}
                   <div className="flex flex-col items-center space-y-4">
                     {/* Barra de título con fondo exclusivo para el encabezado */}
-                    <div className="w-full bg-[#EBF3FB] border border-[#1A4B82]/20 py-2.5 px-4 text-center shadow-2xs">
+                    <div className="w-full bg-[#EBF3FB] border border-[#1A4B82]/20 py-2.5 px-4 text-center rounded-xl shadow-2xs">
                       <h4 className="text-sm sm:text-base font-bold text-[#1A4B82] tracking-wide">
                         {lang === 'es' ? 'Instituciones internacionales' : 'International Institutions'}
                       </h4>
@@ -773,24 +773,24 @@ function AboutContent() {
                       <div className="absolute right-[16.66%] translate-x-1/2 top-0 w-0.5 h-4 bg-[#1A4B82]"></div>
                     </div>
 
-                    {/* Tarjetas independientes con fondo blanco */}
+                    {/* Tarjetas independientes con esquinas redondeadas, sin logos, con bandera en esquina y país en cursiva */}
                     <div className="grid grid-cols-3 gap-3.5 w-full">
                       {/* University of Washington */}
                       <a
                         href="https://www.washington.edu/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
+                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[155px] group"
                       >
-                        <div className="h-14 w-full flex items-center justify-center p-1">
-                          <img src="/logos/uw_logo.png" alt="University of Washington" className="max-h-full max-w-full object-contain" />
+                        <div className="flex justify-end w-full">
+                          <span className="text-xl leading-none" title="Estados Unidos">🇺🇸</span>
                         </div>
-                        <div className="my-auto py-1">
-                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#1A4B82] transition-colors">
+                        <div className="my-auto py-2">
+                          <h6 className="font-bold text-xs sm:text-[13px] text-[#003B49] leading-snug group-hover:text-[#1A4B82] transition-colors">
                             University of Washington
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-xs italic text-slate-500 font-medium block">
                           {lang === 'es' ? 'Estados Unidos' : 'United States'}
                         </span>
                       </a>
@@ -800,17 +800,17 @@ function AboutContent() {
                         href="https://www.imperial.ac.uk/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
+                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[155px] group"
                       >
-                        <div className="h-14 w-full flex items-center justify-center p-1">
-                          <img src="/logos/imperial_college_logo.png" alt="Imperial College London" className="max-h-full max-w-full object-contain" />
+                        <div className="flex justify-end w-full">
+                          <span className="text-xl leading-none" title="Reino Unido">🇬🇧</span>
                         </div>
-                        <div className="my-auto py-1">
-                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#1A4B82] transition-colors">
+                        <div className="my-auto py-2">
+                          <h6 className="font-bold text-xs sm:text-[13px] text-[#003B49] leading-snug group-hover:text-[#1A4B82] transition-colors">
                             Imperial College London
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-xs italic text-slate-500 font-medium block">
                           {lang === 'es' ? 'Reino Unido' : 'United Kingdom'}
                         </span>
                       </a>
@@ -820,17 +820,17 @@ function AboutContent() {
                         href="https://www.marianna-u.ac.jp/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
+                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[155px] group"
                       >
-                        <div className="h-14 w-full flex items-center justify-center p-1">
-                          <img src="/logos/st_marianna_logo.png" alt="St. Marianna University School of Medicine" className="max-h-full max-w-full object-contain" />
+                        <div className="flex justify-end w-full">
+                          <span className="text-xl leading-none" title="Japón">🇯🇵</span>
                         </div>
-                        <div className="my-auto py-1">
-                          <h6 className="font-bold text-[11px] text-[#003B49] leading-tight group-hover:text-[#1A4B82] transition-colors">
+                        <div className="my-auto py-2">
+                          <h6 className="font-bold text-xs sm:text-[13px] text-[#003B49] leading-snug group-hover:text-[#1A4B82] transition-colors">
                             St. Marianna University School of Medicine
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
+                        <span className="text-xs italic text-slate-500 font-medium block">
                           {lang === 'es' ? 'Japón' : 'Japan'}
                         </span>
                       </a>
@@ -849,7 +849,7 @@ function AboutContent() {
                 onClick={() => setSelectedNode(null)}
               >
                 <div 
-                  className="bg-white text-slate-900 w-full max-w-md rounded-none p-6 sm:p-8 border border-slate-300 shadow-2xl relative text-left space-y-4"
+                  className="bg-white text-slate-900 w-full max-w-md rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-2xl relative text-left space-y-4"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="flex items-start justify-between gap-4 border-b border-slate-200 pb-3">
@@ -873,7 +873,7 @@ function AboutContent() {
                     </button>
                   </div>
 
-                  <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-none border border-slate-200">
+                  <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200">
                     {selectedNode.description}
                   </p>
 
@@ -881,7 +881,7 @@ function AboutContent() {
                     <button
                       type="button"
                       onClick={() => setSelectedNode(null)}
-                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-950 font-bold px-6 py-2 rounded-none text-xs transition-colors cursor-pointer shadow-xs"
+                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-950 font-bold px-6 py-2 rounded-lg text-xs transition-colors cursor-pointer shadow-xs"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
