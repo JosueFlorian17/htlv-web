@@ -229,7 +229,7 @@ function AboutContent() {
           text: lang === 'es'
             ? 'Enfermera de la Unidad de Investigación en HTLV-1 del Instituto de Medicina Tropical Alexander von Humboldt'
             : 'Nurse at the HTLV-1 Research Unit of the Instituto de Medicina Tropical Alexander von Humboldt',
-          image: 'https://images.unsplash.com/photo-1594824813593-9c8828b6d859?auto=format&fit=crop&w=400&q=80'
+          image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&q=80'
         },
         {
           name: 'Lic. Aydee Trebejo',
