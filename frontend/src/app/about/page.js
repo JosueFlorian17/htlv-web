@@ -401,14 +401,7 @@ function AboutContent() {
 
         {/* 2. OBJETIVOS ESTRATÉGICOS */}
         {activeTab === 'objetivos' && (
-          <div className="space-y-12 animate-fadeIn max-w-5xl mx-auto">
-            
-            {/* Título único */}
-            <div className="text-center max-w-3xl mx-auto space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49] tracking-tight">
-                {lang === 'es' ? 'Objetivos Estratégicos de la Red HTLV' : 'Strategic Objectives of the HTLV Network'}
-              </h2>
-            </div>
+          <div className="space-y-10 animate-fadeIn max-w-5xl mx-auto">
 
             {/* Objetivo General */}
             <div className="bg-gradient-to-br from-[#003B49] to-[#087E8B] text-white p-7 sm:p-9 rounded-2xl shadow-md space-y-3 relative overflow-hidden">
