@@ -673,11 +673,12 @@ function AboutContent() {
                   
                   {/* BLOQUE IZQUIERDO: Instituciones Nacionales */}
                   <div className="flex flex-col items-center space-y-4">
-                    {/* Barra de título con fondo exclusivo para el encabezado */}
-                    <div className="w-full bg-[#FAF0F3] border border-[#66122C]/20 py-2.5 px-4 text-center rounded-xl shadow-2xs">
+                    {/* Barra de título con bandera de Perú */}
+                    <div className="w-full bg-[#FAF0F3] border border-[#66122C]/20 py-2.5 px-4 flex items-center justify-center gap-2 rounded-xl shadow-2xs">
                       <h4 className="text-sm sm:text-base font-bold text-[#66122C] tracking-wide">
                         {lang === 'es' ? 'Instituciones nacionales' : 'National Institutions'}
                       </h4>
+                      <span className="text-lg leading-none" title="Perú">🇵🇪</span>
                     </div>
 
                     {/* Línea horizontal que conecta las 3 tarjetas independientes */}
@@ -695,11 +696,8 @@ function AboutContent() {
                         href="https://cayetano.edu.pe/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[155px] group"
+                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[140px] group"
                       >
-                        <div className="flex justify-end w-full">
-                          <span className="text-xl leading-none" title="Perú">🇵🇪</span>
-                        </div>
                         <div className="my-auto py-2">
                           <h6 className="font-bold text-xs sm:text-[13px] text-[#003B49] leading-snug group-hover:text-[#66122C] transition-colors">
                             Universidad Peruana Cayetano Heredia
@@ -715,11 +713,8 @@ function AboutContent() {
                         href="https://www.unsaac.edu.pe/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[155px] group"
+                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[140px] group"
                       >
-                        <div className="flex justify-end w-full">
-                          <span className="text-xl leading-none" title="Perú">🇵🇪</span>
-                        </div>
                         <div className="my-auto py-2">
                           <h6 className="font-bold text-xs sm:text-[13px] text-[#003B49] leading-snug group-hover:text-[#66122C] transition-colors">
                             Universidad Nacional de San Antonio Abad del Cusco
@@ -735,11 +730,8 @@ function AboutContent() {
                         href="https://www.unu.edu.pe/portal/index.php"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[155px] group"
+                        className="relative bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center min-h-[140px] group"
                       >
-                        <div className="flex justify-end w-full">
-                          <span className="text-xl leading-none" title="Perú">🇵🇪</span>
-                        </div>
                         <div className="my-auto py-2">
                           <h6 className="font-bold text-xs sm:text-[13px] text-[#003B49] leading-snug group-hover:text-[#66122C] transition-colors">
                             Universidad Nacional de Ucayali
