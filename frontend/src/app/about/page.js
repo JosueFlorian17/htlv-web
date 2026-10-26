@@ -367,79 +367,108 @@ function AboutContent() {
           </div>
         )}
 
-        {/* 2. OBJETIVOS ESTRATÉGICOS (Fiel a QuEST LAC - Imágenes 1, 2 y 3) */}
+        {/* 2. OBJETIVOS ESTRATÉGICOS */}
         {activeTab === 'objetivos' && (
-          <div className="space-y-8 animate-fadeIn max-w-5xl mx-auto">
+          <div className="space-y-12 animate-fadeIn max-w-5xl mx-auto">
             
-            {/* Introducción / Encabezado de Objetivos */}
+            {/* Título único */}
             <div className="text-center max-w-3xl mx-auto space-y-2">
-              <span className="text-xs font-bold tracking-widest text-[#087E8B] uppercase">
-                {lang === 'es' ? 'Metas y Compromiso Estratégico' : 'Goals & Strategic Commitment'}
-              </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49] tracking-tight">
                 {lang === 'es' ? 'Objetivos Estratégicos de la Red RIII-HTLV' : 'Strategic Objectives of the RIII-HTLV Network'}
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            </div>
+
+            {/* Objetivo General */}
+            <div className="bg-gradient-to-br from-[#003B49] to-[#087E8B] text-white p-7 sm:p-9 rounded-2xl shadow-md space-y-3 relative overflow-hidden">
+              <div className="flex items-center gap-3">
+                <span className="px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase bg-[#E5A400] text-slate-950">
+                  {lang === 'es' ? 'Objetivo General' : 'General Objective'}
+                </span>
+              </div>
+              <p className="text-base sm:text-lg leading-relaxed text-slate-100 font-medium pt-1">
                 {lang === 'es'
-                  ? 'Guiados por la excelencia científica, la cooperación regional y la salud comunitaria, orientamos el trabajo conjunto en tres ejes de acción prioritarios.'
-                  : 'Guided by scientific excellence, regional cooperation, and community health, we focus collaborative efforts across three core strategic axes.'}
+                  ? 'Consolidar la Red Internacional de Investigación e Innovación en HTLV como una plataforma de colaboración entre instituciones académicas y de investigación de Perú, Japón, Reino Unido y Estados Unidos, para desarrollar e implementar una agenda conjunta de investigación e innovación que permita identificar brechas y generar evidencia aplicable para fortalecer la prevención, el diagnóstico, el tratamiento y la atención integral del HTLV, contribuyendo a mejorar la calidad de vida y la continuidad de la atención de las poblaciones afectadas.'
+                  : 'Consolidate the International Research and Innovation Network in HTLV as a collaborative platform among academic and research institutions from Peru, Japan, the United Kingdom, and the United States, to develop and implement a joint research and innovation agenda that identifies gaps and generates actionable evidence to strengthen HTLV prevention, diagnosis, treatment, and comprehensive care, improving quality of life and continuity of care for affected populations.'}
               </p>
             </div>
 
-            {/* Tarjetas de los 3 Objetivos */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {objectivesData.map((obj) => (
-                <div
-                  key={obj.id}
-                  className="p-6 rounded-2xl border border-slate-200 bg-white shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between space-y-4"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-black text-[#087E8B]">
-                        {obj.num}
-                      </span>
-                      <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">
-                        {lang === 'es' ? `Objetivo ${obj.id}` : `Objective ${obj.id}`}
+            {/* Sección Objetivos Específicos */}
+            <div className="space-y-6">
+              <div className="text-center">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#003B49]">
+                  {lang === 'es' ? 'Objetivos Específicos' : 'Specific Objectives'}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                  {lang === 'es' ? 'Haz clic en cada objetivo para ver los detalles a profundidad' : 'Click each objective to explore full details'}
+                </p>
+              </div>
+
+              {/* Rombos interactivos */}
+              <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 pt-4">
+                {specificObjectives.map((obj) => (
+                  <div
+                    key={obj.id}
+                    onClick={() => setSelectedObjective(obj)}
+                    className="group cursor-pointer flex flex-col items-center text-center transition-all transform hover:-translate-y-1.5 duration-300"
+                    style={{ width: '185px' }}
+                  >
+                    {/* Rombo con clipPath */}
+                    <div 
+                      className="w-36 h-36 sm:w-40 sm:h-40 relative flex items-center justify-center p-6 shadow-md group-hover:shadow-xl transition-all duration-300"
+                      style={{
+                        clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+                        background: '#003B49'
+                      }}
+                    >
+                      {/* Imagen de fondo sutil */}
+                      <img 
+                        src={obj.image} 
+                        alt={obj.title}
+                        className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition-opacity duration-300 group-hover:scale-110" 
+                      />
+                      <div className="absolute inset-0 bg-[#003B49]/70 group-hover:bg-[#087E8B]/60 transition-colors"></div>
+                      
+                      {/* Número grande en el centro */}
+                      <div className="relative z-10 flex flex-col items-center justify-center">
+                        <span className="w-9 h-9 rounded-full bg-[#E5A400] text-slate-950 font-black text-sm flex items-center justify-center shadow-md mb-1">
+                          {obj.num}
+                        </span>
+                        <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider">
+                          {lang === 'es' ? 'Objetivo' : 'Objective'}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Título debajo del rombo */}
+                    <div className="mt-3 px-1">
+                      <h4 className="text-xs sm:text-sm font-bold text-[#003B49] group-hover:text-[#087E8B] transition-colors leading-snug">
+                        {obj.title}
+                      </h4>
+                      <span className="inline-block mt-1 text-[11px] font-semibold text-[#087E8B] group-hover:underline">
+                        {lang === 'es' ? 'Ver detalle +' : 'View details +'}
                       </span>
                     </div>
-                    <h3 className="font-bold text-base sm:text-lg text-[#003B49] leading-snug">
-                      {obj.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      {obj.summary}
-                    </p>
                   </div>
-
-                  <div className="pt-2">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedObjective(obj)}
-                      className="w-full py-2.5 px-4 rounded-lg text-xs font-bold transition-colors flex items-center justify-center bg-[#E5A400] hover:bg-[#d09400] text-slate-900 shadow-xs cursor-pointer"
-                    >
-                      {lang === 'es' ? 'Ver detalles' : 'See details'}
-                    </button>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            {/* Modal de Detalles del Objetivo (Superpuesto en pantalla sin scroll) */}
+            {/* Modal Pop-up con descripción a profundidad */}
             {selectedObjective && (
               <div
-                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-xs animate-fadeIn overflow-y-auto"
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-xs animate-fadeIn"
                 onClick={() => setSelectedObjective(null)}
               >
                 <div
-                  className="bg-white rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl space-y-6 my-8 border border-slate-100 max-h-[90vh] overflow-y-auto"
+                  className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5 border border-slate-100 relative animate-scaleUp"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {/* Encabezado del Modal */}
-                  <div className="border-b border-slate-100 pb-4 flex items-start justify-between gap-4">
+                  <div className="flex items-start justify-between gap-4 border-b border-slate-100 pb-3">
                     <div className="space-y-1">
-                      <span className="text-xs font-extrabold uppercase px-2.5 py-0.5 rounded bg-[#003B49] text-white tracking-wider">
-                        {lang === 'es' ? `Objetivo ${selectedObjective.id}` : `Objective ${selectedObjective.id}`}
+                      <span className="text-xs font-black uppercase px-2.5 py-0.5 rounded bg-[#E5A400] text-slate-950 tracking-wider">
+                        {lang === 'es' ? `Objetivo Específico ${selectedObjective.num}` : `Specific Objective ${selectedObjective.num}`}
                       </span>
-                      <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug pt-1">
                         {selectedObjective.title}
                       </h3>
                     </div>
@@ -453,73 +482,45 @@ function AboutContent() {
                     </button>
                   </div>
 
-                  {/* Subtítulo "A través de :" */}
-                  <div className="space-y-1">
-                    <h4 className="text-sm sm:text-base font-bold text-[#003B49] uppercase tracking-wider">
-                      {lang === 'es' ? 'A través de :' : 'Through :'}
+                  <div className="relative rounded-xl overflow-hidden h-36 bg-slate-100 border border-slate-200">
+                    <img 
+                      src={selectedObjective.image} 
+                      alt={selectedObjective.title}
+                      className="w-full h-full object-cover" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-bold text-[#087E8B] uppercase tracking-wider">
+                      {lang === 'es' ? 'Descripción y Alcance :' : 'Description & Scope :'}
                     </h4>
-                    <div className="h-0.5 bg-[#087E8B]/30 w-16"></div>
+                    <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200/70">
+                      {selectedObjective.description}
+                    </p>
                   </div>
 
-                  {/* Lista de Iniciativas (Sin iconos, estructuradas con numeración limpia) */}
-                  <div className="space-y-4">
-                    {selectedObjective.pillars.map((pillar, idx) => (
-                      <div
-                        key={idx}
-                        className="p-5 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-white transition-all space-y-2"
+                  {selectedObjective.actionBtn && (
+                    <div className="pt-1">
+                      <Link
+                        href={selectedObjective.actionBtn.href}
+                        onClick={() => setSelectedObjective(null)}
+                        className="inline-flex items-center gap-2 py-2 px-4 rounded-lg text-xs font-bold bg-[#003B49] hover:bg-[#087E8B] text-white shadow-xs transition-colors"
                       >
-                        <div className="flex flex-wrap items-center justify-between gap-2">
-                          <h5 className="font-bold text-base text-[#003B49]">
-                            {idx + 1}. {pillar.title}
-                          </h5>
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-700">
-                            {pillar.badge}
-                          </span>
-                        </div>
+                        {selectedObjective.actionBtn.text} →
+                      </Link>
+                    </div>
+                  )}
 
-                        <p className="text-sm text-slate-700 leading-relaxed">
-                          {pillar.description}
-                        </p>
-
-                        {(pillar.actionTab || pillar.externalLink) && (
-                          <div className="pt-1">
-                            {pillar.actionTab ? (
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  setSelectedObjective(null);
-                                  switchTab(pillar.actionTab);
-                                }}
-                                className="text-xs font-bold text-[#087E8B] hover:text-[#003B49] transition-colors cursor-pointer"
-                              >
-                                {pillar.linkText} →
-                              </button>
-                            ) : (
-                              <Link
-                                href={pillar.externalLink}
-                                onClick={() => setSelectedObjective(null)}
-                                className="text-xs font-bold text-[#087E8B] hover:text-[#003B49] transition-colors"
-                              >
-                                {pillar.linkText} →
-                              </Link>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Botón Cerrar al pie */}
-                  <div className="pt-4 border-t border-slate-100 flex justify-end">
+                  <div className="pt-3 border-t border-slate-100 flex justify-end">
                     <button
                       type="button"
                       onClick={() => setSelectedObjective(null)}
-                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-900 font-bold px-6 py-2 rounded-lg text-sm transition-colors cursor-pointer shadow-xs"
+                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-950 font-bold px-6 py-2 rounded-lg text-xs transition-colors cursor-pointer shadow-xs"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
                   </div>
-
                 </div>
               </div>
             )}
@@ -772,7 +773,7 @@ function AboutContent() {
 
                       {/* Badge ovalado / pastilla con borde mostaza (idéntico al estilo de la referencia) */}
                       <div className="pt-1">
-                        <span className="inline-block text-[11px] font-semibold text-[#002538] px-3 py-0.5 rounded-full border border-[#E5A400] bg-[#E5A400]/10">
+                        <span className="inline-block text-[11px] font-semibold text-black px-3 py-0.5 rounded-full border border-[#E5A400] bg-transparent">
                           {node.institution.includes('UPCH') ? (lang === 'es' ? 'Investigador Principal' : 'Principal Investigator') : (lang === 'es' ? 'Investigador Internacional' : 'International Faculty')}
                         </span>
                       </div>
@@ -788,71 +789,36 @@ function AboutContent() {
         {/* 4. ALIADOS ESTRATÉGICOS (Sin chips ni subtítulos) */}
         {/* 4. FINANCIAMIENTO */}
         {activeTab === 'financiamiento' && (
-          <div className="space-y-6 animate-fadeIn max-w-6xl mx-auto">
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          <div className="space-y-6 animate-fadeIn max-w-5xl mx-auto">
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-6 sm:p-10 space-y-8">
               
-              {/* Imagen izquierda representativa */}
-              <div className="lg:col-span-5 relative min-h-[280px] lg:min-h-[420px] bg-slate-100">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49] tracking-tight mb-4">
+                  {lang === 'es' ? 'Financiamiento' : 'Funding'}
+                </h2>
+                <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
+                  {lang === 'es'
+                    ? 'La Red Internacional de Investigación e Innovación en HTLV cuenta con el financiamiento del Programa Nacional de Investigación Científica y Estudios Avanzados (PROCIENCIA), en el marco del concurso Redes de Ciencia, Tecnología e Innovación en Áreas Estratégicas.'
+                    : 'The International Research and Innovation Network in HTLV is funded by the National Program for Scientific Research and Advanced Studies (PROCIENCIA), under the Science, Technology, and Innovation Networks in Strategic Areas grant scheme.'}
+                </p>
+              </div>
+
+              {/* Logo / Imagen oficial CONCYTEC - PROCIENCIA */}
+              <div className="py-6 px-8 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-center">
                 <img 
-                  src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" 
-                  alt="Cooperación y Salud Comunitaria" 
-                  className="w-full h-full object-cover"
+                  src="/logos/concytec_prociencia.png" 
+                  alt="CONCYTEC - PROCIENCIA" 
+                  className="h-20 sm:h-28 w-auto object-contain"
                 />
               </div>
 
-              {/* Contenido derecho de Financiamiento */}
-              <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between space-y-6">
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-[#1A4B82] tracking-tight mb-4">
-                    {lang === 'es' ? 'Financiamiento' : 'Funding'}
-                  </h2>
-                  <p className="text-base text-slate-700 leading-relaxed">
-                    {lang === 'es'
-                      ? 'La Red RIII-HTLV cuenta con el apoyo financiero y la cooperación estratégica de la Agencia Suiza para el Desarrollo y la Cooperación (COSUDE) y el Banco Interamericano de Desarrollo (BID), así como de fondos multilaterales de investigación científica y salud global.'
-                      : 'The RIII-HTLV Network receives financial support and strategic cooperation from the Swiss Agency for Development and Cooperation (SDC) and the Inter-American Development Bank (IDB), as well as multilateral scientific and global health research funds.'}
-                  </p>
-                </div>
-
-                {/* Logos de Financiadores / Cooperantes */}
-                <div className="py-4 flex flex-wrap items-center gap-8 sm:gap-12">
-                  {/* IDB */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#004C97] flex items-center justify-center text-white font-black text-xs shadow-xs">
-                      IDB
-                    </div>
-                    <div className="leading-tight">
-                      <span className="font-extrabold text-[#004C97] text-lg block tracking-tight">IDB</span>
-                      <span className="text-[11px] text-slate-500 font-medium block">
-                        {lang === 'es' ? 'Banco Interamericano de Desarrollo' : 'Inter-American Development Bank'}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* COSUDE (Suiza) */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-md bg-[#D52B1E] flex items-center justify-center text-white font-bold text-lg shadow-xs">
-                      +
-                    </div>
-                    <div className="leading-tight">
-                      <span className="font-bold text-slate-900 text-sm block">
-                        {lang === 'es' ? 'Agencia Suiza para el Desarrollo' : 'Swiss Agency for Development'}
-                      </span>
-                      <span className="text-[11px] text-slate-500 font-medium block">
-                        {lang === 'es' ? 'y la Cooperación COSUDE' : 'and Cooperation (SDC)'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Descargo / Disclaimer de los Financiadores */}
-                <div className="pt-4 border-t border-slate-100">
-                  <p className="text-xs text-slate-500 leading-relaxed italic">
-                    {lang === 'es'
-                      ? 'El contenido es responsabilidad exclusiva de la Red RIII-HTLV y no necesariamente representa las opiniones oficiales de los financiadores.'
-                      : 'The content is the sole responsibility of the RIII-HTLV Network and does not necessarily represent the official views of the funding organizations.'}
-                  </p>
-                </div>
-
+              {/* Descargo / Disclaimer con Red HTLV */}
+              <div className="pt-4 border-t border-slate-100">
+                <p className="text-xs text-slate-500 leading-relaxed italic">
+                  {lang === 'es'
+                    ? 'El contenido es responsabilidad exclusiva de la Red HTLV y no necesariamente representa las opiniones oficiales de los financiadores.'
+                    : 'The content is the sole responsibility of the Red HTLV and does not necessarily represent the official views of the funding organizations.'}
+                </p>
               </div>
 
             </div>
