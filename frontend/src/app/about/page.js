@@ -439,11 +439,11 @@ function AboutContent() {
                 </p>
               </div>
 
-              {/* Disposición dinámica de hexágonos: Fila 1 (3) y Fila 2 (2) */}
-              <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 pt-4">
+              {/* Disposición dinámica de hexágonos: Fila 1 (3) y Fila 2 (2) entrelazados */}
+              <div className="flex flex-col items-center justify-center pt-4">
                 
                 {/* Fila 1: Objetivos 1, 2 y 3 */}
-                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 z-10">
                   {specificObjectives.slice(0, 3).map((obj) => (
                     <div
                       key={obj.id}
@@ -482,8 +482,8 @@ function AboutContent() {
                   ))}
                 </div>
 
-                {/* Fila 2: Objetivos 4 y 5 */}
-                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 sm:-mt-2">
+                {/* Fila 2: Objetivos 4 y 5 (con margen negativo para reducir la separación vertical) */}
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 -mt-5 sm:-mt-8 z-0">
                   {specificObjectives.slice(3, 5).map((obj) => (
                     <div
                       key={obj.id}
@@ -672,34 +672,34 @@ function AboutContent() {
                   <div className="absolute right-0 top-0 w-0.5 h-12 bg-[#66122C]"></div>
                 </div>
 
-                {/* NIVEL 2: CONTENEDORES DE INSTITUCIONES NACIONALES E INTERNACIONALES con pt-12 para dar más aire */}
+                {/* NIVEL 2: CONTENEDORES DE INSTITUCIONES NACIONALES E INTERNACIONALES */}
                 <div className="grid grid-cols-2 gap-8 w-full max-w-[960px] pt-12">
                   
                   {/* BLOQUE IZQUIERDO: Instituciones Nacionales */}
-                  <div className="bg-[#FAF0F3] border border-[#66122C]/20 p-5 space-y-4">
-                    <div className="text-center pb-2 border-b border-[#66122C]/15">
-                      <h4 className="text-base font-bold text-[#66122C] tracking-wide">
+                  <div className="flex flex-col items-center space-y-4">
+                    {/* Barra de título con fondo exclusivo para el encabezado */}
+                    <div className="w-full bg-[#FAF0F3] border border-[#66122C]/20 py-2.5 px-4 text-center shadow-2xs">
+                      <h4 className="text-sm sm:text-base font-bold text-[#66122C] tracking-wide">
                         {lang === 'es' ? 'Instituciones nacionales' : 'National Institutions'}
                       </h4>
                     </div>
 
-                    {/* Línea horizontal interna conectando las 3 tarjetas con bajadas hacia cada una */}
+                    {/* Línea horizontal que conecta las 3 tarjetas independientes */}
                     <div className="w-full relative h-4">
-                      {/* Línea horizontal continua sobre las 3 tarjetas */}
                       <div className="absolute left-[16.66%] right-[16.66%] top-0 h-0.5 bg-[#66122C]"></div>
-                      {/* 3 bajadas a las columnas */}
                       <div className="absolute left-[16.66%] -translate-x-1/2 top-0 w-0.5 h-4 bg-[#66122C]"></div>
                       <div className="absolute left-[50%] -translate-x-1/2 top-0 w-0.5 h-4 bg-[#66122C]"></div>
                       <div className="absolute right-[16.66%] translate-x-1/2 top-0 w-0.5 h-4 bg-[#66122C]"></div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3">
+                    {/* Tarjetas independientes con fondo blanco */}
+                    <div className="grid grid-cols-3 gap-3.5 w-full">
                       {/* Universidad Peruana Cayetano Heredia */}
                       <a
                         href="https://cayetano.edu.pe/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
+                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
                       >
                         <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/cayetano_heredia_logo.png" alt="Universidad Peruana Cayetano Heredia" className="max-h-full max-w-full object-contain" />
@@ -709,7 +709,7 @@ function AboutContent() {
                             Universidad Peruana Cayetano Heredia
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-[#FAF0F3] px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
                           Lima
                         </span>
                       </a>
@@ -719,7 +719,7 @@ function AboutContent() {
                         href="https://www.unsaac.edu.pe/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
+                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
                       >
                         <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/unsaac_logo.png" alt="Universidad Nacional de San Antonio Abad del Cusco" className="max-h-full max-w-full object-contain" />
@@ -729,7 +729,7 @@ function AboutContent() {
                             Universidad Nacional de San Antonio Abad del Cusco
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-[#FAF0F3] px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
                           Cusco
                         </span>
                       </a>
@@ -739,7 +739,7 @@ function AboutContent() {
                         href="https://www.unu.edu.pe/portal/index.php"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
+                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
                       >
                         <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/unu_logo.png" alt="Universidad Nacional de Ucayali" className="max-h-full max-w-full object-contain" />
@@ -749,7 +749,7 @@ function AboutContent() {
                             Universidad Nacional de Ucayali
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-[#FAF0F3] px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
                           Ucayali
                         </span>
                       </a>
@@ -757,30 +757,30 @@ function AboutContent() {
                   </div>
 
                   {/* BLOQUE DERECHO: Instituciones Internacionales */}
-                  <div className="bg-[#EBF3FB] border border-[#1A4B82]/20 p-5 space-y-4">
-                    <div className="text-center pb-2 border-b border-[#1A4B82]/15">
-                      <h4 className="text-base font-bold text-[#1A4B82] tracking-wide">
+                  <div className="flex flex-col items-center space-y-4">
+                    {/* Barra de título con fondo exclusivo para el encabezado */}
+                    <div className="w-full bg-[#EBF3FB] border border-[#1A4B82]/20 py-2.5 px-4 text-center shadow-2xs">
+                      <h4 className="text-sm sm:text-base font-bold text-[#1A4B82] tracking-wide">
                         {lang === 'es' ? 'Instituciones internacionales' : 'International Institutions'}
                       </h4>
                     </div>
 
-                    {/* Línea horizontal interna conectando las 3 tarjetas con bajadas hacia cada una */}
+                    {/* Línea horizontal que conecta las 3 tarjetas independientes */}
                     <div className="w-full relative h-4">
-                      {/* Línea horizontal continua sobre las 3 tarjetas */}
                       <div className="absolute left-[16.66%] right-[16.66%] top-0 h-0.5 bg-[#1A4B82]"></div>
-                      {/* 3 bajadas a las columnas */}
                       <div className="absolute left-[16.66%] -translate-x-1/2 top-0 w-0.5 h-4 bg-[#1A4B82]"></div>
                       <div className="absolute left-[50%] -translate-x-1/2 top-0 w-0.5 h-4 bg-[#1A4B82]"></div>
                       <div className="absolute right-[16.66%] translate-x-1/2 top-0 w-0.5 h-4 bg-[#1A4B82]"></div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3">
+                    {/* Tarjetas independientes con fondo blanco */}
+                    <div className="grid grid-cols-3 gap-3.5 w-full">
                       {/* University of Washington */}
                       <a
                         href="https://www.washington.edu/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
+                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
                       >
                         <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/uw_logo.png" alt="University of Washington" className="max-h-full max-w-full object-contain" />
@@ -790,7 +790,7 @@ function AboutContent() {
                             University of Washington
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-[#EBF3FB] px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
                           {lang === 'es' ? 'Estados Unidos' : 'United States'}
                         </span>
                       </a>
@@ -800,7 +800,7 @@ function AboutContent() {
                         href="https://www.imperial.ac.uk/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
+                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
                       >
                         <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/imperial_college_logo.png" alt="Imperial College London" className="max-h-full max-w-full object-contain" />
@@ -810,7 +810,7 @@ function AboutContent() {
                             Imperial College London
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-[#EBF3FB] px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
                           {lang === 'es' ? 'Reino Unido' : 'United Kingdom'}
                         </span>
                       </a>
@@ -820,7 +820,7 @@ function AboutContent() {
                         href="https://www.marianna-u.ac.jp/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-3 border border-slate-200 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[190px] group"
+                        className="bg-white p-3.5 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-between text-center min-h-[195px] group"
                       >
                         <div className="h-14 w-full flex items-center justify-center p-1">
                           <img src="/logos/st_marianna_logo.png" alt="St. Marianna University School of Medicine" className="max-h-full max-w-full object-contain" />
@@ -830,7 +830,7 @@ function AboutContent() {
                             St. Marianna University School of Medicine
                           </h6>
                         </div>
-                        <span className="text-[10px] font-semibold text-slate-600 bg-[#EBF3FB] px-2 py-0.5 w-full block mt-1">
+                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-200/80 px-2 py-0.5 w-full block mt-1">
                           {lang === 'es' ? 'Japón' : 'Japan'}
                         </span>
                       </a>
