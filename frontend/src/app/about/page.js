@@ -428,20 +428,20 @@ function AboutContent() {
                 </p>
               </div>
 
-              {/* Disposición dinámica de hexágonos: Fila 1 (3) y Fila 2 (2) entrelazados */}
+              {/* Disposición dinámica de hexágonos amplios: Fila 1 (3) y Fila 2 (2) entrelazados */}
               <div className="flex flex-col items-center justify-center pt-4">
                 
                 {/* Fila 1: Objetivos 1, 2 y 3 */}
-                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 z-10">
+                <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 z-10">
                   {specificObjectives.slice(0, 3).map((obj) => (
                     <div
                       key={obj.id}
                       onClick={() => setSelectedObjective(obj)}
-                      className="group cursor-pointer flex flex-col items-center text-center transition-all transform hover:-translate-y-2 duration-300 w-44 sm:w-52"
+                      className="group cursor-pointer flex flex-col items-center text-center transition-all transform hover:-translate-y-2 duration-300 w-56 sm:w-64"
                     >
-                      {/* Hexágono de 6 lados con imagen y texto de fondo */}
+                      {/* Hexágono amplio de 6 lados con imagen y texto de fondo */}
                       <div 
-                        className="w-40 h-44 sm:w-48 sm:h-52 relative flex items-center justify-center p-5 shadow-lg group-hover:shadow-2xl transition-all duration-300 bg-[#003B49]"
+                        className="w-52 h-56 sm:w-60 sm:h-64 relative flex items-center justify-center px-6 py-8 shadow-xl group-hover:shadow-2xl transition-all duration-300 bg-[#003B49]"
                         style={{
                           clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
                         }}
@@ -454,15 +454,15 @@ function AboutContent() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-[#003B49]/80 via-[#003B49]/60 to-[#087E8B]/80 group-hover:from-[#087E8B]/80 group-hover:to-[#003B49]/80 transition-colors"></div>
                         
-                        {/* Contenido dentro del hexágono: Número grande y título del objetivo */}
-                        <div className="relative z-10 flex flex-col items-center justify-center px-3 space-y-2">
-                          <span className="text-3xl sm:text-4xl font-black text-[#E5A400] drop-shadow-sm font-sans">
+                        {/* Contenido dentro del hexágono: Número grande y título del objetivo completo */}
+                        <div className="relative z-10 flex flex-col items-center justify-center px-4 space-y-2.5">
+                          <span className="text-4xl sm:text-5xl font-black text-[#E5A400] drop-shadow-sm font-sans">
                             {obj.num}
                           </span>
-                          <h4 className="text-xs sm:text-[13px] font-bold text-white leading-snug line-clamp-3">
+                          <h4 className="text-xs sm:text-[13.5px] font-bold text-white leading-snug px-1">
                             {obj.title}
                           </h4>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E5A400] text-slate-950 group-hover:bg-white transition-colors">
+                          <span className="px-3 py-1 rounded-sm text-[11px] font-bold bg-[#E5A400] text-slate-950 group-hover:bg-white transition-colors shadow-2xs">
                             {lang === 'es' ? 'Ver más' : 'See more'}
                           </span>
                         </div>
@@ -472,16 +472,16 @@ function AboutContent() {
                 </div>
 
                 {/* Fila 2: Objetivos 4 y 5 (con margen negativo para reducir la separación vertical) */}
-                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 -mt-5 sm:-mt-8 z-0">
+                <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 -mt-6 sm:-mt-10 z-0">
                   {specificObjectives.slice(3, 5).map((obj) => (
                     <div
                       key={obj.id}
                       onClick={() => setSelectedObjective(obj)}
-                      className="group cursor-pointer flex flex-col items-center text-center transition-all transform hover:-translate-y-2 duration-300 w-44 sm:w-52"
+                      className="group cursor-pointer flex flex-col items-center text-center transition-all transform hover:-translate-y-2 duration-300 w-56 sm:w-64"
                     >
-                      {/* Hexágono de 6 lados con imagen y texto de fondo */}
+                      {/* Hexágono amplio de 6 lados con imagen y texto de fondo */}
                       <div 
-                        className="w-40 h-44 sm:w-48 sm:h-52 relative flex items-center justify-center p-5 shadow-lg group-hover:shadow-2xl transition-all duration-300 bg-[#003B49]"
+                        className="w-52 h-56 sm:w-60 sm:h-64 relative flex items-center justify-center px-6 py-8 shadow-xl group-hover:shadow-2xl transition-all duration-300 bg-[#003B49]"
                         style={{
                           clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
                         }}
@@ -494,15 +494,15 @@ function AboutContent() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-[#003B49]/80 via-[#003B49]/60 to-[#087E8B]/80 group-hover:from-[#087E8B]/80 group-hover:to-[#003B49]/80 transition-colors"></div>
                         
-                        {/* Contenido dentro del hexágono: Número grande y título del objetivo */}
-                        <div className="relative z-10 flex flex-col items-center justify-center px-3 space-y-2">
-                          <span className="text-3xl sm:text-4xl font-black text-[#E5A400] drop-shadow-sm font-sans">
+                        {/* Contenido dentro del hexágono: Número grande y título del objetivo completo */}
+                        <div className="relative z-10 flex flex-col items-center justify-center px-4 space-y-2.5">
+                          <span className="text-4xl sm:text-5xl font-black text-[#E5A400] drop-shadow-sm font-sans">
                             {obj.num}
                           </span>
-                          <h4 className="text-xs sm:text-[13px] font-bold text-white leading-snug line-clamp-3">
+                          <h4 className="text-xs sm:text-[13.5px] font-bold text-white leading-snug px-1">
                             {obj.title}
                           </h4>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E5A400] text-slate-950 group-hover:bg-white transition-colors">
+                          <span className="px-3 py-1 rounded-sm text-[11px] font-bold bg-[#E5A400] text-slate-950 group-hover:bg-white transition-colors shadow-2xs">
                             {lang === 'es' ? 'Ver más' : 'See more'}
                           </span>
                         </div>
@@ -568,16 +568,7 @@ function AboutContent() {
                     </div>
                   )}
 
-                  {/* Botón Cerrar sin bordes redondeados */}
-                  <div className="pt-3 border-t border-slate-200 flex justify-end">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedObjective(null)}
-                      className="bg-[#E5A400] hover:bg-[#d09400] text-slate-950 font-bold px-6 py-2 rounded-lg text-xs transition-colors cursor-pointer shadow-xs"
-                    >
-                      {lang === 'es' ? 'Cerrar' : 'Close'}
-                    </button>
-                  </div>
+
                 </div>
               </div>
             )}
