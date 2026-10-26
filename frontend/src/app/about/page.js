@@ -633,14 +633,14 @@ function AboutContent() {
                     </p>
                   </div>
 
-                  {/* Bajada central de Comité Directivo con derivación a Gestora */}
-                  <div className="relative w-[500px] h-16 flex justify-center">
+                  {/* Bajada central de Comité Directivo con derivación a Gestora con más amplitud */}
+                  <div className="relative w-[580px] h-28 flex justify-center">
                     {/* Línea vertical central */}
                     <div className="w-0.5 h-full bg-[#66122C]"></div>
 
-                    {/* Derivación horizontal a la derecha hacia Gestora */}
+                    {/* Derivación horizontal a la derecha hacia Gestora con más distancia (w-28) */}
                     <div className="absolute left-1/2 top-1/2 -translate-y-1/2 flex items-center">
-                      <div className="w-14 h-0.5 bg-[#66122C]"></div>
+                      <div className="w-24 h-0.5 bg-[#66122C]"></div>
                       
                       {/* Caja Gestora del Proyecto */}
                       <div
@@ -649,7 +649,7 @@ function AboutContent() {
                           leader: 'Lic. Claudia Morales',
                           description: 'La Gestora del proyecto está a cargo de la coordinación administrativa del proyecto ante PROCIENCIA-CONCYTEC, así como del seguimiento de los procedimientos administrativos y de la documentación requerida para el cumplimiento de los compromisos y entregables establecidos.'
                         })}
-                        className="w-[240px] bg-[#FFF2DE] hover:bg-[#fee7c7] border-2 border-[#E5A400] text-slate-900 p-3 shadow-xs cursor-pointer transition-all text-center select-none"
+                        className="w-[245px] bg-[#FFF2DE] hover:bg-[#fee7c7] border-2 border-[#E5A400] text-slate-900 p-3.5 shadow-xs cursor-pointer transition-all text-center select-none"
                       >
                         <h5 className="text-sm font-bold text-slate-900 leading-tight">
                           {lang === 'es' ? 'Gestora del proyecto' : 'Project Manager'}
@@ -663,17 +663,17 @@ function AboutContent() {
 
                 </div>
 
-                {/* LÍNEA HORIZONTAL BIFURCADORA PRINCIPAL (Conecta Nacionales e Internacionales) */}
+                {/* LÍNEA HORIZONTAL BIFURCADORA PRINCIPAL (Conecta Nacionales e Internacionales) con mayor amplitud de bajada */}
                 <div className="w-[50%] max-w-[500px] relative">
                   <div className="h-0.5 bg-[#66122C] w-full"></div>
                   {/* Bajada izquierda a bloque nacional */}
-                  <div className="absolute left-0 top-0 w-0.5 h-7 bg-[#66122C]"></div>
+                  <div className="absolute left-0 top-0 w-0.5 h-12 bg-[#66122C]"></div>
                   {/* Bajada derecha a bloque internacional */}
-                  <div className="absolute right-0 top-0 w-0.5 h-7 bg-[#66122C]"></div>
+                  <div className="absolute right-0 top-0 w-0.5 h-12 bg-[#66122C]"></div>
                 </div>
 
-                {/* NIVEL 2: CONTENEDORES DE INSTITUCIONES NACIONALES E INTERNACIONALES */}
-                <div className="grid grid-cols-2 gap-8 w-full max-w-[960px] pt-7">
+                {/* NIVEL 2: CONTENEDORES DE INSTITUCIONES NACIONALES E INTERNACIONALES con pt-12 para dar más aire */}
+                <div className="grid grid-cols-2 gap-8 w-full max-w-[960px] pt-12">
                   
                   {/* BLOQUE IZQUIERDO: Instituciones Nacionales */}
                   <div className="bg-[#FAF0F3] border border-[#66122C]/20 p-5 space-y-4">
