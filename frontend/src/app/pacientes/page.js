@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '../../context/LanguageContext';
+import { filterFaqsSemantically } from '../../utils/semanticFaqSearch';
 
 function PacientesContent() {
   const { lang } = useLanguage();
@@ -27,12 +28,18 @@ function PacientesContent() {
 
   // FAQs colapsables
   const [openFaqs, setOpenFaqs] = useState({ 1: true });
+  const [faqSearchQuery, setFaqSearchQuery] = useState('');
   const toggleFaq = (id) => {
     setOpenFaqs((prev) => ({
       ...prev,
       [id]: !prev[id]
     }));
   };
+
+  // Filtrado semántico inteligente con soporte de sinónimos para pacientes
+  const filteredPatientFaqs = useMemo(() => {
+    return filterFaqsSemantically(patientFaqs, faqSearchQuery);
+  }, [patientFaqs, faqSearchQuery]);
 
   // Modal para visualización de folletos superpuesto a la pantalla
   const [selectedBrochure, setSelectedBrochure] = useState(null);
@@ -252,25 +259,123 @@ function PacientesContent() {
           </h1>
         </div>
 
-        {/* 1. PESTAÑA: PREGUNTAS FRECUENTES (Formato de corrido, sin buscador, sin cards ni categorías) */}
+        {/* 1. PESTAÑA: PREGUNTAS FRECUENTES con Buscador Semántico Inteligente */}
         {activeTab === 'faqs' && (
           <div className="space-y-8 animate-fadeIn max-w-4xl mx-auto py-2">
             
-            {/* Encabezado limpio */}
-            <div className="border-b border-slate-200 pb-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                {lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions'}
-              </h2>
-              <p className="text-slate-600 text-sm mt-1">
-                {lang === 'es' 
-                  ? 'Respuestas claras y fundamentadas a las dudas más comunes sobre la vida con HTLV.'
-                  : 'Clear and evidence-based answers to the most common questions regarding HTLV.'}
-              </p>
+            {/* Encabezado con Buscador Semántico */}
+            <div className="border-b border-slate-200 pb-6 space-y-4">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
+                  {lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions'}
+                </h2>
+                <p className="text-slate-600 text-sm mt-1">
+                  {lang === 'es' 
+                    ? 'Respuestas claras y fundamentadas a las dudas más comunes sobre la vida con HTLV.'
+                    : 'Clear and evidence-based answers to the most common questions regarding HTLV.'}
+                </p>
+              </div>
+
+              {/* Input de Búsqueda Semántica */}
+              <div className="relative max-w-2xl">
+                <div className="relative flex items-center">
+                  <span className="material-symbols-outlined absolute left-3.5 text-slate-400 text-xl pointer-events-none">
+                    search
+                  </span>
+                  <input
+                    type="text"
+                    value={faqSearchQuery}
+                    onChange={(e) => setFaqSearchQuery(e.target.value)}
+                    placeholder={
+                      lang === 'es'
+                        ? 'Busca por tema, síntoma o duda (ej. "contagio", "dolor piernas", "bebé", "cura")...'
+                        : 'Search by topic, symptom or question (e.g., "transmission", "gait", "baby", "cure")...'
+                    }
+                    className="w-full pl-11 pr-10 py-3 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent shadow-xs transition-all"
+                  />
+                  {faqSearchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setFaqSearchQuery('')}
+                      className="absolute right-3 p-1 text-slate-400 hover:text-slate-600 rounded-md transition-colors"
+                      aria-label="Limpiar búsqueda"
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+
+                {/* Sugerencias de búsqueda rápida con sinónimos */}
+                <div className="flex flex-wrap items-center gap-1.5 pt-2 text-xs text-slate-500">
+                  <span className="font-semibold text-slate-600">
+                    {lang === 'es' ? 'Temas sugeridos:' : 'Suggested topics:'}
+                  </span>
+                  {[
+                    { label: lang === 'es' ? '¿Cómo se transmite?' : 'Transmission', q: 'transmision' },
+                    { label: lang === 'es' ? 'Diferencia con VIH' : 'Difference from HIV', q: 'vih' },
+                    { label: lang === 'es' ? 'Paraparesia y Marcha' : 'TSP/HAM & Walking', q: 'paraparesia' },
+                    { label: lang === 'es' ? 'Maternidad y Lactancia' : 'Maternity & Formula', q: 'lactancia' },
+                    { label: lang === 'es' ? 'Tratamiento y Manejo' : 'Treatment', q: 'tratamiento' },
+                    { label: lang === 'es' ? 'Donar Sangre' : 'Blood Donation', q: 'sangre' }
+                  ].map((topic, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setFaqSearchQuery(topic.q)}
+                      className={`px-2.5 py-1 rounded-full border text-[11px] transition-colors cursor-pointer ${
+                        faqSearchQuery.toLowerCase() === topic.q
+                          ? 'bg-[#003B49] text-white border-[#003B49]'
+                          : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
+                      }`}
+                    >
+                      {topic.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Listado de Preguntas Colapsables con Disclaimer Resumido */}
+            {/* Contador de resultados cuando hay búsqueda */}
+            {faqSearchQuery && (
+              <div className="flex items-center justify-between text-xs text-slate-500 px-1">
+                <span>
+                  {lang === 'es'
+                    ? `Mostrando ${filteredPatientFaqs.length} resultado(s) relevante(s) para "${faqSearchQuery}"`
+                    : `Showing ${filteredPatientFaqs.length} relevant result(s) for "${faqSearchQuery}"`}
+                </span>
+                <button
+                  onClick={() => setFaqSearchQuery('')}
+                  className="text-[#087E8B] hover:underline font-semibold"
+                >
+                  {lang === 'es' ? 'Ver todas' : 'View all'}
+                </button>
+              </div>
+            )}
+
+            {/* Listado de Preguntas Colapsables */}
             <div className="space-y-4 divide-y divide-slate-200">
-              {patientFaqs.map((faq, idx) => {
+              {filteredPatientFaqs.length === 0 ? (
+                <div className="py-12 text-center space-y-2 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="material-symbols-outlined text-4xl text-slate-400">help_outline</span>
+                  <p className="text-sm font-semibold text-slate-700">
+                    {lang === 'es'
+                      ? 'No encontramos respuestas exactas para esta búsqueda.'
+                      : 'No exact matches found for this query.'}
+                  </p>
+                  <p className="text-xs text-slate-500 max-w-md mx-auto">
+                    {lang === 'es'
+                      ? 'Prueba buscando con otros términos o consulta directamente en "Haz tu pregunta".'
+                      : 'Try using other related keywords or ask your inquiry directly in "Ask your question".'}
+                  </p>
+                  <button
+                    onClick={() => setFaqSearchQuery('')}
+                    className="mt-2 text-xs font-bold text-[#087E8B] hover:underline"
+                  >
+                    {lang === 'es' ? 'Mostrar todas las preguntas' : 'Show all questions'}
+                  </button>
+                </div>
+              ) : (
+                filteredPatientFaqs.map((faq, idx) => {
                 const isOpen = !!openFaqs[faq.id];
                 return (
                   <div key={faq.id} className={idx === 0 ? "pt-0" : "pt-4"}>
@@ -304,7 +409,7 @@ function PacientesContent() {
                     )}
                   </div>
                 );
-              })}
+              }))}
             </div>
 
             {/* Aviso Importante Disclaimer Sintetizado */}
