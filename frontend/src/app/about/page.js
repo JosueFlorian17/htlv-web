@@ -989,12 +989,12 @@ function AboutContent() {
                   </p>
                 </div>
 
-                {/* Logos de CONCYTEC - PROCIENCIA limpio sin recuadro gris */}
-                <div className="py-2 flex items-center justify-start">
+                {/* Logos de CONCYTEC - PROCIENCIA centrado */}
+                <div className="py-4 flex items-center justify-center text-center">
                   <img 
                     src="/logos/concytec_prociencia.png" 
                     alt="CONCYTEC - PROCIENCIA" 
-                    className="h-16 sm:h-20 w-auto object-contain"
+                    className="h-16 sm:h-20 w-auto object-contain mx-auto"
                   />
                 </div>
 
