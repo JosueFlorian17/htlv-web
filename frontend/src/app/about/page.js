@@ -144,7 +144,7 @@ function AboutContent() {
       logo: '/logos/cayetano_heredia_logo.png',
       members: [
         {
-          name: 'Dra. Patricia J. García',
+          name: lang === 'es' ? 'Dra. Patricia J. García' : 'Dr. Patricia J. García',
           role: lang === 'es' ? 'Líder técnica' : 'Technical Lead',
           text: lang === 'es'
             ? 'Profesora principal de la Facultad de Salud Pública y Administración de la UPCH y Profesora Adjunta de la Universidad de Washington'
@@ -176,7 +176,7 @@ function AboutContent() {
           image: '/team/isaac_alva.jpg'
         },
         {
-          name: 'Dra. Gabriela Garrido',
+          name: lang === 'es' ? 'Dra. Gabriela Garrido' : 'Dr. Gabriela Garrido',
           role: lang === 'es' ? 'Co-investigadora' : 'Co-investigator',
           text: lang === 'es'
             ? 'Médica e investigadora clínica de la Unidad de HTLV-1 del Instituto de Medicina Tropical Alexander von Humboldt'
@@ -184,12 +184,12 @@ function AboutContent() {
           image: '/team/gabriela_garrido.png'
         },
         {
-          name: 'Lic. Claudia Morales Morazzani',
-          role: lang === 'es' ? 'Gestora del proyecto' : 'Project Manager',
+          name: 'Dr. César Cárcamo',
+          role: lang === 'es' ? 'Miembro' : 'Member',
           text: lang === 'es'
-            ? 'Administradora de la Unidad de Epidemiología, ETS y VIH de la UPCH'
-            : 'Administrator of the Epidemiology, STD and HIV Unit at UPCH',
-          image: '/team/claudia_morales.jpeg'
+            ? 'Docente de la Facultad de Salud Pública y Administración y coordinador del Doctorado en Ciencias en Investigación Epidemiológica de la UPCH'
+            : 'Faculty member at the School of Public Health and Administration and coordinator of the PhD in Epidemiological Research at UPCH',
+          image: '/team/cesar_carcamo.jpeg'
         },
         {
           name: 'María J. Ruiz Ramírez',
@@ -200,12 +200,12 @@ function AboutContent() {
           image: '/team/maria_ruiz_ramirez.jpeg'
         },
         {
-          name: 'Dr. César Cárcamo',
-          role: lang === 'es' ? 'Miembro' : 'Member',
+          name: lang === 'es' ? 'Lic. Claudia Morales Morazzani' : 'B.S. Claudia Morales Morazzani',
+          role: lang === 'es' ? 'Gestora del proyecto' : 'Project Manager',
           text: lang === 'es'
-            ? 'Docente de la Facultad de Salud Pública y Administración y coordinador del Doctorado en Ciencias en Investigación Epidemiológica de la UPCH'
-            : 'Faculty member at the School of Public Health and Administration and coordinator of the PhD in Epidemiological Research at UPCH',
-          image: '/team/cesar_carcamo.jpeg'
+            ? 'Administradora de la Unidad de Epidemiología, ETS y VIH de la UPCH'
+            : 'Administrator of the Epidemiology, STD and HIV Unit at UPCH',
+          image: '/team/claudia_morales.jpeg'
         },
         {
           name: 'Mg. Giovanni López',
@@ -224,7 +224,7 @@ function AboutContent() {
           image: '/team/jessica_cuenca.png'
         },
         {
-          name: 'Lic. Dyana Guardia',
+          name: lang === 'es' ? 'Lic. Dyana Guardia' : 'B.S. Dyana Guardia',
           role: lang === 'es' ? 'Miembro' : 'Member',
           text: lang === 'es'
             ? 'Enfermera de la Unidad de Investigación en HTLV-1 del Instituto de Medicina Tropical Alexander von Humboldt'
@@ -232,7 +232,7 @@ function AboutContent() {
           image: '/team/dyana_guardia.png'
         },
         {
-          name: 'Lic. Aydee Trebejo',
+          name: lang === 'es' ? 'Lic. Aydee Trebejo' : 'B.S. Aydee Trebejo',
           role: lang === 'es' ? 'Miembro' : 'Member',
           text: lang === 'es'
             ? 'Técnica en Enfermería, con interés en investigación en salud'
@@ -274,7 +274,7 @@ function AboutContent() {
       logo: '/logos/unsaac_logo.png',
       members: [
         {
-          name: 'Dra. Fátima Concha',
+          name: lang === 'es' ? 'Dra. Fátima Concha' : 'Dr. Fátima Concha',
           role: lang === 'es' ? 'Co-investigadora' : 'Co-investigator',
           text: lang === 'es'
             ? 'Médica especialista en Enfermedades Infecciosas y Tropicales, investigadora y docente auxiliar de la Escuela Profesional de Medicina Humana de la UNSAAC'
@@ -292,7 +292,7 @@ function AboutContent() {
       logo: '/logos/unu_logo.png',
       members: [
         {
-          name: 'Dra. Teresa Elespuro',
+          name: lang === 'es' ? 'Dra. Teresa Elespuro' : 'Dr. Teresa Elespuro',
           role: lang === 'es' ? 'Co-investigadora' : 'Co-investigator',
           text: lang === 'es'
             ? 'Docente principal  e Investigadora de la Escuela Profesional de Enfermería de la UNU'
@@ -328,7 +328,7 @@ function AboutContent() {
       logo: '/logos/Imperial_College_London_PNG.png',
       members: [
         {
-          name: 'Dra. Carolina Rosadas',
+          name: lang === 'es' ? 'Dra. Carolina Rosadas' : 'Dr. Carolina Rosadas',
           role: lang === 'es' ? 'Co-investigadora' : 'Co-investigator',
           text: lang === 'es'
             ? 'Investigadora del Departamento de Enfermedades Infecciosas de la Facultad de Medicina de Imperial College London y consultora principal en HTLV de la Organización Mundial de la Salud (OMS)'
@@ -759,7 +759,7 @@ function AboutContent() {
                       <div
                         onClick={() => setSelectedNode({
                           title: lang === 'es' ? 'Gestora del proyecto' : 'Project Manager',
-                          leader: 'Lic. Claudia Morales',
+                          leader: lang === 'es' ? 'Lic. Claudia Morales' : 'B.S. Claudia Morales',
                           description: 'La Gestora del proyecto está a cargo de la coordinación administrativa del proyecto ante PROCIENCIA-CONCYTEC, así como del seguimiento de los procedimientos administrativos y de la documentación requerida para el cumplimiento de los compromisos y entregables establecidos.'
                         })}
                         className="w-[245px] bg-[#FFF2DE] hover:bg-[#fee7c7] border-2 border-[#E5A400] text-slate-900 p-3.5 rounded-xl shadow-xs cursor-pointer transition-all text-center select-none"
@@ -768,7 +768,7 @@ function AboutContent() {
                           {lang === 'es' ? 'Gestora del proyecto' : 'Project Manager'}
                         </h5>
                         <p className="text-xs text-slate-700 font-semibold mt-1">
-                          Lic. Claudia Morales
+                          {lang === 'es' ? 'Lic. Claudia Morales' : 'B.S. Claudia Morales'}
                         </p>
                       </div>
                     </div>

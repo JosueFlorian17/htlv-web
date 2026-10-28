@@ -122,7 +122,7 @@ function ProfesionalesContent() {
       title: lang === 'es'
         ? "Estandarización de PCR Proviral y Diagnóstico Oportuno de la Transmisión Vertical"
         : "Proviral PCR Standardization & Timely Diagnosis of Mother-to-Child Transmission",
-      speaker: "Dra. Elsa González",
+      speaker: lang === "es" ? "Dra. Elsa González" : "Dr. Elsa González",
       speakerRole: lang === 'es'
         ? "Coordinadora Científica Red HTLV • Jefa de Laboratorio de Retrovirología IMTAvH - UPCH (Perú)"
         : "Scientific Coordinator Red HTLV • Head of Retrovirology Laboratory IMTAvH - UPCH (Peru)",
@@ -154,7 +154,7 @@ function ProfesionalesContent() {
       language: "ESP",
       image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1000&q=80",
       coordinator: {
-        name: "Dra. Elsa González",
+        name: lang === "es" ? "Dra. Elsa González" : "Dr. Elsa González",
         role: lang === 'es' ? "Coordinadora Científica Red HTLV • IMTAvH - UPCH" : "Scientific Coordinator Red HTLV • IMTAvH - UPCH",
         image: "https://images.unsplash.com/photo-1594824813580-c081e7d8d697?auto=format&fit=crop&w=400&q=80"
       },

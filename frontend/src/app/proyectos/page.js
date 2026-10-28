@@ -76,10 +76,10 @@ function ProyectosContent() {
   const ongoingTheses = [
     {
       title: lang === 'es' ? "Caracterización molecular de subtipos de HTLV-1 y carga proviral en pacientes con paraparesia espástica tropical en Perú" : "Molecular characterization of HTLV-1 subtypes and proviral load in TSP/HAM patients in Peru",
-      author: "Lic. Andrea Morales V.",
+      author: lang === "es" ? "Lic. Andrea Morales V." : "B.S. Andrea Morales V.",
       degree: lang === 'es' ? "Tesis de Maestría en Ciencias Biomédicas" : "MSc Thesis in Biomedical Sciences",
       institution: "Universidad Peruana Cayetano Heredia (UPCH)",
-      advisors: "Dra. Elsa González / Dr. Eduardo Gotuzzo",
+      advisors: lang === "es" ? "Dra. Elsa González / Dr. Eduardo Gotuzzo" : "Dr. Elsa González / Dr. Eduardo Gotuzzo",
       status: lang === 'es' ? "En ejecución (2025-2026)" : "In progress (2025-2026)",
       summary: lang === 'es' ? "Evaluación de la variabilidad genética del gen tax y su correlación con los niveles de provirus en células mononucleares de sangre periférica." : "Evaluation of tax gene genetic variability and its correlation with proviral levels in PBMC samples."
     },
