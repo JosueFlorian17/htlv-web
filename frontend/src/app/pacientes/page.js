@@ -50,6 +50,13 @@ function PacientesContent() {
     document.body.removeChild(link);
   };
 
+  // Imprimir PDF
+  const handlePrint = () => {
+    if (typeof window !== 'undefined') {
+      window.print();
+    }
+  };
+
   // Formulario Haz tu pregunta
   const [formData, setFormData] = useState({
     nombre: '',
@@ -72,16 +79,31 @@ function PacientesContent() {
   };
 
   return (
-    <main className="w-full bg-[#f8fafc] min-h-[calc(100vh-80px)] py-8 sm:py-12 text-slate-900 flex flex-col justify-between">
+    <main className="w-full bg-slate-50 min-h-[calc(100vh-80px)] py-8 sm:py-12 text-slate-900 flex flex-col justify-between">
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Cabecera con Pestañas Horizontales */}
-        <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
-            {activeTab === 'faqs' && (lang === 'es' ? 'Preguntas Frecuentes para Pacientes' : 'Patient Frequently Asked Questions')}
-            {activeTab === 'recursos' && (lang === 'es' ? 'Recursos de Apoyo y Material Educativo' : 'Support Resources & Educational Materials')}
-            {activeTab === 'haz-tu-pregunta' && (lang === 'es' ? 'Haz tu Pregunta a la Red' : 'Ask Your Question to the Network')}
-          </h1>
+        {/* Cabecera de Página (exactamente igual que en HTLV para Preguntas Frecuentes) */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 mb-8 border-b border-slate-200">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
+              {activeTab === 'faqs' && (lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions')}
+              {activeTab === 'recursos' && (lang === 'es' ? 'Recursos de Apoyo y Material Educativo' : 'Support Resources & Educational Materials')}
+              {activeTab === 'haz-tu-pregunta' && (lang === 'es' ? 'Haz tu Pregunta a la Red' : 'Ask Your Question to the Network')}
+            </h1>
+          </div>
+
+          {activeTab === 'faqs' && (
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="bg-[#003B49] hover:bg-[#002B36] text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 cursor-pointer shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#087E8B]"
+              >
+                <span className="material-symbols-outlined text-[18px]">print</span>
+                <span>{lang === 'es' ? 'Imprimir PDF' : 'Print PDF'}</span>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* 1. PESTAÑA: PREGUNTAS FRECUENTES (Buscador semántico integrado y 15 secciones oficiales) */}
