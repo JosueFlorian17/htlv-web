@@ -2842,23 +2842,6 @@ export const FAQS_DATA = [
       "es": "Empieza por el establecimiento de salud donde recibiste el diagnóstico y solicita que te expliquen los resultados, el seguimiento y si corresponde una referencia a infectología, hematología, neurología u oftalmología. La disponibilidad de servicios y pruebas varía entre regiones. \n\nRecuerda que el centro de referencia para HTLV-1 en Perú queda en el Instituto de Medicina Tropical Alexander von Humboldt.",
       "en": "Start with the health facility where you received the diagnosis and ask that they explain the results, the follow-up and if appropriate a referral to infectious disease, hematology, neurology or ophthalmology. Availability of services and tests varies between regions.\n\nRemember that the reference center for HTLV-1 in Peru is at the Alexander von Humboldt Institute of Tropical Medicine."
     }
-  },
-  {
-    "id": 160,
-    "sectionId": "sec-15",
-    "sectionNumber": 15,
-    "sectionTitle": {
-      "es": "Sistemas de apoyo y prestaciones",
-      "en": "Support Systems and Services"
-    },
-    "q": {
-      "es": "¿Existen sitios web con información sobre HTLV-1?",
-      "en": "Are there websites with information on HTLV-1?"
-    },
-    "a": {
-      "es": "Para Perú, prioriza información del MINSA, el Instituto Nacional de Salud (INS), la OPS/OMS y publicaciones científicas revisadas por pares. El portal japonés es útil como referencia temática, pero algunas recomendaciones sobre tamizaje, lactancia, pruebas infantiles, costos y servicios corresponden al sistema de Japón. Al usarlo en Perú, verifica la fecha, la norma local vigente y si el contenido requiere adaptación por especialistas.",
-      "en": "For Peru, it prioritizes information from MINSA, the National Institute of Health (INS), PAHO/WHO and peer-reviewed scientific publications. The Japanese portal is useful as a topical reference, but some recommendations on screening, breastfeeding, infant testing, costs, and services correspond to Japan's system. When using it in Peru, check the date, the current local regulation and if the content requires adaptation by specialists."
-    }
   }
 ];
 
