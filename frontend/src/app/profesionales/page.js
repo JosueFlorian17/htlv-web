@@ -127,7 +127,7 @@ function ProfesionalesContent() {
         ? "Coordinadora Científica Red HTLV • Jefa de Laboratorio de Retrovirología IMTAvH - UPCH (Perú)"
         : "Scientific Coordinator Red HTLV • Head of Retrovirology Laboratory IMTAvH - UPCH (Peru)",
       speakerImage: "https://images.unsplash.com/photo-1594824813580-c081e7d8d697?auto=format&fit=crop&w=400&q=80",
-      bannerImage: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80",
+      bannerImage: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=80",
       dateFormatted: "09/12/26",
       day: "09",
       month: lang === 'es' ? "Diciembre" : "December",
@@ -182,7 +182,7 @@ function ProfesionalesContent() {
       target: lang === 'es' ? "Biólogos moleculares, tecnólogos médicos y personal de laboratorio" : "Molecular biologists, laboratory technologists, and researchers",
       openDate: lang === 'es' ? "1 de Diciembre de 2026" : "December 1, 2026",
       language: "ESP / ENG",
-      image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=80",
       coordinator: {
         name: "Prof. Graham P. Taylor",
         role: lang === 'es' ? "Vicepresidente Red HTLV • Imperial College London" : "Vice President Red HTLV • Imperial College London",

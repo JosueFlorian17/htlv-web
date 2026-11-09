@@ -516,7 +516,7 @@ export default function ResourcesPage() {
       desc: 'Protocolo estandarizado para la diferenciación ELISA, Western Blot y PCR cuantitativa en tiempo real.',
       type: 'PDF OFICIAL',
       meta: 'PDF, 1.8 MB',
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80'
+      image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80'
     },
     {
       title: 'Manual de Procedimientos de Laboratorio',

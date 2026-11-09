@@ -375,7 +375,7 @@ function AboutContent() {
       description: lang === 'es'
         ? 'Establecer equipos por líneas de investigación, procedimientos de coordinación, estándares metodológicos y gobernanza de datos para investigación multicéntrica.'
         : 'Establish research line teams, coordination procedures, methodological standards, and data governance for multicenter research.',
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=600&q=80',
       actionBtn: {
         text: lang === 'es' ? 'Conoce las líneas de investigación' : 'Discover research lines',
         href: '/proyectos?tab=investigacion'
