@@ -7,15 +7,13 @@ import { filterFaqsSemantically } from '../../utils/semanticFaqSearch';
 export default function FaqSection({ lang = 'es' }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSection, setSelectedSection] = useState('all');
-  const [openFaqs, setOpenFaqs] = useState({ 1: true });
+  const [openFaqId, setOpenFaqId] = useState(1);
   const [collapsedSections, setCollapsedSections] = useState({});
   const [showFaqDisclaimer, setShowFaqDisclaimer] = useState(false);
 
+  // Solo una pregunta abierta a la vez
   const toggleFaq = (id) => {
-    setOpenFaqs((prev) => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
+    setOpenFaqId((prev) => (prev === id ? null : id));
   };
 
   const toggleSectionCollapse = (sectionId) => {
@@ -300,7 +298,7 @@ export default function FaqSection({ lang = 'es' }) {
                 {!isSectionCollapsed && (
                   <div className="divide-y divide-slate-100 px-5 sm:px-6">
                     {group.items.map((faq) => {
-                      const isOpen = !!openFaqs[faq.id];
+                      const isOpen = openFaqId === faq.id;
                       return (
                         <div key={faq.id} className="py-4">
                           {/* Pregunta estilo Bluebird: Pregunta limpia con flecha fina a la derecha */}
