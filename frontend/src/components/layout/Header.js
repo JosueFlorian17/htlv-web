@@ -43,7 +43,7 @@ export default function Header() {
             items: [
                 { label: lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?', href: '/about?tab=quienes-somos' },
                 { label: lang === 'es' ? 'Objetivos' : 'Objectives', href: '/about?tab=objetivos' },
-                { label: lang === 'es' ? 'Estructura y gobernanza' : 'Structure & governance', href: '/about?tab=estructura' },
+                { label: lang === 'es' ? 'Estructura y gobernanza' : 'Structure and governance', href: '/about?tab=estructura' },
                 { label: lang === 'es' ? 'Instituciones miembros' : 'Member institutions', href: '/about?tab=miembros' },
                 { label: lang === 'es' ? 'Financiamiento' : 'Funding', href: '/about?tab=financiamiento' }
             ]
@@ -63,8 +63,8 @@ export default function Header() {
             basePath: '/proyectos',
             items: [
                 { label: lang === 'es' ? 'Proyectos de investigación' : 'Research projects', href: '/proyectos?tab=investigacion' },
-                { label: lang === 'es' ? 'Resultados y avances' : 'Results & breakthroughs', href: '/proyectos?tab=avances' },
-                { label: lang === 'es' ? 'Oportunidades para tesistas' : 'Opportunities for researchers', href: '/proyectos?tab=tesistas' }
+                { label: lang === 'es' ? 'Resultados y avances' : 'Results and breakthroughs', href: '/proyectos?tab=avances' },
+                { label: lang === 'es' ? 'Oportunidades' : 'Opportunities', href: '/proyectos?tab=tesistas' }
             ]
         },
         {

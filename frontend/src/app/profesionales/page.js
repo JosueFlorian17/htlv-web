@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '../../context/LanguageContext';
+import WorkInProgressView from '../../components/common/WorkInProgressView';
 
 function ProfesionalesContent() {
   const { lang } = useLanguage();
@@ -203,40 +204,16 @@ function ProfesionalesContent() {
         {/* Cabecera con Pestañas Horizontales */}
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
-            {activeTab === 'recursos' && (lang === 'es' ? 'Guías Clínicas Internacionales y Diagnósticas' : 'International Clinical Guidelines & Diagnostics')}
+            {activeTab === 'recursos' && (lang === 'es' ? 'Guías clínicas' : 'Clinical Guidelines')}
             {activeTab === 'webinars' && (lang === 'es' ? 'Webinars' : 'Webinars')}
-            {activeTab === 'cursos' && (lang === 'es' ? 'Cursos y Capacitación Médica' : 'Courses & Medical Training')}
+            {activeTab === 'cursos' && (lang === 'es' ? 'Cursos' : 'Courses')}
           </h1>
         </div>
 
-        {/* 1. RECURSOS CLÍNICOS (Sin chips) */}
+        {/* 1. GUÍAS CLÍNICAS */}
         {activeTab === 'recursos' && (
-          <div className="space-y-6 animate-fadeIn">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {clinicalGuides.map((guide, idx) => (
-                <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
-                  <div className="space-y-3">
-                    <p className="text-xs font-semibold text-[#A10D3A]">
-                      {guide.year} • {guide.institution.split(' - ')[0]}
-                    </p>
-                    <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
-                      {guide.title}
-                    </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      {guide.desc}
-                    </p>
-                  </div>
-                    <div>
-                    <Link
-                      href="/contact"
-                      className="w-full bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors flex items-center justify-center cursor-pointer shadow-sm"
-                    >
-                      <span>{lang === 'es' ? 'Descargar Guía Oficial' : 'Download Guideline'}</span>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="py-6 animate-fadeIn">
+            <WorkInProgressView />
           </div>
         )}
 
@@ -437,7 +414,7 @@ function ProfesionalesContent() {
                   {/* Lista de Ponentes e Investigadores con sus Afiliaciones Institucionales */}
                   <div className="space-y-3 pt-2">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-[#003B49] border-b border-slate-100 pb-2">
-                      {lang === 'es' ? 'Ponentes e Investigadores Participantes' : 'Speakers & Participating Researchers'}
+                      {lang === 'es' ? 'Ponentes e Investigadores Participantes' : 'Speakers and Participating Researchers'}
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {selectedWebinar.speakersList.map((spk, idx) => (
@@ -483,234 +460,10 @@ function ProfesionalesContent() {
           </div>
         )}
 
-        {/* 3. CURSOS CORTOS (Estructura con imagen, botón "Ver detalles" y Modal fiel a la referencia) */}
+        {/* 3. CURSOS */}
         {activeTab === 'cursos' && (
-          <div className="space-y-6 animate-fadeIn max-w-5xl mx-auto">
-            
-            {/* Introducción sutil */}
-            <div className="text-center max-w-2xl mx-auto space-y-1.5 pb-2">
-              <span className="text-xs font-bold tracking-widest text-[#087E8B] uppercase">
-                {lang === 'es' ? 'Capacitación Médica Continua' : 'Continuous Medical Training'}
-              </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                {lang === 'es' ? 'Cursos y Talleres Especializados' : 'Courses & Specialized Workshops'}
-              </h2>
-              <p className="text-sm text-slate-600">
-                {lang === 'es'
-                  ? 'Programas formativos de alto nivel diseñados por la Red HTLV para fortalecer competencias diagnósticas y clínicas en sistemas de salud.'
-                  : 'High-level training curricula developed by Red HTLV to enhance diagnostic and clinical competencies across health systems.'}
-              </p>
-            </div>
-
-            {/* Grid de Cursos con imagen de internet */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-              {courses.map((course) => (
-                <div
-                  key={course.id}
-                  className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow group"
-                >
-                  <div>
-                    {/* Imagen de cabecera desde internet */}
-                    <div className="relative aspect-16/9 w-full bg-slate-900 overflow-hidden">
-                      <img
-                        src={course.image}
-                        alt={course.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
-                      
-                      <div className="absolute top-3 left-3">
-                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#003B49]/90 text-white backdrop-blur-xs border border-white/20 shadow-xs">
-                          {course.modality.split('•')[0]}
-                        </span>
-                      </div>
-
-                      <div className="absolute bottom-3 left-3 right-3 text-white">
-                        <span className="text-[10px] font-extrabold tracking-wider text-[#E5A400] uppercase block">
-                          CURSO CORTO Red HTLV
-                        </span>
-                        <h4 className="text-base font-bold text-white leading-tight drop-shadow-sm">
-                          {course.shortTitle}
-                        </h4>
-                      </div>
-                    </div>
-
-                    {/* Contenido de la tarjeta */}
-                    <div className="p-6 space-y-4">
-                      <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
-                        {course.title}
-                      </h3>
-
-                      <div className="space-y-1.5 text-xs sm:text-sm text-slate-600">
-                        <p>
-                          <strong className="text-slate-800">{lang === 'es' ? 'Dirigido a: ' : 'Audience: '}</strong>
-                          {course.target}
-                        </p>
-                        
-                        <div className="text-[#003B49] font-medium pt-0.5">
-                          <span className="text-slate-500 font-normal">{lang === 'es' ? 'Fecha de apertura: ' : 'Opening date: '}</span>
-                          <span className="font-semibold text-slate-800">{course.openDate}</span>
-                        </div>
-                      </div>
-
-                      <p className="text-sm text-slate-600 line-clamp-3 leading-relaxed">
-                        {course.description}
-                      </p>
-
-                      {/* Coordinador */}
-                      <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
-                        <img
-                          src={course.coordinator.image}
-                          alt={course.coordinator.name}
-                          className="w-10 h-10 rounded-full object-cover border-2 border-[#087E8B] shrink-0"
-                        />
-                        <div className="min-w-0">
-                          <p className="text-xs font-bold text-[#003B49] truncate">{course.coordinator.name}</p>
-                          <p className="text-[11px] text-slate-500 truncate">{course.coordinator.role.split('•')[0]}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Botón Ver detalles */}
-                  <div className="p-6 pt-0">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedCourse(course)}
-                      className="w-full bg-[#E5A400] hover:bg-[#d09400] text-slate-900 font-bold py-2.5 px-4 rounded-lg text-sm transition-colors flex items-center justify-center cursor-pointer shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003B49]"
-                    >
-                      <span>{lang === 'es' ? 'Ver detalles' : 'See details'}</span>
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* MODAL DETALLADO DEL CURSO CORTO (Compacto y sin scroll) */}
-            {selectedCourse && (
-              <div
-                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-xs animate-fadeIn"
-                onClick={() => setSelectedCourse(null)}
-              >
-                <div
-                  className="bg-white rounded-2xl max-w-3xl w-full p-5 sm:p-6 shadow-2xl space-y-4 border border-slate-100"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {/* Encabezado del Modal */}
-                  <div className="flex items-start justify-between gap-4 pb-3 border-b border-slate-100">
-                    <div>
-                      <span className="text-[10px] font-bold text-[#087E8B] uppercase tracking-wider block">
-                        {lang === 'es' ? 'Curso Corto Red HTLV' : 'Red HTLV Short Course'}
-                      </span>
-                      <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
-                        {selectedCourse.shortTitle}
-                      </h3>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedCourse(null)}
-                      className="text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100 transition-colors font-bold text-lg leading-none cursor-pointer shrink-0"
-                      aria-label="Cerrar modal"
-                    >
-                      ✕
-                    </button>
-                  </div>
-
-                  {/* Estructura compacta en 2 columnas para no provocar scroll */}
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
-                    {/* Columna Izquierda: Afiche compacto con coordinador */}
-                    <div className="md:col-span-5 flex flex-col justify-between bg-gradient-to-br from-[#002538] via-[#003B49] to-[#0A5265] rounded-xl overflow-hidden p-4 text-white relative min-h-[210px]">
-                      <img
-                        src={selectedCourse.image}
-                        alt={selectedCourse.title}
-                        className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#002538]/95 via-[#002538]/80 to-transparent"></div>
-
-                      <div className="relative z-10 space-y-1.5">
-                        <span className="inline-block bg-[#E5A400] text-slate-900 font-extrabold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
-                          {selectedCourse.modality.split('•')[0]}
-                        </span>
-                        <p className="text-xs text-white/95 font-medium leading-snug">
-                          {lang === 'es' ? '¡Lleva el curso 100% virtual y a tu ritmo!' : 'Take the course 100% online at your own pace!'}
-                        </p>
-                      </div>
-
-                      <div className="relative z-10 pt-3 border-t border-white/20 flex items-center gap-2.5">
-                        <img
-                          src={selectedCourse.coordinator.image}
-                          alt={selectedCourse.coordinator.name}
-                          className="w-10 h-10 rounded-full object-cover border-2 border-[#E5A400] shrink-0"
-                        />
-                        <div className="min-w-0">
-                          <span className="text-[9px] font-bold text-white/70 uppercase block">
-                            {lang === 'es' ? 'Coordinación' : 'Coordinator'}
-                          </span>
-                          <p className="text-xs font-bold text-white truncate">{selectedCourse.coordinator.name}</p>
-                          <p className="text-[10px] text-white/80 truncate">{selectedCourse.coordinator.role.split('•')[0]}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Columna Derecha: Descripción, Puntos clave y Metadatos */}
-                    <div className="md:col-span-7 flex flex-col justify-between space-y-3">
-                      <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                        {selectedCourse.description}
-                      </p>
-
-                      <ul className="space-y-1.5 text-xs text-slate-600">
-                        {selectedCourse.bullets.slice(0, 3).map((bullet, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <span className="text-[#087E8B] font-bold shrink-0 mt-0.5">•</span>
-                            <span className="leading-snug">{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="grid grid-cols-2 gap-2.5 pt-1">
-                        <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
-                          <span className="text-[9px] font-bold text-slate-400 uppercase block">
-                            {lang === 'es' ? 'Idioma' : 'Language'}
-                          </span>
-                          <span className="text-xs font-semibold text-slate-800">
-                            {selectedCourse.language}
-                          </span>
-                        </div>
-
-                        <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
-                          <span className="text-[9px] font-bold text-slate-400 uppercase block">
-                            {lang === 'es' ? 'Fecha de Apertura' : 'Opening Date'}
-                          </span>
-                          <span className="text-xs font-semibold text-slate-800">
-                            {selectedCourse.openDate}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Botones de Acción */}
-                  <div className="flex flex-col sm:flex-row items-center justify-end gap-3 pt-3 border-t border-slate-100">
-                    <Link
-                      href="/contact"
-                      className="w-full sm:w-auto bg-[#1A4B82] hover:bg-[#133760] text-white font-bold px-6 py-2 rounded-lg text-xs sm:text-sm transition-colors flex items-center justify-center cursor-pointer shadow-sm text-center"
-                    >
-                      <span>{lang === 'es' ? 'Registrarse' : 'Register'}</span>
-                    </Link>
-
-                    <button
-                      type="button"
-                      onClick={() => setSelectedCourse(null)}
-                      className="w-full sm:w-auto bg-[#E5A400] hover:bg-[#d09400] text-slate-900 font-bold px-6 py-2 rounded-lg text-xs sm:text-sm transition-colors cursor-pointer shadow-xs"
-                    >
-                      {lang === 'es' ? 'Cerrar' : 'Close'}
-                    </button>
-                  </div>
-
-                </div>
-              </div>
-            )}
-
+          <div className="py-6 animate-fadeIn">
+            <WorkInProgressView />
           </div>
         )}
 

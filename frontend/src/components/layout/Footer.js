@@ -60,7 +60,7 @@ export default function Footer() {
                 {lang === 'es' ? 'Nuestra Sede' : 'Our Location'}
               </span>
               <span className="text-xs text-slate-500 font-medium">
-                Av. Honorio Delgado 430, IMTAvH - UPCH, Lima, Perú
+                Av. Honorio Delgado 430, Universidad Peruana Cayetano Heredia, Lima, Perú
               </span>
             </div>
           </div>
@@ -137,25 +137,37 @@ export default function Footer() {
               {/* Columna 1: About Red HTLV */}
               <div className="space-y-3">
                 <h4 className="text-base font-bold text-white tracking-tight">
-                  {lang === 'es' ? 'Acerca de la Red HTLV' : 'About the HTLV Network'}
+                  {lang === 'es' ? 'Acerca de la Red' : 'About the Network'}
                 </h4>
                 <p className="text-white/80 leading-relaxed text-xs">
                   {lang === 'es'
-                    ? 'La misión de la Red Internacional de Investigación e Innovación en HTLV es fomentar la investigación retrovirológica de excelencia en HTLV-1 y HTLV-2, facilitando el diálogo entre grupos científicos y transfiriendo evidencia de calidad para la salud comunitaria.'
-                    : 'The mission of the International Research and Innovation Network on HTLV is to foster retrovirology research excellence on HTLV-1 and HTLV-2, promoting collaborative scientific dialogue and transferring evidence to public health.'}
+                    ? 'La Red Internacional de Investigación e Innovación en HTLV reúne a instituciones peruanas e internacionales para fortalecer la investigación, la formación de capacidades y la innovación, contribuyendo a mejorar la prevención, el diagnóstico, el tratamiento y la atención del HTLV.'
+                    : 'The International Research and Innovation Network on HTLV brings together Peruvian and international institutions to strengthen research, capacity building, and innovation, contributing to improved prevention, diagnosis, treatment, and care of HTLV.'}
                 </p>
               </div>
 
-              {/* Columna 2: Research / Investigación */}
+              {/* Columna 2: Proyectos e Investigación */}
               <div className="space-y-3">
                 <h4 className="text-base font-bold text-white tracking-tight">
-                  {lang === 'es' ? 'Investigación' : 'Research'}
+                  {lang === 'es' ? 'Proyectos e Investigación' : 'Projects and Research'}
                 </h4>
                 <ul className="space-y-2.5 font-medium text-sm">
                   <li>
-                    <Link href="/profesionales?tab=recursos" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
+                    <Link href="/proyectos?tab=investigacion" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
                       <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
-                      <span>{lang === 'es' ? 'Guías Clínicas' : 'Guidelines'}</span>
+                      <span>{lang === 'es' ? 'Proyectos de investigación' : 'Research projects'}</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/proyectos?tab=avances" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
+                      <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
+                      <span>{lang === 'es' ? 'Resultados y avances' : 'Results and breakthroughs'}</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/proyectos?tab=tesistas" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
+                      <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
+                      <span>{lang === 'es' ? 'Oportunidades' : 'Opportunities'}</span>
                     </Link>
                   </li>
                   <li>
@@ -165,15 +177,9 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/proyectos?tab=investigacion" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
-                      <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
-                      <span>{lang === 'es' ? 'Proyectos Activos' : 'Events & Projects'}</span>
-                    </Link>
-                  </li>
-                  <li>
                     <Link href="/profesionales?tab=webinars" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
                       <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
-                      <span>{lang === 'es' ? 'Webinars & Eventos' : 'Meetings'}</span>
+                      <span>{lang === 'es' ? 'Webinars' : 'Webinars'}</span>
                     </Link>
                   </li>
                 </ul>
@@ -188,7 +194,7 @@ export default function Footer() {
                   <li>
                     <Link href="/about?tab=quienes-somos" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
                       <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
-                      <span>{lang === 'es' ? 'Quiénes Somos' : 'About Us'}</span>
+                      <span>{lang === 'es' ? '¿Quiénes somos?' : 'Who are we?'}</span>
                     </Link>
                   </li>
                   <li>
@@ -200,26 +206,31 @@ export default function Footer() {
                   <li>
                     <Link href="/about?tab=estructura" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
                       <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
-                      <span>{lang === 'es' ? 'Estructura & Gobierno' : 'Our Team'}</span>
+                      <span>{lang === 'es' ? 'Estructura y gobernanza' : 'Structure and governance'}</span>
                     </Link>
                   </li>
                   <li>
                     <Link href="/about?tab=miembros" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
                       <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
-                      <span>{lang === 'es' ? 'Instituciones Miembros' : 'Member Nodes'}</span>
+                      <span>{lang === 'es' ? 'Instituciones miembros' : 'Member institutions'}</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/about?tab=financiamiento" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
+                      <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
+                      <span>{lang === 'es' ? 'Financiamiento' : 'Funding'}</span>
                     </Link>
                   </li>
                   <li>
                     <Link href="/contact" className="hover:text-[#1E9CD7] transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9CD7] rounded-sm">
                       <span className="material-symbols-outlined text-base text-white/90">arrow_circle_right</span>
-                      <span>{lang === 'es' ? 'Contacto Central' : 'Contact Central'}</span>
+                      <span>{lang === 'es' ? 'Contacto' : 'Contact'}</span>
                     </Link>
                   </li>
                 </ul>
               </div>
 
             </div>
-
           </div>
         </div>
       </div>

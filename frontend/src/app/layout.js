@@ -11,7 +11,7 @@ export const metadata = {
     default: 'Red HTLV | Red Internacional de Investigación e Innovación en HTLV',
     template: '%s | Red HTLV'
   },
-  description: 'Plataforma científica oficial de la Red Internacional de Investigación e Innovación en HTLV (Red HTLV), con el liderazgo del Instituto de Medicina Tropical Alexander von Humboldt - UPCH (Perú). Guías clínicas, epidemiología, repositorio y consensos internacionales sobre HTLV-1 y HTLV-2.',
+  description: 'Plataforma científica oficial de la Red Internacional de Investigación e Innovación en HTLV (Red HTLV), con el liderazgo de la Universidad Peruana Cayetano Heredia (Perú). Guías clínicas, epidemiología, repositorio y consensos internacionales sobre HTLV-1 y HTLV-2.',
   keywords: [
     'HTLV',
     'HTLV-1',
@@ -23,10 +23,10 @@ export const metadata = {
     'ATL',
     'Cayetano Heredia',
     'UPCH',
-    'IMTAvH',
+    'Universidad Peruana Cayetano Heredia',
     'Perú'
   ],
-  authors: [{ name: 'Red HTLV & UPCH' }],
+  authors: [{ name: 'Red HTLV y UPCH' }],
   creator: 'Red Internacional de Investigación e Innovación en HTLV',
   publisher: 'Universidad Peruana Cayetano Heredia (UPCH)',
   alternates: {

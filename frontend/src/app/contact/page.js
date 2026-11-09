@@ -84,8 +84,8 @@ export default function ContactPage() {
                 </h3>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
                   {lang === 'es'
-                    ? 'Gracias por comunicarse con la Red HTLV. La coordinación general en el IMTAvH - UPCH responderá a su correo a la brevedad.'
-                    : 'Thank you for contacting Red HTLV. The coordination secretariat at IMTAvH - UPCH will respond shortly.'}
+                    ? 'Gracias por comunicarse con la Red HTLV. La coordinación general en la Universidad Peruana Cayetano Heredia responderá a su correo a la brevedad.'
+                    : 'Thank you for contacting Red HTLV. The general coordination at Universidad Peruana Cayetano Heredia will respond shortly.'}
                 </p>
                 <button 
                   onClick={() => setSubmitted(false)}
@@ -190,7 +190,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-[#087E8B] text-xl mt-0.5">location_on</span>
                   <div>
-                    <strong className="block text-[#003B49]">Instituto IMTAvH • UPCH</strong>
+                    <strong className="block text-[#003B49]">Universidad Peruana Cayetano Heredia</strong>
                     <span>Av. Honorio Delgado 430, San Martín de Porres, Lima, Perú</span>
                   </div>
                 </div>
@@ -199,8 +199,8 @@ export default function ContactPage() {
                   <span className="material-symbols-outlined text-[#087E8B] text-xl mt-0.5">mail</span>
                   <div>
                     <strong className="block text-[#003B49]">{lang === 'es' ? 'Correo Electrónico' : 'Email'}</strong>
-                    <a href="mailto:contacto.riii@cayetano.edu.pe" className="text-[#087E8B] hover:underline font-medium">
-                      contacto.riii@cayetano.edu.pe
+                    <a href="mailto:maria.ruiz.ramirez@upch.pe" className="text-[#087E8B] hover:underline font-medium">
+                      maria.ruiz.ramirez@upch.pe
                     </a>
                   </div>
                 </div>

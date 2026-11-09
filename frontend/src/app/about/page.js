@@ -46,7 +46,7 @@ function AboutContent() {
     directivo: {
       id: 'directivo',
       title: lang === 'es' ? 'Comité directivo Red HTLV' : 'Red HTLV Steering Committee',
-      subtitle: lang === 'es' ? 'Directores: Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor' : 'Directors: Dr. Eduardo Gotuzzo & Prof. Graham P. Taylor',
+      subtitle: lang === 'es' ? 'Directores: Dr. Eduardo Gotuzzo y Prof. Graham P. Taylor' : 'Directors: Dr. Eduardo Gotuzzo y Prof. Graham P. Taylor',
       description: lang === 'es'
         ? 'Máximo órgano de gobierno y dirección científica de la Red. Encargado de definir las líneas estratégicas, supervisar el cumplimiento del convenio marco y coordinar las actividades académicas internacionales entre los nodos fundadores.'
         : 'Supreme governing body of the network. Responsible for strategic planning, multi-center trials oversight, and international institutional coordination.',
@@ -56,7 +56,7 @@ function AboutContent() {
     cat: {
       id: 'cat',
       title: lang === 'es' ? 'Comité Asesor Técnico (CAT)' : 'Technical Advisory Committee (CAT)',
-      subtitle: lang === 'es' ? 'Dra. Elsa González & Dr. Yoshi Ishikawa' : 'Dr. Elsa González & Dr. Yoshi Ishikawa',
+      subtitle: lang === 'es' ? 'Dra. Elsa González y Dr. Yoshi Ishikawa' : 'Dr. Elsa González & Dr. Yoshi Ishikawa',
       description: lang === 'es'
         ? 'Encargados de asesorar en líneas de investigación y actividades para el fortalecimiento de la Red. Además, asesorará a la Red en otros aspectos que generen capacidad y mayores recursos.'
         : 'In charge of advising on research lines and activities for strengthening the Network, as well as building research capacity and resources.',
@@ -76,7 +76,7 @@ function AboutContent() {
     core: {
       id: 'core',
       title: lang === 'es' ? 'Centros Core de Coordinación' : 'Core Coordinating Centers',
-      subtitle: 'IMTAvH - UPCH (Perú) & Imperial College London (Reino Unido)',
+      subtitle: 'Universidad Peruana Cayetano Heredia (Perú) e Imperial College London (Reino Unido)',
       description: lang === 'es'
         ? 'Centros fundadores de la Red HTLV. Albergan la secretaría ejecutiva, las cohortes clínicas históricas y los laboratorios de referencia en retrovirología humana.'
         : 'Founding centers hosting executive coordination, historical clinical cohorts, and reference retrovirology laboratories.',
@@ -431,8 +431,8 @@ function AboutContent() {
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'quienes-somos' && (lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?')}
             {activeTab === 'objetivos' && (lang === 'es' ? 'Objetivos' : 'Objectives')}
-            {activeTab === 'estructura' && (lang === 'es' ? 'Estructura y Gobernanza' : 'Structure & Governance')}
-            {activeTab === 'miembros' && (lang === 'es' ? 'Instituciones Miembros & Integrantes' : 'Member Institutions & Team')}
+            {activeTab === 'estructura' && (lang === 'es' ? 'Estructura y Gobernanza' : 'Structure and Governance')}
+            {activeTab === 'miembros' && (lang === 'es' ? 'Instituciones miembros e integrantes' : 'Member Institutions and Team')}
             {activeTab === 'financiamiento' && (lang === 'es' ? 'Financiamiento' : 'Funding')}
           </h1>
         </div>
@@ -697,7 +697,7 @@ function AboutContent() {
             
             <div className="text-center max-w-3xl mx-auto space-y-2">
               <h3 className="text-2xl sm:text-3xl font-extrabold text-[#003B49]">
-                {lang === 'es' ? 'Estructura y Gobernanza de la Red' : 'Network Structure & Governance'}
+                {lang === 'es' ? 'Estructura y Gobernanza de la Red' : 'Network Structure and Governance'}
               </h3>
               <p className="text-xs sm:text-sm text-slate-500">
                 {lang === 'es' ? 'Haz clic en los órganos de gestión para ver sus funciones o en las instituciones para visitar sus portales' : 'Click management bodies to view roles or institutions to visit their portals'}
@@ -981,7 +981,7 @@ function AboutContent() {
           </div>
         )}
 
-        {/* 3. INSTITUCIONES MIEMBROS & INTEGRANTES (Secciones por institucion colapsables) */}
+        {/* 3. INSTITUCIONES MIEMBROS E INTEGRANTES (Secciones por institucion colapsables) */}
         {activeTab === 'miembros' && (
           <div className="space-y-6 animate-fadeIn max-w-6xl mx-auto">
             {memberInstitutions.map((inst) => {

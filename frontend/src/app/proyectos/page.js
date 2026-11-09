@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '../../context/LanguageContext';
 import { ESTUDIOS_DATA } from '../../data/estudiosData';
+import WorkInProgressView from '../../components/common/WorkInProgressView';
 
 function ProyectosContent() {
   const { lang } = useLanguage();
@@ -128,8 +129,8 @@ function ProyectosContent() {
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'investigacion' && (lang === 'es' ? 'Proyectos de investigación' : 'Research Projects')}
-            {activeTab === 'avances' && (lang === 'es' ? 'Resultados, Hitos y Avances Clínicos' : 'Results, Milestones & Breakthroughs')}
-            {activeTab === 'tesistas' && (lang === 'es' ? 'Oportunidades para Tesistas e Investigadores' : 'Opportunities for Researchers')}
+            {activeTab === 'avances' && (lang === 'es' ? 'Resultados y avances' : 'Results and breakthroughs')}
+            {activeTab === 'tesistas' && (lang === 'es' ? 'Oportunidades' : 'Opportunities')}
           </h1>
         </div>
 
@@ -452,25 +453,10 @@ function ProyectosContent() {
           </div>
         )}
 
-        {/* 2. RESULTADOS Y AVANCES (Sin chips) */}
+        {/* 2. RESULTADOS Y AVANCES */}
         {activeTab === 'avances' && (
-          <div className="space-y-6 animate-fadeIn">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {resultsList.map((res, idx) => (
-                <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-4">
-                  <div className="flex items-center justify-between gap-2 text-xs font-semibold text-slate-500">
-                    <span>{res.impact}</span>
-                    <span className="text-[#087E8B]">{res.achievement}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-[#003B49] leading-snug">
-                    {res.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                    {res.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className="py-6 animate-fadeIn">
+            <WorkInProgressView />
           </div>
         )}
 
@@ -536,11 +522,11 @@ function ProyectosContent() {
               </div>
             </div>
 
-            {/* Oportunidades y Convocatorias */}
+            {/* Convocatorias */}
             <div className="space-y-4 pt-4 border-t border-slate-200">
               <div className="border-b border-slate-200 pb-2">
                 <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                  {lang === 'es' ? 'Convocatorias y Pasantías Abiertas' : 'Open Calls & Fellowships'}
+                  {lang === 'es' ? 'Convocatorias' : 'Open Calls'}
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-500">
                   {lang === 'es'
@@ -549,36 +535,13 @@ function ProyectosContent() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {thesisOpportunities.map((opp, idx) => (
-                  <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
-                        <span className="text-[#087E8B]">{opp.area}</span>
-                        <span>{opp.location}</span>
-                      </div>
-                      <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
-                        {opp.title}
-                      </h3>
-                      <p className="text-xs font-semibold text-[#E5A400]">
-                        {opp.requirements}
-                      </p>
-                      <p className="text-sm text-slate-600 leading-relaxed">
-                        {opp.desc}
-                      </p>
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-200">
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center gap-2 bg-[#003B49] hover:bg-[#087E8B] text-white px-5 py-2.5 rounded-lg text-xs font-semibold transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#087E8B] focus-visible:ring-offset-2"
-                      >
-                        <span>{lang === 'es' ? 'Postular a esta oportunidad' : 'Apply to this opportunity'}</span>
-                        <span className="material-symbols-outlined text-base">arrow_forward</span>
-                      </Link>
-                    </div>
-                  </div>
-                ))}
+              <div className="bg-white p-8 rounded-xl border border-slate-200 text-center py-12 space-y-3">
+                <span className="material-symbols-outlined text-slate-400 text-4xl">event_busy</span>
+                <p className="text-sm sm:text-base text-slate-600 font-medium">
+                  {lang === 'es'
+                    ? 'Actualmente no hay convocatorias abiertas. Las nuevas convocatorias se publicarán oportunamente en esta sección.'
+                    : 'There are currently no open calls. Future opportunities will be announced in this section.'}
+                </p>
               </div>
             </div>
 

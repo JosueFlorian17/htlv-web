@@ -231,10 +231,10 @@ export default function PublicacionesPage() {
                       <span>{lang === 'es' ? 'Ver enlace' : 'View link'}</span>
                     </button>
 
-                    {/* Área / Tipo en texto sutil a la derecha */}
-                    {(pub.area || pub.tipo) && (
+                    {/* Tipo de publicación en texto sutil a la derecha (sin clasificación por área) */}
+                    {pub.tipo && (
                       <span className="text-xs text-slate-400 font-medium sm:ml-auto">
-                        {pub.area}{pub.area && pub.tipo ? ' • ' : ''}{pub.tipo}
+                        {pub.tipo}
                       </span>
                     )}
                   </div>
