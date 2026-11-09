@@ -197,14 +197,14 @@ function ProyectosContent() {
                     <div className="space-y-3.5">
                       {/* 1. Encabezado: Estado + Línea temática / Tesis */}
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        {/* Estado tal como está en el excel */}
+                        {/* Estado solo texto de color sin fondo ni redondeado */}
                         <span
-                          className={`px-2.5 py-1 rounded-full text-xs font-bold tracking-wide ${
+                          className={`text-xs font-extrabold uppercase tracking-wider ${
                             proj.estado_es === 'Completada'
-                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                              ? 'text-emerald-600'
                               : proj.estado_es === 'No iniciada'
-                              ? 'bg-slate-100 text-slate-700 border border-slate-200'
-                              : 'bg-teal-50 text-[#003B49] border border-[#087E8B]/20'
+                              ? 'text-slate-400'
+                              : 'text-[#0284C7]'
                           }`}
                         >
                           {lang === 'es' ? proj.estado_es : proj.estado_en}
@@ -338,7 +338,7 @@ function ProyectosContent() {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         {/* Partícula viral redonda con espículas */}
-                        <circle cx="60" cy="65" r="32" fill="#087E8B" stroke="#003B49" strokeWidth="3" />
+                        <circle cx="60" cy="65" r="32" fill="#DC2626" stroke="#991B1B" strokeWidth="3" />
 
                         {/* Espículas glicoproteicas alrededor del virus */}
                         <path d="M60 27 L60 33" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
@@ -389,31 +389,23 @@ function ProyectosContent() {
                         <path d="M54 72 Q60 78 66 72" stroke="#003B49" strokeWidth="2" strokeLinecap="round" fill="none" />
 
                         {/* Manitos sosteniendo llave inglesa y portapapeles */}
-                        <circle cx="36" cy="74" r="5" fill="#0A5265" stroke="#003B49" strokeWidth="1.5" />
+                        <circle cx="36" cy="74" r="5" fill="#991B1B" stroke="#7F1D1D" strokeWidth="1.5" />
                         <path d="M36 74 L25 82 M22 84 L27 79" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
 
-                        <circle cx="84" cy="74" r="5" fill="#0A5265" stroke="#003B49" strokeWidth="1.5" />
+                        <circle cx="84" cy="74" r="5" fill="#991B1B" stroke="#7F1D1D" strokeWidth="1.5" />
                         <rect x="85" y="68" width="11" height="14" rx="1.5" fill="#E2E8F0" stroke="#475569" strokeWidth="1.5" />
                         <path d="M88 73 L93 73 M88 76 L93 76 M88 79 L92 79" stroke="#64748B" strokeWidth="1" strokeLinecap="round" />
                       </svg>
 
-                      {/* Pequeña insignia de obra */}
-                      <span className="inline-block mt-2 px-3 py-1 bg-amber-100 text-amber-900 border border-amber-300 rounded-full text-[11px] font-black uppercase tracking-wider">
-                        🚧 {lang === 'es' ? 'En Construcción' : 'Under Construction'} ⚙️
-                      </span>
+
                     </div>
                   </div>
 
-                  {/* Mensaje simpático */}
-                  <div className="space-y-2">
+                  {/* Mensaje limpio */}
+                  <div>
                     <h3 className="text-xl sm:text-2xl font-black text-[#003B49]">
                       {lang === 'es' ? '¡Estamos trabajando en esto!' : 'We are working on this!'}
                     </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
-                      {lang === 'es'
-                        ? 'Nuestros investigadores y retrovirólogos están terminando de cargar la ficha técnica detallada, protocolos y avances de este estudio. ¡Estará disponible muy pronto!'
-                        : 'Our researchers and retrovirologists are finalizing the detailed technical sheet, protocols, and progress for this study. It will be available very soon!'}
-                    </p>
                   </div>
 
                   {/* Ficha resumida del estudio seleccionado */}
@@ -423,7 +415,15 @@ function ProyectosContent() {
                     </p>
                     <div className="flex items-center gap-2 pt-1 text-[11px]">
                       <span className="font-semibold text-slate-700">
-                        {lang === 'es' ? 'Estado:' : 'Status:'} <strong>{lang === 'es' ? selectedStudy.estado_es : selectedStudy.estado_en}</strong>
+                        {lang === 'es' ? 'Estado:' : 'Status:'} <strong className={`font-black ${
+                          selectedStudy.estado_es === 'Completada'
+                            ? 'text-emerald-600'
+                            : selectedStudy.estado_es === 'No iniciada'
+                            ? 'text-slate-400'
+                            : 'text-[#0284C7]'
+                        }`}>
+                          {lang === 'es' ? selectedStudy.estado_es : selectedStudy.estado_en}
+                        </strong>
                       </span>
                       <span>•</span>
                       <span className="text-[#087E8B] font-semibold">
@@ -439,7 +439,7 @@ function ProyectosContent() {
                       onClick={() => setSelectedStudy(null)}
                       className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
                     >
-                      {lang === 'es' ? 'Entendido / Cerrar' : 'Got it / Close'}
+                      {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
                     <Link
                       href={`/contact?subject=consulta-proyecto&proyecto=${encodeURIComponent(selectedStudy.title_es)}`}

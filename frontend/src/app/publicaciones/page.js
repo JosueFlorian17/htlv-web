@@ -352,7 +352,7 @@ export default function PublicacionesPage() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     {/* Partícula viral redonda con espículas */}
-                    <circle cx="60" cy="65" r="32" fill="#087E8B" stroke="#003B49" strokeWidth="3" />
+                    <circle cx="60" cy="65" r="32" fill="#DC2626" stroke="#991B1B" strokeWidth="3" />
 
                     {/* Espículas glicoproteicas */}
                     <path d="M60 27 L60 33" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
@@ -403,17 +403,15 @@ export default function PublicacionesPage() {
                     <path d="M54 72 Q60 78 66 72" stroke="#003B49" strokeWidth="2" strokeLinecap="round" fill="none" />
 
                     {/* Manitos sosteniendo llave inglesa y portapapeles */}
-                    <circle cx="36" cy="74" r="5" fill="#0A5265" stroke="#003B49" strokeWidth="1.5" />
+                    <circle cx="36" cy="74" r="5" fill="#991B1B" stroke="#7F1D1D" strokeWidth="1.5" />
                     <path d="M36 74 L25 82 M22 84 L27 79" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
 
-                    <circle cx="84" cy="74" r="5" fill="#0A5265" stroke="#003B49" strokeWidth="1.5" />
+                    <circle cx="84" cy="74" r="5" fill="#991B1B" stroke="#7F1D1D" strokeWidth="1.5" />
                     <rect x="85" y="68" width="11" height="14" rx="1.5" fill="#E2E8F0" stroke="#475569" strokeWidth="1.5" />
                     <path d="M88 73 L93 73 M88 76 L93 76 M88 79 L92 79" stroke="#64748B" strokeWidth="1" strokeLinecap="round" />
                   </svg>
 
-                  <span className="inline-block mt-2 px-3 py-1 bg-amber-100 text-amber-900 border border-amber-300 rounded-full text-[11px] font-black uppercase tracking-wider">
-                    🚧 {lang === 'es' ? 'En Digitalización' : 'In Digitization'} ⚙️
-                  </span>
+
                 </div>
               </div>
 
@@ -461,7 +459,7 @@ export default function PublicacionesPage() {
                   onClick={() => setSelectedPub(null)}
                   className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
                 >
-                  {lang === 'es' ? 'Entendido / Cerrar' : 'Got it / Close'}
+                  {lang === 'es' ? 'Cerrar' : 'Close'}
                 </button>
                 <Link
                   href={`/contact?subject=consulta-publicacion&articulo=${encodeURIComponent(selectedPub.pub.titulo)}`}
