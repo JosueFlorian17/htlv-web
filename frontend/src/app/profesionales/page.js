@@ -72,72 +72,64 @@ function ProfesionalesContent() {
   const webinars = [
     {
       id: 1,
-      series: "WEBINAR SERIE 2026",
       title: lang === 'es'
-        ? "Actualización Global en Retrovirología: Retos Clínicos y Diagnósticos en HTLV-1 y HTLV-2"
-        : "Global Retrovirology Update: Clinical & Diagnostic Challenges in HTLV-1 & HTLV-2",
-      speaker: "Dr. Eduardo Gotuzzo",
-      speakerRole: lang === 'es'
-        ? "Presidente Honorario Red HTLV • Profesor Emérito UPCH • Investigador Distinguido IMTAvH (Perú)"
-        : "Honorary President Red HTLV • Emeritus Professor UPCH • Distinguished Investigator IMTAvH (Peru)",
-      speakerImage: "/team/eduardo_gotuzzo.jpeg",
-      bannerImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80",
-      dateFormatted: "28/10/26",
-      day: "28",
-      month: lang === 'es' ? "Octubre" : "October",
-      time: lang === 'es' ? "12:00 PM (Perú/Col) • 17:00 UTC" : "12:00 PM EST • 17:00 UTC",
-      language: lang === 'es' ? "Español (Interpretación EN)" : "Spanish (EN Interpretation)",
-      duration: "58 min",
-      videoId: "1NqgEEReKhs",
-      desc: lang === 'es'
-        ? "Revisión epidemiológica mundial del HTLV-1 y HTLV-2, avances en la comprensión del reservorio viral, cuantificación de carga proviral y abordaje integral de coinfecciones en zonas endémicas."
-        : "Global epidemiological review of HTLV-1/2, viral reservoir biology, proviral load quantification, and clinical management of coinfections in endemic zones."
-    },
-    {
-      id: 2,
-      series: "WEBINAR SERIE 2026",
-      title: lang === 'es'
-        ? "Manejo Clínico y Nuevos Biomarcadores en Paraparesia Espástica Tropical (HAM/TSP)"
-        : "Clinical Management & Novel Biomarkers in Tropical Spastic Paraparesis (HAM/TSP)",
-      speaker: "Prof. Graham P. Taylor",
-      speakerRole: lang === 'es'
-        ? "Vicepresidente Red HTLV • Director National Centre for Human Retrovirology • Imperial College London (UK)"
-        : "Vice President Red HTLV • Head National Centre for Human Retrovirology • Imperial College London (UK)",
-      speakerImage: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
-      bannerImage: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1000&q=80",
-      dateFormatted: "18/11/26",
-      day: "18",
+        ? "Día Mundial del HTLV 2026: Rompamos el silencio sobre el HTLV"
+        : "World HTLV Day 2026: Break the Silence on HTLV",
+      bannerImage: lang === 'es' ? "/webinars/webinar_portada_es.jpg" : "/webinars/webinar_portada_en.jpg",
+      flyerImage: "/webinars/webinar_flyer.png",
+      dateBadge: lang === 'es' ? "10 NOVIEMBRE" : "10 NOVEMBER",
+      day: "10",
       month: lang === 'es' ? "Noviembre" : "November",
-      time: lang === 'es' ? "1:00 PM (UK) • 8:00 AM (Perú) • 13:00 UTC" : "1:00 PM UK • 8:00 AM Peru • 13:00 UTC",
-      language: lang === 'es' ? "Inglés (Subtítulos en español)" : "English (Spanish Subtitles)",
-      duration: "64 min",
-      videoId: "rpmI1nhMOak",
-      desc: lang === 'es'
-        ? "Monitoreo longitudinal de pacientes con HAM/TSP, criterios neurofisiológicos, escalas de discapacidad motora y evaluación de biomarcadores inflamatorios en líquido cefalorraquídeo."
-        : "Longitudinal monitoring of HAM/TSP patients, neurophysiological criteria, motor disability scales, and CSF inflammatory biomarkers."
-    },
-    {
-      id: 3,
-      series: "WEBINAR SERIE 2026",
-      title: lang === 'es'
-        ? "Estandarización de PCR Proviral y Diagnóstico Oportuno de la Transmisión Vertical"
-        : "Proviral PCR Standardization & Timely Diagnosis of Mother-to-Child Transmission",
-      speaker: lang === "es" ? "Dra. Elsa González" : "Dr. Elsa González",
-      speakerRole: lang === 'es'
-        ? "Coordinadora Científica Red HTLV • Jefa de Laboratorio de Retrovirología IMTAvH - UPCH (Perú)"
-        : "Scientific Coordinator Red HTLV • Head of Retrovirology Laboratory IMTAvH - UPCH (Peru)",
-      speakerImage: "https://images.unsplash.com/photo-1594824813580-c081e7d8d697?auto=format&fit=crop&w=400&q=80",
-      bannerImage: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=80",
-      dateFormatted: "09/12/26",
-      day: "09",
-      month: lang === 'es' ? "Diciembre" : "December",
-      time: lang === 'es' ? "11:00 AM (Perú / Col) • 16:00 UTC" : "11:00 AM Peru / Col • 16:00 UTC",
-      language: lang === 'es' ? "Español" : "Spanish",
-      duration: "52 min",
-      videoId: "p-xTMvuecnM",
-      desc: lang === 'es'
-        ? "Protocolos armonizados para la cuantificación de copias provirales por célula, algoritmos de confirmación serológica y tamizaje gestacional para la prevención de la transmisión por lactancia."
-        : "Harmonized protocols for proviral copies quantification per cell, confirmatory algorithms, and gestational screening to stop transmission via nursing."
+      time: lang === 'es' ? "7:00–8:00 p. m. (hora de Perú)" : "7:00–8:00 PM (Peru Time)",
+      bottomTag: lang === 'es' ? "Foro Virtual" : "Virtual Forum",
+      speakerLabel: lang === 'es' ? "A CARGO DE:" : "PRESENTED BY:",
+      speakersText: lang === 'es'
+        ? "Dra. Sofía Cuba Fuentes, el Dr. Carlos Benites Villafane, la Dra. Mónica Alonso, el Dr. Yoshihisa Yamano, la Dra. Carolina Rosadas, el Dr. Joseph Zunt, el Dr. Eduardo Gotuzzo y la Dra. Patricia J. García."
+        : "Dr. Sofía Cuba Fuentes, Dr. Carlos Benites Villafane, Dr. Mónica Alonso, Dr. Yoshihisa Yamano, Dr. Carolina Rosadas, Dr. Joseph Zunt, Dr. Eduardo Gotuzzo and Dr. Patricia J. García.",
+      descBrief: lang === 'es'
+        ? "Un encuentro para generar conciencia sobre el HTLV y compartir perspectivas sobre los desafíos en prevención, diagnóstico y atención en el marco del Día Mundial del HTLV 2026."
+        : "A gathering to raise awareness about HTLV and share perspectives on challenges in prevention, diagnosis, and care on World HTLV Day 2026.",
+      descEvent: lang === 'es'
+        ? "En el marco del Día Mundial del HTLV, este webinar reunirá a autoridades del Ministerio de Salud del Perú, representantes de la Organización Panamericana de la Salud (OPS) e investigadores nacionales e internacionales de Perú, Japón, Reino Unido y Estados Unidos. El encuentro busca generar conciencia sobre las infecciones por HTLV-1, visibilizar los desafíos que representan para la salud pública y promover el diálogo y la colaboración internacional para fortalecer su prevención, diagnóstico, tratamiento y atención."
+        : "In the framework of World HTLV Day, this webinar will bring together authorities from the Ministry of Health of Peru, representatives of the Pan American Health Organization (PAHO), and national and international researchers from Peru, Japan, the United Kingdom, and the United States. The gathering seeks to raise awareness about HTLV-1 infections, highlight public health challenges, and promote international dialogue and collaboration.",
+      dateFormatted: "10/11/2026",
+      registrationUrl: "https://upch.zoom.us/webinar/register/WN_Qs8xIus6TuC4ULuvKpNlmg",
+      language: lang === 'es' ? "Inglés (con traducción en vivo al español)" : "English (with live Spanish interpretation)",
+      recordingStatus: lang === 'es' ? "No disponible aún" : "Not available yet",
+      speakersList: [
+        {
+          name: "Dra. Sofía Cuba Fuentes",
+          role: lang === 'es' ? "Viceministra de Salud Pública, Ministerio de Salud del Perú" : "Vice Minister of Public Health, Ministry of Health of Peru"
+        },
+        {
+          name: "Dr. Carlos Benites Villafane",
+          role: lang === 'es' ? "Director Ejecutivo de la Dirección de Prevención y Control de VIH/SIDA, ITS y Hepatitis, Ministerio de Salud del Perú" : "Executive Director of HIV/AIDS, STI and Hepatitis Prevention and Control, Ministry of Health of Peru"
+        },
+        {
+          name: "Dra. Mónica Alonso",
+          role: lang === 'es' ? "Jefa de la Unidad de VIH/ITS, Tuberculosis, Hepatitis Virales y Malaria, OPS/PAHO" : "Head of HIV/STI, TB, Viral Hepatitis and Malaria Unit, PAHO/WHO"
+        },
+        {
+          name: "Dr. Yoshihisa Yamano",
+          role: "St. Marianna University School of Medicine (Japón)"
+        },
+        {
+          name: "Dra. Carolina Rosadas",
+          role: "Imperial College London (Reino Unido)"
+        },
+        {
+          name: "Dr. Joseph Zunt",
+          role: "University of Washington (Estados Unidos)"
+        },
+        {
+          name: "Dr. Eduardo Gotuzzo",
+          role: "Universidad Peruana Cayetano Heredia (Perú)"
+        },
+        {
+          name: "Dra. Patricia J. García",
+          role: "Universidad Peruana Cayetano Heredia (Perú)"
+        }
+      ]
     }
   ];
 
@@ -212,7 +204,7 @@ function ProfesionalesContent() {
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
             {activeTab === 'recursos' && (lang === 'es' ? 'Guías Clínicas Internacionales y Diagnósticas' : 'International Clinical Guidelines & Diagnostics')}
-            {activeTab === 'webinars' && (lang === 'es' ? 'Webinars y Conferencias Internacionales' : 'International Webinars & Conferences')}
+            {activeTab === 'webinars' && (lang === 'es' ? 'Webinars' : 'Webinars')}
             {activeTab === 'cursos' && (lang === 'es' ? 'Cursos y Capacitación Médica' : 'Courses & Medical Training')}
           </h1>
         </div>
@@ -248,46 +240,41 @@ function ProfesionalesContent() {
           </div>
         )}
 
-        {/* 2. WEBINARS (Estructura y estilo fiel a la referencia - Imágenes 1 y 2) */}
+        {/* 2. WEBINARS */}
         {activeTab === 'webinars' && (
           <div className="space-y-6 animate-fadeIn max-w-5xl mx-auto">
             
-            {/* Introducción sutil */}
-            <div className="text-center max-w-2xl mx-auto space-y-1.5 pb-2">
-              <span className="text-xs font-bold tracking-widest text-[#087E8B] uppercase">
-                {lang === 'es' ? 'Ciclo de Conferencias Científicas' : 'Scientific Conference Series'}
-              </span>
+            {/* Introducción de la sección: solo Webinars y texto petite solicitado */}
+            <div className="text-center max-w-3xl mx-auto space-y-2 pb-2">
               <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
-                {lang === 'es' ? 'Webinars Internacionales Red HTLV' : 'Red HTLV International Webinars'}
+                {lang === 'es' ? 'Webinars' : 'Webinars'}
               </h2>
-              <p className="text-sm text-slate-600">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 {lang === 'es'
-                  ? 'Sesiones de actualización científica con expertos globales en retrovirología humana, diagnóstico molecular y manejo clínico.'
-                  : 'Scientific update sessions with global leaders in human retrovirology, diagnostics, and patient care.'}
+                  ? 'Webinars para informar y compartir conocimientos y experiencias sobre el HTLV, con la participación de especialistas, profesionales de salud, pacientes y organizaciones nacionales e internacionales.'
+                  : 'Webinars to inform and share knowledge and experiences about HTLV, with the participation of specialists, healthcare professionals, patients, and national and international organizations.'}
               </p>
             </div>
 
-            {/* Lista de Tarjetas Horizontales (Fiel a la referencia - Imagen 1) */}
+            {/* Tarjeta de Previsualización del Webinar */}
             <div className="space-y-6">
               {webinars.map((webinar) => (
                 <div
                   key={webinar.id}
                   className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col md:flex-row items-stretch hover:shadow-md transition-shadow group"
                 >
-                  {/* LADO IZQUIERDO: Flyer / Afiche gráfico del Webinar */}
-                  <div className="md:w-72 lg:w-80 shrink-0 relative bg-[#002538] text-white p-5 flex flex-col justify-between overflow-hidden min-h-[220px]">
-                    {/* Imagen de fondo desde internet con gradiente sobrio */}
+                  {/* LADO IZQUIERDO: Afiche / Flyer con fecha, horario y texto inferior */}
+                  <div className="md:w-72 lg:w-80 shrink-0 relative bg-[#002538] text-white p-5 flex flex-col justify-between overflow-hidden min-h-[250px]">
                     <img
-                      src={webinar.bannerImage}
+                      src={webinar.flyerImage}
                       alt={webinar.title}
-                      className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:scale-105 transition-transform duration-500"
+                      className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#002538]/90 via-[#002538]/95 to-[#001D2C]"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#002538]/85 via-[#002538]/90 to-[#001D2C]"></div>
 
-                    {/* Cabecera del flyer: Calendario */}
+                    {/* Cabecera del flyer: Fecha */}
                     <div className="relative z-10 flex items-start justify-end">
-                      {/* Cuadro de Fecha (Calendario como en la referencia) */}
-                      <div className="border border-white/30 rounded-lg px-2.5 py-1 text-center bg-white/10 backdrop-blur-xs min-w-[52px]">
+                      <div className="border border-white/30 rounded-lg px-2.5 py-1 text-center bg-white/10 backdrop-blur-xs min-w-[56px]">
                         <span className="block text-xl font-black leading-none text-white">{webinar.day}</span>
                         <span className="block text-[10px] font-bold uppercase text-white/90 leading-tight mt-0.5">{webinar.month}</span>
                       </div>
@@ -300,28 +287,22 @@ function ProfesionalesContent() {
                       </h4>
                     </div>
 
-                    {/* Pie del flyer: Horario y Speaker */}
-                    <div className="relative z-10 pt-3 border-t border-white/15 space-y-2.5">
-                      <div className="flex items-center gap-1.5 text-[11px] text-white/85">
+                    {/* Pie del flyer: Horario y Texto inferior */}
+                    <div className="relative z-10 pt-3 border-t border-white/15 space-y-2">
+                      <div className="flex items-center gap-1.5 text-[11px] text-white/90">
                         <span className="font-semibold text-[#E5A400]">{lang === 'es' ? 'Horario:' : 'Time:'}</span>
                         <span className="truncate">{webinar.time}</span>
                       </div>
 
-                      <div className="flex items-center gap-2.5">
-                        <img
-                          src={webinar.speakerImage}
-                          alt={webinar.speaker}
-                          className="w-9 h-9 rounded-full object-cover border-2 border-white/60 shrink-0"
-                        />
-                        <div className="min-w-0">
-                          <p className="text-xs font-bold text-white truncate">{webinar.speaker}</p>
-                          <p className="text-[10px] text-white/70 truncate">{webinar.speakerRole.split('•')[0]}</p>
-                        </div>
+                      <div className="pt-1">
+                        <span className="inline-block px-2.5 py-1 bg-white/15 backdrop-blur-xs rounded text-[11px] font-bold text-white tracking-wide uppercase">
+                          {webinar.bottomTag}
+                        </span>
                       </div>
                     </div>
                   </div>
 
-                  {/* LADO DERECHO: Título, A cargo de, Fecha y Botón Más Información */}
+                  {/* LADO DERECHO: Título principal, A cargo de, Descripción breve, Fecha y Botones */}
                   <div className="flex-1 p-6 sm:p-8 flex flex-col justify-between space-y-5 bg-white">
                     <div className="space-y-3.5">
                       <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#003B49] leading-snug">
@@ -330,18 +311,15 @@ function ProfesionalesContent() {
 
                       <div className="space-y-1">
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                          {lang === 'es' ? 'A cargo de:' : 'Presented by:'}
+                          {webinar.speakerLabel}
                         </p>
-                        <p className="text-base sm:text-lg font-bold text-[#087E8B]">
-                          {webinar.speaker}
-                        </p>
-                        <p className="text-xs text-slate-500">
-                          {webinar.speakerRole}
+                        <p className="text-sm sm:text-[15px] font-bold text-[#087E8B] leading-relaxed">
+                          {webinar.speakersText}
                         </p>
                       </div>
 
-                      <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed">
-                        {webinar.desc}
+                      <p className="text-sm text-slate-600 leading-relaxed">
+                        {webinar.descBrief}
                       </p>
                     </div>
 
@@ -351,34 +329,53 @@ function ProfesionalesContent() {
                         <span>{webinar.dateFormatted}</span>
                       </div>
 
-                      <button
-                        type="button"
-                        onClick={() => { setSelectedWebinar(webinar); setShowVideoPlayer(false); }}
-                        className="bg-[#E5A400] hover:bg-[#d09400] text-slate-900 font-bold px-6 py-2.5 rounded-lg text-sm transition-colors shadow-xs flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003B49]"
-                      >
-                        <span>{lang === 'es' ? 'Más información' : 'More information'}</span>
-                      </button>
+                      <div className="flex flex-wrap items-center gap-3">
+                        {/* Botón 1: Inscríbete */}
+                        <a
+                          href={webinar.registrationUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-[#003B49] hover:bg-[#087E8B] text-white font-bold px-5 py-2.5 rounded-lg text-sm transition-colors shadow-xs inline-flex items-center gap-1.5 cursor-pointer focus-visible:outline-none"
+                        >
+                          <span>{lang === 'es' ? 'Inscríbete' : 'Register'}</span>
+                          <span className="material-symbols-outlined text-base">open_in_new</span>
+                        </a>
+
+                        {/* Botón 2: Más información */}
+                        <button
+                          type="button"
+                          onClick={() => setSelectedWebinar(webinar)}
+                          className="bg-[#E5A400] hover:bg-[#d09400] text-slate-900 font-bold px-5 py-2.5 rounded-lg text-sm transition-colors shadow-xs flex items-center justify-center cursor-pointer focus-visible:outline-none"
+                        >
+                          <span>{lang === 'es' ? 'Más información' : 'More information'}</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* MODAL DETALLADO DEL WEBINAR (Fiel a la referencia - Imagen 2) */}
+            {/* MODAL DETALLADO DEL WEBINAR (SECCIÓN MÁS INFORMACIÓN) */}
             {selectedWebinar && (
               <div
                 className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-xs animate-fadeIn overflow-y-auto"
                 onClick={() => setSelectedWebinar(null)}
               >
                 <div
-                  className="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl space-y-6 my-8 border border-slate-100"
+                  className="bg-white rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl space-y-6 my-8 border border-slate-100 max-h-[92vh] overflow-y-auto"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Encabezado del Modal con título completo y botón de cerrar */}
                   <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
-                    <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
-                      {selectedWebinar.title}
-                    </h3>
+                    <div>
+                      <span className="text-xs font-bold text-[#A10D3A] tracking-wider uppercase block mb-1">
+                        {lang === 'es' ? 'Detalles del Webinar' : 'Webinar Details'}
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
+                        {selectedWebinar.title}
+                      </h3>
+                    </div>
                     <button
                       type="button"
                       onClick={() => setSelectedWebinar(null)}
@@ -389,52 +386,26 @@ function ProfesionalesContent() {
                     </button>
                   </div>
 
-                  {/* Imagen Central / Afiche destacado o Reproductor de Video */}
-                  {showVideoPlayer ? (
-                    <div className="aspect-video w-full rounded-xl overflow-hidden bg-black shadow-inner">
-                      <iframe
-                        className="w-full h-full"
-                        src={`https://www.youtube-nocookie.com/embed/${selectedWebinar.videoId}?autoplay=1&rel=0`}
-                        title={selectedWebinar.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                  ) : (
-                    <div className="relative rounded-xl overflow-hidden bg-slate-900 aspect-16/9 shadow-sm">
-                      <img
-                        src={selectedWebinar.bannerImage}
-                        alt={selectedWebinar.title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/40 to-transparent flex items-end p-5">
-                        <div className="text-white space-y-1">
-                          <p className="text-xs sm:text-sm font-semibold text-white/95">
-                            {selectedWebinar.desc}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Bloque del Disertante / Speaker (Imagen 2) */}
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  {/* Imagen de Portada oficial (español / inglés según idioma activo) */}
+                  <div className="relative rounded-xl overflow-hidden bg-slate-900 shadow-sm border border-slate-200">
                     <img
-                      src={selectedWebinar.speakerImage}
-                      alt={selectedWebinar.speaker}
-                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-[#087E8B] shrink-0"
+                      src={selectedWebinar.bannerImage}
+                      alt={selectedWebinar.title}
+                      className="w-full h-auto object-cover max-h-[320px]"
                     />
-                    <div className="space-y-1">
-                      <h4 className="text-base font-bold text-[#003B49]">
-                        {selectedWebinar.speaker}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-snug">
-                        {selectedWebinar.speakerRole}
-                      </p>
-                    </div>
                   </div>
 
-                  {/* Fila de Metadatos: Idioma, Fecha, Horario (Limpio sin iconos) */}
+                  {/* Descripción completa del evento */}
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#003B49]">
+                      {lang === 'es' ? 'Descripción del Evento' : 'Event Description'}
+                    </h4>
+                    <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                      {selectedWebinar.descEvent}
+                    </p>
+                  </div>
+
+                  {/* Fila de Metadatos: Idioma, Fecha, Horario */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div className="p-3 rounded-lg bg-slate-50 border border-slate-100">
                       <span className="text-[10px] font-bold text-slate-400 uppercase block">
@@ -459,28 +430,47 @@ function ProfesionalesContent() {
                         {lang === 'es' ? 'Horario' : 'Time'}
                       </span>
                       <span className="text-xs font-semibold text-slate-800">
-                        {selectedWebinar.time.split('•')[0]}
+                        {selectedWebinar.time}
                       </span>
                     </div>
                   </div>
 
-                  {/* Botones de Acción (Imagen 2) */}
+                  {/* Lista de Ponentes e Investigadores con sus Afiliaciones Institucionales */}
+                  <div className="space-y-3 pt-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#003B49] border-b border-slate-100 pb-2">
+                      {lang === 'es' ? 'Ponentes e Investigadores Participantes' : 'Speakers & Participating Researchers'}
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {selectedWebinar.speakersList.map((spk, idx) => (
+                        <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-0.5">
+                          <p className="text-xs sm:text-sm font-bold text-[#003B49]">{spk.name}</p>
+                          <p className="text-[11px] text-slate-600 leading-snug">{spk.role}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Botones de Acción */}
                   <div className="flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-slate-100">
-                    <button
-                      type="button"
-                      onClick={() => setShowVideoPlayer(!showVideoPlayer)}
-                      className="w-full sm:w-auto bg-[#1A4B82] hover:bg-[#133760] text-white font-bold px-6 py-2.5 rounded-lg text-sm transition-colors flex items-center justify-center cursor-pointer shadow-sm"
+                    <a
+                      href={selectedWebinar.registrationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto bg-[#003B49] hover:bg-[#087E8B] text-white font-bold px-6 py-2.5 rounded-lg text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                     >
-                      <span>
-                        {showVideoPlayer
-                          ? (lang === 'es' ? 'Ocultar grabación' : 'Hide recording')
-                          : (lang === 'es' ? 'Ver grabación (Audio Original)' : 'See recording (Original Audio)')}
+                      <span>{lang === 'es' ? 'Inscríbete' : 'Register'}</span>
+                      <span className="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
+
+                    <div className="w-full sm:w-auto text-center">
+                      <span className="text-xs text-slate-500 font-semibold px-3 py-2 bg-slate-100 rounded-lg block sm:inline-block">
+                        {lang === 'es' ? 'Grabación: No disponible aún' : 'Recording: Not available yet'}
                       </span>
-                    </button>
+                    </div>
 
                     <button
                       type="button"
-                      onClick={() => { setSelectedWebinar(null); setShowVideoPlayer(false); }}
+                      onClick={() => setSelectedWebinar(null)}
                       className="w-full sm:w-auto bg-[#E5A400] hover:bg-[#d09400] text-slate-900 font-bold px-6 py-2.5 rounded-lg text-sm transition-colors cursor-pointer shadow-xs"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
