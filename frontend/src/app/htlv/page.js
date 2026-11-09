@@ -1,9 +1,160 @@
 "use client";
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, memo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { useLanguage } from '../../context/LanguageContext';
 import FaqSection from '../../components/faqs/FaqSection';
+import worldGeo from '../../../public/world-110m.json';
+
+// Conjunto de países con áreas endémicas conocidas de HTLV-1
+const ENDEMIC_COUNTRIES = new Set([
+  // Asia
+  'Japan',
+  'Iran',
+  // Oceanía
+  'Australia',
+  // América del Sur
+  'Peru',
+  'Brazil',
+  'Colombia',
+  'Bolivia',
+  'Chile',
+  'Argentina',
+  'Ecuador',
+  'Venezuela',
+  'Guyana',
+  'Suriname',
+  'Paraguay',
+  'Uruguay',
+  // El Caribe
+  'Cuba',
+  'Dominican Rep.',
+  'Haiti',
+  'Jamaica',
+  'Trinidad and Tobago',
+  'Puerto Rico',
+  'Bahamas',
+  // África (subsahariana, central, occidental y sur)
+  'Angola',
+  'Benin',
+  'Botswana',
+  'Burkina Faso',
+  'Burundi',
+  'Cameroon',
+  'Central African Rep.',
+  'Chad',
+  'Congo',
+  "Côte d'Ivoire",
+  'Dem. Rep. Congo',
+  'Eq. Guinea',
+  'Eritrea',
+  'Ethiopia',
+  'Gabon',
+  'Gambia',
+  'Ghana',
+  'Guinea',
+  'Guinea-Bissau',
+  'Kenya',
+  'Lesotho',
+  'Liberia',
+  'Madagascar',
+  'Malawi',
+  'Mali',
+  'Mauritania',
+  'Mozambique',
+  'Namibia',
+  'Niger',
+  'Nigeria',
+  'Rwanda',
+  'S. Sudan',
+  'Senegal',
+  'Sierra Leone',
+  'Somalia',
+  'South Africa',
+  'Sudan',
+  'Tanzania',
+  'Togo',
+  'Uganda',
+  'Zambia',
+  'Zimbabwe',
+  'eSwatini',
+]);
+
+const WorldMapComponent = memo(function WorldMapComponent({ lang }) {
+  const [tooltip, setTooltip] = useState('');
+
+  return (
+    <div className="relative w-full">
+      <div className="w-full bg-[#E8F4FA] rounded-xl overflow-hidden border border-slate-200">
+        <ComposableMap
+          projection="geoEqualEarth"
+          projectionConfig={{
+            scale: 155,
+            center: [10, 0],
+          }}
+          width={800}
+          height={420}
+          style={{ width: '100%', height: 'auto' }}
+        >
+          <Geographies geography={worldGeo}>
+            {({ geographies }) =>
+              geographies
+                .filter((geo) => geo.properties.name !== 'Antarctica')
+                .map((geo) => {
+                  const countryName = geo.properties.name;
+                  const isEndemic = ENDEMIC_COUNTRIES.has(countryName);
+
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      onMouseEnter={() => {
+                        setTooltip(countryName);
+                      }}
+                      onMouseLeave={() => {
+                        setTooltip('');
+                      }}
+                      style={{
+                        default: {
+                          fill: isEndemic ? '#A10D3A' : '#CBD5E1',
+                          stroke: '#FFFFFF',
+                          strokeWidth: 0.5,
+                          outline: 'none',
+                          transition: 'fill 0.2s ease',
+                        },
+                        hover: {
+                          fill: isEndemic ? '#7A0A2C' : '#94A3B8',
+                          stroke: '#FFFFFF',
+                          strokeWidth: 0.8,
+                          outline: 'none',
+                          cursor: 'pointer',
+                        },
+                        pressed: {
+                          outline: 'none',
+                        },
+                      }}
+                    />
+                  );
+                })
+            }
+          </Geographies>
+        </ComposableMap>
+      </div>
+
+      {tooltip && (
+        <div className="absolute top-2 left-2 bg-[#001D2C]/90 text-white text-[11px] font-medium px-2.5 py-1 rounded shadow-md pointer-events-none transition-opacity">
+          {tooltip}
+          {ENDEMIC_COUNTRIES.has(tooltip) && (
+            <span className="ml-1.5 text-[#E5A400] font-bold">
+              ({lang === 'es' ? 'Zona con áreas de alta prevalencia' : 'Area with high prevalence'})
+            </span>
+          )}
+        </div>
+      )}
+    </div>
+  );
+});
 
 function HTLVContent() {
   const { lang } = useLanguage();
@@ -40,7 +191,7 @@ function HTLVContent() {
         <div className="animate-fadeIn text-slate-800">
 
           {/* ═══════════════════════════════════════════════════════════
-              HERO BANNER — fondo oscuro, virus derecha, badge amber
+              HERO BANNER — fondo oscuro, virus derecha, título HTLV-1
           ════════════════════════════════════════════════════════════ */}
           <section className="relative w-full overflow-hidden bg-gradient-to-r from-[#001D2C] via-[#02323c] to-[#001a24] text-white min-h-[200px] sm:min-h-[240px] flex items-center px-8 sm:px-12 md:px-16 py-10">
             {/* Virus 3D background — right side */}
@@ -56,13 +207,8 @@ function HTLVContent() {
 
             {/* Content */}
             <div className="relative z-10 max-w-lg space-y-3">
-              <div>
-                <span className="inline-block bg-[#E5A400] text-[#001D2C] text-xs font-black uppercase px-3 py-1 rounded-md tracking-wider">
-                  HTLV-1
-                </span>
-              </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
-                {lang === 'es' ? 'Conoce el HTLV' : 'Learn about HTLV'}
+                {lang === 'es' ? 'Conoce el HTLV-1' : 'Learn about HTLV-1'}
               </h1>
               <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
                 {lang === 'es'
@@ -75,7 +221,7 @@ function HTLVContent() {
                   onClick={scrollToInfo}
                   className="inline-flex items-center gap-2 bg-[#A10D3A] hover:bg-[#850A2F] text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-md transition-colors cursor-pointer"
                 >
-                  <span>{lang === 'es' ? 'Conoce más sobre el HTLV' : 'Learn more about HTLV'}</span>
+                  <span>{lang === 'es' ? 'Conoce más sobre el HTLV-1' : 'Learn more about HTLV-1'}</span>
                   <span className="material-symbols-outlined text-sm">arrow_forward</span>
                 </button>
               </div>
@@ -174,7 +320,7 @@ function HTLVContent() {
 
             {/* ═══════════════════════════════════════════════════════════
                 SECCIÓN 2: ¿QUÉ TAN FRECUENTE ES EL HTLV-1?
-                Layout: fondo azul-gris claro, izq=texto+stats, der=mapa SVG+leyenda
+                Layout: fondo azul-gris claro, izq=texto+stats, der=mapa SVG detallado+leyenda
             ════════════════════════════════════════════════════════════ */}
             <section className="bg-[#EDF4F7] rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-6 sm:p-8">
               <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-6 lg:gap-8 items-center">
@@ -194,7 +340,13 @@ function HTLVContent() {
                       : 'HTLV-1 is present in diverse regions worldwide. An estimated 5 to 20 million people live with this infection, although frequency varies considerably among different populations.'}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                    {lang === 'es'
+                      ? 'Por ejemplo, menos del 1 % de la población de América del Norte está infectada por HTLV-1. En cambio, en determinadas zonas de Japón, África, América del Sur, Australia, Irán y el Caribe, la prevalencia puede alcanzar un tercio de la población o incluso superar esa proporción.'
+                      : 'For example, less than 1% of the North American population is infected with HTLV-1. In contrast, in certain areas of Japan, Africa, South America, Australia, Iran, and the Caribbean, prevalence can reach one-third of the population or even exceed that proportion.'}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-3 pt-2">
                     {/* Stat 1 */}
                     <div className="flex items-start gap-2.5">
                       <span className="material-symbols-outlined text-[#A10D3A] text-3xl shrink-0">group</span>
@@ -227,105 +379,13 @@ function HTLVContent() {
                   </div>
                 </div>
 
-                {/* Columna derecha: Mapa SVG + Leyenda */}
+                {/* Columna derecha: Mapa Mundial Detallado (react-simple-maps) + Leyenda */}
                 <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-5">
                   <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
                     
-                    {/* Mapa SVG Mundial */}
+                    {/* Mapa mundial detallado */}
                     <div className="flex-1 w-full min-w-0">
-                      <svg
-                        viewBox="0 0 1000 500"
-                        className="w-full h-auto"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-label={lang === 'es' ? 'Mapa de prevalencia mundial de HTLV-1' : 'World map of HTLV-1 prevalence'}
-                      >
-                        {/* ── OCÉANOS (fondo) ── */}
-                        <rect width="1000" height="500" fill="#E8F4FA" rx="8" />
-
-                        {/* ═══ NORTE AMERICA ═══ */}
-                        {/* Canada */}
-                        <path d="M120,30 L200,25 L240,40 L260,60 L250,90 L220,100 L200,110 L170,105 L140,95 L115,80 L105,55 Z" fill="#CBD5E1" />
-                        {/* USA */}
-                        <path d="M115,100 L200,110 L250,100 L270,120 L275,155 L255,170 L200,175 L150,170 L110,160 L95,140 L100,118 Z" fill="#CBD5E1" />
-                        {/* Mexico */}
-                        <path d="M110,170 L200,175 L215,195 L210,220 L185,235 L155,230 L125,215 L105,195 L105,175 Z" fill="#CBD5E1" />
-
-                        {/* ═══ CENTROAMERICA ═══ */}
-                        <path d="M165,230 L200,225 L215,240 L205,255 L185,255 L168,245 Z" fill="#CBD5E1" />
-
-                        {/* ═══ CARIBE — ENDÉMICO ═══ */}
-                        <ellipse cx="215" cy="210" rx="12" ry="7" fill="#A10D3A" />
-                        <ellipse cx="232" cy="207" rx="8" ry="5" fill="#A10D3A" />
-                        <ellipse cx="245" cy="210" rx="6" ry="4" fill="#A10D3A" />
-                        <circle cx="225" cy="220" r="5" fill="#A10D3A" />
-
-                        {/* ═══ SUR AMERICA — ENDÉMICO ═══ */}
-                        {/* Colombia / Venezuela top */}
-                        <path d="M175,255 L225,250 L255,260 L265,280 L250,295 L225,295 L200,285 L175,275 Z" fill="#A10D3A" />
-                        {/* Brasil / Peru / Bolivia — core endemic */}
-                        <path d="M175,275 L250,295 L275,310 L285,345 L280,380 L255,400 L225,405 L195,395 L170,375 L155,345 L150,310 L160,285 Z" fill="#A10D3A" />
-                        {/* Chile / Argentina */}
-                        <path d="M180,395 L215,405 L225,435 L215,460 L195,470 L175,460 L168,435 L172,415 Z" fill="#CBD5E1" />
-
-                        {/* ═══ EUROPA ═══ */}
-                        <path d="M440,30 L510,25 L535,45 L545,70 L530,90 L500,100 L465,95 L440,78 L432,55 Z" fill="#CBD5E1" />
-                        {/* UK */}
-                        <path d="M430,40 L445,35 L450,55 L438,65 L428,55 Z" fill="#CBD5E1" />
-                        {/* Iberia */}
-                        <path d="M420,80 L455,75 L460,95 L450,110 L428,110 L415,95 Z" fill="#CBD5E1" />
-
-                        {/* ═══ AFRICA — ENDÉMICO ═══ */}
-                        {/* Norte Africa (no endémico) */}
-                        <path d="M430,110 L540,105 L565,120 L565,165 L540,170 L430,170 L415,150 L418,125 Z" fill="#CBD5E1" />
-                        {/* Africa Occidental */}
-                        <path d="M420,170 L455,170 L465,195 L460,230 L440,250 L415,250 L400,230 L400,195 L410,175 Z" fill="#A10D3A" />
-                        {/* Africa Central */}
-                        <path d="M455,170 L540,170 L560,185 L565,220 L555,255 L530,270 L500,270 L470,255 L460,230 L465,195 Z" fill="#A10D3A" />
-                        {/* Africa Oriental */}
-                        <path d="M540,170 L575,165 L590,185 L595,220 L585,255 L565,270 L555,255 L565,220 L560,185 Z" fill="#A10D3A" />
-                        {/* Africa del Sur */}
-                        <path d="M460,255 L530,255 L565,270 L575,300 L565,335 L540,355 L510,360 L480,355 L455,335 L445,300 L450,270 Z" fill="#A10D3A" />
-
-                        {/* Madagascar */}
-                        <ellipse cx="595" cy="315" rx="12" ry="25" fill="#A10D3A" />
-
-                        {/* ═══ ORIENTE MEDIO ═══ */}
-                        {/* Irán Norte — ENDÉMICO */}
-                        <path d="M600,100 L650,95 L670,108 L665,128 L640,135 L610,130 L595,118 Z" fill="#A10D3A" />
-                        {/* Resto Oriente Medio */}
-                        <path d="M555,120 L600,115 L595,118 L610,130 L605,155 L575,165 L555,155 L545,138 L548,122 Z" fill="#CBD5E1" />
-                        {/* Arabia Saudita */}
-                        <path d="M555,155 L605,155 L615,175 L610,195 L590,205 L565,200 L548,185 L548,165 Z" fill="#CBD5E1" />
-
-                        {/* ═══ ASIA CENTRAL / INDIA ═══ */}
-                        <path d="M650,80 L730,75 L755,95 L750,130 L720,145 L685,145 L660,135 L648,112 Z" fill="#CBD5E1" />
-                        {/* India */}
-                        <path d="M690,145 L730,145 L745,165 L745,200 L730,225 L710,235 L695,230 L680,210 L678,180 L683,158 Z" fill="#CBD5E1" />
-
-                        {/* ═══ ASIA ORIENTAL ═══ */}
-                        {/* China */}
-                        <path d="M730,70 L820,65 L840,85 L845,120 L825,145 L780,155 L748,145 L735,125 L735,90 Z" fill="#CBD5E1" />
-                        {/* Korea */}
-                        <path d="M835,100 L855,95 L865,112 L855,128 L838,128 L832,112 Z" fill="#CBD5E1" />
-                        {/* Japon — ENDÉMICO (Kyushu area) */}
-                        <path d="M865,100 L880,95 L892,105 L895,125 L882,138 L866,138 L858,122 L860,108 Z" fill="#A10D3A" />
-                        <ellipse cx="882" cy="145" rx="8" ry="12" fill="#A10D3A" />
-                        <ellipse cx="873" cy="158" rx="6" ry="8" fill="#A10D3A" />
-
-                        {/* ═══ SUDESTE ASIATICO ═══ */}
-                        <path d="M770,165 L810,160 L825,175 L820,200 L800,210 L775,205 L762,188 Z" fill="#CBD5E1" />
-                        {/* Indonesia */}
-                        <path d="M790,215 L850,210 L870,222 L865,235 L825,240 L795,235 L783,225 Z" fill="#CBD5E1" />
-
-                        {/* ═══ AUSTRALIA — ENDÉMICO (centro/norte) ═══ */}
-                        {/* Australia completa */}
-                        <path d="M810,270 L880,265 L920,280 L930,315 L920,350 L895,370 L860,375 L825,365 L800,340 L795,305 L800,278 Z" fill="#CBD5E1" />
-                        {/* Zona endémica — centro norte */}
-                        <ellipse cx="862" cy="310" rx="38" ry="28" fill="#A10D3A" />
-
-                        {/* ═══ NUEVA ZELANDA ═══ */}
-                        <ellipse cx="940" cy="380" rx="10" ry="20" fill="#CBD5E1" />
-                      </svg>
+                      <WorldMapComponent lang={lang} />
                     </div>
 
                     {/* Leyenda */}
