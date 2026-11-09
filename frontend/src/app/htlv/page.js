@@ -95,7 +95,7 @@ const WorldMapComponent = memo(function WorldMapComponent({ lang }) {
           }}
           width={800}
           height={420}
-          style={{ width: '100%', height: 'auto' }}
+          className="w-full h-auto block"
         >
           <Geographies geography={worldGeo}>
             {({ geographies }) =>
@@ -104,35 +104,25 @@ const WorldMapComponent = memo(function WorldMapComponent({ lang }) {
                 .map((geo) => {
                   const countryName = geo.properties.name;
                   const isEndemic = ENDEMIC_COUNTRIES.has(countryName);
+                  const fillColor = isEndemic ? '#A10D3A' : '#CBD5E1';
 
                   return (
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
+                      fill={fillColor}
+                      stroke="#FFFFFF"
+                      strokeWidth={0.5}
+                      className="transition-opacity hover:opacity-80 focus:outline-none cursor-pointer"
+                      style={{
+                        fill: fillColor,
+                        outline: 'none',
+                      }}
                       onMouseEnter={() => {
                         setTooltip(countryName);
                       }}
                       onMouseLeave={() => {
                         setTooltip('');
-                      }}
-                      style={{
-                        default: {
-                          fill: isEndemic ? '#A10D3A' : '#CBD5E1',
-                          stroke: '#FFFFFF',
-                          strokeWidth: 0.5,
-                          outline: 'none',
-                          transition: 'fill 0.2s ease',
-                        },
-                        hover: {
-                          fill: isEndemic ? '#7A0A2C' : '#94A3B8',
-                          stroke: '#FFFFFF',
-                          strokeWidth: 0.8,
-                          outline: 'none',
-                          cursor: 'pointer',
-                        },
-                        pressed: {
-                          outline: 'none',
-                        },
                       }}
                     />
                   );
