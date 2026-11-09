@@ -1,203 +1,481 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '../../context/LanguageContext';
+import { PUBLICACIONES_DATA } from '../../data/publicacionesData';
+
+// Nombres y apellidos clave de investigadores de la red para resaltar en la referencia
+const NETWORK_SURNAME_REGEX = /\b(Gotuzzo|Garrido-Pinz[aá]s|Garrido|Zunt|L[oó]pez|Talledo|Guardia|Alva|Concha-Velasco|Concha|Yamano|Taylor|Garc[ií]a|Tipismana|Terashima|Morales|C[aá]rcamo|Elespuro|Segami|Mej[ií]a|Calvo|Bravo|Ramos)\b/gi;
+
+function highlightAuthorsInText(text) {
+  if (!text) return null;
+  const parts = [];
+  let lastIdx = 0;
+  let match;
+  
+  // Clonar regex para resetear lastIndex
+  const regex = new RegExp(NETWORK_SURNAME_REGEX);
+  
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIdx) {
+      parts.push(text.substring(lastIdx, match.index));
+    }
+    parts.push(
+      <strong key={match.index} className="font-extrabold text-[#003B49] bg-amber-100/60 px-0.5 rounded">
+        {match[0]}
+      </strong>
+    );
+    lastIdx = regex.lastIndex;
+  }
+  
+  if (lastIdx < text.length) {
+    parts.push(text.substring(lastIdx));
+  }
+  
+  return parts.length > 0 ? parts : text;
+}
 
 export default function PublicacionesPage() {
-  const { lang, t } = useLanguage();
+  const { lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
-  const [openAbstracts, setOpenAbstracts] = useState({});
+  const [areaFilter, setAreaFilter] = useState('todos');
+  const [sortOrder, setSortOrder] = useState('desc'); // 'desc' = más recientes primero (2026 -> 1991)
+  const [visibleCount, setVisibleCount] = useState(15);
+  const [selectedPub, setSelectedPub] = useState(null); // { pub, action: 'resumen' | 'link' }
 
-  const toggleAbstract = (id) => {
-    setOpenAbstracts(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
+  // Extraer áreas temáticas únicas para los filtros
+  const areasDisponibles = useMemo(() => {
+    const set = new Set();
+    PUBLICACIONES_DATA.forEach(p => {
+      if (p.area) {
+        // Separar si contiene /
+        p.area.split('/').forEach(a => {
+          const trimmed = a.trim();
+          if (trimmed) set.add(trimmed);
+        });
+      }
+    });
+    return Array.from(set).sort();
+  }, []);
 
-  const publications = [
-    {
-      id: 1,
-      authors: "Gotuzzo Eduardo, González Elsa, Taylor Graham P., et al.",
-      year: "2023",
-      title: "Human T-cell lymphotropic virus type 1 (HTLV-1): Clinical spectrum, pathogenesis, and interventions in endemic areas",
-      journal: "Lancet Infectious Diseases",
-      doi: "10.1016/S1473-3099(23)00112-X",
-      abstract: lang === 'es'
-        ? "El virus linfotrópico de células T humanas tipo 1 (HTLV-1) continúa siendo un patógeno desatendido a nivel global. Esta revisión exhaustiva consolida la evidencia clínica de más de tres décadas de seguimiento en cohortes latinoamericanas, detallando los factores de riesgo de progresión a mielopatía asociada a HTLV (HAM/TSP) y leucemia de células T del adulto (ATL). Se discuten las estrategias de tamizaje prenatal y la necesidad urgente de políticas globales de salud pública basadas en evidencia sólida."
-        : "Human T-cell lymphotropic virus type 1 (HTLV-1) remains a neglected global pathogen. This comprehensive review consolidates clinical evidence from more than three decades of follow-up in Latin American cohorts, detailing risk factors for progression to HTLV-associated myelopathy (HAM/TSP) and adult T-cell leukemia (ATL). Antenatal screening strategies and public health recommendations are discussed."
-    },
-    {
-      id: 2,
-      authors: "Taylor Graham P., Yamano Yoshihisa, González Elsa, Gotuzzo Eduardo.",
-      year: "2022",
-      title: "Proviral load as a prognostic biomarker for HTLV-1-associated myelopathy: A multicenter longitudinal study",
-      journal: "Journal of Clinical Virology",
-      doi: "10.1016/j.jcv.2022.105180",
-      abstract: lang === 'es'
-        ? "Evaluación multicéntrica de la cuantificación de la carga proviral de HTLV-1 en células mononucleares de sangre periférica (PBMC) como marcador de riesgo de progresión neurológica. Los resultados confirman que cargas provirales superiores al 10% en PBMC se asocian a un riesgo significativamente mayor de desarrollar síntomas motores y vesicales tempranos en pacientes portadores."
-        : "Multicenter evaluation of HTLV-1 proviral load quantification in peripheral blood mononuclear cells (PBMC) as a biomarker for neurological progression. Findings demonstrate that proviral loads exceeding 10% in PBMC are strongly associated with increased risk of developing motor and urological symptoms."
-    },
-    {
-      id: 3,
-      authors: "González Elsa, Terashima Angélica, Gotuzzo Eduardo.",
-      year: "2023",
-      title: "Coinfection with HTLV-1 and Strongyloides stercoralis: Immunological disruption and clinical management",
-      journal: "American Journal of Tropical Medicine and Hygiene",
-      doi: "10.4269/ajtmh.22-0741",
-      abstract: lang === 'es'
-        ? "La coinfección entre HTLV-1 y Strongyloides stercoralis induce una polarización inmune desfavorable con disminución de la respuesta mediada por IgE y eosinófilos. El estudio describe los protocolos de tamizaje y esquemas reforzados con ivermectina para prevenir cuadros de hiperinfección y diseminación parasitaria potencialmente fatales en áreas endémicas del Perú."
-        : "Coinfection with HTLV-1 and Strongyloides stercoralis induces an adverse immune shift characterized by impaired IgE and eosinophil responses. The study details screening protocols and reinforced ivermectin regimens to prevent life-threatening hyperinfection syndrome in endemic regions."
-    },
-    {
-      id: 4,
-      authors: "Kashanchi Fatah, Vicente Ana Carolina, Gotuzzo Eduardo, et al.",
-      year: "2024",
-      title: "Molecular epidemiology of HTLV-1 in Latin America and the Caribbean: Subtypes, diversity, and origin",
-      journal: "Retrovirology",
-      doi: "10.1186/s12977-024-00632-1",
-      abstract: lang === 'es'
-        ? "Análisis genómico filogenético de cepas aisladas en Perú, Brasil, Colombia y el Caribe. Los hallazgos demuestran la predominancia del subtipo cosmopolita (HTLV-1a) subgrupo transcontinental, respaldando hipótesis sobre múltiples introducciones históricas y estabilidad genómica proviral en poblaciones nativas y urbanas."
-        : "Genomic phylogenetic analysis of viral strains isolated in Peru, Brazil, Colombia, and the Caribbean. Findings reveal the predominance of the Cosmopolitan subtype (HTLV-1a) Transcontinental subgroup, supporting historical introduction models and proviral genomic stability."
-    },
-    {
-      id: 5,
-      authors: "Gessain Antoine, Cassar Olivier, Taylor Graham P.",
-      year: "2021",
-      title: "Global epidemiology and prevention of Human T-cell Leukemia Virus type 1",
-      journal: "Nature Reviews Microbiology",
-      doi: "10.1038/s41579-021-00538-3",
-      abstract: lang === 'es'
-        ? "Revisión global sobre la carga de enfermedad del HTLV-1, con énfasis en el mapeo de áreas hiperendémicas y las intervenciones sanitarias preventivas más costo-efectivas para la eliminación de la transmisión materno-infantil y en bancos de sangre."
-        : "Global review addressing the disease burden of HTLV-1, emphasizing hyperendemic cluster mapping and cost-effective health interventions to halt mother-to-child and transfusion transmission."
-    }
-  ];
+  // Filtrado y ordenamiento
+  const filteredAndSorted = useMemo(() => {
+    let list = PUBLICACIONES_DATA.filter(p => {
+      // Filtro por área
+      if (areaFilter !== 'todos') {
+        if (!p.area || !p.area.toLowerCase().includes(areaFilter.toLowerCase())) {
+          return false;
+        }
+      }
 
-  const filtered = publications.filter(p => {
-    const term = searchTerm.toLowerCase();
-    return (
-      p.title.toLowerCase().includes(term) ||
-      p.authors.toLowerCase().includes(term) ||
-      p.year.includes(term) ||
-      p.journal.toLowerCase().includes(term)
-    );
-  });
+      // Filtro por término de búsqueda
+      if (searchTerm.trim()) {
+        const q = searchTerm.toLowerCase();
+        const matchTitle = (p.titulo || '').toLowerCase().includes(q);
+        const matchAutores = (p.autores_red || '').toLowerCase().includes(q);
+        const matchRef = (p.referencia || '').toLowerCase().includes(q);
+        const matchYear = (p.ano || '').includes(q);
+        const matchArea = (p.area || '').toLowerCase().includes(q);
+        const matchTipo = (p.tipo || '').toLowerCase().includes(q);
+        if (!matchTitle && !matchAutores && !matchRef && !matchYear && !matchArea && !matchTipo) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+
+    // Ordenar por año
+    list.sort((a, b) => {
+      const yearA = parseInt(a.ano) || 0;
+      const yearB = parseInt(b.ano) || 0;
+      return sortOrder === 'desc' ? yearB - yearA : yearA - yearB;
+    });
+
+    return list;
+  }, [searchTerm, areaFilter, sortOrder]);
+
+  const visibleList = filteredAndSorted.slice(0, visibleCount);
 
   return (
     <main className="w-full bg-[#f8fafc] min-h-[calc(100vh-80px)] py-8 sm:py-12 text-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        {/* Cabecera Estilo QuEST LAC */}
+        {/* Cabecera Principal */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b-2 border-[#003B49]/15">
           <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="px-3 py-1 bg-teal-50 text-[#003B49] border border-[#087E8B]/20 rounded-full text-xs font-bold uppercase tracking-wider">
+                {lang === 'es' ? 'Producción Científica Oficial' : 'Official Scientific Output'}
+              </span>
+              <span className="text-xs font-bold text-slate-500">
+                ({PUBLICACIONES_DATA.length} {lang === 'es' ? 'publicaciones' : 'publications'})
+              </span>
+            </div>
             <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
-              {lang === 'es' ? 'Publicaciones' : 'Publications'}
+              {lang === 'es' ? 'Publicaciones de la Red HTLV' : 'HTLV Network Publications'}
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 mt-1">
-              {lang === 'es' ? 'Artículos indexados elaborados por miembros de la Red HTLV.' : 'Peer-reviewed articles authored by members of the HTLV Network.'}
+            <p className="text-sm sm:text-base text-slate-600 mt-1 max-w-3xl">
+              {lang === 'es'
+                ? 'Artículos científicos e investigaciones indexadas elaboradas por miembros e investigadores de la Red HTLV desde 1991 a la actualidad.'
+                : 'Peer-reviewed scientific articles and indexed research authored by HTLV Network members from 1991 to present.'}
             </p>
           </div>
 
-          {/* Buscador Simple */}
+          {/* Buscador Rápido */}
           <div className="w-full md:w-80">
             <div className="relative">
               <span className="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg">search</span>
               <input
                 type="text"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder={lang === 'es' ? "Buscar por autor, título o año..." : "Search by author, title or year..."}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 bg-white focus:border-[#087E8B] focus:ring-2 focus:ring-[#087E8B] focus:outline-none text-sm text-slate-800 transition"
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setVisibleCount(15);
+                }}
+                placeholder={lang === 'es' ? "Buscar por autor, título, año..." : "Search by author, title, year..."}
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 bg-white focus:border-[#087E8B] focus:ring-2 focus:ring-[#087E8B] focus:outline-none text-sm text-slate-800 transition shadow-2xs"
               />
             </div>
           </div>
         </div>
 
-        {/* Listado de Artículos */}
-        <div className="divide-y divide-slate-200 py-4">
-          {filtered.length === 0 ? (
-            <div className="py-12 text-center text-slate-500 text-sm">
-              {lang === 'es' ? 'No se encontraron publicaciones.' : 'No publications found.'}
+        {/* Barra de Filtros por Área Temática y Orden de Año */}
+        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+          
+          {/* Filtros de Área */}
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="text-xs font-bold text-slate-500 mr-1 hidden sm:inline">
+              {lang === 'es' ? 'Área:' : 'Area:'}
+            </span>
+            <button
+              type="button"
+              onClick={() => { setAreaFilter('todos'); setVisibleCount(15); }}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                areaFilter === 'todos'
+                  ? 'bg-[#003B49] text-white shadow-2xs'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              {lang === 'es' ? `Todas (${PUBLICACIONES_DATA.length})` : `All (${PUBLICACIONES_DATA.length})`}
+            </button>
+            {areasDisponibles.map(area => (
+              <button
+                key={area}
+                type="button"
+                onClick={() => { setAreaFilter(area); setVisibleCount(15); }}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  areaFilter === area
+                    ? 'bg-[#087E8B] text-white shadow-2xs'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                {area}
+              </button>
+            ))}
+          </div>
+
+          {/* Orden de Año */}
+          <div className="flex items-center gap-2 shrink-0 self-end lg:self-auto">
+            <span className="text-xs font-medium text-slate-500">
+              {lang === 'es' ? 'Orden:' : 'Sort:'}
+            </span>
+            <button
+              type="button"
+              onClick={() => setSortOrder(prev => prev === 'desc' ? 'asc' : 'desc')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-200 transition-colors cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-[16px]">
+                {sortOrder === 'desc' ? 'arrow_downward' : 'arrow_upward'}
+              </span>
+              <span>
+                {sortOrder === 'desc'
+                  ? (lang === 'es' ? 'Más recientes primero' : 'Newest first')
+                  : (lang === 'es' ? 'Más antiguos primero' : 'Oldest first')}
+              </span>
+            </button>
+          </div>
+
+        </div>
+
+        {/* Listado de Publicaciones */}
+        <div className="space-y-4">
+          {filteredAndSorted.length === 0 ? (
+            <div className="bg-white py-14 text-center rounded-2xl border border-slate-200 shadow-2xs space-y-2">
+              <span className="material-symbols-outlined text-4xl text-slate-400">
+                search_off
+              </span>
+              <p className="text-sm font-semibold text-slate-700">
+                {lang === 'es' ? 'No se encontraron publicaciones con los filtros aplicados.' : 'No publications matched your search criteria.'}
+              </p>
             </div>
           ) : (
-            filtered.map((pub) => {
-              const isOpen = !!openAbstracts[pub.id];
-              const doiUrl = `https://doi.org/${pub.doi}`;
-
-              return (
-                <div key={pub.id} className="py-6 space-y-2">
-                  
-                  {/* Autores */}
-                  <p className="text-sm font-medium text-slate-600">
-                    {pub.authors}
-                  </p>
-
-                  {/* [Año] Título del Artículo como HIPERVÍNCULO directo al DOI */}
-                  <h3 className="text-base sm:text-lg font-bold leading-snug">
-                    <span className="text-[#A10D3A]">[{pub.year}]</span>{' '}
-                    <a
-                      href={doiUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#003B49] hover:text-[#087E8B] hover:underline transition-colors"
-                      title={lang === 'es' ? "Abrir publicación oficial en DOI" : "Open official DOI publication"}
-                    >
-                      {pub.title}
-                    </a>
-                  </h3>
-
-                  {/* Botón: Solo texto MOSTAZA (#E5A400), SIN FONDO, resaltado en negrita con flecha arriba/abajo */}
-                  <div className="pt-1">
-                    <button
-                      onClick={() => toggleAbstract(pub.id)}
-                      className="inline-flex items-center gap-1 text-sm font-bold text-[#E5A400] hover:text-[#c48d00] transition-colors cursor-pointer bg-transparent p-0 border-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] rounded-sm"
-                    >
-                      <span>{lang === 'es' ? 'Resumen' : 'Abstract'}</span>
-                      <span className="material-symbols-outlined text-lg leading-none transition-transform">
-                        {isOpen ? 'expand_less' : 'expand_more'}
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* Cuadro Desplegable de Resumen (Sin borde izquierdo de color) */}
-                  {isOpen && (
-                    <div className="mt-3 p-5 sm:p-6 bg-[#fffdf5] border border-amber-200/80 rounded-xl shadow-xs space-y-3 animate-fadeIn">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold text-amber-900">
-                          {pub.journal}
+            <>
+              <div className="grid grid-cols-1 gap-4">
+                {visibleList.map((pub) => (
+                  <article
+                    key={pub.id}
+                    className="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-[#087E8B]/40 transition-all space-y-4"
+                  >
+                    {/* Fila Superior: [Año], Tipo y Área Temática */}
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        {/* Año destacado */}
+                        <span className="px-3 py-1 bg-[#A10D3A]/10 text-[#A10D3A] border border-[#A10D3A]/25 rounded-md text-xs font-extrabold tracking-wide">
+                          [{pub.ano}]
                         </span>
-                        <button
-                          onClick={() => toggleAbstract(pub.id)}
-                          className="text-xs font-semibold text-amber-800 hover:underline cursor-pointer"
-                        >
-                          {lang === 'es' ? 'Cerrar' : 'Close'} [x]
-                        </button>
+                        {pub.tipo && (
+                          <span className="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-md text-[11px] font-semibold border border-slate-200">
+                            {pub.tipo}
+                          </span>
+                        )}
                       </div>
 
-                      <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
-                        {pub.abstract}
-                      </p>
-
-                      {/* Solo el enlace DOI */}
-                      <div className="pt-3 border-t border-amber-200/60 flex items-center text-sm">
-                        <a
-                          href={doiUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-semibold text-[#A10D3A] hover:underline flex items-center gap-1.5"
-                        >
-                          <span className="material-symbols-outlined text-base">open_in_new</span>
-                          <span>DOI: {pub.doi}</span>
-                        </a>
-                      </div>
+                      {pub.area && (
+                        <span className="px-2.5 py-1 bg-[#087E8B]/10 text-[#003B49] rounded-full text-[11px] font-bold border border-[#087E8B]/20">
+                          {pub.area}
+                        </span>
+                      )}
                     </div>
-                  )}
 
+                    {/* Título Oficial de la Publicación */}
+                    <h2 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
+                      {pub.titulo}
+                    </h2>
+
+                    {/* Autores de la Red (En Negrita Destacada) */}
+                    <div className="text-xs sm:text-sm text-slate-800 bg-amber-50/70 p-3 rounded-xl border border-amber-200/80 flex items-start gap-2">
+                      <span className="material-symbols-outlined text-[#E5A400] text-base shrink-0 mt-0.5">
+                        verified_user
+                      </span>
+                      <p className="leading-relaxed">
+                        <strong className="font-extrabold text-[#003B49]">
+                          {lang === 'es' ? 'Autores de la Red:' : 'Network Authors:'}
+                        </strong>{' '}
+                        <strong className="font-extrabold text-slate-900 underline decoration-[#E5A400] decoration-2 underline-offset-2">
+                          {pub.autores_red}
+                        </strong>
+                      </p>
+                    </div>
+
+                    {/* Referencia bibliográfica completa con autores de la red en negrita */}
+                    <div className="text-xs text-slate-600 bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
+                        {lang === 'es' ? 'Cita y Referencia Bibliográfica:' : 'Citation & Full Reference:'}
+                      </span>
+                      <p className="leading-relaxed text-slate-700 font-sans">
+                        {highlightAuthorsInText(pub.referencia)}
+                      </p>
+                    </div>
+
+                    {/* Botones: Ver Resumen y Ver Link (ambos activan ventana "Estamos Trabajando") */}
+                    <div className="pt-2 flex flex-wrap items-center gap-3 border-t border-slate-100">
+                      
+                      {/* Botón Ver Resumen */}
+                      <button
+                        type="button"
+                        onClick={() => setSelectedPub({ pub, action: 'resumen' })}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#003B49] hover:text-[#087E8B] bg-slate-100 hover:bg-slate-200 px-3.5 py-2 rounded-lg border border-slate-200 transition-colors cursor-pointer shadow-2xs group"
+                      >
+                        <span className="material-symbols-outlined text-[16px] text-[#E5A400] group-hover:scale-110 transition-transform">
+                          description
+                        </span>
+                        <span>{lang === 'es' ? 'Ver resumen' : 'View abstract'}</span>
+                      </button>
+
+                      {/* Botón Ver Link / DOI */}
+                      <button
+                        type="button"
+                        onClick={() => setSelectedPub({ pub, action: 'link' })}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#087E8B] hover:text-[#003B49] bg-teal-50 hover:bg-teal-100 px-3.5 py-2 rounded-lg border border-teal-200 transition-colors cursor-pointer shadow-2xs group"
+                      >
+                        <span className="material-symbols-outlined text-[16px] text-[#087E8B] group-hover:scale-110 transition-transform">
+                          open_in_new
+                        </span>
+                        <span>{lang === 'es' ? 'Ver link oficial' : 'View official link'}</span>
+                      </button>
+
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              {/* Botón Cargar Más */}
+              {visibleCount < filteredAndSorted.length && (
+                <div className="pt-6 text-center">
+                  <button
+                    type="button"
+                    onClick={() => setVisibleCount(prev => prev + 15)}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#003B49] hover:bg-[#087E8B] text-white rounded-xl text-xs sm:text-sm font-bold shadow-md transition-colors cursor-pointer"
+                  >
+                    <span>
+                      {lang === 'es'
+                        ? `Cargar más publicaciones (${visibleCount} de ${filteredAndSorted.length})`
+                        : `Load more publications (${visibleCount} of ${filteredAndSorted.length})`}
+                    </span>
+                    <span className="material-symbols-outlined text-base">expand_more</span>
+                  </button>
                 </div>
-              );
-            })
+              )}
+            </>
           )}
         </div>
+
+        {/* Modal Simpático "Estamos trabajando" para Ver Link / Ver Resumen */}
+        {selectedPub && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-xs animate-fadeIn"
+            onClick={() => setSelectedPub(null)}
+          >
+            <div
+              className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5 border border-slate-200 relative animate-scaleUp text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Botón cerrar */}
+              <button
+                type="button"
+                onClick={() => setSelectedPub(null)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors font-bold text-lg leading-none cursor-pointer"
+                aria-label="Cerrar modal"
+              >
+                ✕
+              </button>
+
+              {/* Ilustración Animada y Graciosa del Virus Obrero / Robot de Laboratorio */}
+              <div className="pt-2 flex flex-col items-center justify-center">
+                <div className="relative">
+                  <svg
+                    className="w-28 h-28 mx-auto drop-shadow-md animate-bounce"
+                    viewBox="0 0 120 120"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    {/* Partícula viral redonda con espículas */}
+                    <circle cx="60" cy="65" r="32" fill="#087E8B" stroke="#003B49" strokeWidth="3" />
+
+                    {/* Espículas glicoproteicas */}
+                    <path d="M60 27 L60 33" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="60" cy="25" r="4" fill="#E5A400" />
+
+                    <path d="M60 97 L60 103" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="60" cy="105" r="4" fill="#E5A400" />
+
+                    <path d="M25 65 L31 65" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="23" cy="65" r="4" fill="#E5A400" />
+
+                    <path d="M89 65 L95 65" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="97" cy="65" r="4" fill="#E5A400" />
+
+                    <path d="M35 40 L40 44" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="33" cy="38" r="4" fill="#E5A400" />
+
+                    <path d="M85 40 L80 44" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="87" cy="38" r="4" fill="#E5A400" />
+
+                    <path d="M35 90 L40 86" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="33" cy="92" r="4" fill="#E5A400" />
+
+                    <path d="M85 90 L80 86" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="87" cy="92" r="4" fill="#E5A400" />
+
+                    {/* Casco amarillo de construcción */}
+                    <path d="M42 46 C42 34 50 30 60 30 C70 30 78 34 78 46 Z" fill="#FBBF24" stroke="#D97706" strokeWidth="2.5" />
+                    <path d="M36 46 L84 46" stroke="#B45309" strokeWidth="3.5" strokeLinecap="round" />
+                    <rect x="56" y="32" width="8" height="6" rx="1.5" fill="#FFFFFF" stroke="#D97706" strokeWidth="1" />
+
+                    {/* Ojos con gafas protectoras */}
+                    <circle cx="51" cy="62" r="6" fill="#FFFFFF" stroke="#003B49" strokeWidth="1.5" />
+                    <circle cx="53" cy="62" r="2.5" fill="#003B49" />
+                    <circle cx="54" cy="60.5" r="1" fill="#FFFFFF" />
+
+                    <circle cx="69" cy="62" r="6" fill="#FFFFFF" stroke="#003B49" strokeWidth="1.5" />
+                    <circle cx="71" cy="62" r="2.5" fill="#003B49" />
+                    <circle cx="72" cy="60.5" r="1" fill="#FFFFFF" />
+
+                    <path d="M57 62 L63 62" stroke="#003B49" strokeWidth="1.5" />
+
+                    {/* Mejillas sonrosadas */}
+                    <ellipse cx="45" cy="68" rx="3" ry="1.5" fill="#F472B6" opacity="0.6" />
+                    <ellipse cx="75" cy="68" rx="3" ry="1.5" fill="#F472B6" opacity="0.6" />
+
+                    {/* Sonrisa simpática */}
+                    <path d="M54 72 Q60 78 66 72" stroke="#003B49" strokeWidth="2" strokeLinecap="round" fill="none" />
+
+                    {/* Manitos sosteniendo llave inglesa y portapapeles */}
+                    <circle cx="36" cy="74" r="5" fill="#0A5265" stroke="#003B49" strokeWidth="1.5" />
+                    <path d="M36 74 L25 82 M22 84 L27 79" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
+
+                    <circle cx="84" cy="74" r="5" fill="#0A5265" stroke="#003B49" strokeWidth="1.5" />
+                    <rect x="85" y="68" width="11" height="14" rx="1.5" fill="#E2E8F0" stroke="#475569" strokeWidth="1.5" />
+                    <path d="M88 73 L93 73 M88 76 L93 76 M88 79 L92 79" stroke="#64748B" strokeWidth="1" strokeLinecap="round" />
+                  </svg>
+
+                  <span className="inline-block mt-2 px-3 py-1 bg-amber-100 text-amber-900 border border-amber-300 rounded-full text-[11px] font-black uppercase tracking-wider">
+                    🚧 {lang === 'es' ? 'En Digitalización' : 'In Digitization'} ⚙️
+                  </span>
+                </div>
+              </div>
+
+              {/* Mensaje simpático según la acción pulsada */}
+              <div className="space-y-2">
+                <h3 className="text-xl sm:text-2xl font-black text-[#003B49]">
+                  {lang === 'es' ? '¡Estamos trabajando en esto!' : 'We are working on this!'}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+                  {selectedPub.action === 'resumen'
+                    ? (lang === 'es'
+                        ? 'Nuestro equipo bibliotecario e investigadores están terminando de transcribir y estructurar el resumen analítico completo de este artículo histórico. ¡Estará disponible muy pronto!'
+                        : 'Our library and research team is completing the transcription and indexing of the full analytical abstract for this paper. It will be available very soon!')
+                    : (lang === 'es'
+                        ? 'Estamos indexando y enlazando los accesos directos (DOI / PubMed / Repositorio) de este artículo. ¡Estará disponible con hipervínculo directo muy pronto!'
+                        : 'We are currently indexing and linking the official access redirects (DOI / PubMed / Repository) for this paper. Direct links will be available soon!')}
+                </p>
+              </div>
+
+              {/* Ficha resumida del artículo */}
+              <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-left text-xs space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 bg-[#A10D3A]/10 text-[#A10D3A] font-extrabold rounded text-[11px]">
+                    [{selectedPub.pub.ano}]
+                  </span>
+                  <span className="font-semibold text-slate-600 text-[11px]">
+                    {selectedPub.pub.tipo || selectedPub.pub.area}
+                  </span>
+                </div>
+                <p className="font-bold text-[#003B49] text-sm leading-snug">
+                  {selectedPub.pub.titulo}
+                </p>
+                <p className="text-slate-800 text-[11px] pt-1 border-t border-slate-200">
+                  <strong className="text-[#003B49] font-bold">
+                    {lang === 'es' ? 'Autores de la Red:' : 'Network Authors:'}
+                  </strong>{' '}
+                  <strong className="text-slate-900 font-extrabold">{selectedPub.pub.autores_red}</strong>
+                </p>
+              </div>
+
+              {/* Botones de acción */}
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedPub(null)}
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
+                >
+                  {lang === 'es' ? 'Entendido / Cerrar' : 'Got it / Close'}
+                </button>
+                <Link
+                  href={`/contact?subject=consulta-publicacion&articulo=${encodeURIComponent(selectedPub.pub.titulo)}`}
+                  onClick={() => setSelectedPub(null)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-bold bg-[#003B49] hover:bg-[#087E8B] text-white transition-colors shadow-2xs"
+                >
+                  <span>{lang === 'es' ? 'Consultar sobre este artículo' : 'Inquire about this article'}</span>
+                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </Link>
+              </div>
+
+            </div>
+          </div>
+        )}
 
       </div>
     </main>
