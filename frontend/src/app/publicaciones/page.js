@@ -5,63 +5,72 @@ import Link from 'next/link';
 import { useLanguage } from '../../context/LanguageContext';
 import { PUBLICACIONES_DATA } from '../../data/publicacionesData';
 
-// Nombres y apellidos clave de investigadores de la red para resaltar en negrita
-const SURNAMES_LIST = [
-  'Gotuzzo',
-  'González', 'Gonzalez',
-  'Garrido-Pinzás', 'Garrido-Pinzas', 'Garrido',
-  'Zunt',
-  'López', 'Lopez',
-  'Talledo',
-  'Guardia',
-  'Alva',
-  'Concha-Velasco', 'Concha',
-  'Yamano',
-  'Taylor',
-  'García', 'Garcia',
-  'Tipismana',
-  'Terashima',
-  'Morales',
-  'Cárcamo', 'Carcamo',
-  'Elespuro',
-  'Segami',
-  'Mejía', 'Mejia',
-  'Calvo',
-  'Bravo',
-  'Ramos',
-  'Rosadas',
-  'Álvarez', 'Alvarez',
-  'Gonzales-Lagos', 'González-Lagos', 'Gonzales',
-  'Casabona'
-].join('|');
+// Patrones específicos de cada investigador de la Red HTLV (según la columna 'Autores de la red' de la matriz oficial)
+const NETWORK_MEMBERS = {
+  gotuzzo: {
+    check: (str) => /gotuzzo/i.test(str),
+    regexStr: `(?:(?:Dr\\.?\\s+)?Eduardo\\s+Gotuzzo|Gotuzzo\\s+(?:E\\.?\\s*A\\.?|E\\.?|A\\.?)|(?:E\\.?\\s+)?Gotuzzo\\b)`
+  },
+  yamano: {
+    check: (str) => /yamano/i.test(str),
+    regexStr: `(?:(?:Dr\\.?\\s+)?Yoshihisa\\s+Yamano|Yamano\\s+Y\\.?|(?:Y\\.?\\s+)?Yamano\\b)`
+  },
+  alva: {
+    check: (str) => /alva/i.test(str),
+    regexStr: `(?:(?:Dr\\.?\\s+)?Isaac\\s+Alva|Alva\\s+I\\.?|(?:I\\.?\\s+)?Alva\\b)`
+  },
+  zunt: {
+    check: (str) => /zunt/i.test(str),
+    regexStr: `(?:(?:Dr\\.?\\s+)?(?:Joseph(?:\\s+R\\.?)?|Joe)\\s+Zunt|Zunt\\s+(?:JR|J\\.?)|(?:(?:JR|J\\.?)\\s+)?Zunt\\b)`
+  },
+  lopez: {
+    check: (str) => /l[oó]pez/i.test(str),
+    regexStr: `(?:(?:Mg\\.?\\s+)?Giovanni\\s+L[oó]pez|L[oó]pez\\s+G\\.?|Lopez\\s+G\\.?|(?:G\\.?\\s+)?L[oó]pez\\b|(?:G\\.?\\s+)?Lopez\\b)`
+  },
+  talledo: {
+    check: (str) => /talledo/i.test(str),
+    regexStr: `(?:(?:Dr\\.?\\s+)?Michael\\s+Talledo|Talledo\\s+M\\.?|(?:M\\.?\\s+)?Talledo\\b)`
+  },
+  concha: {
+    check: (str) => /concha/i.test(str),
+    regexStr: `(?:(?:Dra\\.?\\s+)?F[aá]tima\\s+Concha(?:-Velasco)?|Concha-Velasco\\s+F\\.?|Concha\\s+F\\.?|(?:F\\.?\\s+)?Concha-Velasco\\b)`
+  },
+  garrido: {
+    check: (str) => /garrido/i.test(str),
+    regexStr: `(?:(?:Dra\\.?\\s+)?Gabriela\\s+Garrido(?:-Pinz[aá]s)?|Garrido-Pinz[aá]s\\s+G\\.?|Garrido-Pinzas\\s+G\\.?|Garrido\\s+G\\.?|(?:G\\.?\\s+)?Garrido-Pinz[aá]s\\b|(?:G\\.?\\s+)?Garrido-Pinzas\\b)`
+  },
+  guardia: {
+    check: (str) => /guardia/i.test(str),
+    regexStr: `(?:(?:Lic\\.?\\s+)?Dyana\\s+Guardia|Guardia\\s+D\\.?|(?:D\\.?\\s+)?Guardia\\b)`
+  }
+};
 
-const FIRST_NAMES_LIST = [
-  'Eduardo', 'Gabriela', 'Michael', 'Carolina', 'Elsa', 'Dyana', 'Isaac',
-  'Fatima', 'Fátima', 'Yoshihisa', 'Joseph', 'Joe', 'Graham', 'Giovanni',
-  'Carlos', 'Angelica', 'Angélica', 'Claudia', 'Cesar', 'César', 'Teresa',
-  'Armando', 'Fernando', 'Hugo'
-].join('|');
+function getPublicationAuthorRegex(autoresRed) {
+  if (!autoresRed) return null;
+  const activePatterns = [];
+  
+  for (const member of Object.values(NETWORK_MEMBERS)) {
+    if (member.check(autoresRed)) {
+      activePatterns.push(member.regexStr);
+    }
+  }
+  
+  if (activePatterns.length === 0) return null;
+  
+  return new RegExp(
+    `(?<!\\p{L})(${activePatterns.join('|')})(?!\\p{L})`,
+    'gu'
+  );
+}
 
-const TITLES_LIST = 'Dr\\.?|Dra\\.?|Mg\\.?|Lic\\.?|Prof\\.?|Bach\\.?';
-
-// Regex que detecta al autor completo de la red respetando caracteres acentuados Unicode:
-// 1) Título + Nombre + Apellido (ej. "Dr. Eduardo Gotuzzo", "Dra. Gabriela Garrido-Pinzás")
-// 2) Nombre + Inicial + Apellido (ej. "Joseph R. Zunt", "Carolina Alvarez", "Eduardo Gotuzzo")
-// 3) Apellido compuesto o simple seguido de iniciales o nombres (ej. "Garrido-Pinzás G", "González-Lagos E", "Álvarez C", "Gotuzzo E.", "Zunt JR", "Ramos JC")
-const NETWORK_AUTHOR_REGEX_STR = 
-  `(?<!\\p{L})(` +
-  `(?:${TITLES_LIST})\\s+(?:(?:${FIRST_NAMES_LIST}|\\p{Lu}\\p{Ll}+)\\s+)?(?:${SURNAMES_LIST})(?:-\\p{L}+)?` +
-  `|(?:${FIRST_NAMES_LIST})\\s+(?:\\p{Lu}\\.\\s+)?(?:${SURNAMES_LIST})(?:-\\p{L}+)?` +
-  `|(?:${SURNAMES_LIST})(?:-\\p{L}+)?(?:\\s+(?:\\p{Lu}\\.?\\s*){1,3}|\\s+(?:${FIRST_NAMES_LIST}))?` +
-  `)(?!\\p{L})`;
-
-function highlightAuthorsInText(text) {
+function highlightAuthorsInText(text, autoresRed) {
   if (!text) return null;
+  const regex = getPublicationAuthorRegex(autoresRed);
+  if (!regex) return text;
+
   const parts = [];
   let lastIdx = 0;
   let match;
-  
-  const regex = new RegExp(NETWORK_AUTHOR_REGEX_STR, 'gu');
   
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIdx) {
@@ -177,7 +186,7 @@ export default function PublicacionesPage() {
                   
                   {/* Autores con investigadores de la red en negrita */}
                   <p className="text-sm font-medium text-slate-600 leading-relaxed">
-                    {highlightAuthorsInText(authorsText)}
+                    {highlightAuthorsInText(authorsText, pub.autores_red)}
                   </p>
 
                   {/* [Año] Título del Artículo como enlace interactivo */}
@@ -196,17 +205,17 @@ export default function PublicacionesPage() {
                   {/* Cita / Referencia bibliográfica sutil */}
                   {pub.referencia && (
                     <p className="text-xs text-slate-500 font-normal italic leading-relaxed">
-                      {highlightAuthorsInText(pub.referencia)}
+                      {highlightAuthorsInText(pub.referencia, pub.autores_red)}
                     </p>
                   )}
 
                   {/* Botones al estilo anterior: solo texto sin fondo */}
                   <div className="pt-1 flex flex-wrap items-center gap-5 text-sm">
-                    {/* Botón Resumen: Solo texto MOSTAZA (#E5A400), SIN FONDO, resaltado en negrita */}
+                    {/* Botón Resumen: Solo texto marino (#003B49), SIN FONDO, resaltado en negrita sin color amarillo */}
                     <button
                       type="button"
                       onClick={() => setSelectedPub({ pub, action: 'resumen' })}
-                      className="inline-flex items-center gap-1 font-bold text-[#E5A400] hover:text-[#c48d00] transition-colors cursor-pointer bg-transparent p-0 border-0 focus-visible:outline-none"
+                      className="inline-flex items-center gap-1 font-bold text-[#003B49] hover:text-[#087E8B] transition-colors cursor-pointer bg-transparent p-0 border-0 focus-visible:outline-none"
                     >
                       <span>{lang === 'es' ? 'Resumen' : 'Abstract'}</span>
                       <span className="material-symbols-outlined text-lg leading-none">expand_more</span>
