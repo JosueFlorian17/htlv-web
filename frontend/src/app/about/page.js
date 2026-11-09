@@ -365,7 +365,7 @@ function AboutContent() {
       description: lang === 'es'
         ? 'Institucionalizar la red mediante convenios, comité directivo, coordinaciones regionales e internacionales y documentos de gestión que aseguren gobernanza, ética multicéntrica y seguimiento.'
         : 'Institutionalize the network through agreements, steering committee, regional and international coordination, and management documents ensuring governance, multicenter ethics, and monitoring.',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=600&q=80',
       actionBtn: null
     },
     {

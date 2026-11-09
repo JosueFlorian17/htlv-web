@@ -80,7 +80,7 @@ function ProfesionalesContent() {
       speakerRole: lang === 'es'
         ? "Presidente Honorario Red HTLV • Profesor Emérito UPCH • Investigador Distinguido IMTAvH (Perú)"
         : "Honorary President Red HTLV • Emeritus Professor UPCH • Distinguished Investigator IMTAvH (Peru)",
-      speakerImage: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80",
+      speakerImage: "/team/eduardo_gotuzzo.jpeg",
       bannerImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80",
       dateFormatted: "28/10/26",
       day: "28",

@@ -72,19 +72,19 @@ export default function NetworkPage() {
       name: 'Dr. Eduardo Gotuzzo',
       role: 'Presidente Honorario | IMTAvH - UPCH (Perú)',
       desc: 'Profesor emérito e investigador pionero en enfermedades infecciosas y tropicales en América Latina.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC3ogV_JqhtSHX8SvTJ4p1KmF4NEx1Aa2m3-RAIW-mPaDXc37CZuyN3__KYRf6vbJdxVMdVhugHOSUMUDoMM9Xx22IxI3T3wrxc5QWgHXVOA_4cIAQBt8EL-wm6ydmvTZfuEzf89oFVvTfQBRUxkHTQ4DaZm3qNwZtMG-HWhMNAuJKtSmOy2Q5h0rlGnJDXoDEKlp5wT3EnXqg0JzCQGE4mNz-HF8EZAtczOoCHQacrM_vw20BqSOTuksf3oV7Oc1JysM9JWnQz7kA'
+      image: '/team/eduardo_gotuzzo.jpeg'
     },
     {
       name: 'Prof. Graham P. Taylor',
       role: 'Vicepresidente | Imperial College London (UK)',
       desc: 'Líder del Centro Nacional de Retrovirología Humana de Reino Unido y referente en manejo de ATL y HAM/TSP.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDgZj7_bCpWTnyBzAXOyOvypz2R4T5Ivzh8tFom4yOZWyrZZ9w5lz1CFYnk8X-nHIGrVMH6Y6wihKQRZpEc-6qhyG_eiyqwh3dOTe-Yvn8ASA_TLbUnQL5LRLalilaXav9saFMfIuNiGxk-02QpqhjSB6aJGu6jCYqE-9wg-3vP-n3f8HMAxr9lDke5GSQ98ekyUm3xbWiT3Vun3kzv41w4SRiyB_Y2SfIlNwAmMmkaPFUEMnKu1RBhOfKMuOG6uLxGvuyUJWcCHhY'
+      image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80'
     },
     {
       name: 'Dra. Elsa González',
       role: 'Coordinadora Científica | IMTAvH - UPCH (Perú)',
       desc: 'Investigadora principal en diagnóstico molecular, coinfecciones y vigilancia materno-infantil de HTLV-1.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJt4xNgitIjw1jAkYZotalxqxpiycO6TCtfaegvWZsEDX104-XJg7_wiWpYoevzc5B5bZSjMv0A5el2JF4ksBGhbRcZwbMi7mUKZxhWA_P4KGbekzwxbn8uQchq8jrYOaED41iNstVWijcbqvf76TbFbzcD9KHIEAnL3Lmaf9LbEC49wxffvbmDLvzSQTHWovTJZ51ghruQCNTj8jNFsJkgQGua8Qj9coLj-SpWSeGzv5cIF4dQS_MyTdPjf8eY4yBc9266R15zBo'
+      image: 'https://images.unsplash.com/photo-1594824813580-c081e7d8d697?auto=format&fit=crop&w=400&q=80'
     }
   ];
 

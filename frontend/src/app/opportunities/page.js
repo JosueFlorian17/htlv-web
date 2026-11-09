@@ -15,7 +15,7 @@ export default function OpportunitiesPage() {
       institution: 'Fiocruz Research Institute • Río de Janeiro',
       desc: 'Prácticas de verano centradas en programas de vigilancia epidemiológica para HTLV en América del Sur. Ideal para estudiantes de maestría.',
       deadline: 'Límite: 01 Nov 2026',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCc44HLGZvwY2LRLESBpWRczwHz791PuYHG7pBad6cHHiVR0ZmKDy-LLY61Hv-MRAYJBkaDLb9ZvqXzPHtPe-PrhqSHgg_82Lh6RcRqMrcPyw47vg_qBTX01h1_ycVRJeQZuTY8X-NtOCpn1DwWPNSo6SNH-yFnPp7DKmD0FAJGbOTVbQTlGqrrNTI8qKZ1q9l39g-qZgXZq3sSJFzQokfykarrLEReTbPjMdKEpheyYJgOeCPIO8sTz-k6yYuTsfCTNqlGmkeZGHM',
+      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
       tagClass: 'bg-secondary-container text-on-secondary-container'
     },
     {
@@ -26,7 +26,7 @@ export default function OpportunitiesPage() {
       institution: 'Kumamoto University • Aula Virtual',
       desc: 'Un programa intensivo especializado de 4 semanas que cubre la inmunología celular y la patología de HAM/TSP y ATL.',
       deadline: 'Límite: 25 Nov 2026',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuATvtuw2LeutLshetXr-JdNoQJLKbpua5wR-ItXIRp2PJP0aJ2nrEmLFUdEkhnmADosvjF__YtuaGPx_f9cK32q17Rj4zqtn73k2In6Q0ZBcBQjeR7fNqyGXwy2MnAMbVD9fJUGbl6jftThm1YDi66iJnK5QaR9CJsVsa1qrWVMwX--z3mYBsnlu2JVHt4s0gngtKfUxw5d48I7TU6-XpdmUk5cpncMgJ2YZzckje7rBYbK609fyjN6_IT9frQdQ-d7bS5_TdREsp0',
+      image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
       tagClass: 'bg-surface-container-highest text-on-surface-variant'
     },
     {
@@ -37,7 +37,7 @@ export default function OpportunitiesPage() {
       institution: 'The HTLV Society • Global',
       desc: 'Financiamiento completo para viajes y registro en el próximo Congreso Internacional sobre HTLV para científicos en las primeras etapas de su carrera.',
       deadline: 'Límite: 15 Dic 2026',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiZBDGr6xcUCxikip9zQRyXHyPBdzjH51J2fjdIyDnU8axFDdNdaLyGTPHo64KdTLxNf78ZBCH_ymzWrz3C7Ef9Nsek46b_E280UtSFZGSOFilr44TTEZKqlUxgkgBy3PqH2xdFTamPp72X9KsOthd1omUgf4vBXNcVTEQtWZqXX4K9c5rjhs2hxo-dZZZ4s48iFSG9gJCMf8DYP1aRQseoBTt8nHWx9yYLMSlPlNPSkajvldbattECBHE2pvCRMx2Qm_-OaiQhm4',
+      image: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=800&q=80',
       tagClass: 'bg-tertiary-container text-on-tertiary-container'
     }
   ];
@@ -92,7 +92,7 @@ export default function OpportunitiesPage() {
             <div className="bg-white border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300 md:col-span-2 shadow-sm">
               <div className="flex flex-col md:flex-row h-full">
                 <div className="md:w-1/2 overflow-hidden h-64 md:h-auto relative">
-                  <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Documentos de financiación científica" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1VcYLVq6TfkESe5WeGXdTfKdIzA2tg3tBMk14SPtlaIPSqqaFTQPKQBHEfiibZVOKPwCcrTjkZrgVvcL6JplblXU8ErxrPI1Vl_LwoXH0pNHTelRMSGEsVR4omOyWcxjwF_OsQmd60t4HciYIfuRHEz61-s03_wSK3UFB381vBzCfLLkprT06denSVJbwksD6UNgi5V4ZCR5_09xGVeh0g8bPtb6jqeG4rLxVRfEiSMb46qiswi1CAb6pW0OMu_CEBc3aS-Sj71E" />
+                  <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Documentos de financiación científica" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1000&q=80" />
                 </div>
                 <div className="p-8 md:w-1/2 flex flex-col justify-between">
                   <div>

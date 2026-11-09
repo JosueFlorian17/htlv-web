@@ -83,7 +83,7 @@ export default function NewsPage() {
               <div className="md:col-span-8 group cursor-pointer">
                 <div className="bg-white rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-md hover:border-primary transition-all h-full flex flex-col justify-between">
                   <div className="h-80 w-full relative overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Investigadores trabajando en laboratorio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcD29lXstUu_IXvcAWEidHu0-7K7fZgHUL9-PtF0ObBYVOObRLVPDd8C3uvvd6tTMApiAgcNlT1gXsoIrU5DUr2lTWH-l4V6bWfO1cxIUfQo6iFMX8OO5gsWTt082JmTFF86Gc9dF5nM9QgAUGgA31qSfMl8riwpY-w7GlTj-RzsxsQ3vCnGMKZy3abQJ6Hl3nmWYg1q9cuB3NANJ_U2KuNvSXIShXwz87nw5zevdp2nQBJ8N7qoqls8Red0YfN3ddYteyWdeSJ7E" />
+                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Investigadores trabajando en laboratorio" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=80" />
                     <div className="absolute top-4 left-4">
                       <span className="bg-primary text-white px-3 py-1 rounded-full text-label-sm font-bold">ACTUALIZACIÓN CIENTÍFICA</span>
                     </div>
@@ -132,7 +132,7 @@ export default function NewsPage() {
               <div className="md:col-span-4 group cursor-pointer">
                 <div className="bg-white rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:border-primary transition-all flex flex-col h-full justify-between">
                   <div className="h-48 w-full bg-surface-container overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Consenso científico papel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrsBYFiHBR0dnKO7rwGzndt-NoFkaQVIX3PtadXGV840iBUgZMr7mbRPxrk6bUiNa0SNV-KrG3W2dG7OvVXAnv3JGIucJ3gHNMicU96OhXKS32EHc6aINjwpSAVpsGiIbpvZ9U3QWRAKRW3YPpqQF7t9QrQC9bEndIYZvmqzjNVM9Iwzf5_mFSrE-tVOpqz_UD78gwxiepspgejsejoOpFmHXQsuWQELvqVD3SmtT6qsIED02DPFXmuH3SaFykyAvg-nahwrVvDxA" />
+                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Consenso científico papel" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" />
                   </div>
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
@@ -146,7 +146,7 @@ export default function NewsPage() {
               <div className="md:col-span-4 group cursor-pointer">
                 <div className="bg-white rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:border-primary transition-all flex flex-col h-full justify-between">
                   <div className="h-48 w-full bg-surface-container overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Congreso de investigadores" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiaoIJnJKoclM7eyxPd18lxisITwzgh0bDPhqfFogK9-tPszsvUv6fs0s_qQOlWpG3xNemYstsVEC-GF-lJSFRW41DVaZVn4urI-oRz79q15iZtsNzySjQTeiAi_Xkfi_50ygokMnE2mUFCZRLXXIldq5OGzKNmkEOyUPmZNKHjBGLkHX5Ehb0LX4rGW-Ki9id3wKbgrSdcn_I0mkCdTl3IMajywAr27B186U4MmEHt5OxetpKtbqyJ1paWreVViGy1xWdYyaTEBM" />
+                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Congreso de investigadores" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80" />
                   </div>
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
@@ -160,7 +160,7 @@ export default function NewsPage() {
               <div className="md:col-span-4 group cursor-pointer">
                 <div className="bg-white rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:border-primary transition-all flex flex-col h-full justify-between">
                   <div className="h-48 w-full bg-surface-container overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Tablero digital de visualización" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa1Ud8t7OSTFq69LQdsKili6g__PKminha5lcjfLiSUNbe3M_G60ayLHjBIvQqCr50ke0c5XzgoUFWuohEKGAa8vxT1M4MlZYOtf4QRvlyVZBD89TktyHZCGJfmJIFuB_cLocJzNmhma1Z_uIG8Cm8f0kTYrHvk4LoDZng7DYuExRfG-WQriT1uYzZYsyZnPo58Ycmk1WwJb9MTgENg-wJ4lvr36UDiJzQqNEeSHpBQNLjmjL00PoEN2NNW9rMuKIowx9jJOAClgw" />
+                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Tablero digital de visualización" src="https://images.unsplash.com/photo-1507842229451-7f01be7fe70d?auto=format&fit=crop&w=800&q=80" />
                   </div>
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>

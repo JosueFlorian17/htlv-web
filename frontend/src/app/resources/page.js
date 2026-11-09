@@ -68,7 +68,7 @@ export default function ResourcesPage() {
       category: 'Virología & Patogénesis',
       desc: 'Análisis detallado de cómo el virus se propaga célula a célula a través de la sinapsis virológica y biofilmes extracelulares.',
       isYoutube: false,
-      thumbnail: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARYfAPMBJO95i3OeJqqO1e7PkQnZJtJw7yNBXqmtQc732fQblkTRZG4DLSA4ZAWAAZET0kb6fswrdyxKxCSTWdNRzWGmqfXfYwNLfipwH-p0-m5pXwrZHhnD_a14J9vF5G_IXD3aTl9SyWGwUZadWt6QIpMv8UVhmzRJcE7rURVkVIVqKV9mAY8x7yJ_a9JIfY6JlAAtTqwRCh4kffaOH-fkTmaX0Wo3JhcklYl6kNKHpWPe4B7HgLBpfAzi1F4nG0eOCwUV70CbA',
+      thumbnail: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=800&q=80',
       checkpoints: [
         {
           timePercent: 30,
@@ -509,21 +509,21 @@ export default function ResourcesPage() {
       desc: 'Mapeo visual de alta resolución sobre las sinapsis virales de HTLV-1 y propagación célula a célula.',
       type: 'INFOGRAFÍA',
       meta: 'PNG, 4.2 MB',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARYfAPMBJO95i3OeJqqO1e7PkQnZJtJw7yNBXqmtQc732fQblkTRZG4DLSA4ZAWAAZET0kb6fswrdyxKxCSTWdNRzWGmqfXfYwNLfipwH-p0-m5pXwrZHhnD_a14J9vF5G_IXD3aTl9SyWGwUZadWt6QIpMv8UVhmzRJcE7rURVkVIVqKV9mAY8x7yJ_a9JIfY6JlAAtTqwRCh4kffaOH-fkTmaX0Wo3JhcklYl6kNKHpWPe4B7HgLBpfAzi1F4nG0eOCwUV70CbA'
+      image: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=800&q=80'
     },
     {
       title: 'Directriz Clínica de Diagnóstico Serológico y Molecular',
       desc: 'Protocolo estandarizado para la diferenciación ELISA, Western Blot y PCR cuantitativa en tiempo real.',
       type: 'PDF OFICIAL',
       meta: 'PDF, 1.8 MB',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCs_ADncYu3IQcJxFxpu0kOP5pnS5GRkFRzvvkbICMG9Oce33JHFTQMkyP57gtCJFnApfDqwtjpwgQIAbwBpW6NORgt4yacS-7hR-5Jn36QwK3D_oF6d8lVu-mxR5XBVZF3JxLuN0BgZ6OYdwqa7Jg3VOZt3oeq1Lg53YUd-kANDXPw9GnZm325dFVQcBEgNK6jF3lw42RuqJftpYNO_oUBbsU22bdCqK2yU_cFbh59CClyAAVbeZLjqwkhDPGvfXp5NihQfRV0vss'
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80'
     },
     {
       title: 'Manual de Procedimientos de Laboratorio',
       desc: 'Instrucciones para el procesamiento de muestras biológicas y cálculo de carga proviral en PBMC.',
       type: 'MANUAL',
       meta: 'PDF, 850 KB',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCFzJcS4XQz33g1ZOJF2fMADRrJ4Nk-Y9FK0qHMT6qq9Vx8MvtJeMNGwWd2Wvl8Urz8v0DmcRl1XRgSn6DlQQ0DZ4NZz2xSY-YjVh_Ugtfkv3MXwuRiP7qvrXdRAMbYsfo7RMKGVqbqKC5plim7MELc13qU6FgZmE9huyF7E2xbcWWVbQNVRMGjShge2DotpHtNsCYLSNLSEhDTrw9esDxvK6-kcLZKq5W2zhFiAsLhwSfQYEP_p6LeRo-eX9wQFqouvK0hCBD77Q'
+      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80'
     }
   ];
 

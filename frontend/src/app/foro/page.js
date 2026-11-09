@@ -146,7 +146,7 @@ export default function ForumPage() {
           <img 
             alt="Fondo de comunidad de apoyo" 
             className="absolute inset-0 w-full h-full object-cover" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAqoHDWygUj6bPDpSZRerHWyHsTC3E7Pmjcyviws4rXpdgLA8UVnLo8H805dBI8JpQqVluYgGb2DkoERH5N6Wch9SrudnJg5LaaZEOkPkgW7b7hvKy8EovQIgd90mrDozbLWn76rj3zYMGSg_Y5iMV-fQDhvGBRQTjuRyl8_otEiLhq7kvmJTafEx--gmJrXfHibnrAW4qAw_Lt8258hfGy8CPQicvEyMYu9aRLUPYSxcuuxG1hQPpnIbMZ0IdU_XppVKOzYm2Slc"
+            src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1600&q=80"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-surface/95 via-surface/80 to-transparent"></div>
           
