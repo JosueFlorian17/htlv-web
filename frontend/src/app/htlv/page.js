@@ -243,7 +243,7 @@ function HTLVContent() {
   return (
     <main className="w-full bg-slate-50 min-h-[calc(100vh-80px)] text-slate-900 flex flex-col justify-between">
 
-      {/* 1. PESTAÑA: ¿QUÉ ES EL HTLV? */}
+      {/* 1. PESTAÑA: ¿QUÉ ES EL HTLV-1? */}
       {activeTab === 'que-es' && (
         <div className="animate-fadeIn text-slate-800">
 
@@ -288,19 +288,19 @@ function HTLVContent() {
           <div id="info-que-es" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
 
             {/* ═══════════════════════════════════════════════════════════
-                SECCIÓN 1: ¿QUÉ ES EL HTLV?
-                Layout: 3 columnas en fila — texto | 2 tarjetas | enfermedades
+                SECCIÓN 1: ¿QUÉ ES EL HTLV-1?
+                Layout: 2 columnas — texto descriptivo | 2 tarjetas flotantes
             ════════════════════════════════════════════════════════════ */}
             <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
               <div className="p-6 sm:p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr_1.1fr] gap-6 lg:gap-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-6 lg:gap-8 items-center">
 
                   {/* Col 1: Título con barra amarilla + Texto */}
                   <div className="space-y-3">
                     <div className="flex items-center gap-2.5">
                       <span className="w-1 h-7 bg-[#E5A400] rounded-sm shrink-0" />
                       <h2 className="text-lg sm:text-xl font-bold text-[#003B49]">
-                        {lang === 'es' ? '¿Qué es el HTLV?' : 'What is HTLV?'}
+                        {lang === 'es' ? '¿Qué es el HTLV-1?' : 'What is HTLV-1?'}
                       </h2>
                     </div>
                     <p className="text-sm text-slate-700 leading-relaxed">
@@ -311,9 +311,9 @@ function HTLVContent() {
                   </div>
 
                   {/* Col 2: Dos tarjetas flotantes — Retrovirus y Células T */}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Tarjeta Retrovirus */}
-                    <div className="bg-white border border-slate-200 rounded-xl p-4 flex flex-col items-center text-center space-y-2 shadow-sm">
+                    <div className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col items-center text-center space-y-2.5 shadow-sm">
                       <span className="material-symbols-outlined text-[#087E8B] text-4xl">biotech</span>
                       <h4 className="font-bold text-[#003B49] text-sm">
                         {lang === 'es' ? 'Retrovirus' : 'Retrovirus'}
@@ -326,7 +326,7 @@ function HTLVContent() {
                     </div>
 
                     {/* Tarjeta Células T */}
-                    <div className="bg-white border border-slate-200 rounded-xl p-4 flex flex-col items-center text-center space-y-2 shadow-sm">
+                    <div className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col items-center text-center space-y-2.5 shadow-sm">
                       <span className="material-symbols-outlined text-[#A10D3A] text-4xl">bubble_chart</span>
                       <h4 className="font-bold text-[#003B49] text-sm">
                         {lang === 'es' ? 'Células T' : 'T Cells'}
@@ -336,37 +336,6 @@ function HTLVContent() {
                           ? 'Infecta principalmente a las células T, un tipo de célula del sistema inmunitario.'
                           : 'Primarily infects T cells, a key component of the immune system.'}
                       </p>
-                    </div>
-                  </div>
-
-                  {/* Col 3: ¿Qué enfermedades puede causar? */}
-                  <div className="space-y-3">
-                    <h3 className="font-bold text-sm sm:text-base text-[#003B49]">
-                      {lang === 'es' ? '¿Qué enfermedades puede causar?' : 'What diseases can it cause?'}
-                    </h3>
-
-                    {/* ATL */}
-                    <div className="flex items-start gap-3">
-                      <span className="px-3 py-1 rounded-full bg-[#FCE7F3] text-[#A10D3A] font-black text-xs shrink-0 tracking-wide mt-0.5">
-                        ATL
-                      </span>
-                      <span className="text-sm text-slate-700 leading-snug">
-                        {lang === 'es'
-                          ? 'Leucemia/linfoma de células T del adulto.'
-                          : 'Adult T-cell leukemia/lymphoma.'}
-                      </span>
-                    </div>
-
-                    {/* HAM/TSP */}
-                    <div className="flex items-start gap-3">
-                      <span className="px-2 py-1 rounded-full bg-[#FEF3C7] text-[#B45309] font-black text-xs shrink-0 tracking-wide mt-0.5">
-                        HAM/TSP
-                      </span>
-                      <span className="text-sm text-slate-700 leading-snug">
-                        {lang === 'es'
-                          ? 'Mielopatía asociada al HTLV-1 / paraparesia espástica tropical.'
-                          : 'HTLV-1-associated myelopathy / tropical spastic paraparesis.'}
-                      </span>
                     </div>
                   </div>
 
@@ -505,13 +474,10 @@ function HTLVContent() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Tarjeta ATL */}
                 <div className="bg-[#FAF7F8] p-5 rounded-xl border border-rose-100 space-y-4">
-                  <div className="flex items-center gap-2.5">
-                    <span className="px-3 py-1 rounded-full bg-[#FCE7F3] text-[#A10D3A] font-black text-xs uppercase tracking-wide">
-                      ATL / ATLL
+                  <div>
+                    <span className="px-3 py-1.5 rounded-full bg-[#FCE7F3] text-[#A10D3A] font-bold text-xs uppercase tracking-wide inline-block">
+                      {lang === 'es' ? 'Síntomas de ATL / ATLL' : 'Symptoms of ATL / ATLL'}
                     </span>
-                    <h4 className="font-bold text-sm text-[#003B49]">
-                      {lang === 'es' ? 'Síntomas de ATL/ATLL' : 'Symptoms of ATL/ATLL'}
-                    </h4>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs text-slate-700">
                     {[
@@ -532,13 +498,10 @@ function HTLVContent() {
 
                 {/* Tarjeta HAM/TSP */}
                 <div className="bg-[#FAF8F5] p-5 rounded-xl border border-amber-100 space-y-4">
-                  <div className="flex items-center gap-2.5">
-                    <span className="px-3 py-1 rounded-full bg-[#FEF3C7] text-[#B45309] font-black text-xs uppercase tracking-wide">
-                      HAM / TSP
+                  <div>
+                    <span className="px-3 py-1.5 rounded-full bg-[#FEF3C7] text-[#B45309] font-bold text-xs uppercase tracking-wide inline-block">
+                      {lang === 'es' ? 'Síntomas de HAM / TSP' : 'Symptoms of HAM / TSP'}
                     </span>
-                    <h4 className="font-bold text-sm text-[#003B49]">
-                      {lang === 'es' ? 'Síntomas de HAM/TSP' : 'Symptoms of HAM/TSP'}
-                    </h4>
                   </div>
                   <div className="space-y-2 text-xs text-slate-700">
                     {[
