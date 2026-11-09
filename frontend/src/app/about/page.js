@@ -1066,41 +1066,32 @@ function AboutContent() {
                         {inst.members.map((member, mIdx) => (
                           <div
                             key={mIdx}
-                            className="relative pl-4 border-l-2 border-[#E5A400] flex flex-col justify-between space-y-4 py-1 group bg-white p-3 rounded-r-lg shadow-xs hover:shadow-sm hover:border-[#003B49] transition-all"
+                            className="relative pl-4 border-l-2 border-[#E5A400] flex flex-col space-y-3 py-1 group bg-white p-3 rounded-r-lg shadow-xs hover:shadow-sm hover:border-[#003B49] transition-all"
                           >
-                            <div className="space-y-3">
-                              {/* Foto de perfil */}
-                              <div className="w-full aspect-square rounded-sm overflow-hidden bg-slate-100 border border-slate-200/80">
-                                <img
-                                  src={member.image}
-                                  alt={member.name}
-                                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                                />
-                              </div>
-
-                              {/* Nombre, Subtitulo (Rol) y Texto descriptivo */}
-                              <div>
-                                <h4 className="text-base font-bold text-slate-900 group-hover:text-[#003B49] transition-colors leading-tight">
-                                  {member.name}
-                                </h4>
-
-                                {/* Subtitulo */}
-                                <p className="text-xs font-semibold text-[#003B49] mt-1 leading-snug">
-                                  {member.role}
-                                </p>
-
-                                {/* Texto */}
-                                <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                                  {member.text}
-                                </p>
-                              </div>
+                            {/* Foto de perfil */}
+                            <div className="w-full aspect-square rounded-sm overflow-hidden bg-slate-100 border border-slate-200/80">
+                              <img
+                                src={member.image}
+                                alt={member.name}
+                                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                              />
                             </div>
 
-                            {/* Badge tipo pill con subtitulo */}
-                            <div className="pt-1">
-                              <span className="inline-block text-[11px] font-semibold text-slate-800 px-2.5 py-0.5 rounded-full border border-[#E5A400] bg-transparent">
+                            {/* Nombre, Subtitulo (Rol) y Texto descriptivo */}
+                            <div>
+                              <h4 className="text-base font-bold text-slate-900 group-hover:text-[#003B49] transition-colors leading-tight">
+                                {member.name}
+                              </h4>
+
+                              {/* Subtitulo */}
+                              <p className="text-xs font-semibold text-[#003B49] mt-1 leading-snug">
                                 {member.role}
-                              </span>
+                              </p>
+
+                              {/* Texto */}
+                              <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                                {member.text}
+                              </p>
                             </div>
                           </div>
                         ))}
