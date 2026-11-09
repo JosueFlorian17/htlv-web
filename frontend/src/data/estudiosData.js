@@ -33,8 +33,8 @@ export const ESTUDIOS_DATA = [
     "financiador": "",
     "estado_es": "En curso",
     "estado_en": "In Progress",
-    "notas_es": "Protocolo en elaboración",
-    "notas_en": "Protocol in preparation"
+    "notas_es": "",
+    "notas_en": ""
   },
   {
     "id": 3,

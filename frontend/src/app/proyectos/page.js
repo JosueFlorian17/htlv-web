@@ -28,10 +28,13 @@ function ProyectosContent() {
     router.push(`/proyectos?tab=${tabId}`, { scroll: false });
   };
 
-  // Filtrado de estudios de investigación
-  const filteredStudies = ESTUDIOS_DATA.filter((proj) => {
-    // Filtro por línea o tesis
-    if (lineaFilter === 'tesis' && !proj.isTesis) return false;
+  // Separar proyectos de investigación y tesis
+  const proyectosData = ESTUDIOS_DATA.filter((proj) => !proj.isTesis);
+  const tesisData = ESTUDIOS_DATA.filter((proj) => proj.isTesis);
+
+  // Filtrado exclusivo de proyectos de investigación
+  const filteredStudies = proyectosData.filter((proj) => {
+    // Filtro por línea
     if (lineaFilter === 'clinica' && !proj.linea_es.toLowerCase().includes('clínica')) return false;
     if (lineaFilter === 'salud_publica' && !proj.linea_es.toLowerCase().includes('salud pública')) return false;
     if (lineaFilter === 'ciencias_basicas' && !proj.linea_es.toLowerCase().includes('ciencias básicas')) return false;
@@ -40,7 +43,7 @@ function ProyectosContent() {
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       const matchTitle = (proj.title_es + ' ' + proj.title_en).toLowerCase().includes(q);
-      const matchInv = (proj.investigador_es + ' ' + proj.asesor_es + ' ' + proj.estudiantes).toLowerCase().includes(q);
+      const matchInv = (proj.investigador_es + ' ' + proj.financiador).toLowerCase().includes(q);
       const matchLinea = (proj.linea_es + ' ' + proj.linea_en).toLowerCase().includes(q);
       if (!matchTitle && !matchInv && !matchLinea) return false;
     }
@@ -124,7 +127,7 @@ function ProyectosContent() {
         
         <div className="pb-6 mb-8 border-b-2 border-[#003B49]/15">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
-            {activeTab === 'investigacion' && (lang === 'es' ? 'Proyectos de Investigación Científica' : 'Scientific Research Projects')}
+            {activeTab === 'investigacion' && (lang === 'es' ? 'Proyectos de investigación' : 'Research Projects')}
             {activeTab === 'avances' && (lang === 'es' ? 'Resultados, Hitos y Avances Clínicos' : 'Results, Milestones & Breakthroughs')}
             {activeTab === 'tesistas' && (lang === 'es' ? 'Oportunidades para Tesistas e Investigadores' : 'Opportunities for Researchers')}
           </h1>
@@ -140,11 +143,10 @@ function ProyectosContent() {
               {/* Filtro por línea temática */}
               <div className="flex flex-wrap items-center gap-1.5">
                 {[
-                  { id: 'todos', label_es: 'Todos (21)', label_en: 'All (21)' },
+                  { id: 'todos', label_es: `Todos (${proyectosData.length})`, label_en: `All (${proyectosData.length})` },
                   { id: 'clinica', label_es: 'Clínica', label_en: 'Clinical' },
                   { id: 'salud_publica', label_es: 'Salud Pública', label_en: 'Public Health' },
-                  { id: 'ciencias_basicas', label_es: 'Ciencias Básicas', label_en: 'Basic Sciences' },
-                  { id: 'tesis', label_es: 'Tesis', label_en: 'Thesis' }
+                  { id: 'ciencias_basicas', label_es: 'Ciencias Básicas', label_en: 'Basic Sciences' }
                 ].map((f) => (
                   <button
                     key={f.id}
@@ -432,23 +434,15 @@ function ProyectosContent() {
                     </div>
                   </div>
 
-                  {/* Botones de acción */}
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  {/* Botón de acción: únicamente Cerrar */}
+                  <div className="pt-2 flex justify-center">
                     <button
                       type="button"
                       onClick={() => setSelectedStudy(null)}
-                      className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
+                      className="w-full sm:w-auto px-7 py-2.5 rounded-lg text-xs font-bold bg-[#003B49] hover:bg-[#087E8B] text-white transition-colors cursor-pointer shadow-xs"
                     >
                       {lang === 'es' ? 'Cerrar' : 'Close'}
                     </button>
-                    <Link
-                      href={`/contact?subject=consulta-proyecto&proyecto=${encodeURIComponent(selectedStudy.title_es)}`}
-                      onClick={() => setSelectedStudy(null)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-bold bg-[#003B49] hover:bg-[#087E8B] text-white transition-colors shadow-2xs"
-                    >
-                      <span>{lang === 'es' ? 'Consultar estado a la coordinación' : 'Inquire with network team'}</span>
-                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                    </Link>
                   </div>
 
                 </div>
@@ -480,11 +474,11 @@ function ProyectosContent() {
           </div>
         )}
 
-        {/* 3. OPORTUNIDADES PARA TESISTAS (Con las 3 tesis en curso) */}
+        {/* 3. OPORTUNIDADES PARA TESISTAS (Con las tesis oficiales en curso de la Red) */}
         {activeTab === 'tesistas' && (
           <div className="space-y-10 animate-fadeIn">
             
-            {/* Tesis en Curso */}
+            {/* Tesis en Curso oficiales */}
             <div className="space-y-4">
               <div className="border-b border-slate-200 pb-2">
                 <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
@@ -492,40 +486,50 @@ function ProyectosContent() {
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-500">
                   {lang === 'es' 
-                    ? 'Investigaciones de grado y posgrado desarrolladas por tesistas en los nodos de la Red.' 
-                    : 'Undergraduate and graduate research theses developed across Network nodes.'}
+                    ? 'Investigaciones y tesis desarrolladas por tesistas en los nodos de la Red HTLV.' 
+                    : 'Theses developed by students and researchers across HTLV Network nodes.'}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {ongoingTheses.map((thesis, idx) => (
-                  <div key={idx} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
+                {tesisData.map((tesis) => (
+                  <div key={tesis.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
                     <div className="space-y-3">
-                      <div className="flex items-center justify-between text-xs font-semibold text-[#087E8B]">
-                        <span>{thesis.status}</span>
+                      <div className="flex items-center justify-between">
+                        {/* Estado solo texto de color sin fondo */}
+                        <span className="text-xs font-extrabold uppercase tracking-wider text-[#0284C7]">
+                          {lang === 'es' ? tesis.estado_es : tesis.estado_en}
+                        </span>
+                        <span className="text-[11px] font-semibold text-slate-500">
+                          {lang === 'es' ? tesis.linea_es : tesis.linea_en}
+                        </span>
                       </div>
+
                       <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
-                        {thesis.title}
+                        {lang === 'es' ? tesis.title_es : tesis.title_en}
                       </h3>
-                      <div className="text-xs text-slate-700 space-y-1 border-y border-slate-100 py-2">
-                        <p><strong className="font-semibold text-slate-900">{lang === 'es' ? 'Tesista:' : 'Researcher:'}</strong> {thesis.author}</p>
-                        <p><strong className="font-semibold text-slate-900">{lang === 'es' ? 'Grado:' : 'Degree:'}</strong> {thesis.degree}</p>
-                        <p><strong className="font-semibold text-slate-900">{lang === 'es' ? 'Asesoría:' : 'Advisors:'}</strong> {thesis.advisors}</p>
-                        <p className="text-slate-500">{thesis.institution}</p>
+
+                      <div className="text-xs text-slate-700 space-y-1.5 border-y border-slate-100 py-2.5">
+                        <p>
+                          <strong className="font-semibold text-slate-900">{lang === 'es' ? 'Tesistas / Estudiantes:' : 'Students / Researchers:'}</strong>{' '}
+                          <span className="text-slate-800">{tesis.estudiantes}</span>
+                        </p>
+                        <p>
+                          <strong className="font-semibold text-slate-900">{lang === 'es' ? 'Asesoría:' : 'Advisor:'}</strong>{' '}
+                          <span className="text-slate-800">{lang === 'es' ? tesis.asesor_es : tesis.asesor_en}</span>
+                        </p>
                       </div>
-                      <p className="text-xs text-slate-600 leading-relaxed">
-                        {thesis.summary}
-                      </p>
                     </div>
 
                     <div className="pt-2">
-                      <Link
-                        href="/contact"
-                        className="text-xs font-semibold text-[#003B49] hover:text-[#087E8B] flex items-center gap-1 transition-colors"
+                      <button
+                        type="button"
+                        onClick={() => setSelectedStudy(tesis)}
+                        className="text-xs font-semibold text-[#003B49] hover:text-[#087E8B] flex items-center gap-1 transition-colors cursor-pointer"
                       >
-                        <span>{lang === 'es' ? 'Contactar con el equipo' : 'Contact team'}</span>
+                        <span>{lang === 'es' ? 'Consultar estado de la tesis' : 'Check thesis status'}</span>
                         <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 ))}
