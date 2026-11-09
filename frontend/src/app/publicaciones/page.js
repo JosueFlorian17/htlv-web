@@ -145,11 +145,6 @@ export default function PublicacionesPage() {
             <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
               {lang === 'es' ? 'Publicaciones' : 'Publications'}
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 mt-1">
-              {lang === 'es'
-                ? 'Artículos indexados elaborados por miembros de la Red HTLV.'
-                : 'Peer-reviewed articles authored by members of the HTLV Network.'}
-            </p>
           </div>
 
           {/* Buscador Simple */}
