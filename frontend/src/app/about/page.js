@@ -442,24 +442,6 @@ function AboutContent() {
           <div className="space-y-8 animate-fadeIn max-w-4xl mx-auto">
             <div className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-8">
               
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-slate-100">
-                <div className="space-y-2">
-                  <span className="text-xs font-bold tracking-widest text-[#087E8B] uppercase">
-                    {lang === 'es' ? 'Plataforma de colaboración internacional' : 'International Collaborative Platform'}
-                  </span>
-                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49]">
-                    {lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?'}
-                  </h2>
-                </div>
-                <div className="self-start sm:self-auto shrink-0">
-                  <img 
-                    src={lang === 'es' ? "/logos/LogoRedHTLV_PNG_ES.png" : "/logos/LogoHTLVNetwork_PNG_EN.png"}
-                    alt={lang === 'es' ? "Logo Red HTLV" : "HTLV Network Logo"}
-                    className="h-16 sm:h-20 w-auto object-contain"
-                  />
-                </div>
-              </div>
-
               {/* Texto principal descriptivo */}
               <p className="text-base sm:text-lg text-slate-800 leading-relaxed font-medium">
                 {lang === 'es'
