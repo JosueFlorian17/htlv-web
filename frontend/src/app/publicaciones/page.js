@@ -6,7 +6,54 @@ import { useLanguage } from '../../context/LanguageContext';
 import { PUBLICACIONES_DATA } from '../../data/publicacionesData';
 
 // Nombres y apellidos clave de investigadores de la red para resaltar en negrita
-const NETWORK_SURNAME_REGEX = /\b(Gotuzzo|González|Gonzalez|Garrido-Pinzás|Garrido|Zunt|López|Lopez|Talledo|Guardia|Alva|Concha-Velasco|Concha|Yamano|Taylor|García|Garcia|Tipismana|Terashima|Morales|Cárcamo|Carcamo|Elespuro|Segami|Mejía|Mejia|Calvo|Bravo|Ramos)\b/gi;
+const SURNAMES_LIST = [
+  'Gotuzzo',
+  'González', 'Gonzalez',
+  'Garrido-Pinzás', 'Garrido-Pinzas', 'Garrido',
+  'Zunt',
+  'López', 'Lopez',
+  'Talledo',
+  'Guardia',
+  'Alva',
+  'Concha-Velasco', 'Concha',
+  'Yamano',
+  'Taylor',
+  'García', 'Garcia',
+  'Tipismana',
+  'Terashima',
+  'Morales',
+  'Cárcamo', 'Carcamo',
+  'Elespuro',
+  'Segami',
+  'Mejía', 'Mejia',
+  'Calvo',
+  'Bravo',
+  'Ramos',
+  'Rosadas',
+  'Álvarez', 'Alvarez',
+  'Gonzales-Lagos', 'González-Lagos', 'Gonzales',
+  'Casabona'
+].join('|');
+
+const FIRST_NAMES_LIST = [
+  'Eduardo', 'Gabriela', 'Michael', 'Carolina', 'Elsa', 'Dyana', 'Isaac',
+  'Fatima', 'Fátima', 'Yoshihisa', 'Joseph', 'Joe', 'Graham', 'Giovanni',
+  'Carlos', 'Angelica', 'Angélica', 'Claudia', 'Cesar', 'César', 'Teresa',
+  'Armando', 'Fernando', 'Hugo'
+].join('|');
+
+const TITLES_LIST = 'Dr\\.?|Dra\\.?|Mg\\.?|Lic\\.?|Prof\\.?|Bach\\.?';
+
+// Regex que detecta al autor completo de la red respetando caracteres acentuados Unicode:
+// 1) Título + Nombre + Apellido (ej. "Dr. Eduardo Gotuzzo", "Dra. Gabriela Garrido-Pinzás")
+// 2) Nombre + Inicial + Apellido (ej. "Joseph R. Zunt", "Carolina Alvarez", "Eduardo Gotuzzo")
+// 3) Apellido compuesto o simple seguido de iniciales o nombres (ej. "Garrido-Pinzás G", "González-Lagos E", "Álvarez C", "Gotuzzo E.", "Zunt JR", "Ramos JC")
+const NETWORK_AUTHOR_REGEX_STR = 
+  `(?<!\\p{L})(` +
+  `(?:${TITLES_LIST})\\s+(?:(?:${FIRST_NAMES_LIST}|\\p{Lu}\\p{Ll}+)\\s+)?(?:${SURNAMES_LIST})(?:-\\p{L}+)?` +
+  `|(?:${FIRST_NAMES_LIST})\\s+(?:\\p{Lu}\\.\\s+)?(?:${SURNAMES_LIST})(?:-\\p{L}+)?` +
+  `|(?:${SURNAMES_LIST})(?:-\\p{L}+)?(?:\\s+(?:\\p{Lu}\\.?\\s*){1,3}|\\s+(?:${FIRST_NAMES_LIST}))?` +
+  `)(?!\\p{L})`;
 
 function highlightAuthorsInText(text) {
   if (!text) return null;
@@ -14,7 +61,7 @@ function highlightAuthorsInText(text) {
   let lastIdx = 0;
   let match;
   
-  const regex = new RegExp(NETWORK_SURNAME_REGEX);
+  const regex = new RegExp(NETWORK_AUTHOR_REGEX_STR, 'gu');
   
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIdx) {
@@ -38,18 +85,24 @@ function highlightAuthorsInText(text) {
 function getAuthors(pub) {
   if (!pub) return '';
   const ref = pub.referencia || '';
+  
+  // 1. Priorizar ubicar el inicio del título en la referencia para extraer exactamente los autores
+  if (pub.titulo) {
+    const titleSnippet = pub.titulo.trim().substring(0, 25).toLowerCase();
+    const idx = ref.toLowerCase().indexOf(titleSnippet);
+    if (idx > 5 && idx < 350) {
+      return ref.substring(0, idx).replace(/[.\s]+$/, '').trim();
+    }
+  }
+
+  // 2. Formato tradicional con dos puntos previo al título
   if (ref.includes(':')) {
     const candidate = ref.split(':')[0].trim();
     if (candidate.length > 5 && candidate.length < 280) {
       return candidate;
     }
   }
-  if (pub.titulo) {
-    const idx = ref.toLowerCase().indexOf(pub.titulo.substring(0, 20).toLowerCase());
-    if (idx > 5 && idx < 280) {
-      return ref.substring(0, idx).replace(/[.\s]+$/, '').trim();
-    }
-  }
+
   return pub.autores_red || ref;
 }
 
