@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '../../context/LanguageContext';
+import { ESTUDIOS_DATA } from '../../data/estudiosData';
 
 function ProyectosContent() {
   const { lang } = useLanguage();
@@ -12,6 +13,9 @@ function ProyectosContent() {
   const tabFromUrl = searchParams.get('tab');
 
   const [activeTab, setActiveTab] = useState(tabFromUrl || 'investigacion');
+  const [selectedStudy, setSelectedStudy] = useState(null);
+  const [lineaFilter, setLineaFilter] = useState('todos');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (tabFromUrl && ['investigacion', 'avances', 'tesistas'].includes(tabFromUrl)) {
@@ -24,35 +28,25 @@ function ProyectosContent() {
     router.push(`/proyectos?tab=${tabId}`, { scroll: false });
   };
 
-  const researchProjects = [
-    {
-      title: lang === 'es' ? "Vigilancia Molecular y Filogenia de Cepas de HTLV-1/2 en América del Sur" : "Molecular Surveillance & Phylogeny of HTLV-1/2 Strains in South America",
-      node: "IMTAvH - UPCH (Perú) / Imperial College London (UK)",
-      status: lang === 'es' ? "Activo (2024-2027)" : "Active (2024-2027)",
-      desc: lang === 'es'
-        ? "Secuenciación genómica profunda para mapear la diversidad de subtipos de HTLV-1a y su correlación con la tasa de progresión a patología neurológica en poblaciones andinas y amazónicas."
-        : "Deep genomic sequencing to map HTLV-1a subtype diversity and its correlation with neurological progression in Andean and Amazonian populations.",
-      funding: "Grant Internacional Concursable"
-    },
-    {
-      title: lang === 'es' ? "Ensayo Clínico Piloto en Terapias Dirigidas para HAM/TSP" : "Pilot Clinical Trial on Targeted Therapies for HAM/TSP",
-      node: "St. Marianna University (Japón) / UPCH (Perú)",
-      status: "Fase II",
-      desc: lang === 'es'
-        ? "Evaluación de la seguridad y respuesta de biomarcadores en pacientes con paraparesia espástica tratados con nuevas moléculas inmunomoduladoras y seguimiento motor cuantitativo."
-        : "Safety and biomarker response assessment in tropical spastic paraparesis patients treated with novel immunomodulatory molecules.",
-      funding: "Consorcio Japón - América Latina"
-    },
-    {
-      title: lang === 'es' ? "Interacción Inmunológica y Coinfección: HTLV-1, Tuberculosis y Estrongiloidiasis" : "Immunological Interaction & Coinfection: HTLV-1, TB & Strongyloidiasis",
-      node: "Fiocruz (Brasil) / UPCH (Perú)",
-      status: lang === 'es' ? "Activo" : "Active",
-      desc: lang === 'es'
-        ? "Estudio de las alteraciones en la respuesta inmune celular en portadores de HTLV-1 que desarrollan tuberculosis activa o estrongiloidiasis diseminada en focos endémicos."
-        : "Investigation of immune profile alterations in HTLV-1 carriers presenting with active tuberculosis or disseminated strongyloidiasis.",
-      funding: "Cooperación Sur-Sur"
+  // Filtrado de estudios de investigación
+  const filteredStudies = ESTUDIOS_DATA.filter((proj) => {
+    // Filtro por línea o tesis
+    if (lineaFilter === 'tesis' && !proj.isTesis) return false;
+    if (lineaFilter === 'clinica' && !proj.linea_es.toLowerCase().includes('clínica')) return false;
+    if (lineaFilter === 'salud_publica' && !proj.linea_es.toLowerCase().includes('salud pública')) return false;
+    if (lineaFilter === 'ciencias_basicas' && !proj.linea_es.toLowerCase().includes('ciencias básicas')) return false;
+
+    // Filtro por buscador
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      const matchTitle = (proj.title_es + ' ' + proj.title_en).toLowerCase().includes(q);
+      const matchInv = (proj.investigador_es + ' ' + proj.asesor_es + ' ' + proj.estudiantes).toLowerCase().includes(q);
+      const matchLinea = (proj.linea_es + ' ' + proj.linea_en).toLowerCase().includes(q);
+      if (!matchTitle && !matchInv && !matchLinea) return false;
     }
-  ];
+
+    return true;
+  });
 
   const resultsList = [
     {
@@ -136,40 +130,331 @@ function ProyectosContent() {
           </h1>
         </div>
 
-        {/* 1. PROYECTOS DE INVESTIGACIÓN */}
+        {/* 1. PROYECTOS DE INVESTIGACIÓN (Alimentado desde la hoja oficial de Estudios) */}
         {activeTab === 'investigacion' && (
           <div className="space-y-6 animate-fadeIn">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {researchProjects.map((proj, idx) => (
-                <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between gap-2 text-xs font-medium text-slate-500">
-                      <span>{proj.status}</span>
-                      <span>{proj.funding}</span>
+
+            {/* Barra de Filtros y Búsqueda */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-2xs">
+              
+              {/* Filtro por línea temática */}
+              <div className="flex flex-wrap items-center gap-1.5">
+                {[
+                  { id: 'todos', label_es: 'Todos (21)', label_en: 'All (21)' },
+                  { id: 'clinica', label_es: 'Clínica', label_en: 'Clinical' },
+                  { id: 'salud_publica', label_es: 'Salud Pública', label_en: 'Public Health' },
+                  { id: 'ciencias_basicas', label_es: 'Ciencias Básicas', label_en: 'Basic Sciences' },
+                  { id: 'tesis', label_es: 'Tesis', label_en: 'Thesis' }
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => setLineaFilter(f.id)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      lineaFilter === f.id
+                        ? 'bg-[#003B49] text-white shadow-2xs'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                  >
+                    {lang === 'es' ? f.label_es : f.label_en}
+                  </button>
+                ))}
+              </div>
+
+              {/* Buscador de estudios */}
+              <div className="relative min-w-[220px]">
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
+                  search
+                </span>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={lang === 'es' ? 'Buscar estudio o investigador...' : 'Search study or researcher...'}
+                  className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#087E8B] focus:border-transparent"
+                />
+              </div>
+
+            </div>
+
+            {/* Grid de Tarjetas de Estudios */}
+            {filteredStudies.length === 0 ? (
+              <div className="bg-white p-12 text-center rounded-2xl border border-slate-200 shadow-2xs space-y-2">
+                <span className="material-symbols-outlined text-4xl text-slate-400">
+                  search_off
+                </span>
+                <p className="text-sm font-semibold text-slate-700">
+                  {lang === 'es' ? 'No se encontraron estudios con los filtros seleccionados' : 'No studies found with the selected filters'}
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredStudies.map((proj) => (
+                  <div
+                    key={proj.id}
+                    className="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-[#087E8B]/40 transition-all flex flex-col justify-between space-y-5"
+                  >
+                    <div className="space-y-3.5">
+                      {/* 1. Encabezado: Estado + Línea temática / Tesis */}
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        {/* Estado tal como está en el excel */}
+                        <span
+                          className={`px-2.5 py-1 rounded-full text-xs font-bold tracking-wide ${
+                            proj.estado_es === 'Completada'
+                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                              : proj.estado_es === 'No iniciada'
+                              ? 'bg-slate-100 text-slate-700 border border-slate-200'
+                              : 'bg-teal-50 text-[#003B49] border border-[#087E8B]/20'
+                          }`}
+                        >
+                          {lang === 'es' ? proj.estado_es : proj.estado_en}
+                        </span>
+
+                        {/* Línea temática o Badge Tesis */}
+                        <div className="flex items-center gap-1.5">
+                          {proj.isTesis && (
+                            <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#E5A400]/15 text-[#996500] border border-[#E5A400]/40">
+                              {lang === 'es' ? 'Tesis' : 'Thesis'}
+                            </span>
+                          )}
+                          <span className="text-[11px] font-semibold text-slate-500">
+                            {lang === 'es' ? proj.linea_es : proj.linea_en}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* 2. Título del Estudio */}
+                      <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
+                        {lang === 'es' ? proj.title_es : proj.title_en}
+                      </h3>
+
+                      {/* 3. Investigadores */}
+                      <div className="space-y-1.5 text-xs text-slate-700 bg-slate-50/90 p-3.5 rounded-xl border border-slate-200/80">
+                        {proj.isTesis ? (
+                          <>
+                            {proj.asesor_es && (
+                              <p className="leading-relaxed">
+                                <strong className="font-semibold text-slate-900">
+                                  {lang === 'es' ? 'Asesor:' : 'Advisor:'}
+                                </strong>{' '}
+                                {lang === 'es' ? proj.asesor_es : proj.asesor_en}
+                              </p>
+                            )}
+                            {proj.estudiantes && (
+                              <p className="leading-relaxed">
+                                <strong className="font-semibold text-slate-900">
+                                  {lang === 'es' ? 'Tesistas / Estudiantes:' : 'Students:'}
+                                </strong>{' '}
+                                {proj.estudiantes}
+                              </p>
+                            )}
+                          </>
+                        ) : (
+                          proj.investigador_es && (
+                            <p className="leading-relaxed">
+                              <strong className="font-semibold text-slate-900">
+                                {lang === 'es' ? 'Investigadores a cargo:' : 'Lead researchers:'}
+                              </strong>{' '}
+                              {lang === 'es' ? proj.investigador_es : proj.investigador_en}
+                            </p>
+                          )
+                        )}
+
+                        {proj.financiador && (
+                          <p className="leading-relaxed text-[#087E8B]">
+                            <strong className="font-semibold text-slate-900">
+                              {lang === 'es' ? 'Financiador:' : 'Funder:'}
+                            </strong>{' '}
+                            {proj.financiador}
+                          </p>
+                        )}
+
+                        {proj.notas_es && (
+                          <p className="leading-relaxed text-amber-700 italic text-[11px]">
+                            * {lang === 'es' ? proj.notas_es : proj.notas_en}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* 4. Botón Ver más que abre ventana "estamos trabajando" */}
+                      <div className="pt-1">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedStudy(proj)}
+                          className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-bold text-[#003B49] bg-slate-100 hover:bg-[#003B49] hover:text-white transition-all border border-slate-200/90 cursor-pointer shadow-2xs group"
+                        >
+                          <span className="material-symbols-outlined text-[16px] text-[#087E8B] group-hover:text-[#E5A400] transition-colors">
+                            info
+                          </span>
+                          <span>{lang === 'es' ? 'Ver más' : 'See more'}</span>
+                        </button>
+                      </div>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
-                      {proj.title}
+
+                    {/* 5. Abajo: Consultar estado del proyecto */}
+                    <div className="pt-3 border-t border-slate-200">
+                      <Link
+                        href={`/contact?subject=consulta-proyecto&proyecto=${encodeURIComponent(proj.title_es)}`}
+                        className="text-[#003B49] font-semibold hover:text-[#087E8B] flex items-center justify-between text-xs sm:text-sm transition-colors group"
+                      >
+                        <span>{lang === 'es' ? 'Consultar estado del proyecto' : 'Check project status'}</span>
+                        <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">
+                          arrow_forward
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Modal Divertido / "Estamos trabajando" */}
+            {selectedStudy && (
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-xs animate-fadeIn"
+                onClick={() => setSelectedStudy(null)}
+              >
+                <div
+                  className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5 border border-slate-200 relative animate-scaleUp text-center"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Botón cerrar */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedStudy(null)}
+                    className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors font-bold text-lg leading-none cursor-pointer"
+                    aria-label="Cerrar modal"
+                  >
+                    ✕
+                  </button>
+
+                  {/* Ilustración Animada y Graciosa del Virus Obrero / Robot de Laboratorio */}
+                  <div className="pt-2 flex flex-col items-center justify-center">
+                    <div className="relative">
+                      <svg
+                        className="w-28 h-28 mx-auto drop-shadow-md animate-bounce"
+                        viewBox="0 0 120 120"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        {/* Partícula viral redonda con espículas */}
+                        <circle cx="60" cy="65" r="32" fill="#087E8B" stroke="#003B49" strokeWidth="3" />
+
+                        {/* Espículas glicoproteicas alrededor del virus */}
+                        <path d="M60 27 L60 33" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                        <circle cx="60" cy="25" r="4" fill="#E5A400" />
+
+                        <path d="M60 97 L60 103" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                        <circle cx="60" cy="105" r="4" fill="#E5A400" />
+
+                        <path d="M25 65 L31 65" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                        <circle cx="23" cy="65" r="4" fill="#E5A400" />
+
+                        <path d="M89 65 L95 65" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                        <circle cx="97" cy="65" r="4" fill="#E5A400" />
+
+                        <path d="M35 40 L40 44" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                        <circle cx="33" cy="38" r="4" fill="#E5A400" />
+
+                        <path d="M85 40 L80 44" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                        <circle cx="87" cy="38" r="4" fill="#E5A400" />
+
+                        <path d="M35 90 L40 86" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                        <circle cx="33" cy="92" r="4" fill="#E5A400" />
+
+                        <path d="M85 90 L80 86" stroke="#E5A400" strokeWidth="4" strokeLinecap="round" />
+                        <circle cx="87" cy="92" r="4" fill="#E5A400" />
+
+                        {/* Casco amarillo de construcción */}
+                        <path d="M42 46 C42 34 50 30 60 30 C70 30 78 34 78 46 Z" fill="#FBBF24" stroke="#D97706" strokeWidth="2.5" />
+                        <path d="M36 46 L84 46" stroke="#B45309" strokeWidth="3.5" strokeLinecap="round" />
+                        <rect x="56" y="32" width="8" height="6" rx="1.5" fill="#FFFFFF" stroke="#D97706" strokeWidth="1" />
+
+                        {/* Ojos con gafas protectoras */}
+                        <circle cx="51" cy="62" r="6" fill="#FFFFFF" stroke="#003B49" strokeWidth="1.5" />
+                        <circle cx="53" cy="62" r="2.5" fill="#003B49" />
+                        <circle cx="54" cy="60.5" r="1" fill="#FFFFFF" />
+
+                        <circle cx="69" cy="62" r="6" fill="#FFFFFF" stroke="#003B49" strokeWidth="1.5" />
+                        <circle cx="71" cy="62" r="2.5" fill="#003B49" />
+                        <circle cx="72" cy="60.5" r="1" fill="#FFFFFF" />
+
+                        <path d="M57 62 L63 62" stroke="#003B49" strokeWidth="1.5" />
+
+                        {/* Mejillas sonrosadas */}
+                        <ellipse cx="45" cy="68" rx="3" ry="1.5" fill="#F472B6" opacity="0.6" />
+                        <ellipse cx="75" cy="68" rx="3" ry="1.5" fill="#F472B6" opacity="0.6" />
+
+                        {/* Sonrisa simpática */}
+                        <path d="M54 72 Q60 78 66 72" stroke="#003B49" strokeWidth="2" strokeLinecap="round" fill="none" />
+
+                        {/* Manitos sosteniendo llave inglesa y portapapeles */}
+                        <circle cx="36" cy="74" r="5" fill="#0A5265" stroke="#003B49" strokeWidth="1.5" />
+                        <path d="M36 74 L25 82 M22 84 L27 79" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
+
+                        <circle cx="84" cy="74" r="5" fill="#0A5265" stroke="#003B49" strokeWidth="1.5" />
+                        <rect x="85" y="68" width="11" height="14" rx="1.5" fill="#E2E8F0" stroke="#475569" strokeWidth="1.5" />
+                        <path d="M88 73 L93 73 M88 76 L93 76 M88 79 L92 79" stroke="#64748B" strokeWidth="1" strokeLinecap="round" />
+                      </svg>
+
+                      {/* Pequeña insignia de obra */}
+                      <span className="inline-block mt-2 px-3 py-1 bg-amber-100 text-amber-900 border border-amber-300 rounded-full text-[11px] font-black uppercase tracking-wider">
+                        🚧 {lang === 'es' ? 'En Construcción' : 'Under Construction'} ⚙️
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Mensaje simpático */}
+                  <div className="space-y-2">
+                    <h3 className="text-xl sm:text-2xl font-black text-[#003B49]">
+                      {lang === 'es' ? '¡Estamos trabajando en esto!' : 'We are working on this!'}
                     </h3>
-                    <p className="text-xs font-semibold text-[#087E8B]">
-                      {proj.node}
-                    </p>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      {proj.desc}
+                    <p className="text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+                      {lang === 'es'
+                        ? 'Nuestros investigadores y retrovirólogos están terminando de cargar la ficha técnica detallada, protocolos y avances de este estudio. ¡Estará disponible muy pronto!'
+                        : 'Our researchers and retrovirologists are finalizing the detailed technical sheet, protocols, and progress for this study. It will be available very soon!'}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-200">
-                    <Link
-                      href="/contact"
-                      className="text-[#003B49] font-semibold hover:text-[#087E8B] flex items-center gap-1 text-sm transition-colors"
+                  {/* Ficha resumida del estudio seleccionado */}
+                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-left text-xs space-y-1.5">
+                    <p className="font-bold text-[#003B49] text-sm leading-snug">
+                      {lang === 'es' ? selectedStudy.title_es : selectedStudy.title_en}
+                    </p>
+                    <div className="flex items-center gap-2 pt-1 text-[11px]">
+                      <span className="font-semibold text-slate-700">
+                        {lang === 'es' ? 'Estado:' : 'Status:'} <strong>{lang === 'es' ? selectedStudy.estado_es : selectedStudy.estado_en}</strong>
+                      </span>
+                      <span>•</span>
+                      <span className="text-[#087E8B] font-semibold">
+                        {lang === 'es' ? selectedStudy.linea_es : selectedStudy.linea_en}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Botones de acción */}
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedStudy(null)}
+                      className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
                     >
-                      <span>{lang === 'es' ? 'Consultar detalles del protocolo' : 'Inquire protocol details'}</span>
-                      <span className="material-symbols-outlined text-base">arrow_forward</span>
+                      {lang === 'es' ? 'Entendido / Cerrar' : 'Got it / Close'}
+                    </button>
+                    <Link
+                      href={`/contact?subject=consulta-proyecto&proyecto=${encodeURIComponent(selectedStudy.title_es)}`}
+                      onClick={() => setSelectedStudy(null)}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-bold bg-[#003B49] hover:bg-[#087E8B] text-white transition-colors shadow-2xs"
+                    >
+                      <span>{lang === 'es' ? 'Consultar estado a la coordinación' : 'Inquire with network team'}</span>
+                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
                     </Link>
                   </div>
+
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
+
           </div>
         )}
 
@@ -195,66 +480,50 @@ function ProyectosContent() {
           </div>
         )}
 
-        {/* 3. TESIS Y OPORTUNIDADES PARA TESISTAS */}
+        {/* 3. OPORTUNIDADES PARA TESISTAS (Con las 3 tesis en curso) */}
         {activeTab === 'tesistas' && (
-          <div className="mt-8 space-y-12 animate-fadeIn">
+          <div className="space-y-10 animate-fadeIn">
             
-            {/* SECCIÓN: TESIS EN CURSO */}
-            <div className="space-y-6">
-              <div className="border-b-2 border-[#003B49]/15 pb-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block">
-                  {lang === 'es' ? 'Formación de Talento Científico' : 'Scientific Talent Development'}
-                </span>
-                <h2 className="text-xl sm:text-2xl font-black text-[#003B49] mt-0.5">
-                  {lang === 'es' ? 'Tesis en Curso' : 'Theses in Progress'}
+            {/* Tesis en Curso */}
+            <div className="space-y-4">
+              <div className="border-b border-slate-200 pb-2">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
+                  {lang === 'es' ? 'Tesis en Curso de la Red' : 'Active Network Theses'}
                 </h2>
-                <p className="text-sm text-slate-600 mt-1">
-                  {lang === 'es'
-                    ? 'Proyectos de investigación y desarrollo de grado de tesistas vinculados a los nodos de la Red HTLV.'
-                    : 'Degree research and development projects of students affiliated with HTLV Network nodes.'}
+                <p className="text-xs sm:text-sm text-slate-500">
+                  {lang === 'es' 
+                    ? 'Investigaciones de grado y posgrado desarrolladas por tesistas en los nodos de la Red.' 
+                    : 'Undergraduate and graduate research theses developed across Network nodes.'}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {ongoingTheses.map((thesis, idx) => (
-                  <div key={idx} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-shadow">
+                  <div key={idx} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
                     <div className="space-y-3">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#E5A400]/15 text-slate-900 border border-[#E5A400]/40">
-                          {thesis.status}
-                        </span>
-                        <span className="text-xs font-semibold text-[#087E8B]">
-                          {thesis.degree.split(' ')[2] || 'Tesis'}
-                        </span>
+                      <div className="flex items-center justify-between text-xs font-semibold text-[#087E8B]">
+                        <span>{thesis.status}</span>
                       </div>
-                      
-                      <h3 className="text-base font-bold text-[#003B49] leading-snug">
+                      <h3 className="text-base sm:text-lg font-bold text-[#003B49] leading-snug">
                         {thesis.title}
                       </h3>
-
-                      <div className="pt-1 space-y-1 text-xs">
-                        <p className="font-bold text-slate-800">
-                          {thesis.author}
-                        </p>
-                        <p className="text-slate-500">
-                          {thesis.institution}
-                        </p>
-                        <p className="text-slate-600 italic">
-                          <span className="font-semibold">{lang === 'es' ? 'Asesoría:' : 'Advisors:'}</span> {thesis.advisors}
-                        </p>
+                      <div className="text-xs text-slate-700 space-y-1 border-y border-slate-100 py-2">
+                        <p><strong className="font-semibold text-slate-900">{lang === 'es' ? 'Tesista:' : 'Researcher:'}</strong> {thesis.author}</p>
+                        <p><strong className="font-semibold text-slate-900">{lang === 'es' ? 'Grado:' : 'Degree:'}</strong> {thesis.degree}</p>
+                        <p><strong className="font-semibold text-slate-900">{lang === 'es' ? 'Asesoría:' : 'Advisors:'}</strong> {thesis.advisors}</p>
+                        <p className="text-slate-500">{thesis.institution}</p>
                       </div>
-
-                      <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                      <p className="text-xs text-slate-600 leading-relaxed">
                         {thesis.summary}
                       </p>
                     </div>
 
-                    <div className="pt-2 border-t border-slate-100">
+                    <div className="pt-2">
                       <Link
                         href="/contact"
-                        className="text-xs font-bold text-[#087E8B] hover:text-[#003B49] flex items-center gap-1 transition-colors"
+                        className="text-xs font-semibold text-[#003B49] hover:text-[#087E8B] flex items-center gap-1 transition-colors"
                       >
-                        <span>{lang === 'es' ? 'Consultar sobre esta tesis' : 'Inquire about thesis'}</span>
+                        <span>{lang === 'es' ? 'Contactar con el equipo' : 'Contact team'}</span>
                         <span className="material-symbols-outlined text-sm">arrow_forward</span>
                       </Link>
                     </div>
@@ -263,44 +532,44 @@ function ProyectosContent() {
               </div>
             </div>
 
-            {/* SECCIÓN: OPORTUNIDADES Y CONVOCATORIAS */}
-            <div className="space-y-6 pt-4">
-              <div className="border-b-2 border-[#003B49]/15 pb-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#087E8B] block">
-                  {lang === 'es' ? 'Movilidad y Convocatorias' : 'Mobility & Calls'}
-                </span>
-                <h2 className="text-xl sm:text-2xl font-black text-[#003B49] mt-0.5">
-                  {lang === 'es' ? 'Oportunidades para Tesistas e Investigadores' : 'Opportunities for Researchers'}
+            {/* Oportunidades y Convocatorias */}
+            <div className="space-y-4 pt-4 border-t border-slate-200">
+              <div className="border-b border-slate-200 pb-2">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#003B49]">
+                  {lang === 'es' ? 'Convocatorias y Pasantías Abiertas' : 'Open Calls & Fellowships'}
                 </h2>
+                <p className="text-xs sm:text-sm text-slate-500">
+                  {lang === 'es'
+                    ? 'Posiciones disponibles para incorporarse a proyectos y estancias en el extranjero.'
+                    : 'Open positions to join active projects and international mobility visits.'}
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {thesisOpportunities.map((opp, idx) => (
-                  <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
+                  <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
                     <div className="space-y-3">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                        {opp.area}
-                      </p>
-                      <h3 className="text-xl font-bold text-[#003B49] leading-snug">
+                      <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
+                        <span className="text-[#087E8B]">{opp.area}</span>
+                        <span>{opp.location}</span>
+                      </div>
+                      <h3 className="text-lg sm:text-xl font-bold text-[#003B49] leading-snug">
                         {opp.title}
                       </h3>
-                      <p className="text-xs font-semibold text-[#A10D3A]">
-                        {lang === 'es' ? 'Sede:' : 'Location:'} {opp.location}
+                      <p className="text-xs font-semibold text-[#E5A400]">
+                        {opp.requirements}
                       </p>
-                      <p className="text-sm font-bold text-slate-900 leading-snug">
-                        {lang === 'es' ? 'Perfil: ' : 'Profile: '}{opp.requirements}
-                      </p>
-                      <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                      <p className="text-sm text-slate-600 leading-relaxed">
                         {opp.desc}
                       </p>
                     </div>
 
-                    <div className="pt-2">
+                    <div className="pt-4 border-t border-slate-200">
                       <Link
                         href="/contact"
-                        className="inline-flex items-center gap-2 bg-[#087E8B] hover:bg-[#066772] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-5 rounded-lg text-sm transition-colors shadow-sm"
+                        className="inline-flex items-center gap-2 bg-[#003B49] hover:bg-[#087E8B] text-white px-5 py-2.5 rounded-lg text-xs font-semibold transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#087E8B] focus-visible:ring-offset-2"
                       >
-                        <span>{lang === 'es' ? 'Postular / Consultar Convocatoria' : 'Apply / Inquire Call'}</span>
+                        <span>{lang === 'es' ? 'Postular a esta oportunidad' : 'Apply to this opportunity'}</span>
                         <span className="material-symbols-outlined text-base">arrow_forward</span>
                       </Link>
                     </div>
@@ -319,7 +588,7 @@ function ProyectosContent() {
 
 export default function ProyectosPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen py-20 text-center font-bold text-[#003B49]">Cargando...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#f8fafc] flex items-center justify-center">Cargando proyectos...</div>}>
       <ProyectosContent />
     </Suspense>
   );
