@@ -187,8 +187,8 @@ function AboutContent() {
           name: 'Dr. César Cárcamo',
           role: lang === 'es' ? 'Miembro' : 'Member',
           text: lang === 'es'
-            ? 'Docente de la Facultad de Salud Pública y Administración y coordinador del Doctorado en Ciencias en Investigación Epidemiológica de la UPCH'
-            : 'Faculty member at the School of Public Health and Administration and coordinator of the PhD in Epidemiological Research at UPCH',
+            ? 'Investigador y Docente de la Facultad de Salud Pública y Administración de la UPCH'
+            : 'Researcher and Faculty Member of the School of Public Health and Administration at UPCH',
           image: '/team/cesar_carcamo.jpeg'
         },
         {
@@ -216,7 +216,7 @@ function AboutContent() {
           image: '/team/giovanni_lopez.jpeg'
         },
         {
-          name: 'Blga. Jessica Cuenca',
+          name: lang === 'es' ? 'Lic. Jessica Cuenca' : 'B.S. Jessica Cuenca',
           role: lang === 'es' ? 'Miembro' : 'Member',
           text: lang === 'es'
             ? 'Bióloga e investigadora del Instituto de Medicina Tropical Alexander von Humboldt'
