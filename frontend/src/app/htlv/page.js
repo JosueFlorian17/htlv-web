@@ -2,90 +2,113 @@
 
 import { useState, useEffect, Suspense, memo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
+import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import { useLanguage } from '../../context/LanguageContext';
 import FaqSection from '../../components/faqs/FaqSection';
 import worldGeo from '../../../public/world-110m.json';
 
-// Conjunto de países con áreas endémicas conocidas de HTLV-1
-const ENDEMIC_COUNTRIES = new Set([
-  // Asia
-  'Japan',
-  'Iran',
-  // Oceanía
-  'Australia',
-  // América del Sur
-  'Peru',
-  'Brazil',
-  'Colombia',
-  'Bolivia',
-  'Chile',
-  'Argentina',
-  'Ecuador',
-  'Venezuela',
-  'Guyana',
-  'Suriname',
-  'Paraguay',
-  'Uruguay',
-  // El Caribe
-  'Cuba',
-  'Dominican Rep.',
-  'Haiti',
-  'Jamaica',
-  'Trinidad and Tobago',
-  'Puerto Rico',
-  'Bahamas',
-  // África (subsahariana, central, occidental y sur)
-  'Angola',
-  'Benin',
-  'Botswana',
-  'Burkina Faso',
-  'Burundi',
-  'Cameroon',
-  'Central African Rep.',
-  'Chad',
-  'Congo',
-  "Côte d'Ivoire",
-  'Dem. Rep. Congo',
-  'Eq. Guinea',
-  'Eritrea',
-  'Ethiopia',
-  'Gabon',
-  'Gambia',
-  'Ghana',
-  'Guinea',
-  'Guinea-Bissau',
-  'Kenya',
-  'Lesotho',
-  'Liberia',
-  'Madagascar',
-  'Malawi',
-  'Mali',
-  'Mauritania',
-  'Mozambique',
-  'Namibia',
-  'Niger',
-  'Nigeria',
-  'Rwanda',
-  'S. Sudan',
-  'Senegal',
-  'Sierra Leone',
-  'Somalia',
-  'South Africa',
-  'Sudan',
-  'Tanzania',
-  'Togo',
-  'Uganda',
-  'Zambia',
-  'Zimbabwe',
-  'eSwatini',
-]);
+// Clasificación de países por niveles de prevalencia según la evidencia epidemiológica
+function getCountryColorAndInfo(countryName, lang) {
+  // 1. Japón (hiperendémico en el suroeste: Kyushu, Okinawa)
+  if (countryName === 'Japan') {
+    return {
+      fill: '#520B1F', // Vino muy oscuro
+      badge: lang === 'es' ? 'Prevalencia muy alta (Suroeste)' : 'Very high prevalence (Southwest)',
+      isEndemic: true,
+    };
+  }
+
+  // 2. América del Sur - Cuenca amazónica, área andina y Brasil (alta prevalencia)
+  if (['Peru', 'Brazil', 'Colombia', 'Bolivia', 'Guyana', 'Suriname'].includes(countryName)) {
+    return {
+      fill: '#681028', // Vino profundo
+      badge: lang === 'es' ? 'Alta prevalencia' : 'High prevalence',
+      isEndemic: true,
+    };
+  }
+
+  // 3. América del Sur - Cono Sur y otras zonas con prevalencia moderada
+  if (['Ecuador', 'Venezuela', 'Paraguay', 'Argentina', 'Chile', 'Uruguay'].includes(countryName)) {
+    return {
+      fill: '#C2829F', // Rosa / malva suave
+      badge: lang === 'es' ? 'Prevalencia moderada / focal' : 'Moderate / focal prevalence',
+      isEndemic: true,
+    };
+  }
+
+  // 4. El Caribe (islas caribeñas de alta prevalencia)
+  if (['Cuba', 'Dominican Rep.', 'Haiti', 'Jamaica', 'Trinidad and Tobago', 'Puerto Rico', 'Bahamas'].includes(countryName)) {
+    return {
+      fill: '#8A2748', // Vino rojizo intermedio
+      badge: lang === 'es' ? 'Alta prevalencia' : 'High prevalence',
+      isEndemic: true,
+    };
+  }
+
+  // 5. África subsahariana y ecuatorial
+  if ([
+    'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cameroon', 'Central African Rep.', 'Chad', 'Congo', "Côte d'Ivoire",
+    'Dem. Rep. Congo', 'Eq. Guinea', 'Eritrea', 'Ethiopia', 'Gabon', 'Gambia', 'Ghana', 'Guinea', 'Guinea-Bissau', 'Kenya',
+    'Lesotho', 'Liberia', 'Madagascar', 'Malawi', 'Mali', 'Mauritania', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Rwanda',
+    'S. Sudan', 'Senegal', 'Sierra Leone', 'Somalia', 'South Africa', 'Sudan', 'Tanzania', 'Togo', 'Uganda', 'Zambia', 'Zimbabwe', 'eSwatini'
+  ].includes(countryName)) {
+    return {
+      fill: '#9E4D6E', // Vino rosado medio
+      badge: lang === 'es' ? 'Alta prevalencia' : 'High prevalence',
+      isEndemic: true,
+    };
+  }
+
+  // 6. Australia (alta prevalencia focal en comunidades indígenas de la región central)
+  if (countryName === 'Australia') {
+    return {
+      fill: '#A35375', // Malva / rosa medio
+      badge: lang === 'es' ? 'Alta prevalencia focal (Centro)' : 'High focal prevalence (Central)',
+      isEndemic: true,
+    };
+  }
+
+  // 7. Irán (foco endémico en la provincia de Jorasán / Mashhad)
+  if (countryName === 'Iran') {
+    return {
+      fill: '#B56586', // Malva rosado
+      badge: lang === 'es' ? 'Foco endémico regional (Norte/Noreste)' : 'Regional endemic focus (North/Northeast)',
+      isEndemic: true,
+    };
+  }
+
+  // Países de muy baja prevalencia / no endémicos
+  return {
+    fill: '#E2E8F0', // Gris suave
+    badge: null,
+    isEndemic: false,
+  };
+}
 
 const WorldMapComponent = memo(function WorldMapComponent({ lang }) {
-  const [tooltip, setTooltip] = useState('');
+  const [position, setPosition] = useState({ coordinates: [10, 0], zoom: 1 });
+  const [tooltip, setTooltip] = useState(null);
+
+  const handleZoomIn = () => {
+    if (position.zoom >= 4) return;
+    setPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.5 }));
+  };
+
+  const handleZoomOut = () => {
+    if (position.zoom <= 1) return;
+    setPosition((pos) => ({ ...pos, zoom: Math.max(1, pos.zoom / 1.5) }));
+  };
+
+  const handleReset = () => {
+    setPosition({ coordinates: [10, 0], zoom: 1 });
+  };
+
+  const handleMoveEnd = (newPosition) => {
+    setPosition(newPosition);
+  };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full select-none">
       <div className="w-full bg-[#E8F4FA] rounded-xl overflow-hidden border border-slate-200">
         <ComposableMap
           projection="geoEqualEarth"
@@ -97,48 +120,92 @@ const WorldMapComponent = memo(function WorldMapComponent({ lang }) {
           height={420}
           className="w-full h-auto block"
         >
-          <Geographies geography={worldGeo}>
-            {({ geographies }) =>
-              geographies
-                .filter((geo) => geo.properties.name !== 'Antarctica')
-                .map((geo) => {
-                  const countryName = geo.properties.name;
-                  const isEndemic = ENDEMIC_COUNTRIES.has(countryName);
-                  const fillColor = isEndemic ? '#A10D3A' : '#CBD5E1';
+          <ZoomableGroup
+            zoom={position.zoom}
+            center={position.coordinates}
+            onMoveEnd={handleMoveEnd}
+            minZoom={1}
+            maxZoom={4.5}
+          >
+            <Geographies geography={worldGeo}>
+              {({ geographies }) =>
+                geographies
+                  .filter((geo) => geo.properties.name !== 'Antarctica')
+                  .map((geo) => {
+                    const countryName = geo.properties.name;
+                    const { fill, badge, isEndemic } = getCountryColorAndInfo(countryName, lang);
 
-                  return (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      fill={fillColor}
-                      stroke="#FFFFFF"
-                      strokeWidth={0.5}
-                      className="transition-opacity hover:opacity-80 focus:outline-none cursor-pointer"
-                      style={{
-                        fill: fillColor,
-                        outline: 'none',
-                      }}
-                      onMouseEnter={() => {
-                        setTooltip(countryName);
-                      }}
-                      onMouseLeave={() => {
-                        setTooltip('');
-                      }}
-                    />
-                  );
-                })
-            }
-          </Geographies>
+                    return (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        fill={fill}
+                        stroke="#FFFFFF"
+                        strokeWidth={0.5}
+                        className="transition-opacity hover:opacity-80 focus:outline-none cursor-pointer"
+                        style={{
+                          fill: fill,
+                          outline: 'none',
+                        }}
+                        onMouseEnter={() => {
+                          setTooltip({ name: countryName, badge, isEndemic });
+                        }}
+                        onMouseLeave={() => {
+                          setTooltip(null);
+                        }}
+                      />
+                    );
+                  })
+              }
+            </Geographies>
+          </ZoomableGroup>
         </ComposableMap>
       </div>
 
+      {/* Controles de Zoom interactivo (+, -, Reset) */}
+      <div className="absolute bottom-3 right-3 flex flex-col bg-white/95 backdrop-blur-xs rounded-lg shadow-md border border-slate-200 overflow-hidden z-10">
+        <button
+          type="button"
+          onClick={handleZoomIn}
+          title={lang === 'es' ? 'Acercar mapa' : 'Zoom in'}
+          className="p-1.5 hover:bg-slate-100 text-slate-700 transition-colors border-b border-slate-200 flex items-center justify-center cursor-pointer"
+          aria-label={lang === 'es' ? 'Acercar mapa' : 'Zoom in'}
+        >
+          <span className="material-symbols-outlined text-[18px]">add</span>
+        </button>
+        <button
+          type="button"
+          onClick={handleZoomOut}
+          title={lang === 'es' ? 'Alejar mapa' : 'Zoom out'}
+          className="p-1.5 hover:bg-slate-100 text-slate-700 transition-colors border-b border-slate-200 flex items-center justify-center cursor-pointer"
+          aria-label={lang === 'es' ? 'Alejar mapa' : 'Zoom out'}
+        >
+          <span className="material-symbols-outlined text-[18px]">remove</span>
+        </button>
+        <button
+          type="button"
+          onClick={handleReset}
+          title={lang === 'es' ? 'Restablecer vista' : 'Reset view'}
+          className="p-1.5 hover:bg-slate-100 text-slate-700 transition-colors flex items-center justify-center cursor-pointer text-xs font-bold"
+          aria-label={lang === 'es' ? 'Restablecer vista' : 'Reset view'}
+        >
+          <span className="material-symbols-outlined text-[16px]">restart_alt</span>
+        </button>
+      </div>
+
+      {/* Indicador de ayuda para zoom/arrastre */}
+      <div className="absolute bottom-3 left-3 bg-[#001D2C]/80 backdrop-blur-xs text-white text-[10px] px-2 py-0.5 rounded shadow-xs pointer-events-none">
+        {lang === 'es' ? 'Arrastra o usa +/- para zoom' : 'Drag or use +/- to zoom'}
+      </div>
+
+      {/* Tooltip con nombre de país y nivel de prevalencia */}
       {tooltip && (
-        <div className="absolute top-2 left-2 bg-[#001D2C]/90 text-white text-[11px] font-medium px-2.5 py-1 rounded shadow-md pointer-events-none transition-opacity">
-          {tooltip}
-          {ENDEMIC_COUNTRIES.has(tooltip) && (
-            <span className="ml-1.5 text-[#E5A400] font-bold">
-              ({lang === 'es' ? 'Zona con áreas de alta prevalencia' : 'Area with high prevalence'})
-            </span>
+        <div className="absolute top-2 left-2 bg-[#001D2C]/95 text-white text-[11px] font-medium px-2.5 py-1.5 rounded shadow-lg pointer-events-none transition-opacity z-20 max-w-xs">
+          <div className="font-bold text-white">{tooltip.name}</div>
+          {tooltip.badge && (
+            <div className="text-[#E5A400] text-[10px] font-semibold mt-0.5">
+              {tooltip.badge}
+            </div>
           )}
         </div>
       )}
@@ -369,16 +436,16 @@ function HTLVContent() {
                   </div>
                 </div>
 
-                {/* Columna derecha: Mapa Mundial Detallado (react-simple-maps) + Leyenda */}
+                {/* Columna derecha: Mapa Mundial Detallado (react-simple-maps) con zoom + Leyenda con colores exactos */}
                 <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-5">
                   <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
                     
-                    {/* Mapa mundial detallado */}
+                    {/* Mapa mundial detallado interactivo */}
                     <div className="flex-1 w-full min-w-0">
                       <WorldMapComponent lang={lang} />
                     </div>
 
-                    {/* Leyenda */}
+                    {/* Leyenda con colores específicos para cada región */}
                     <div className="shrink-0 w-full sm:w-44 space-y-2">
                       <h4 className="font-bold text-xs text-[#003B49] leading-snug">
                         {lang === 'es'
@@ -387,16 +454,19 @@ function HTLVContent() {
                       </h4>
                       <ul className="space-y-1.5 text-xs text-slate-700">
                         {[
-                          lang === 'es' ? 'Japón' : 'Japan',
-                          lang === 'es' ? 'África' : 'Africa',
-                          lang === 'es' ? 'América del Sur' : 'South America',
-                          lang === 'es' ? 'El Caribe' : 'The Caribbean',
-                          lang === 'es' ? 'Australia' : 'Australia',
-                          lang === 'es' ? 'Irán' : 'Iran',
-                        ].map((region) => (
-                          <li key={region} className="flex items-center gap-2">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#A10D3A] shrink-0" />
-                            <span>{region}</span>
+                          { name: lang === 'es' ? 'Japón' : 'Japan', color: '#520B1F' },
+                          { name: lang === 'es' ? 'África' : 'Africa', color: '#9E4D6E' },
+                          { name: lang === 'es' ? 'América del Sur' : 'South America', color: '#681028' },
+                          { name: lang === 'es' ? 'El Caribe' : 'The Caribbean', color: '#8A2748' },
+                          { name: lang === 'es' ? 'Australia' : 'Australia', color: '#A35375' },
+                          { name: lang === 'es' ? 'Irán' : 'Iran', color: '#B56586' },
+                        ].map(({ name, color }) => (
+                          <li key={name} className="flex items-center gap-2">
+                            <span
+                              className="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs"
+                              style={{ backgroundColor: color }}
+                            />
+                            <span>{name}</span>
                           </li>
                         ))}
                       </ul>
