@@ -80,12 +80,12 @@ export default function Home() {
               
               <div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003B49] leading-tight">
-                  {lang === 'es' ? '¿Qué es la red HTLV?' : 'What is the HTLV network?'}
+                  {lang === 'es' ? '¿Qué es la Red HTLV?' : 'What is the HTLV Network?'}
                 </h2>
                 <p className="text-base text-slate-700 leading-relaxed mt-3">
                   {lang === 'es'
-                    ? 'La Red Internacional de Investigación e Innovación en HTLV articula instituciones académicas y equipos de investigación de Perú, Japón, Reino Unido y Estados Unidos para fortalecer la investigación científica y la innovación en HTLV. A través de la colaboración internacional y el fortalecimiento de capacidades nacionales, busca generar evidencia que contribuya a mejorar la prevención, el diagnóstico y la atención integral de las personas afectadas.'
-                    : 'The International Research and Innovation Network on HTLV coordinates academic institutions and research teams from Peru, Japan, the United Kingdom, and the United States to strengthen scientific research and innovation in HTLV. Through international collaboration and national capacity building, it seeks to generate evidence that improves prevention, diagnosis, and comprehensive care for affected individuals.'}
+                    ? 'La Red Internacional de Investigación e Innovación en HTLV es una plataforma de colaboración científica entre seis instituciones de Perú, Japón, Reino Unido y Estados Unidos, que busca generar evidencia para mejorar la prevención, el diagnóstico y la atención integral del HTLV.'
+                    : 'The International Research and Innovation Network on HTLV is a scientific collaborative platform among six institutions from Peru, Japan, the United Kingdom, and the United States, aimed at generating evidence to improve the prevention, diagnosis, and comprehensive care of HTLV.'}
                 </p>
               </div>
 
@@ -96,9 +96,15 @@ export default function Home() {
                     hub
                   </span>
                   <p className="leading-relaxed">
-                    {lang === 'es' 
-                      ? 'Articula a la Universidad Peruana Cayetano Heredia (UPCH), la Universidad Nacional de Ucayali (UNU) y la Universidad Nacional de San Antonio Abad del Cusco (UNSAAC) con instituciones científicas de Japón, Reino Unido y Estados Unidos para fortalecer la colaboración y descentralizar la investigación en HTLV.' 
-                      : 'Coordinates Universidad Peruana Cayetano Heredia (UPCH), Universidad Nacional de Ucayali (UNU), and Universidad Nacional de San Antonio Abad del Cusco (UNSAAC) with scientific institutions in Japan, the United Kingdom, and the United States to strengthen collaboration and decentralize HTLV research.'}
+                    {lang === 'es' ? (
+                      <>
+                        <strong className="font-semibold text-slate-900">Instituciones miembros:</strong> Universidad Peruana Cayetano Heredia (UPCH), Universidad Nacional de Ucayali (UNU), Universidad Nacional de San Antonio Abad del Cusco (UNSAAC), St. Marianna University School of Medicine, Imperial College London y University of Washington.
+                      </>
+                    ) : (
+                      <>
+                        <strong className="font-semibold text-slate-900">Member institutions:</strong> Universidad Peruana Cayetano Heredia (UPCH), Universidad Nacional de Ucayali (UNU), Universidad Nacional de San Antonio Abad del Cusco (UNSAAC), St. Marianna University School of Medicine, Imperial College London, and University of Washington.
+                      </>
+                    )}
                   </p>
                 </div>
 
@@ -107,31 +113,32 @@ export default function Home() {
                     biotech
                   </span>
                   <p className="leading-relaxed">
-                    {lang === 'es'
-                      ? 'Identifica brechas y prioriza estudios sobre epidemiología, diagnóstico, enfermedades asociadas al HTLV, tratamiento y atención integral.'
-                      : 'Identifies gaps and prioritizes studies on epidemiology, diagnosis, HTLV-associated diseases, treatment, and comprehensive care.'}
+                    {lang === 'es' ? (
+                      <>
+                        <strong className="font-semibold text-slate-900">Investigación e innovación:</strong> promueve estudios sobre epidemiología, transmisión, diagnóstico, manifestaciones clínicas y tratamiento del HTLV.
+                      </>
+                    ) : (
+                      <>
+                        <strong className="font-semibold text-slate-900">Research and innovation:</strong> promotes studies on HTLV epidemiology, transmission, diagnosis, clinical manifestations, and treatment.
+                      </>
+                    )}
                   </p>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-[#E5A400] text-xl shrink-0 mt-0.5">
-                    school
-                  </span>
-                  <p className="leading-relaxed">
-                    {lang === 'es'
-                      ? 'Fortalece las capacidades científicas de los equipos de la Red mediante pasantías nacionales e internacionales, cursos especializados y mentoría a investigadores en etapas iniciales de su carrera y tesistas.'
-                      : 'Strengthens the scientific capacities of Network teams through national and international internships, specialized courses, and mentorship for early-career researchers and thesis students.'}
-                  </p>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-[#003B49] text-xl shrink-0 mt-0.5">
                     groups
                   </span>
                   <p className="leading-relaxed">
-                    {lang === 'es'
-                      ? 'Promueve la difusión del conocimiento y la colaboración con autoridades sanitarias y comunidades para contribuir a una respuesta frente al HTLV basada en evidencia científica.'
-                      : 'Promotes knowledge dissemination and collaboration with health authorities and communities to foster an evidence-based response to HTLV.'}
+                    {lang === 'es' ? (
+                      <>
+                        <strong className="font-semibold text-slate-900">Formación y colaboración:</strong> impulsa pasantías, cursos especializados y mentorías, y fortalece el trabajo conjunto con autoridades sanitarias y comunidades.
+                      </>
+                    ) : (
+                      <>
+                        <strong className="font-semibold text-slate-900">Training and collaboration:</strong> drives internships, specialized courses, and mentorships, and strengthens collaborative work with health authorities and communities.
+                      </>
+                    )}
                   </p>
                 </div>
               </div>
