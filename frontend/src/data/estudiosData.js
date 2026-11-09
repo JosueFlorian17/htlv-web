@@ -321,8 +321,8 @@ export const ESTUDIOS_DATA = [
     "financiador": "Japan Institute for Health Security",
     "estado_es": "En curso",
     "estado_en": "In Progress",
-    "notas_es": "Tuvimos KickOff meeting",
-    "notas_en": "Kick-off meeting held"
+    "notas_es": "",
+    "notas_en": ""
   },
   {
     "id": 19,

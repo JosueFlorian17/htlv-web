@@ -271,12 +271,6 @@ function ProyectosContent() {
                             {proj.financiador}
                           </p>
                         )}
-
-                        {proj.notas_es && (
-                          <p className="leading-relaxed text-amber-700 italic text-[11px]">
-                            * {lang === 'es' ? proj.notas_es : proj.notas_en}
-                          </p>
-                        )}
                       </div>
 
                       {/* 4. Botón Ver más que abre ventana "estamos trabajando" */}
