@@ -9,7 +9,6 @@ export default function FaqSection({ lang = 'es' }) {
   const [selectedSection, setSelectedSection] = useState('all');
   const [openFaqId, setOpenFaqId] = useState(1);
   const [collapsedSections, setCollapsedSections] = useState({});
-  const [showFaqDisclaimer, setShowFaqDisclaimer] = useState(false);
 
   // Solo una pregunta abierta a la vez
   const toggleFaq = (id) => {
@@ -343,40 +342,7 @@ export default function FaqSection({ lang = 'es' }) {
         </div>
       )}
 
-      {/* Botón Ver más para Warning Work In Progress */}
-      <div className="mt-8 pt-4 border-t border-slate-200">
-        {!showFaqDisclaimer ? (
-          <div className="text-center">
-            <button
-              type="button"
-              onClick={() => setShowFaqDisclaimer(true)}
-              className="text-xs sm:text-sm font-semibold text-slate-700 hover:text-black underline cursor-pointer py-1.5 px-3"
-            >
-              {lang === 'es' ? '(Ver más)' : '(See more)'}
-            </button>
-          </div>
-        ) : (
-          <div className="p-4 bg-[#FDE8E8] text-black rounded-none space-y-1.5 animate-fadeIn mb-4">
-            <div className="flex items-center justify-between">
-              <p className="text-xs sm:text-sm font-bold uppercase tracking-wide">
-                [Work in progress]
-              </p>
-              <button
-                type="button"
-                onClick={() => setShowFaqDisclaimer(false)}
-                className="text-xs text-black/70 hover:text-black font-semibold underline cursor-pointer"
-              >
-                {lang === 'es' ? '(Ocultar)' : '(Hide)'}
-              </button>
-            </div>
-            <p className="text-xs sm:text-sm leading-relaxed font-normal">
-              {lang === 'es'
-                ? 'Esta sección de preguntas frecuentes se encuentra actualmente en desarrollo, ampliación y revisión técnica por el equipo científico de la Red HTLV.'
-                : 'This frequently asked questions section is currently under development, expansion, and technical review by the HTLV Network scientific team.'}
-            </p>
-          </div>
-        )}
-      </div>
+
 
       {/* Aviso Importante Disclaimer */}
       <div className="mt-4 p-5 bg-slate-50 border-l-4 border-[#087E8B] rounded-r-xl text-xs sm:text-sm text-slate-600 leading-relaxed space-y-1.5">
