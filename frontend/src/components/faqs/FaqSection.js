@@ -68,7 +68,7 @@ export default function FaqSection({ lang = 'es' }) {
     { label: lang === 'es' ? 'Leucemia (ATLL)' : 'ATLL', q: 'ATLL' },
     { label: lang === 'es' ? 'Uveítis (HU)' : 'Uveitis', q: 'uveitis' },
     { label: lang === 'es' ? 'Control Prenatal' : 'Prenatal Care', q: 'prenatal' },
-    { label: lang === 'es' ? 'Hijos / Familia' : 'Children & Family', q: 'hijos' },
+    { label: lang === 'es' ? 'Hijos / Familia' : 'Children and Family', q: 'hijos' },
     { label: lang === 'es' ? 'Donar Sangre' : 'Blood Donation', q: 'sangre' }
   ], [lang]);
 

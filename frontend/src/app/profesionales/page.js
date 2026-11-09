@@ -27,7 +27,7 @@ function ProfesionalesContent() {
 
   const clinicalGuides = [
     {
-      title: lang === 'es' ? "Guía de Práctica Clínica: Diagnóstico y Manejo de HTLV-1" : "Clinical Practice Guideline: HTLV-1 Diagnosis & Management",
+      title: lang === 'es' ? "Guía de Práctica Clínica: Diagnóstico y Manejo de HTLV-1" : "Clinical Practice Guideline: HTLV-1 Diagnosis and Management",
       institution: "IMTAvH - Universidad Peruana Cayetano Heredia (UPCH)",
       year: "2026",
       desc: lang === 'es'
@@ -37,7 +37,7 @@ function ProfesionalesContent() {
     },
     {
       title: lang === 'es' ? "Consenso Internacional en Paraparesia Espástica Tropical (HAM/TSP)" : "International Consensus on Tropical Spastic Paraparesis (HAM/TSP)",
-      institution: "Comité Científico Red HTLV & Consorcio Japón-UK",
+      institution: "Comité Científico Red HTLV y Consorcio Japón-UK",
       year: "2026",
       desc: lang === 'es'
         ? "Protocolo unificado para el monitoreo neurológico, escalas funcionales (EDSS modificado), biomarcadores en LCR y pulsos de corticoides."
@@ -46,7 +46,7 @@ function ProfesionalesContent() {
     },
     {
       title: lang === 'es' ? "Protocolo de Prevención de Transmisión Materno-Infantil" : "Mother-to-Child Transmission Prevention Protocol",
-      institution: "Red HTLV & Sociedades de Infectología",
+      institution: "Red HTLV y Sociedades de Infectología",
       year: "2027",
       desc: lang === 'es'
         ? "Estrategias de tamizaje prenatal en poblaciones de alta prevalencia, manejo del puerperio y pautas de alimentación alternativa para recién nacidos."
@@ -139,7 +139,7 @@ function ProfesionalesContent() {
       id: 1,
       title: lang === 'es'
         ? "Curso Corto: Diagnóstico y Abordaje Clínico Integral del HTLV"
-        : "Short Course: Comprehensive Clinical Diagnosis & Management of HTLV",
+        : "Short Course: Comprehensive Clinical Diagnosis and Management of HTLV",
       shortTitle: lang === 'es' ? "Abordaje Clínico Integral del HTLV" : "Comprehensive HTLV Clinical Management",
       modality: lang === 'es' ? "100% Virtual • Asincrónico • 20 horas académicas" : "100% Online • Asynchronous • 20 credit hours",
       target: lang === 'es' ? "Médicos generales, infectólogos, neurólogos y obstetras" : "General practitioners, infectologists, neurologists, and obstetricians",
@@ -169,9 +169,9 @@ function ProfesionalesContent() {
       id: 2,
       title: lang === 'es'
         ? "Taller Avanzado: Estandarización Molecular y Cuantificación de Carga Proviral"
-        : "Advanced Workshop: Molecular Standardization & Proviral Load Quantification",
-      shortTitle: lang === 'es' ? "Estandarización Molecular y Carga Proviral" : "Molecular Standardization & Proviral Load",
-      modality: lang === 'es' ? "Semipresencial • 15 horas de laboratorio y análisis" : "Hybrid • 15 lab & data analysis hours",
+        : "Advanced Workshop: Molecular Standardization and Proviral Load Quantification",
+      shortTitle: lang === 'es' ? "Estandarización Molecular y Carga Proviral" : "Molecular Standardization and Proviral Load",
+      modality: lang === 'es' ? "Semipresencial • 15 horas de laboratorio y análisis" : "Hybrid • 15 lab and data analysis hours",
       target: lang === 'es' ? "Biólogos moleculares, tecnólogos médicos y personal de laboratorio" : "Molecular biologists, laboratory technologists, and researchers",
       openDate: lang === 'es' ? "1 de Diciembre de 2026" : "December 1, 2026",
       language: "ESP / ENG",

@@ -103,7 +103,7 @@ function ProyectosContent() {
 
   const thesisOpportunities = [
     {
-      title: lang === 'es' ? "Pasantías de Investigación para Tesistas de Pregrado y Posgrado" : "Research Internships for Undergraduate & Graduate Students",
+      title: lang === 'es' ? "Pasantías de Investigación para Tesistas de Pregrado y Posgrado" : "Research Internships for Undergraduate and Graduate Students",
       area: "Virología Molecular / Epidemiología Clínica",
       location: "IMTAvH - UPCH (Lima, Perú)",
       requirements: lang === 'es' ? "Estudiantes de Medicina, Biología, Tecnología Médica o Salud Pública" : "Students of Medicine, Biology, Medical Technology or Public Health",
@@ -113,7 +113,7 @@ function ProyectosContent() {
     },
     {
       title: lang === 'es' ? "Estancias Cortas en Laboratorios de la Red Internacional" : "Short-term Stays at International Network Nodes",
-      area: "Bioinformática & Genómica Retrovirológica",
+      area: "Bioinformática y Genómica Retrovirológica",
       location: "Imperial College London / Institut Pasteur",
       requirements: lang === 'es' ? "Tesistas de maestría o doctorado con proyecto aprobado en HTLV" : "Master's or PhD candidates with approved HTLV thesis projects",
       desc: lang === 'es'

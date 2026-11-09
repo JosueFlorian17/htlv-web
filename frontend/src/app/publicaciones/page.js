@@ -91,30 +91,6 @@ function highlightAuthorsInText(text, autoresRed) {
   return parts.length > 0 ? parts : text;
 }
 
-function getAuthors(pub) {
-  if (!pub) return '';
-  const ref = pub.referencia || '';
-  
-  // 1. Priorizar ubicar el inicio del título en la referencia para extraer exactamente los autores
-  if (pub.titulo) {
-    const titleSnippet = pub.titulo.trim().substring(0, 25).toLowerCase();
-    const idx = ref.toLowerCase().indexOf(titleSnippet);
-    if (idx > 5 && idx < 350) {
-      return ref.substring(0, idx).replace(/[.\s]+$/, '').trim();
-    }
-  }
-
-  // 2. Formato tradicional con dos puntos previo al título
-  if (ref.includes(':')) {
-    const candidate = ref.split(':')[0].trim();
-    if (candidate.length > 5 && candidate.length < 280) {
-      return candidate;
-    }
-  }
-
-  return pub.autores_red || ref;
-}
-
 export default function PublicacionesPage() {
   const { lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
@@ -182,11 +158,6 @@ export default function PublicacionesPage() {
               return (
                 <div key={pub.id} className="py-6 space-y-2">
                   
-                  {/* Miembros de la Red HTLV autores del artículo */}
-                  <p className="text-sm font-semibold text-slate-800 leading-relaxed">
-                    {highlightAuthorsInText((pub.autores_red || '').trim(), pub.autores_red)}
-                  </p>
-
                   {/* [Año] Título del Artículo como enlace interactivo */}
                   <h3 className="text-base sm:text-lg font-bold leading-snug">
                     <span className="text-[#A10D3A]">[{pub.ano}]</span>{' '}

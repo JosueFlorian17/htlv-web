@@ -40,7 +40,7 @@ export default function ResourcesPage() {
       id: 'video-youtube-2',
       title: 'Manifestaciones Clínicas y Diagnóstico del HTLV (HAM/TSP y ATL)',
       duration: 'Sesión Clínica',
-      category: 'Clínica & Diagnóstico',
+      category: 'Clínica y Diagnóstico',
       desc: 'Abordaje integral del compromiso neurológico, mielopatía asociada a HTLV (HAM/TSP), criterios diagnósticos confirmatorios y seguimiento de pacientes.',
       isYoutube: true,
       youtubeId: '1NqgEEReKhs',
@@ -65,7 +65,7 @@ export default function ResourcesPage() {
       id: 'video-1',
       title: 'Mecanismos de Transmisión y Sinapsis Viral del HTLV-1',
       duration: '4:15 min',
-      category: 'Virología & Patogénesis',
+      category: 'Virología y Patogénesis',
       desc: 'Análisis detallado de cómo el virus se propaga célula a célula a través de la sinapsis virológica y biofilmes extracelulares.',
       isYoutube: false,
       thumbnail: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=800&q=80',
@@ -535,14 +535,14 @@ export default function ResourcesPage() {
           <div className="max-w-3xl">
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="inline-block px-3 py-0.5 bg-[#ffdada] text-[#5b0617] text-[11px] uppercase font-bold tracking-wider rounded-full">
-                Centro Multimedia & Educación Biomédica
+                Centro Multimedia y Educación Biomédica
               </span>
               <span className="inline-block px-3 py-0.5 bg-[#d6e0f3] text-[#1d2b3a] text-[11px] font-semibold rounded-full">
-                Videos, 3D & Herramientas
+                Videos, 3D y Herramientas
               </span>
             </div>
             <h1 className="font-display text-[32px] md:text-[40px] text-[#5b0617] mb-2 leading-tight">
-              Recursos, Videos Interactivos & Herramientas
+              Recursos, Videos Interactivos y Herramientas
             </h1>
             <p className="text-[14px] md:text-[15.5px] text-[#564242] leading-relaxed">
               Explora simuladores clínicos, videos educativos de referencia y conferencias en YouTube con evaluaciones integradas, modelos macromoleculares 3D manipulables y formularios respaldados por la Red HTLV y la UPCH.
@@ -567,7 +567,7 @@ export default function ResourcesPage() {
             }`}
           >
             <span className="material-symbols-outlined text-[18px]">play_circle</span>
-            Videos & YouTube (Con Quizzes)
+            Videos y YouTube (Con Quizzes)
           </button>
           <button
             onClick={() => setActiveTab('calculators')}
@@ -578,7 +578,7 @@ export default function ResourcesPage() {
             }`}
           >
             <span className="material-symbols-outlined text-[18px]">calculate</span>
-            Calculadora de Riesgo & Carga Proviral
+            Calculadora de Riesgo y Carga Proviral
           </button>
           <button
             onClick={() => setActiveTab('embeds')}
@@ -589,7 +589,7 @@ export default function ResourcesPage() {
             }`}
           >
             <span className="material-symbols-outlined text-[18px]">view_in_ar</span>
-            Visor 3D Rotable & Formularios
+            Visor 3D Rotable y Formularios
           </button>
           <button
             onClick={() => setActiveTab('downloads')}
@@ -600,7 +600,7 @@ export default function ResourcesPage() {
             }`}
           >
             <span className="material-symbols-outlined text-[18px]">download_for_offline</span>
-            Guías & Documentación
+            Guías y Documentación
           </button>
         </div>
       </section>
@@ -809,7 +809,7 @@ export default function ResourcesPage() {
             {/* Lista de Videos & YouTube Disponibles */}
             <div className="space-y-4">
               <h3 className="text-[13px] font-bold uppercase tracking-wider text-[#5b0617]">
-                Videoteca & Módulos Disponibles
+                Videoteca y Módulos Disponibles
               </h3>
               <div className="space-y-3">
                 {videoLessons.map((v) => {
@@ -876,7 +876,7 @@ export default function ResourcesPage() {
                 Herramienta de Apoyo Clínico
               </span>
               <h2 className="font-headline-lg text-[22px] md:text-[24px] text-[#5b0617] font-bold">
-                Calculador de Proyección de Carga Proviral & Riesgo de Progresión
+                Calculador de Proyección de Carga Proviral y Riesgo de Progresión
               </h2>
               <p className="text-[13px] text-[#564242] mt-1 leading-relaxed">
                 Herramienta referencial basada en modelos predictivos del Instituto Alexander von Humboldt (UPCH) para estimar el riesgo relativo de evolución sintomática (HAM/TSP o ATL).
@@ -1149,7 +1149,7 @@ export default function ResourcesPage() {
                   Formulario Referencial
                 </span>
                 <h3 className="font-bold text-[16px] text-[#191c1e]">
-                  Notificación & Registro de Datos Clínicos
+                  Notificación y Registro de Datos Clínicos
                 </h3>
                 <p className="text-[11.5px] text-[#564242]">
                   Módulo interactivo para el registro y clasificación estadística anónima de casos dentro de la red.

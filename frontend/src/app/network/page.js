@@ -15,7 +15,7 @@ export default function NetworkPage() {
       name: 'Universidad Peruana Cayetano Heredia (UPCH)',
       sub: 'Instituto de Medicina Tropical Alexander von Humboldt (IMTAvH)',
       country: 'Perú',
-      role: 'Centro de Coordinación & Liderazgo Clínico-Epidemiológico',
+      role: 'Centro de Coordinación y Liderazgo Clínico-Epidemiológico',
       focus: 'Cohortes de seguimiento en HAM/TSP, coinfección TB-HTLV y diagnóstico molecular.',
       website: 'https://imtavh.cayetano.edu.pe',
       badge: 'Sede Principal'
@@ -189,7 +189,7 @@ export default function NetworkPage() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[#5b0617]">biotech</span>
-                <span className="text-[13px] font-bold text-[#191c1e]">Ciencia Abierta & Ética</span>
+                <span className="text-[13px] font-bold text-[#191c1e]">Ciencia Abierta y Ética</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[#5b0617]">school</span>

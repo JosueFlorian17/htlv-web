@@ -29,6 +29,10 @@ export default function InstitutionsCarousel() {
     {
       src: "/logos/st_marianna_logo.png",
       alt: "St. Marianna University School of Medicine"
+    },
+    {
+      src: "/logos/concytec_prociencia.png",
+      alt: "CONCYTEC - PROCIENCIA - SINACTI II"
     }
   ];
 
@@ -40,8 +44,8 @@ export default function InstitutionsCarousel() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-3 sm:mb-4 text-center">
         <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold uppercase tracking-wide text-[#003B49]">
           {lang === 'es' 
-            ? 'Miembros de la Red Internacional de Innovación e Investigación en HTLV' 
-            : 'Members of the International Innovation & Research Network on HTLV'}
+            ? 'MIEMBROS DE LA RED INTERNACIONAL DE INVESTIGACIÓN E INNOVACIÓN EN HTLV' 
+            : 'INTERNATIONAL RESEARCH AND INNOVATION NETWORK ON HTLV'}
         </h3>
       </div>
 

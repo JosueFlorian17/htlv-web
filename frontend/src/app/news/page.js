@@ -14,7 +14,7 @@ export default function NewsPage() {
       title: 'Taller de Métodos de Tipificación Molecular',
       desc: 'Capacitación práctica presencial y virtual sobre protocolos avanzados de tipificación de subtipos de HTLV-1.',
       time: '10:00 - 16:00 GMT',
-      location: 'Imperial College London & Virtual',
+      location: 'Imperial College London y Virtual',
       type: 'TALLER'
     },
     {

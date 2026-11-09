@@ -70,7 +70,7 @@ export default function Home() {
               </div>
               <div className="text-center pt-1">
                 <h3 className="font-extrabold text-xl sm:text-2xl text-[#003B49] tracking-tight">
-                  {lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?'}
+                  {lang === 'es' ? '¿Quiénes somos?' : 'Who are we?'}
                 </h3>
               </div>
             </div>

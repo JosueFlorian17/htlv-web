@@ -44,7 +44,7 @@ export default function NoticiasFeedPage() {
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Encabezado */}
       <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-gray-950 tracking-tight">Portal Académico & Científico</h1>
+        <h1 className="text-3xl font-extrabold text-gray-950 tracking-tight">Portal Académico y Científico</h1>
         <p className="text-gray-500 mt-1">Explora los últimos aportes de la comunidad, investigaciones de grado y convocatorias vigentes.</p>
       </div>
 

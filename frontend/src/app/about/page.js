@@ -56,7 +56,7 @@ function AboutContent() {
     cat: {
       id: 'cat',
       title: lang === 'es' ? 'Comité Asesor Técnico (CAT)' : 'Technical Advisory Committee (CAT)',
-      subtitle: lang === 'es' ? 'Dra. Elsa González y Dr. Yoshi Ishikawa' : 'Dr. Elsa González & Dr. Yoshi Ishikawa',
+      subtitle: lang === 'es' ? 'Dra. Elsa González y Dr. Yoshi Ishikawa' : 'Dr. Elsa González and Dr. Yoshi Ishikawa',
       description: lang === 'es'
         ? 'Encargados de asesorar en líneas de investigación y actividades para el fortalecimiento de la Red. Además, asesorará a la Red en otros aspectos que generen capacidad y mayores recursos.'
         : 'In charge of advising on research lines and activities for strengthening the Network, as well as building research capacity and resources.',
@@ -66,7 +66,7 @@ function AboutContent() {
     gepr: {
       id: 'gepr',
       title: lang === 'es' ? 'Grupo estratégico de políticas regionales (GEPR)' : 'Strategic Regional Policy Group (GEPR)',
-      subtitle: lang === 'es' ? 'Prevención, Tamizaje y Apoyo Comunitario' : 'Prevention, Screening & Patient Support',
+      subtitle: lang === 'es' ? 'Prevención, Tamizaje y Apoyo Comunitario' : 'Prevention, Screening and Patient Support',
       description: lang === 'es'
         ? 'Encargados de articular la evidencia científica con las políticas públicas de salud regional, promoviendo guías de práctica clínica, tamizaje materno y espacios de orientación ética y comunitaria.'
         : 'Tasked with connecting scientific evidence with regional public health policies, clinical guidelines, and community support.',
@@ -361,7 +361,7 @@ function AboutContent() {
     {
       id: 1,
       num: 1,
-      title: lang === 'es' ? 'Formalización y gobernanza' : 'Formalization & governance',
+      title: lang === 'es' ? 'Formalización y gobernanza' : 'Formalization and governance',
       description: lang === 'es'
         ? 'Institucionalizar la red mediante convenios, comité directivo, coordinaciones regionales e internacionales y documentos de gestión que aseguren gobernanza, ética multicéntrica y seguimiento.'
         : 'Institutionalize the network through agreements, steering committee, regional and international coordination, and management documents ensuring governance, multicenter ethics, and monitoring.',
@@ -371,7 +371,7 @@ function AboutContent() {
     {
       id: 2,
       num: 2,
-      title: lang === 'es' ? 'Implementación operativa y armonización científica' : 'Operational implementation & scientific harmonization',
+      title: lang === 'es' ? 'Implementación operativa y armonización científica' : 'Operational implementation and scientific harmonization',
       description: lang === 'es'
         ? 'Establecer equipos por líneas de investigación, procedimientos de coordinación, estándares metodológicos y gobernanza de datos para investigación multicéntrica.'
         : 'Establish research line teams, coordination procedures, methodological standards, and data governance for multicenter research.',
@@ -384,7 +384,7 @@ function AboutContent() {
     {
       id: 3,
       num: 3,
-      title: lang === 'es' ? 'Agenda estratégica y planificación quinquenal' : 'Strategic agenda & 5-year planning',
+      title: lang === 'es' ? 'Agenda estratégica y planificación quinquenal' : 'Strategic agenda and 5-year planning',
       description: lang === 'es'
         ? 'Elaborar un Plan de Trabajo Conjunto a 5 años que priorice líneas de investigación, defina actividades iniciales y establezca salvaguardas ambientales y sociales mediante el Plan de Gestión Ambiental y Social (PGAS).'
         : 'Develop a 5-year Joint Work Plan prioritizing research lines, defining initial activities, and establishing environmental and social safeguards through the Environmental and Social Management Plan (PGAS).',
@@ -394,7 +394,7 @@ function AboutContent() {
     {
       id: 4,
       num: 4,
-      title: lang === 'es' ? 'Producción científica y desarrollo tecnológico inicial' : 'Scientific production & early technological development',
+      title: lang === 'es' ? 'Producción científica y desarrollo tecnológico inicial' : 'Scientific production and early technological development',
       description: lang === 'es'
         ? 'Generar entregables del primer año: cartera priorizada de proyectos, revisión sistemática de alcance sometida a revista indizada y plataforma web para difusión científica y recursos técnicos de la red.'
         : 'Deliver first-year milestones: prioritized project portfolio, scoping review submitted to an indexed journal, and a web platform for scientific dissemination and technical network resources.',
@@ -404,7 +404,7 @@ function AboutContent() {
     {
       id: 5,
       num: 5,
-      title: lang === 'es' ? 'Fortalecimiento de capacidades y sostenibilidad' : 'Capacity building & sustainability',
+      title: lang === 'es' ? 'Fortalecimiento de capacidades y sostenibilidad' : 'Capacity building and sustainability',
       description: lang === 'es'
         ? 'Impulsar formación, pasantías y productos replicables, presentar propuestas a fondos competitivos y desarrollar actividades de transferencia del conocimiento y difusión comunitaria sobre el HTLV.'
         : 'Promote training, internships, and replicable products, submit proposals to competitive grant calls, and conduct knowledge transfer and community outreach activities on HTLV.',
@@ -429,7 +429,7 @@ function AboutContent() {
         {/* Cabecera limpia sin selector de pestañas dentro de página */}
         <div className="pb-6 mb-8 border-b border-slate-200">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#003B49] tracking-tight">
-            {activeTab === 'quienes-somos' && (lang === 'es' ? '¿Quiénes somos?' : '¿Who are we?')}
+            {activeTab === 'quienes-somos' && (lang === 'es' ? '¿Quiénes somos?' : 'Who are we?')}
             {activeTab === 'objetivos' && (lang === 'es' ? 'Objetivos' : 'Objectives')}
             {activeTab === 'estructura' && (lang === 'es' ? 'Estructura y Gobernanza' : 'Structure and Governance')}
             {activeTab === 'miembros' && (lang === 'es' ? 'Instituciones miembros e integrantes' : 'Member Institutions and Team')}
