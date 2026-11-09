@@ -76,7 +76,7 @@ function ProfesionalesContent() {
         ? "Día Mundial del HTLV 2026: Rompamos el silencio sobre el HTLV"
         : "World HTLV Day 2026: Break the Silence on HTLV",
       bannerImage: lang === 'es' ? "/webinars/webinar_portada_es.jpg" : "/webinars/webinar_portada_en.jpg",
-      flyerImage: "/webinars/webinar_flyer.png",
+      flyerImage: lang === 'es' ? "/webinars/webinar_preview_es.jpg" : "/webinars/webinar_preview_en.jpg",
       dateBadge: lang === 'es' ? "10 NOVIEMBRE" : "10 NOVEMBER",
       day: "10",
       month: lang === 'es' ? "Noviembre" : "November",
@@ -263,39 +263,38 @@ function ProfesionalesContent() {
                   key={webinar.id}
                   className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col md:flex-row items-stretch hover:shadow-md transition-shadow group"
                 >
-                  {/* LADO IZQUIERDO: Afiche / Flyer con fecha, horario y texto inferior */}
-                  <div className="md:w-72 lg:w-80 shrink-0 relative bg-[#002538] text-white p-5 flex flex-col justify-between overflow-hidden min-h-[250px]">
+                  {/* LADO IZQUIERDO: Afiche / Flyer con imagen de previsualización destacada */}
+                  <div className="md:w-72 lg:w-80 shrink-0 relative bg-[#001D2C] overflow-hidden min-h-[280px] md:min-h-full flex flex-col justify-between p-4 group">
+                    {/* Imagen de preview 100% nítida y visible */}
                     <img
                       src={webinar.flyerImage}
                       alt={webinar.title}
-                      className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:scale-105 transition-transform duration-500"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#002538]/85 via-[#002538]/90 to-[#001D2C]"></div>
 
-                    {/* Cabecera del flyer: Fecha */}
+                    {/* Gradiente suave solo en el tercio inferior para garantizar legibilidad del horario y tag */}
+                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent pointer-events-none"></div>
+
+                    {/* Cabecera del flyer: Badge de fecha discreto */}
                     <div className="relative z-10 flex items-start justify-end">
-                      <div className="border border-white/30 rounded-lg px-2.5 py-1 text-center bg-white/10 backdrop-blur-xs min-w-[56px]">
+                      <div className="border border-white/20 rounded-lg px-2.5 py-1 text-center bg-slate-900/60 backdrop-blur-md shadow-xs min-w-[56px]">
                         <span className="block text-xl font-black leading-none text-white">{webinar.day}</span>
                         <span className="block text-[10px] font-bold uppercase text-white/90 leading-tight mt-0.5">{webinar.month}</span>
                       </div>
                     </div>
 
-                    {/* Título en el flyer */}
-                    <div className="relative z-10 my-3">
-                      <h4 className="text-xs sm:text-sm font-bold text-white leading-snug line-clamp-3">
-                        {webinar.title}
-                      </h4>
-                    </div>
+                    {/* Centro libre: permite apreciar el arte, el texto del afiche y el lazo con total nitidez */}
+                    <div className="relative z-10 flex-1"></div>
 
-                    {/* Pie del flyer: Horario y Texto inferior */}
-                    <div className="relative z-10 pt-3 border-t border-white/15 space-y-2">
-                      <div className="flex items-center gap-1.5 text-[11px] text-white/90">
-                        <span className="font-semibold text-[#E5A400]">{lang === 'es' ? 'Horario:' : 'Time:'}</span>
-                        <span className="truncate">{webinar.time}</span>
+                    {/* Pie del flyer: Horario y Tag */}
+                    <div className="relative z-10 pt-2 border-t border-white/20 space-y-2">
+                      <div className="flex items-center gap-1.5 text-[11px] text-white">
+                        <span className="font-bold text-[#E5A400]">{lang === 'es' ? 'Horario:' : 'Time:'}</span>
+                        <span className="truncate font-medium">{webinar.time}</span>
                       </div>
 
-                      <div className="pt-1">
-                        <span className="inline-block px-2.5 py-1 bg-white/15 backdrop-blur-xs rounded text-[11px] font-bold text-white tracking-wide uppercase">
+                      <div className="pt-0.5">
+                        <span className="inline-block px-2.5 py-1 bg-[#003B49]/90 border border-white/20 backdrop-blur-xs rounded text-[11px] font-bold text-white tracking-wide uppercase shadow-xs">
                           {webinar.bottomTag}
                         </span>
                       </div>
