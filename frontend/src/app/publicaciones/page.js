@@ -59,7 +59,7 @@ function getPublicationAuthorRegex(autoresRed) {
   
   return new RegExp(
     `(?<!\\p{L})(${activePatterns.join('|')})(?!\\p{L})`,
-    'gu'
+    'gui'
   );
 }
 
@@ -179,14 +179,12 @@ export default function PublicacionesPage() {
             </div>
           ) : (
             filtered.map((pub) => {
-              const authorsText = getAuthors(pub);
-
               return (
                 <div key={pub.id} className="py-6 space-y-2">
                   
-                  {/* Autores con investigadores de la red en negrita */}
-                  <p className="text-sm font-medium text-slate-600 leading-relaxed">
-                    {highlightAuthorsInText(authorsText, pub.autores_red)}
+                  {/* Miembros de la Red HTLV autores del artículo */}
+                  <p className="text-sm font-semibold text-slate-800 leading-relaxed">
+                    {highlightAuthorsInText((pub.autores_red || '').trim(), pub.autores_red)}
                   </p>
 
                   {/* [Año] Título del Artículo como enlace interactivo */}
