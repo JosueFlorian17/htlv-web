@@ -160,7 +160,7 @@ function AboutContent() {
           image: '/team/eduardo_gotuzzo.jpeg'
         },
         {
-          name: 'Mg. Daniel Cóndor',
+          name: lang === 'es' ? 'Mg. Daniel Cóndor' : 'Daniel Condor, MSc',
           role: lang === 'es' ? 'Co-investigador' : 'Co-investigator',
           text: lang === 'es'
             ? 'Coordinador de la Unidad de Informática Biomédica en Salud Global y docente investigador de la UPCH'
@@ -208,7 +208,7 @@ function AboutContent() {
           image: '/team/claudia_morales.jpeg'
         },
         {
-          name: 'Mg. Giovanni López',
+          name: lang === 'es' ? 'Mg. Giovanni López' : 'Giovanni López, MSc',
           role: lang === 'es' ? 'Miembro' : 'Member',
           text: lang === 'es'
             ? 'Jefe de la Unidad de Virología, investigador de la Unidad de HTLV-1 y coordinador de Tropicales LAB del Instituto de Medicina Tropical Alexander von Humboldt'
