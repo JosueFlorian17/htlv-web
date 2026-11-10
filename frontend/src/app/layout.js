@@ -3,7 +3,7 @@ import Header from '../components/layout/Header';
 import MainLayoutWrapper from '../components/layout/MainLayoutWrapper';
 import { LanguageProvider } from '../context/LanguageContext';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://htlv-web.vercel.app');
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://htlvnetwork.org';
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -11,7 +11,6 @@ export const metadata = {
     default: 'Red HTLV | Red Internacional de Investigación e Innovación en HTLV',
     template: '%s | Red HTLV'
   },
-  description: 'Plataforma científica oficial de la Red Internacional de Investigación e Innovación en HTLV (Red HTLV), con el liderazgo de la Universidad Peruana Cayetano Heredia (Perú). Guías clínicas, epidemiología, repositorio y consensos internacionales sobre HTLV-1 y HTLV-2.',
   keywords: [
     'HTLV',
     'HTLV-1',
@@ -39,11 +38,18 @@ export const metadata = {
   },
   openGraph: {
     title: 'Red HTLV | Red Internacional de Investigación e Innovación en HTLV',
-    description: 'Consenso científico, epidemiología y guías clínicas sobre el virus HTLV-1/2 lideradas por la Universidad Peruana Cayetano Heredia y centros internacionales.',
     url: siteUrl,
-    siteName: 'Red HTLV Digital Research Hub',
+    siteName: 'Red HTLV',
     locale: 'es_PE',
     type: 'website',
+    images: [
+      {
+        url: '/logos/LogoRedHTLV_PNG_ES.png',
+        width: 1200,
+        height: 630,
+        alt: 'Red HTLV',
+      }
+    ],
   },
   robots: {
     index: true,
