@@ -51,22 +51,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. SECCIÓN INFERIOR: 1 VIDEO DE YOUTUBE + TEXTO CORTO CON BULLETS */}
+      {/* 2. SECCIÓN INFERIOR: IMAGEN REPRESENTATIVA + TEXTO CORTO CON BULLETS */}
       <section className="w-full py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-slate-50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Columna Izquierda: 1 Video de YouTube */}
+            {/* Columna Izquierda: Imagen Representativa */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-black">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube-nocookie.com/embed/1NqgEEReKhs?rel=0"
-                  title={lang === 'es' ? "¿Quiénes somos?" : "Who are we?"}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+              <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative bg-slate-900">
+                <img
+                  src="/images/quienes-somos.jpg"
+                  alt={lang === 'es' ? "Investigación biomédica Red HTLV" : "Red HTLV biomedical research"}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="text-center pt-1">
                 <h3 className="font-extrabold text-xl sm:text-2xl text-[#003B49] tracking-tight">
