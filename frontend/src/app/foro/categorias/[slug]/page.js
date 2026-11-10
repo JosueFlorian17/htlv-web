@@ -1,10 +1,16 @@
-"use client";
-
-import { useState, use } from 'react';
 import Link from 'next/link';
 
-export default function ForumCategorySpacePage({ params }) {
-  const resolvedParams = use(params);
+export async function generateStaticParams() {
+  return [
+    { slug: 'apoyo-mutuo' },
+    { slug: 'orientacion-faqs' },
+    { slug: 'investigacion' },
+    { slug: 'comunidad' },
+  ];
+}
+
+export default async function ForumCategorySpacePage({ params }) {
+  const resolvedParams = await params;
   const { slug } = resolvedParams;
 
   const CATEGORY_TITLES = {

@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev",
     "build": "next build",
+    "deploy:dreamhost": "next build && node ../deploy_dreamhost.js",
     "start": "next start"
   },
   "keywords": [],

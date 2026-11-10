@@ -1,3 +1,11 @@
+export async function generateStaticParams() {
+  return [
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+  ];
+}
+
 export default async function DetalleNoticiaPage({ params }) {
   // Desempaquetamos de manera asíncrona el id de la URL
   const { id } = await params;

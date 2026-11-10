@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 export default function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://htlv-web.vercel.app');
   const currentDate = new Date().toISOString();
