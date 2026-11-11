@@ -69,14 +69,28 @@ function PacientesContent() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.pregunta) return;
     setLoading(true);
-    setTimeout(() => {
+
+    try {
+      await fetch('/api/guardar_consulta.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tipo: 'Pregunta de Paciente / Familiar',
+          nombre: formData.nombre || 'No especificado (Anónimo)',
+          email: formData.email,
+          pregunta: formData.pregunta
+        })
+      });
+    } catch (err) {
+      console.error('Error al guardar consulta:', err);
+    } finally {
       setLoading(false);
       setSubmitted(true);
-    }, 600);
+    }
   };
 
   return (

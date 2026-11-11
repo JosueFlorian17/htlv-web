@@ -15,6 +15,7 @@ export default function ContactPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -24,13 +25,32 @@ export default function ContactPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.termsAccepted) {
       alert(lang === 'es' ? "Por favor, autorice el tratamiento de contacto." : "Please accept contact authorization.");
       return;
     }
-    setSubmitted(true);
+    setLoading(true);
+
+    try {
+      await fetch('/api/guardar_consulta.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tipo: 'Contacto Institucional',
+          nombre: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          mensaje: formData.message,
+          terminosAceptados: formData.termsAccepted ? 'Sí' : 'No'
+        })
+      });
+    } catch (err) {
+      console.error('Error al registrar contacto:', err);
+    } finally {
+      setLoading(false);
+      setSubmitted(true);
+    }
   };
 
   return (
@@ -168,10 +188,11 @@ export default function ContactPage() {
                 </div>
 
                 <button 
-                  className="bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-8 rounded-lg transition-colors shadow-sm text-sm cursor-pointer" 
+                  disabled={loading}
+                  className="bg-[#003B49] hover:bg-[#087E8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A400] text-white font-semibold py-2.5 px-8 rounded-lg transition-colors shadow-sm text-sm cursor-pointer disabled:opacity-50" 
                   type="submit"
                 >
-                  {lang === 'es' ? 'Enviar Solicitud' : 'Submit Request'}
+                  {loading ? '...' : (lang === 'es' ? 'Enviar Solicitud' : 'Submit Request')}
                 </button>
               </form>
             )}
