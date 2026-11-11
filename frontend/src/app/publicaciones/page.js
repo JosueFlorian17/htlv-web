@@ -199,13 +199,6 @@ export default function PublicacionesPage() {
                       <span className="material-symbols-outlined text-base leading-none">open_in_new</span>
                       <span>{lang === 'es' ? 'Ver enlace' : 'View link'}</span>
                     </button>
-
-                    {/* Tipo de publicación en texto sutil a la derecha (sin clasificación por área) */}
-                    {pub.tipo && (
-                      <span className="text-xs text-slate-400 font-medium sm:ml-auto">
-                        {pub.tipo}
-                      </span>
-                    )}
                   </div>
 
                 </div>
