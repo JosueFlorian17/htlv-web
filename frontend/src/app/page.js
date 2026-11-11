@@ -58,18 +58,13 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Columna Izquierda: Imagen Representativa */}
-            <div className="lg:col-span-6 space-y-4">
+            <div className="lg:col-span-6">
               <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative bg-slate-900">
                 <img
                   src="/images/quienes-somos.jpg"
-                  alt={lang === 'es' ? "Investigación biomédica Red HTLV" : "Red HTLV biomedical research"}
+                  alt={lang === 'es' ? "Virus HTLV-1" : "HTLV-1 Virus"}
                   className="w-full h-full object-cover"
                 />
-              </div>
-              <div className="text-center pt-1">
-                <h3 className="font-extrabold text-xl sm:text-2xl text-[#003B49] tracking-tight">
-                  {lang === 'es' ? '¿Quiénes somos?' : 'Who are we?'}
-                </h3>
               </div>
             </div>
 
